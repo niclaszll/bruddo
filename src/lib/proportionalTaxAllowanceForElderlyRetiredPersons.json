@@ -1,0 +1,326 @@
+[
+  {
+    "index": 1,
+    "yearFollowingThe65thBirthday": 2005,
+    "allowancePercentage": 0.4,
+    "maxAllowance": 1900
+  },
+  {
+    "index": 2,
+    "yearFollowingThe65thBirthday": 2006,
+    "allowancePercentage": 0.384,
+    "maxAllowance": 1824
+  },
+  {
+    "index": 3,
+    "yearFollowingThe65thBirthday": 2007,
+    "allowancePercentage": 0.368,
+    "maxAllowance": 1748
+  },
+  {
+    "index": 4,
+    "yearFollowingThe65thBirthday": 2008,
+    "allowancePercentage": 0.352,
+    "maxAllowance": 1672
+  },
+  {
+    "index": 5,
+    "yearFollowingThe65thBirthday": 2009,
+    "allowancePercentage": 0.336,
+    "maxAllowance": 1596
+  },
+  {
+    "index": 6,
+    "yearFollowingThe65thBirthday": 2010,
+    "allowancePercentage": 0.32,
+    "maxAllowance": 1520
+  },
+  {
+    "index": 7,
+    "yearFollowingThe65thBirthday": 2011,
+    "allowancePercentage": 0.304,
+    "maxAllowance": 1444
+  },
+  {
+    "index": 8,
+    "yearFollowingThe65thBirthday": 2012,
+    "allowancePercentage": 0.288,
+    "maxAllowance": 1368
+  },
+  {
+    "index": 9,
+    "yearFollowingThe65thBirthday": 2013,
+    "allowancePercentage": 0.272,
+    "maxAllowance": 1292
+  },
+  {
+    "index": 10,
+    "yearFollowingThe65thBirthday": 2014,
+    "allowancePercentage": 0.256,
+    "maxAllowance": 1216
+  },
+  {
+    "index": 11,
+    "yearFollowingThe65thBirthday": 2015,
+    "allowancePercentage": 0.24,
+    "maxAllowance": 1140
+  },
+  {
+    "index": 12,
+    "yearFollowingThe65thBirthday": 2016,
+    "allowancePercentage": 0.224,
+    "maxAllowance": 1064
+  },
+  {
+    "index": 13,
+    "yearFollowingThe65thBirthday": 2017,
+    "allowancePercentage": 0.208,
+    "maxAllowance": 988
+  },
+  {
+    "index": 14,
+    "yearFollowingThe65thBirthday": 2018,
+    "allowancePercentage": 0.192,
+    "maxAllowance": 912
+  },
+  {
+    "index": 15,
+    "yearFollowingThe65thBirthday": 2019,
+    "allowancePercentage": 0.176,
+    "maxAllowance": 836
+  },
+  {
+    "index": 16,
+    "yearFollowingThe65thBirthday": 2020,
+    "allowancePercentage": 0.16,
+    "maxAllowance": 760
+  },
+  {
+    "index": 17,
+    "yearFollowingThe65thBirthday": 2021,
+    "allowancePercentage": 0.152,
+    "maxAllowance": 722
+  },
+  {
+    "index": 18,
+    "yearFollowingThe65thBirthday": 2022,
+    "allowancePercentage": 0.144,
+    "maxAllowance": 684
+  },
+  {
+    "index": 19,
+    "yearFollowingThe65thBirthday": 2023,
+    "allowancePercentage": 0.14,
+    "maxAllowance": 665
+  },
+  {
+    "index": 20,
+    "yearFollowingThe65thBirthday": 2024,
+    "allowancePercentage": 0.136,
+    "maxAllowance": 646
+  },
+  {
+    "index": 21,
+    "yearFollowingThe65thBirthday": 2025,
+    "allowancePercentage": 0.132,
+    "maxAllowance": 627
+  },
+  {
+    "index": 22,
+    "yearFollowingThe65thBirthday": 2026,
+    "allowancePercentage": 0.128,
+    "maxAllowance": 608
+  },
+  {
+    "index": 23,
+    "yearFollowingThe65thBirthday": 2027,
+    "allowancePercentage": 0.124,
+    "maxAllowance": 589
+  },
+  {
+    "index": 24,
+    "yearFollowingThe65thBirthday": 2028,
+    "allowancePercentage": 0.12,
+    "maxAllowance": 570
+  },
+  {
+    "index": 25,
+    "yearFollowingThe65thBirthday": 2029,
+    "allowancePercentage": 0.116,
+    "maxAllowance": 551
+  },
+  {
+    "index": 26,
+    "yearFollowingThe65thBirthday": 2030,
+    "allowancePercentage": 0.112,
+    "maxAllowance": 532
+  },
+  {
+    "index": 27,
+    "yearFollowingThe65thBirthday": 2031,
+    "allowancePercentage": 0.108,
+    "maxAllowance": 513
+  },
+  {
+    "index": 28,
+    "yearFollowingThe65thBirthday": 2032,
+    "allowancePercentage": 0.104,
+    "maxAllowance": 494
+  },
+  {
+    "index": 29,
+    "yearFollowingThe65thBirthday": 2033,
+    "allowancePercentage": 0.1,
+    "maxAllowance": 475
+  },
+  {
+    "index": 30,
+    "yearFollowingThe65thBirthday": 2034,
+    "allowancePercentage": 0.096,
+    "maxAllowance": 456
+  },
+  {
+    "index": 31,
+    "yearFollowingThe65thBirthday": 2035,
+    "allowancePercentage": 0.092,
+    "maxAllowance": 437
+  },
+  {
+    "index": 32,
+    "yearFollowingThe65thBirthday": 2036,
+    "allowancePercentage": 0.088,
+    "maxAllowance": 418
+  },
+  {
+    "index": 33,
+    "yearFollowingThe65thBirthday": 2037,
+    "allowancePercentage": 0.084,
+    "maxAllowance": 399
+  },
+  {
+    "index": 34,
+    "yearFollowingThe65thBirthday": 2038,
+    "allowancePercentage": 0.08,
+    "maxAllowance": 380
+  },
+  {
+    "index": 35,
+    "yearFollowingThe65thBirthday": 2039,
+    "allowancePercentage": 0.076,
+    "maxAllowance": 361
+  },
+  {
+    "index": 36,
+    "yearFollowingThe65thBirthday": 2040,
+    "allowancePercentage": 0.072,
+    "maxAllowance": 342
+  },
+  {
+    "index": 37,
+    "yearFollowingThe65thBirthday": 2041,
+    "allowancePercentage": 0.068,
+    "maxAllowance": 323
+  },
+  {
+    "index": 38,
+    "yearFollowingThe65thBirthday": 2042,
+    "allowancePercentage": 0.064,
+    "maxAllowance": 304
+  },
+  {
+    "index": 39,
+    "yearFollowingThe65thBirthday": 2043,
+    "allowancePercentage": 0.06,
+    "maxAllowance": 285
+  },
+  {
+    "index": 40,
+    "yearFollowingThe65thBirthday": 2044,
+    "allowancePercentage": 0.056,
+    "maxAllowance": 266
+  },
+  {
+    "index": 41,
+    "yearFollowingThe65thBirthday": 2045,
+    "allowancePercentage": 0.052,
+    "maxAllowance": 247
+  },
+  {
+    "index": 42,
+    "yearFollowingThe65thBirthday": 2046,
+    "allowancePercentage": 0.048,
+    "maxAllowance": 228
+  },
+  {
+    "index": 43,
+    "yearFollowingThe65thBirthday": 2047,
+    "allowancePercentage": 0.044,
+    "maxAllowance": 209
+  },
+  {
+    "index": 44,
+    "yearFollowingThe65thBirthday": 2048,
+    "allowancePercentage": 0.04,
+    "maxAllowance": 190
+  },
+  {
+    "index": 45,
+    "yearFollowingThe65thBirthday": 2049,
+    "allowancePercentage": 0.036,
+    "maxAllowance": 171
+  },
+  {
+    "index": 46,
+    "yearFollowingThe65thBirthday": 2050,
+    "allowancePercentage": 0.032,
+    "maxAllowance": 152
+  },
+  {
+    "index": 47,
+    "yearFollowingThe65thBirthday": 2051,
+    "allowancePercentage": 0.028,
+    "maxAllowance": 133
+  },
+  {
+    "index": 48,
+    "yearFollowingThe65thBirthday": 2052,
+    "allowancePercentage": 0.024,
+    "maxAllowance": 114
+  },
+  {
+    "index": 49,
+    "yearFollowingThe65thBirthday": 2053,
+    "allowancePercentage": 0.02,
+    "maxAllowance": 95
+  },
+  {
+    "index": 50,
+    "yearFollowingThe65thBirthday": 2054,
+    "allowancePercentage": 0.016,
+    "maxAllowance": 76
+  },
+  {
+    "index": 51,
+    "yearFollowingThe65thBirthday": 2055,
+    "allowancePercentage": 0.012,
+    "maxAllowance": 57
+  },
+  {
+    "index": 52,
+    "yearFollowingThe65thBirthday": 2056,
+    "allowancePercentage": 0.008,
+    "maxAllowance": 38
+  },
+  {
+    "index": 53,
+    "yearFollowingThe65thBirthday": 2057,
+    "allowancePercentage": 0.004,
+    "maxAllowance": 19
+  },
+  {
+    "index": 54,
+    "yearFollowingThe65thBirthday": 2058,
+    "allowancePercentage": 0.0,
+    "maxAllowance": 0
+  }
+]
