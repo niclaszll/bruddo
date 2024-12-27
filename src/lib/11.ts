@@ -14,6 +14,9 @@ export const calculatePensionLumpSum = (
   annualSalaryAfterDeductionOfCompensation: number,
   taxClass: TaxClass
 ) => {
+  /**
+   * VSP1 Zwischenwert 1 bei der Berechnung der Vorsorgepauschale in Euro, Cent (2 Dezimalstellen)
+   */
   let pensionLumpSumIntermediateValue1 = 0;
 
   let updatedAnnualSalaryAfterDeductionOfCompensation =
@@ -42,7 +45,7 @@ export const calculatePensionLumpSum = (
   );
 
   /**
-   * VSPN Vorsorgepauschale mit Teilbeträgen für die Rentenversicherung
+   * VSPN - Vorsorgepauschale mit Teilbeträgen für die Rentenversicherung
    * sowie der Mindestvorsorgepauschale für die Kranken- und
    * Pflegeversicherung in Euro, Cent (2 Dezimalstellen)
    */

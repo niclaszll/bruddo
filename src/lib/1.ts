@@ -66,24 +66,25 @@ export const statPenInsConRate = hasStatPenIns ? 0.093 : 0;
 /**
  * BBGKVPV - Beitragsbemessungsgrenze in der gesetzlichen Krankenversicherung und der sozialen Pflegeversicherung in Euro
  */
-const statHealthInsConAssCeil = 66150;
+export const statHealthInsConAssCeil = 66150;
 
 /**
  * KVSATZAN - Beitragssatz des Arbeitnehmers zur Krankenversicherung (5 Dezimalstellen)
  */
-const statHealthInsConRateEmployee = statHealthInsAddConRate / 2 / 100 + 0.07;
+export const statHealthInsConRateEmployee =
+  statHealthInsAddConRate / 2 / 100 + 0.07;
 
 /**
  * KVSATZAG - Beitragssatz des Arbeitgebers zur Krankenversicherung unter
  * Berücksichtigung des durchschnittlichen Zusatzbeitragssatzes für die
  * Ermittlung des Arbeitgeberzuschusses (5 Dezimalstellen)
  */
-const statHealthInsConRateEmployee = 0.0125 + 0.07;
+export const statHealthInsConRateEmployer = 0.0125 + 0.07;
 
 /**
  * PVSATZAN - Beitragssatz des Arbeitnehmers zur Pflegeversicherung (6 Dezimalstellen)
  */
-let nursCareInsConRateEmployee = isFromSaxony ? 0.023 : 0.018;
+export let nursCareInsConRateEmployee = isFromSaxony ? 0.023 : 0.018;
 if (!nurseCareInsEmployeeHasToPayAddCon) {
   nursCareInsConRateEmployee =
     nursCareInsConRateEmployee - nurseCareDeductWithChildren * 0.0025;
@@ -94,7 +95,7 @@ if (!nurseCareInsEmployeeHasToPayAddCon) {
 /**
  * PVSATZAG - Beitragssatz des Arbeitgebers zur Pflegeversicherung (6 Dezimalstellen)
  */
-const nursCareInsConRateEmployer = isFromSaxony ? 0.013 : 0.018;
+export const nursCareInsConRateEmployer = isFromSaxony ? 0.013 : 0.018;
 
 /**
  * W1STKL5 - Erster Grenzwert in Steuerklasse V/VI in Euro
