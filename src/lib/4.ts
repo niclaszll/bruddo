@@ -1,69 +1,49 @@
+import { InternalFields } from "./InternalFields";
 import taxData from "./ProportionalTaxAllowanceForElderlyRetiredPersons.json";
+import { UserInputs } from "./UserInputs";
 
 /**
- * Ermittlung des Altersentlastungsbetrags (§ 39b Absatz 2 Satz 3 EStG
- *
- * @param olderThan64 ALTER1 - `true`, wenn das 64. Lebensjahr vor Beginn des Kalenderjahres vollendet
- * wurde, in dem der Lohnzahlungszeitraum endet (§ 24a EStG), sonst `false`
- * @param yearFollowingThe65thBirthday AJAHR - Auf die Vollendung des 64. Lebensjahres folgendes Kalenderjahr
- * (erforderlich, wenn ALTER1=1)
- * @param grossSalaryEuro ZRE4J - Auf einen Jahreslohn hochgerechnetes RE4 in Euro, Cent (2 Dezimalstellen)
- * @param pensionPaymentsEuro ZVBEZJ - Auf einen Jahreslohn hochgerechnetes VBEZ in Euro, Cent (2 Dezimalstellen)
- *
- * @return {number} ALTE - Altersentlastungsbetrag in Euro, Cent (2 Dezimalstellen)
+ * MRE4ALTE - Ermittlung des Altersentlastungsbetrags (§ 39b Absatz 2 Satz 3 EStG
  */
-export const calculateProportionalTaxAllowanceForElderlyRetiredPersons = (
-  olderThan64: boolean,
-  yearFollowingThe65thBirthday: number,
-  grossSalaryEuro: number,
-  pensionPaymentsEuro: number
-) => {
-  let result = 0;
+export const calculateProportionalTaxAllowanceForElderlyRetiredPersons = () => {
+  const internalFields = InternalFields.instance;
+  const userInputs = UserInputs.instance;
 
-  if (!olderThan64) {
-    return result;
+  if (userInputs.ALTER1 === 0) {
+    internalFields.ALTE = 0;
+  } else {
+    if (userInputs.AJAHR < 2006) {
+      internalFields.K = 1;
+    } else if (userInputs.AJAHR < 2058) {
+      internalFields.K = userInputs.AJAHR - 2004;
+    } else {
+      internalFields.K = 54;
+    }
   }
 
-  /**
-   * K - Nummer der Tabellenwerte für Parameter bei Altersentlastungsbetrag
-   */
-  let tableIndex = 54;
-
-  if (yearFollowingThe65thBirthday < 2006) {
-    tableIndex = 1;
-  } else if (yearFollowingThe65thBirthday < 2058) {
-    tableIndex = yearFollowingThe65thBirthday - 2004;
-  }
-
-  /**
-   * BMG - Bemessungsgrundlage für Altersentlastungsbetrag in Euro, Cent (2 Dezimalstellen)
-   */
-  const ageReliefAssessmentBasis = grossSalaryEuro - pensionPaymentsEuro;
+  internalFields.BMG = internalFields.ZRE4J - internalFields.ZVBEZJ;
 
   const allowancePercentage = taxData.find(
-    (entry) => entry.index === tableIndex
+    (entry) => entry.index === internalFields.K
   )?.allowancePercentage;
 
   if (allowancePercentage === undefined) {
     throw new Error(
-      `No allowancePercentage data found for table index ${tableIndex}`
+      `No allowancePercentage data found for table index ${internalFields.K}`
     );
   }
 
-  result = Math.ceil(ageReliefAssessmentBasis * allowancePercentage);
+  internalFields.ALTE = Math.ceil(internalFields.BMG * allowancePercentage);
 
-  /**
-   * HBALTE - Maximaler Altersentlastungsbetrag in Euro
-   */
   const maxAllowance = taxData.find(
-    (entry) => entry.index === tableIndex
+    (entry) => entry.index === internalFields.K
   )?.maxAllowance;
 
   if (maxAllowance === undefined) {
-    throw new Error(`No maxAllowance data found for table index ${tableIndex}`);
+    throw new Error(
+      `No maxAllowance data found for table index ${internalFields.K}`
+    );
   }
 
-  result = Math.min(result, maxAllowance);
-
-  return result;
+  internalFields.HBALTE = Math.min(internalFields.ALTE, maxAllowance);
 };

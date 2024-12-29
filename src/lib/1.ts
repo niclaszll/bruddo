@@ -1,123 +1,40 @@
 // see: https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2024-11-22-PAP-2025_anlage.pdf?__blob=publicationFile&v=2
 
-/**
- *
- *
- * User inputs
- *
- *
- */
+import { InternalFields } from "./InternalFields";
+import { UserInputs } from "./UserInputs";
 
 /**
- * KRV - Merker für die Vorsorgepauschale:
- * `true` wenn der Versorgungsempfänger ist in der gesetzlichen
- * Rentenversicherung oder einer berufsständischen
- * Versorgungseinrichtung pflichtversichert oder, bei Befreiung von
- * der Versicherungspflicht freiwillig versichert
+ * MPARA - Zuweisung von Werten für bestimmte Sozialversicherungsparameter
  */
-const hasStatPenIns = true;
-/**
- * KVZ - Kassenindividueller Zusatzbeitrag bei einem gesetzlich
- * krankenversicherten Versorgungsempfängers in Prozent (bspw. 2,50
- * für 2,50 %) mit 2 Dezimalstellen
- */
-const statHealthInsAddConRate = 2.5;
-/**
- * PVS - `true` wenn bei der sozialen Pflegeversicherung die Besonderheiten in
- * Sachsen zu berücksichtigen sind bzw. zu berücksichtigen wären
- */
-const isFromSaxony = true;
-/**
- * PVZ `true`, wenn der Arbeitnehmer den Zuschlag zur sozialen
- * Pflegeversicherung zu zahlen hat
- */
-const nurseCareInsEmployeeHasToPayAddCon = true;
+export const setupParameters = () => {
+  const internalFields = InternalFields.instance;
+  const userInputs = UserInputs.instance;
 
-/**
- * PVA Zahl der beim Arbeitnehmer zu berücksichtigenden
- * Beitragsabschläge in der sozialen Pflegeversicherung bei mehr als
- * einem Kind:
- * 0 = kein Abschlag
- * 1 = Beitragsabschlag für das 2. Kind
- * 2 = Beitragsabschläge für das 2. und 3. Kind
- * 3 = Beitragsabschläge für 2. bis 4. Kinder
- * 4 = Beitragsabschläge für 2. bis 5. oder mehr Kinder
- */
-const nurseCareDeductWithChildren = 0;
+  userInputs.setKRV(1).setKVZ(2.19).setPVS(1).setPVZ(1).setPVA(0);
 
-/**
- *
- *
- * Internal fields
- *
- *
- */
+  internalFields.BBGRV = userInputs.KRV === 1 ? 96600 : 0;
+  internalFields.RVSATZAN = userInputs.KRV === 1 ? 0.093 : 0;
+  internalFields.BBGKVPV = 66150;
+  internalFields.KVSATZAN = userInputs.KVZ / 2 / 100 + 0.07;
 
-/**
- * BBGRV - Allgemeine Beitragsbemessungsgrenze in der allgemeinen Rentenversicherung in Euro
- */
-export const statPenInsConAssCeil = hasStatPenIns ? 96_600 : 0;
+  if (userInputs.PVS === 1) {
+    internalFields.PVSATZAN = 0.023;
+    internalFields.PVSATZAG = 0.013;
+  } else {
+    internalFields.PVSATZAN = 0.018;
+    internalFields.PVSATZAG = 0.018;
+  }
 
-/**
- * RVSATZAN - Beitragssatz des Arbeitnehmers in der allgemeinen gesetzlichen Rentenversicherung (4 Dezimalstellen)
- */
-export const statPenInsConRate = hasStatPenIns ? 0.093 : 0;
+  if (userInputs.PVZ === 1) {
+    internalFields.PVSATZAN = internalFields.PVSATZAN + 0.006;
+  } else {
+    internalFields.PVSATZAN = internalFields.PVSATZAN - userInputs.PVA * 0.0025;
+  }
 
-/**
- * BBGKVPV - Beitragsbemessungsgrenze in der gesetzlichen Krankenversicherung und der sozialen Pflegeversicherung in Euro
- */
-export const statHealthInsConAssCeil = 66150;
+  internalFields.W1STKL5 = 13432;
+  internalFields.W2STKL5 = 33380;
+  internalFields.W3STKL5 = 222260;
 
-/**
- * KVSATZAN - Beitragssatz des Arbeitnehmers zur Krankenversicherung (5 Dezimalstellen)
- */
-export const statHealthInsConRateEmployee =
-  statHealthInsAddConRate / 2 / 100 + 0.07;
-
-/**
- * KVSATZAG - Beitragssatz des Arbeitgebers zur Krankenversicherung unter
- * Berücksichtigung des durchschnittlichen Zusatzbeitragssatzes für die
- * Ermittlung des Arbeitgeberzuschusses (5 Dezimalstellen)
- */
-export const statHealthInsConRateEmployer = 0.0125 + 0.07;
-
-/**
- * PVSATZAN - Beitragssatz des Arbeitnehmers zur Pflegeversicherung (6 Dezimalstellen)
- */
-export let nursCareInsConRateEmployee = isFromSaxony ? 0.023 : 0.018;
-if (!nurseCareInsEmployeeHasToPayAddCon) {
-  nursCareInsConRateEmployee =
-    nursCareInsConRateEmployee - nurseCareDeductWithChildren * 0.0025;
-} else {
-  nursCareInsConRateEmployee = nursCareInsConRateEmployee + 0.006;
-}
-
-/**
- * PVSATZAG - Beitragssatz des Arbeitgebers zur Pflegeversicherung (6 Dezimalstellen)
- */
-export const nursCareInsConRateEmployer = isFromSaxony ? 0.013 : 0.018;
-
-/**
- * W1STKL5 - Erster Grenzwert in Steuerklasse V/VI in Euro
- */
-const taxClassFiveSixLimitOne = 13432;
-
-/**
- * W2STKL5 - Zweiter Grenzwert in Steuerklasse V/VI in Euro
- */
-const taxClassFiveSixLimitTwo = 33380;
-
-/**
- * W3STKL5 - Dritter Grenzwert in Steuerklasse V/VI in Euro
- */
-const taxClassFiveSixLimitThree = 222260;
-
-/**
- * GFB - Grundfreibetrag in Euro
- */
-const basicTaxFreeAllowance = 11784;
-
-/**
- * SOLZFREI - Freigrenze für den Solidaritätszuschlag in Euro
- */
-const solidarityExemptionLimit = 18130;
+  internalFields.GFB = 11784;
+  internalFields.SOLZFREI = 18130;
+};

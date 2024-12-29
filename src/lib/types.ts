@@ -1,8 +1,8 @@
 export enum SalaryPaymentPeriod {
-  YEAR = "year",
-  MONTH = "month",
-  WEEK = "week",
-  DAY = "day",
+  YEAR = 1,
+  MONTH = 2,
+  WEEK = 3,
+  DAY = 4,
 }
 
 export enum TaxClass {
