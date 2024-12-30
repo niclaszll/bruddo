@@ -1,4 +1,6 @@
+import { calculateProportionalTaxAllowanceForElderlyRetiredPersons } from "./4";
 import { InternalFields } from "./InternalFields";
+import { SalaryPaymentPeriod } from "./types";
 import { UserInputs } from "./UserInputs";
 
 /**
@@ -21,6 +23,44 @@ export const calculateAllowances = () => {
     } else {
       internalFields.J = 54;
     }
-    // TODO: start from <LZZ = 1>
+
+    if (userInputs.LZZ === SalaryPaymentPeriod.YEAR) {
+      internalFields.VBEZB =
+        userInputs.VBEZM * userInputs.ZMVB + userInputs.VBEZS;
+      // TODO: internalFields.HFVB = ...
+      // TODO: internalFields.FVBZ = ...
+    } else {
+      internalFields.VBEZB = userInputs.VBEZM * 12 + userInputs.VBEZS;
+      // TODO: internalFields.HFVB = ...
+      // TODO: internalFields.FVBZ = ...
+    }
+
+    // TODO: internalFields.FVB = ...
+    internalFields.FVB = Math.min(internalFields.FVB, internalFields.HFVB);
+    internalFields.FVB = Math.min(internalFields.FVB, internalFields.ZVBEZJ);
+
+    // TODO: internalFields.FVBSO = ...
+    // TODO: internalFields.FVBSO = ...
+
+    internalFields.HFVBZSO =
+      (internalFields.VBEZB + internalFields.VBEZBSO) / 100 -
+      internalFields.FVBSO;
+
+    internalFields.FVBZSO = Math.ceil(
+      internalFields.FVBZ + internalFields.VBEZBSO / 100
+    );
+    internalFields.FVBZSO = Math.ceil(
+      Math.min(internalFields.FVBZSO, internalFields.HFVBZSO)
+    );
+
+    // TODO: internalFields.FVBZSO = ...
+
+    internalFields.HFVBZ = internalFields.VBEZB / 100 - internalFields.FVB;
+    internalFields.FVBZ = Math.ceil(
+      Math.min(internalFields.FVBZ, internalFields.HFVBZ)
+    );
+
+    // MRE4ALTE
+    calculateProportionalTaxAllowanceForElderlyRetiredPersons();
   }
 };

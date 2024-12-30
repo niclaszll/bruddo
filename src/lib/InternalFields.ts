@@ -662,6 +662,7 @@ export class InternalFields {
    * TAB2 - Tabelle für die Höchstbeträge des Versorgungsfreibetrags
    */
   get TAB2() {
+    // TODO: return table entry
     if (this._TAB2 === undefined) throw new Error("TAB2 is not set");
     return this._TAB2;
   }
