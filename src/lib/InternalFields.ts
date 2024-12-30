@@ -1,3 +1,5 @@
+import { IncomeTaxTariffType } from "./types";
+
 export class InternalFields {
   static #instance: InternalFields;
 
@@ -28,8 +30,9 @@ export class InternalFields {
   private _KFB?: number;
   private _KVSATZAG?: number;
   private _KVSATZAN?: number;
-  private _KZTAB?: number;
+  private _KZTAB?: IncomeTaxTariffType;
   private _LSTJAHR?: number;
+  private _LSTLZZ?: number;
   private _LSTOSO?: number;
   private _LSTSO?: number;
   private _MIST?: number;
@@ -57,6 +60,7 @@ export class InternalFields {
   private _VFRB?: number;
   private _VHB?: number;
   private _VKV?: number;
+  private _VKVLZZ?: number;
   private _VSP?: number;
   private _VSPN?: number;
   private _VSP1?: number;
@@ -422,7 +426,7 @@ export class InternalFields {
     return this._KZTAB;
   }
 
-  set KZTAB(value: number) {
+  set KZTAB(value: IncomeTaxTariffType) {
     this._KZTAB = value;
   }
 
@@ -436,6 +440,18 @@ export class InternalFields {
 
   set LSTJAHR(value: number) {
     this._LSTJAHR = value;
+  }
+
+  /**
+   * LSTLZZ - Für den Lohnzahlungszeitraum einzubehaltende Lohnsteuer in Cent
+   */
+  get LSTLZZ() {
+    if (this._LSTLZZ === undefined) throw new Error("LSTLZZ is not set");
+    return this._LSTLZZ;
+  }
+
+  set LSTLZZ(value: number) {
+    this._LSTLZZ = value;
   }
 
   /**
@@ -760,6 +776,24 @@ export class InternalFields {
 
   set VKV(value: number) {
     this._VKV = value;
+  }
+
+  /**
+   * VKVLZZ - Für den Lohnzahlungszeitraum berücksichtigte Beiträge des
+   * Arbeitnehmers zur privaten Basis-Krankenversicherung und privaten
+   * Pflege-Pflichtversicherung (ggf. auch die Mindestvorsorgepauschale)
+   * in Cent beim laufenden Arbeitslohn. Für Zwecke der
+   * Lohnsteuerbescheinigung sind die einzelnen Ausgabewerte
+   * außerhalb des eigentlichen Lohnsteuerberechnungsprogramms zu
+   * addieren; hinzuzurechnen sind auch die Ausgabewerte VKVSONST.
+   */
+  get VKVLZZ() {
+    if (this._VKVLZZ === undefined) throw new Error("VKVLZZ is not set");
+    return this._VKVLZZ;
+  }
+
+  set VKVLZZ(value: number) {
+    this._VKVLZZ = value;
   }
 
   /**

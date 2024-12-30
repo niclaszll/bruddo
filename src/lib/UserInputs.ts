@@ -1,4 +1,4 @@
-import { SalaryPaymentPeriod } from "./types";
+import { SalaryPaymentPeriod, TaxClass } from "./types";
 
 export class UserInputs {
   static #instance: UserInputs;
@@ -28,7 +28,7 @@ export class UserInputs {
   private _SONSTB?: number;
   private _SONSTENT?: number;
   private _STERBE?: number;
-  private _STKL?: number;
+  private _STKL?: TaxClass;
   private _VBEZ?: number;
   private _VBEZM?: number;
   private _VBEZS?: number;
@@ -401,7 +401,7 @@ export class UserInputs {
     return this._STKL;
   }
 
-  public setSTKL(value: number): this {
+  public setSTKL(value: TaxClass): this {
     this._STKL = value;
     return this;
   }

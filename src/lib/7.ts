@@ -1,119 +1,80 @@
+import { InternalFields } from "./InternalFields";
 import { IncomeTaxTariffType, TaxClass } from "./types";
+import { UserInputs } from "./UserInputs";
 
 /**
- * Ermittlung der festen Tabellenfreibeträge (ohne Vorsorgepauschale)
- *
- * @param pensionPaymentsAfterDeductionOfAllowances ZVBEZ - Auf einen Jahreslohn hochgerechnetes VBEZ abzüglich FVB in
- * Euro, Cent (2 Dezimalstellen)
- * @param pensionAllowanceAddCon FVBZ - Zuschlag zum Versorgungsfreibetrag in Euro
- * @param taxClass STKL - Steuerklasse
- * @param pensionAllowanceAddConOtherIncome FVBZSO - Zuschlag zum Versorgungsfreibetrag in Euro für die Berechnung der
- * Lohnsteuer beim sonstigen Bezug
- * @param grossSalaryEuro ZRE4J - Auf einen Jahreslohn hochgerechnetes RE4 in Euro, Cent (2 Dezimalstellen)
- * @param numberAllowancesChildren ZKF - Zahl der Freibeträge für Kinder (eine Dezimalstelle, nur bei
- * Steuerklassen I, II, III und IV)
+ * MZTABFB - Ermittlung der festen Tabellenfreibeträge (ohne Vorsorgepauschale)
  */
-export const calculateFixedTableAllowances = (
-  pensionPaymentsAfterDeductionOfAllowances: number,
-  pensionAllowanceAddCon: number,
-  pensionAllowanceAddConOtherIncome: number,
-  taxClass: TaxClass,
-  grossSalaryEuro: number,
-  numberAllowancesChildren: number
-) => {
+export const calculateFixedTableAllowances = () => {
+  const internalFields = InternalFields.instance;
+  const userInputs = UserInputs.instance;
+
   /**
-   * 1. Mögliche Begrenzung des Zuschlags zum Versorgungsfreibetrag, und
+   * Mögliche Begrenzung des Zuschlags zum Versorgungsfreibetrag, und
    * Festlegung und Begrenzung Werbungskosten-Pauschbetrag für Versorgungsbezüge
    */
+  internalFields.ANP = 0;
 
-  /**
-   * ANP - Arbeitnehmer-Pauschbetrag/Werbungskosten-Pauschbetrag in Euro
-   */
-  let employeeLumpSum = 0;
-
-  let updatedPensionAllowanceAddCon = pensionAllowanceAddCon;
-  let updatedPensionAllowanceAddConOtherIncome =
-    pensionAllowanceAddConOtherIncome;
-
-  if (
-    pensionPaymentsAfterDeductionOfAllowances >= 0 &&
-    pensionPaymentsAfterDeductionOfAllowances < pensionAllowanceAddCon
-  ) {
-    updatedPensionAllowanceAddCon = pensionPaymentsAfterDeductionOfAllowances;
+  if (internalFields.ZVBEZ >= 0) {
+    internalFields.FVBZ = Math.min(internalFields.ZVBEZ, internalFields.FVBZ);
   }
 
-  if (taxClass < TaxClass.VI) {
-    updatedPensionAllowanceAddCon = 0;
-    updatedPensionAllowanceAddConOtherIncome = 0;
-  } else if (pensionPaymentsAfterDeductionOfAllowances > 0) {
-    if (
-      pensionPaymentsAfterDeductionOfAllowances - pensionAllowanceAddCon <
-      102
-    ) {
-      employeeLumpSum = Math.ceil(
-        pensionPaymentsAfterDeductionOfAllowances - pensionAllowanceAddCon
-      );
-    } else {
-      employeeLumpSum = 102;
+  if (userInputs.STKL < TaxClass.VI) {
+    if (internalFields.ZVBEZ > 0) {
+      if (internalFields.ZVBEZ - internalFields.FVBZ < 102) {
+        internalFields.ANP = Math.ceil(
+          internalFields.ZVBEZ - internalFields.FVBZ
+        );
+      } else {
+        internalFields.ANP = 102;
+      }
     }
+  } else {
+    internalFields.FVBZ = 0;
+    internalFields.FVBZSO = 0;
   }
 
   /**
-   * 2. Festlegung Arbeitnehmer-Pauschbetrag für aktiven Lohn
+   * Festlegung Arbeitnehmer-Pauschbetrag für aktiven Lohn
    * mit möglicher Begrenzung
    */
   if (
-    taxClass >= TaxClass.VI &&
-    grossSalaryEuro > pensionPaymentsAfterDeductionOfAllowances
+    userInputs.STKL >= TaxClass.VI &&
+    internalFields.ZRE4 > internalFields.ZVBEZ
   ) {
-    if (grossSalaryEuro - pensionPaymentsAfterDeductionOfAllowances < 1230) {
-      employeeLumpSum = Math.ceil(
-        employeeLumpSum +
-          grossSalaryEuro -
-          pensionPaymentsAfterDeductionOfAllowances
+    if (internalFields.ZRE4 - internalFields.ZVBEZ < 1230) {
+      internalFields.ANP = Math.ceil(
+        internalFields.ANP + internalFields.ZRE4 - internalFields.ZVBEZ
       );
     } else {
-      employeeLumpSum = employeeLumpSum + 1230;
+      internalFields.ANP = internalFields.ANP + 1230;
     }
   }
 
-  /**
-   * KZTAB - Kennzahl für die Einkommensteuer-Tarifarten
-   */
-  let incomeTaxTariffType = IncomeTaxTariffType.BASIC;
-  /**
-   * SAP - Sonderausgaben-Pauschbetrag in Euro
-   */
-  let specialExpensesLumpSum = 0;
+  internalFields.KZTAB = IncomeTaxTariffType.BASIC;
 
-  /**
-   * KFB - Summe der Freibeträge für Kinder in Euro
-   */
-  let totalAllowancesChildren = 0;
-
-  /**
-   * EFA - Entlastungsbetrag für Alleinerziehende in Euro
-   */
-  let singleParentReliefAmount = 0;
-
-  if (taxClass !== TaxClass.VI) {
-    specialExpensesLumpSum = 36;
+  if (userInputs.STKL !== TaxClass.VI) {
+    internalFields.SAP = 36;
   }
 
-  switch (taxClass) {
+  switch (userInputs.STKL) {
     case TaxClass.I:
-      totalAllowancesChildren = numberAllowancesChildren * 9540;
+      internalFields.KFB = userInputs.ZKF * 9540;
       break;
     case TaxClass.II:
-      totalAllowancesChildren = numberAllowancesChildren * 9540;
-      singleParentReliefAmount = 4260;
+      internalFields.KFB = userInputs.ZKF * 9540;
+      internalFields.EFA = 4260;
       break;
     case TaxClass.III:
-      totalAllowancesChildren = numberAllowancesChildren * 9540;
-      incomeTaxTariffType = IncomeTaxTariffType.SPLITTING;
+      internalFields.KFB = userInputs.ZKF * 9540;
+      internalFields.KZTAB = IncomeTaxTariffType.SPLITTING;
       break;
     case TaxClass.IV:
-      totalAllowancesChildren = numberAllowancesChildren * 4770;
+      internalFields.KFB = userInputs.ZKF * 4770;
+      break;
+    case TaxClass.V:
+    case TaxClass.VI:
+      internalFields.KFB = 0;
       break;
   }
 
@@ -121,10 +82,9 @@ export const calculateFixedTableAllowances = (
    * Berechnung der Tabellenfreibeträge ohne Freibeträge
    * für Kinder für die Lohnsteuerberechnung
    */
-  return (
-    singleParentReliefAmount +
-    employeeLumpSum +
-    specialExpensesLumpSum +
-    pensionAllowanceAddCon
-  );
+  internalFields.ZTABFB =
+    internalFields.EFA +
+    internalFields.ANP +
+    internalFields.SAP +
+    internalFields.FVBZ;
 };

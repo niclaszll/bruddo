@@ -1,3 +1,8 @@
+import { calculateAnnualIncomeTaxShare } from "./10";
+import { calculateAnnualSalaryAfterDeductingAllowances } from "./5";
+import { calculateFixedTableAllowances } from "./7";
+import { calculateAnnualWageTax } from "./8";
+import { calculateProportionOfPensionExpensesForSalaryPaymentPeriod } from "./9";
 import { InternalFields } from "./InternalFields";
 import { UserInputs } from "./UserInputs";
 
@@ -8,12 +13,14 @@ export const calculateAnnualIncometaxOnCurrentRemuneration = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
 
-  // TODO: MZTABFB
+  // MZTABFB
+  calculateFixedTableAllowances();
 
   internalFields.VFRB =
     (internalFields.ANP + internalFields.FVB + internalFields.FVBZ) * 100;
 
-  // TODO: MLSTJAHR
+  // MLSTJAHR
+  calculateAnnualWageTax();
 
   internalFields.WVFRB = Math.max(
     (internalFields.ZVE - internalFields.GFB) * 100,
@@ -22,14 +29,20 @@ export const calculateAnnualIncometaxOnCurrentRemuneration = () => {
 
   internalFields.LSTJAHR = internalFields.ST * userInputs.F;
 
-  // TODO: UPLSTLZZ
-  // TODO: UPVKVLZZ
+  // UPLSTLZZ
+  calculateAnnualIncomeTaxShare();
+
+  // UPVKVLZZ
+  calculateProportionOfPensionExpensesForSalaryPaymentPeriod();
 
   if (userInputs.ZKF > 0) {
     internalFields.ZTABFB = internalFields.ZTABFB + internalFields.KFB;
 
-    // TODO: MRE4ABZ
-    // TODO: MLSTJAHR
+    // MRE4ABZ
+    calculateAnnualSalaryAfterDeductingAllowances();
+
+    // MLSTJAHR
+    calculateAnnualWageTax();
 
     internalFields.JBMG = internalFields.ST * userInputs.F;
   } else {

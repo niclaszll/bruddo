@@ -1,38 +1,40 @@
-import { IncomeTaxTariffType, TaxClass } from "./types";
+import { calculatePensionLumpSum } from "./11";
+import { InternalFields } from "./InternalFields";
+import { TaxClass } from "./types";
+import { UserInputs } from "./UserInputs";
 
 /**
- *
- * @param taxableIncome ZVE - Zu versteuerndes Einkommen in Euro, Cent (2 Dezimalstellen)
- * @param incomeTaxTariffType KZTAB - Kennzahl für die Einkommensteuer-Tarifarten
- * @param taxClass STKL - Steuerklasse
+ * MLSTJAHR - Ermittlung der Jahreslohnsteuer
  */
-export const calculateAnnualWageTax = (
-  taxableIncome: number,
-  incomeTaxTariffType: IncomeTaxTariffType,
-  taxClass: TaxClass,
-) => {
-  // TODO: UPEVP - Ermittlung der Vorsorgepauschale
-  /**
-   * UPMLST
-   */
+export const calculateAnnualWageTax = () => {
+  const internalFields = InternalFields.instance;
 
-  /**
-   * ZVE Zu versteuerndes Einkommen in Euro, Cent (2 Dezimalstellen)
-   */
-  let updatedTaxableIncome = 0;
-  /**
-   * X Zu versteuerndes Einkommen gem. § 32a Absatz 1 und 5 EStG in
-   * Euro, Cent (2 Dezimalstellen)
-   */
-  let taxableIncomeX = 0;
+  // UPEVP
+  calculatePensionLumpSum();
 
-  if (taxableIncome >= 1) {
-    taxableIncomeX = Math.floor(taxableIncome / incomeTaxTariffType);
+  internalFields.ZVE =
+    internalFields.ZRE4 - internalFields.ZTABFB - internalFields.VSP;
+
+  calculateUPMLST();
+};
+
+/**
+ * UPMLST
+ */
+export const calculateUPMLST = () => {
+  const internalFields = InternalFields.instance;
+  const userInputs = UserInputs.instance;
+
+  if (internalFields.ZVE < 1) {
+    internalFields.ZVE = 0;
+    internalFields.X = 0;
+  } else {
+    Math.floor((internalFields.X = internalFields.ZVE / internalFields.KZTAB));
   }
 
-  if (taxClass < TaxClass.VI) {
-    // UPTAB24
+  if (userInputs.STKL < TaxClass.VI) {
+    // TODO: UPTAB24
   } else {
-    // MST5-6 
+    // TODO: MST5-6
   }
 };

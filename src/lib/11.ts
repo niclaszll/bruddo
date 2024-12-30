@@ -1,60 +1,33 @@
-import { statPenInsConAssCeil, statPenInsConRate } from "./1";
+import { calculatePensionLumpSumComparatively } from "./12";
+import { InternalFields } from "./InternalFields";
 import { TaxClass } from "./types";
+import { UserInputs } from "./UserInputs";
 
 /**
- * Berechnung der Vorsorgepauschale (§ 39b Absatz 2 Satz 5 Nummer 3 und Absatz 4 EStG)
- *
- * @param hasStatPenIns KRV - Merker für die Vorsorgepauschale
- * @param annualSalaryAfterDeductionOfCompensation ZRE4VP - Auf einen Jahreslohn hochgerechnetes RE4, ggf. nach Abzug der
- * Entschädigungen i.S.d. § 24 Nummer 1 EStG in Euro, Cent (2 Dezimalstellen)
- * @param taxClass STKL - Steuerklasse
+ * UPEVP - Berechnung der Vorsorgepauschale (§ 39b Absatz 2 Satz 5 Nummer 3 und Absatz 4 EStG)
  */
-export const calculatePensionLumpSum = (
-  hasStatPenIns: boolean,
-  annualSalaryAfterDeductionOfCompensation: number,
-  taxClass: TaxClass
-) => {
-  /**
-   * VSP1 Zwischenwert 1 bei der Berechnung der Vorsorgepauschale in Euro, Cent (2 Dezimalstellen)
-   */
-  let pensionLumpSumIntermediateValue1 = 0;
+export const calculatePensionLumpSum = () => {
+  const internalFields = InternalFields.instance;
+  const userInputs = UserInputs.instance;
 
-  let updatedAnnualSalaryAfterDeductionOfCompensation =
-    annualSalaryAfterDeduction;
+  if (userInputs.KRV === 1) {
+    internalFields.VSP1 = 0;
+  } else {
+    internalFields.ZRE4VP = Math.min(
+      internalFields.ZRE4VP,
+      internalFields.BBGRV
+    );
 
-  if (hasStatPenIns) {
-    if (annualSalaryAfterDeductionOfCompensation > statPenInsConAssCeil) {
-      updatedAnnualSalaryAfterDeductionOfCompensation = statPenInsConAssCeil;
-    }
-    pensionLumpSumIntermediateValue1 =
-      updatedAnnualSalaryAfterDeductionOfCompensation * statPenInsConRate;
+    internalFields.VSP1 = internalFields.ZRE4VP * internalFields.RVSATZAN;
   }
 
-  let pensionLumpSumIntermediateValue2 =
-    0.12 * updatedAnnualSalaryAfterDeductionOfCompensation;
+  internalFields.VSP2 = 0.12 * internalFields.ZRE4VP;
+  internalFields.VHB = userInputs.STKL === TaxClass.III ? 3000 : 1900;
+  internalFields.VSP2 = Math.min(internalFields.VSP2, internalFields.VHB);
+  internalFields.VSPN = Math.ceil(internalFields.VSP1 + internalFields.VSP2);
 
-  /**
-   * VHB - Höchstbetrag der Mindestvorsorgepauschale für die Kranken- und
-   * Pflegeversicherung in Euro, Cent (2 Dezimalstellen)
-   */
-  let healthCareLumpSumMax = taxClass === TaxClass.III ? 3000 : 1900;
+  // MVSP
+  calculatePensionLumpSumComparatively();
 
-  pensionLumpSumIntermediateValue2 = Math.min(
-    pensionLumpSumIntermediateValue2,
-    healthCareLumpSumMax
-  );
-
-  /**
-   * VSPN - Vorsorgepauschale mit Teilbeträgen für die Rentenversicherung
-   * sowie der Mindestvorsorgepauschale für die Kranken- und
-   * Pflegeversicherung in Euro, Cent (2 Dezimalstellen)
-   */
-  const pensionLumpSumMin = Math.ceil(
-    pensionLumpSumIntermediateValue1 + pensionLumpSumIntermediateValue2
-  );
-
-  // TODO: MVSP
-  let pensionLumpSum = 0;
-
-  return Math.max(pensionLumpSumMin, pensionLumpSum);
+  internalFields.VSP = Math.max(internalFields.VSPN, internalFields.VSP);
 };
