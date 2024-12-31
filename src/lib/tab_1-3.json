@@ -1,0 +1,380 @@
+[
+  {
+    "index": 1,
+    "startYear": 2005,
+    "allowancePercentage": 400,
+    "maxAllowance": 3000,
+    "supplement": 900
+  },
+  {
+    "index": 2,
+    "startYear": 2006,
+    "allowancePercentage": 384,
+    "maxAllowance": 2880,
+    "supplement": 864
+  },
+  {
+    "index": 3,
+    "startYear": 2007,
+    "allowancePercentage": 368,
+    "maxAllowance": 2760,
+    "supplement": 828
+  },
+  {
+    "index": 4,
+    "startYear": 2008,
+    "allowancePercentage": 352,
+    "maxAllowance": 2640,
+    "supplement": 792
+  },
+  {
+    "index": 5,
+    "startYear": 2009,
+    "allowancePercentage": 336,
+    "maxAllowance": 2520,
+    "supplement": 756
+  },
+  {
+    "index": 6,
+    "startYear": 2010,
+    "allowancePercentage": 320,
+    "maxAllowance": 2400,
+    "supplement": 720
+  },
+  {
+    "index": 7,
+    "startYear": 2011,
+    "allowancePercentage": 304,
+    "maxAllowance": 2280,
+    "supplement": 684
+  },
+  {
+    "index": 8,
+    "startYear": 2012,
+    "allowancePercentage": 288,
+    "maxAllowance": 2160,
+    "supplement": 648
+  },
+  {
+    "index": 9,
+    "startYear": 2013,
+    "allowancePercentage": 272,
+    "maxAllowance": 2040,
+    "supplement": 612
+  },
+  {
+    "index": 10,
+    "startYear": 2014,
+    "allowancePercentage": 256,
+    "maxAllowance": 1920,
+    "supplement": 576
+  },
+  {
+    "index": 11,
+    "startYear": 2015,
+    "allowancePercentage": 240,
+    "maxAllowance": 1800,
+    "supplement": 540
+  },
+  {
+    "index": 12,
+    "startYear": 2016,
+    "allowancePercentage": 224,
+    "maxAllowance": 1680,
+    "supplement": 504
+  },
+  {
+    "index": 13,
+    "startYear": 2017,
+    "allowancePercentage": 208,
+    "maxAllowance": 1560,
+    "supplement": 468
+  },
+  {
+    "index": 14,
+    "startYear": 2018,
+    "allowancePercentage": 192,
+    "maxAllowance": 1440,
+    "supplement": 432
+  },
+  {
+    "index": 15,
+    "startYear": 2019,
+    "allowancePercentage": 176,
+    "maxAllowance": 1320,
+    "supplement": 396
+  },
+  {
+    "index": 16,
+    "startYear": 2020,
+    "allowancePercentage": 160,
+    "maxAllowance": 1200,
+    "supplement": 360
+  },
+  {
+    "index": 17,
+    "startYear": 2021,
+    "allowancePercentage": 152,
+    "maxAllowance": 1140,
+    "supplement": 342
+  },
+  {
+    "index": 18,
+    "startYear": 2022,
+    "allowancePercentage": 144,
+    "maxAllowance": 1080,
+    "supplement": 324
+  },
+  {
+    "index": 19,
+    "startYear": 2023,
+    "allowancePercentage": 140,
+    "maxAllowance": 1050,
+    "supplement": 315
+  },
+  {
+    "index": 20,
+    "startYear": 2024,
+    "allowancePercentage": 136,
+    "maxAllowance": 1020,
+    "supplement": 306
+  },
+  {
+    "index": 21,
+    "startYear": 2025,
+    "allowancePercentage": 132,
+    "maxAllowance": 990,
+    "supplement": 297
+  },
+  {
+    "index": 22,
+    "startYear": 2026,
+    "allowancePercentage": 128,
+    "maxAllowance": 960,
+    "supplement": 288
+  },
+  {
+    "index": 23,
+    "startYear": 2027,
+    "allowancePercentage": 124,
+    "maxAllowance": 930,
+    "supplement": 279
+  },
+  {
+    "index": 24,
+    "startYear": 2028,
+    "allowancePercentage": 120,
+    "maxAllowance": 900,
+    "supplement": 270
+  },
+  {
+    "index": 25,
+    "startYear": 2029,
+    "allowancePercentage": 116,
+    "maxAllowance": 870,
+    "supplement": 261
+  },
+  {
+    "index": 26,
+    "startYear": 2030,
+    "allowancePercentage": 112,
+    "maxAllowance": 840,
+    "supplement": 252
+  },
+  {
+    "index": 27,
+    "startYear": 2031,
+    "allowancePercentage": 108,
+    "maxAllowance": 810,
+    "supplement": 243
+  },
+  {
+    "index": 28,
+    "startYear": 2032,
+    "allowancePercentage": 104,
+    "maxAllowance": 780,
+    "supplement": 234
+  },
+  {
+    "index": 29,
+    "startYear": 2033,
+    "allowancePercentage": 100,
+    "maxAllowance": 750,
+    "supplement": 225
+  },
+  {
+    "index": 30,
+    "startYear": 2034,
+    "allowancePercentage": 0.96,
+    "maxAllowance": 720,
+    "supplement": 216
+  },
+  {
+    "index": 31,
+    "startYear": 2035,
+    "allowancePercentage": 0.92,
+    "maxAllowance": 690,
+    "supplement": 207
+  },
+  {
+    "index": 32,
+    "startYear": 2036,
+    "allowancePercentage": 0.88,
+    "maxAllowance": 660,
+    "supplement": 198
+  },
+  {
+    "index": 33,
+    "startYear": 2037,
+    "allowancePercentage": 0.84,
+    "maxAllowance": 630,
+    "supplement": 189
+  },
+  {
+    "index": 34,
+    "startYear": 2038,
+    "allowancePercentage": 0.8,
+    "maxAllowance": 600,
+    "supplement": 180
+  },
+  {
+    "index": 35,
+    "startYear": 2039,
+    "allowancePercentage": 0.76,
+    "maxAllowance": 570,
+    "supplement": 171
+  },
+  {
+    "index": 36,
+    "startYear": 2040,
+    "allowancePercentage": 0.72,
+    "maxAllowance": 540,
+    "supplement": 162
+  },
+  {
+    "index": 37,
+    "startYear": 2041,
+    "allowancePercentage": 0.68,
+    "maxAllowance": 510,
+    "supplement": 153
+  },
+  {
+    "index": 38,
+    "startYear": 2042,
+    "allowancePercentage": 0.64,
+    "maxAllowance": 480,
+    "supplement": 144
+  },
+  {
+    "index": 39,
+    "startYear": 2043,
+    "allowancePercentage": 0.6,
+    "maxAllowance": 450,
+    "supplement": 135
+  },
+  {
+    "index": 40,
+    "startYear": 2044,
+    "allowancePercentage": 0.56,
+    "maxAllowance": 420,
+    "supplement": 126
+  },
+  {
+    "index": 41,
+    "startYear": 2045,
+    "allowancePercentage": 0.52,
+    "maxAllowance": 390,
+    "supplement": 117
+  },
+  {
+    "index": 42,
+    "startYear": 2046,
+    "allowancePercentage": 0.48,
+    "maxAllowance": 360,
+    "supplement": 108
+  },
+  {
+    "index": 43,
+    "startYear": 2047,
+    "allowancePercentage": 0.44,
+    "maxAllowance": 330,
+    "supplement": 99
+  },
+  {
+    "index": 44,
+    "startYear": 2048,
+    "allowancePercentage": 0.4,
+    "maxAllowance": 300,
+    "supplement": 90
+  },
+  {
+    "index": 45,
+    "startYear": 2049,
+    "allowancePercentage": 0.36,
+    "maxAllowance": 270,
+    "supplement": 81
+  },
+  {
+    "index": 46,
+    "startYear": 2050,
+    "allowancePercentage": 0.32,
+    "maxAllowance": 240,
+    "supplement": 72
+  },
+  {
+    "index": 47,
+    "startYear": 2051,
+    "allowancePercentage": 0.28,
+    "maxAllowance": 210,
+    "supplement": 63
+  },
+  {
+    "index": 48,
+    "startYear": 2052,
+    "allowancePercentage": 0.24,
+    "maxAllowance": 180,
+    "supplement": 54
+  },
+  {
+    "index": 49,
+    "startYear": 2053,
+    "allowancePercentage": 0.2,
+    "maxAllowance": 150,
+    "supplement": 45
+  },
+  {
+    "index": 50,
+    "startYear": 2054,
+    "allowancePercentage": 0.16,
+    "maxAllowance": 120,
+    "supplement": 36
+  },
+  {
+    "index": 51,
+    "startYear": 2055,
+    "allowancePercentage": 0.12,
+    "maxAllowance": 90,
+    "supplement": 27
+  },
+  {
+    "index": 52,
+    "startYear": 2056,
+    "allowancePercentage": 0.08,
+    "maxAllowance": 60,
+    "supplement": 18
+  },
+  {
+    "index": 53,
+    "startYear": 2057,
+    "allowancePercentage": 0.04,
+    "maxAllowance": 30,
+    "supplement": 9
+  },
+  {
+    "index": 54,
+    "startYear": 2058,
+    "allowancePercentage": 0,
+    "maxAllowance": 0,
+    "supplement": 0
+  }
+]

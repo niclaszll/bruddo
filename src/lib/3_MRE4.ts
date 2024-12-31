@@ -1,4 +1,4 @@
-import { calculateProportionalTaxAllowanceForElderlyRetiredPersons } from "./4";
+import { calculateProportionalTaxAllowanceForElderlyRetiredPersons } from "./4_MRE4ALTE";
 import { InternalFields } from "./InternalFields";
 import { SalaryPaymentPeriod } from "./types";
 import { UserInputs } from "./UserInputs";
@@ -27,20 +27,33 @@ export const calculateAllowances = () => {
     if (userInputs.LZZ === SalaryPaymentPeriod.YEAR) {
       internalFields.VBEZB =
         userInputs.VBEZM * userInputs.ZMVB + userInputs.VBEZS;
-      // TODO: internalFields.HFVB = ...
-      // TODO: internalFields.FVBZ = ...
+      internalFields.HFVB = Math.ceil(
+        (internalFields.getTAB2(internalFields.J) / 12) * userInputs.ZMVB
+      );
+      internalFields.FVBZ = Math.ceil(
+        (internalFields.getTAB3(internalFields.J) / 12) * userInputs.ZMVB
+      );
     } else {
       internalFields.VBEZB = userInputs.VBEZM * 12 + userInputs.VBEZS;
-      // TODO: internalFields.HFVB = ...
-      // TODO: internalFields.FVBZ = ...
+      internalFields.HFVB = internalFields.getTAB2(internalFields.J);
+      internalFields.FVBZ = internalFields.getTAB3(internalFields.J);
     }
 
-    // TODO: internalFields.FVB = ...
+    internalFields.FVB = Math.ceil(
+      (internalFields.VBEZB * internalFields.getTAB1(internalFields.J)) / 100
+    );
     internalFields.FVB = Math.min(internalFields.FVB, internalFields.HFVB);
     internalFields.FVB = Math.min(internalFields.FVB, internalFields.ZVBEZJ);
 
-    // TODO: internalFields.FVBSO = ...
-    // TODO: internalFields.FVBSO = ...
+    internalFields.FVBSO = Math.ceil(
+      internalFields.FVB +
+        (internalFields.VBEZBSO * internalFields.getTAB1(internalFields.J)) /
+          100
+    );
+    internalFields.FVBSO = Math.min(
+      internalFields.FVBSO,
+      internalFields.getTAB2(internalFields.J)
+    );
 
     internalFields.HFVBZSO =
       (internalFields.VBEZB + internalFields.VBEZBSO) / 100 -
@@ -53,7 +66,10 @@ export const calculateAllowances = () => {
       Math.min(internalFields.FVBZSO, internalFields.HFVBZSO)
     );
 
-    // TODO: internalFields.FVBZSO = ...
+    internalFields.FVBZSO = Math.min(
+      internalFields.FVBZSO,
+      internalFields.getTAB3(internalFields.J)
+    );
 
     internalFields.HFVBZ = internalFields.VBEZB / 100 - internalFields.FVB;
     internalFields.FVBZ = Math.ceil(

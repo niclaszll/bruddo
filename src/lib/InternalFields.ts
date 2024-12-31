@@ -1,4 +1,6 @@
 import { IncomeTaxTariffType } from "./types";
+import Table1_3 from "./tab_1-3.json";
+import Table4_5 from "./tab_4-5.json";
 
 export class InternalFields {
   static #instance: InternalFields;
@@ -49,11 +51,6 @@ export class InternalFields {
   private _ST?: number;
   private _ST1?: number;
   private _ST2?: number;
-  private _TAB1?: number[];
-  private _TAB2?: number[];
-  private _TAB3?: number[];
-  private _TAB4?: number[];
-  private _TAB5?: number[];
   private _VBEZB?: number;
   private _VBEZBSO?: number;
   private _VERGL?: number;
@@ -649,62 +646,86 @@ export class InternalFields {
   /**
    * TAB1 - Tabelle für die Prozentsätze des Versorgungsfreibetrags
    */
-  get TAB1() {
-    if (this._TAB1 === undefined) throw new Error("TAB1 is not set");
-    return this._TAB1;
-  }
+  public getTAB1(index: number) {
+    const allowancePercentage = Table1_3.find(
+      (entry) => entry.index === index
+    )?.allowancePercentage;
 
-  set TAB1(value: number[]) {
-    this._TAB1 = value;
+    if (allowancePercentage === undefined) {
+      throw new Error(
+        `No allowancePercentage (TAB1) data found for table index ${index}`
+      );
+    }
+
+    return allowancePercentage;
   }
 
   /**
    * TAB2 - Tabelle für die Höchstbeträge des Versorgungsfreibetrags
    */
-  get TAB2() {
-    // TODO: return table entry
-    if (this._TAB2 === undefined) throw new Error("TAB2 is not set");
-    return this._TAB2;
-  }
+  public getTAB2(index: number) {
+    const maxAllowance = Table1_3.find(
+      (entry) => entry.index === index
+    )?.maxAllowance;
 
-  set TAB2(value: number[]) {
-    this._TAB2 = value;
+    if (maxAllowance === undefined) {
+      throw new Error(
+        `No maxAllowance (TAB2) data found for table index ${index}`
+      );
+    }
+
+    return maxAllowance;
   }
 
   /**
    * TAB3 - Tabelle für die Zuschläge zum Versorgungsfreibetrag
    */
-  get TAB3() {
-    if (this._TAB3 === undefined) throw new Error("TAB3 is not set");
-    return this._TAB3;
-  }
+  public getTAB3(index: number) {
+    const supplement = Table1_3.find(
+      (entry) => entry.index === index
+    )?.supplement;
 
-  set TAB3(value: number[]) {
-    this._TAB3 = value;
+    if (supplement === undefined) {
+      throw new Error(
+        `No supplement (TAB3) data found for table index ${index}`
+      );
+    }
+
+    return supplement;
   }
 
   /**
    * TAB4 - Tabelle für die Prozentsätze des Altersentlastungsbetrags
    */
-  get TAB4() {
-    if (this._TAB4 === undefined) throw new Error("TAB4 is not set");
-    return this._TAB4;
-  }
+  public getTAB4(index: number) {
+    const allowancePercentage = Table4_5.find(
+      (entry) => entry.index === index
+    )?.allowancePercentage;
 
-  set TAB4(value: number[]) {
-    this._TAB4 = value;
+    if (allowancePercentage === undefined) {
+      throw new Error(
+        `No allowancePercentage (TAB4) data found for table index ${index}`
+      );
+    }
+
+    return allowancePercentage;
   }
 
   /**
    * TAB5 - Tabelle für die Höchstbeträge des Altersentlastungsbetrags
    */
-  get TAB5() {
-    if (this._TAB5 === undefined) throw new Error("TAB5 is not set");
-    return this._TAB5;
-  }
+  public getTAB5(index: number) {
+    const maxAllowance = Table4_5.find(
+      (entry) => entry.index === index
+    )?.maxAllowance;
 
-  set TAB5(value: number[]) {
-    this._TAB5 = value;
+    if (maxAllowance === undefined) {
+      throw new Error(
+        `No maxAllowance (TAB5) data found for table index ${index}`
+      );
+    }
+
+    return maxAllowance;
   }
 
   /**

@@ -1,4 +1,4 @@
-import { calculatePensionLumpSumComparatively } from "./12";
+import { calculatePensionLumpSumComparatively } from "./12_MVSP";
 import { InternalFields } from "./InternalFields";
 import { TaxClass } from "./types";
 import { UserInputs } from "./UserInputs";

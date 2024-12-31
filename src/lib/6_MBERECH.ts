@@ -1,8 +1,8 @@
-import { calculateAnnualIncomeTaxShare } from "./10";
-import { calculateAnnualSalaryAfterDeductingAllowances } from "./5";
-import { calculateFixedTableAllowances } from "./7";
-import { calculateAnnualWageTax } from "./8";
-import { calculateProportionOfPensionExpensesForSalaryPaymentPeriod } from "./9";
+import { calculateAnnualIncomeTaxShare } from "./10_UPLSTLZZ";
+import { calculateAnnualSalaryAfterDeductingAllowances } from "./5_MRE4ABZ";
+import { calculateFixedTableAllowances } from "./7_MZTABFB";
+import { calculateAnnualWageTax } from "./8_MLSTJAHR";
+import { calculateProportionOfPensionExpensesForSalaryPaymentPeriod } from "./9_UPVKVLZZ";
 import { InternalFields } from "./InternalFields";
 import { UserInputs } from "./UserInputs";
 
