@@ -1,3 +1,4 @@
+import { calculateShareOfAnnualAmountsForLZZ } from "./16_UPANTEIL";
 import { InternalFields } from "./InternalFields";
 import { HealthInsuranceType } from "./types";
 import { UserInputs } from "./UserInputs";
@@ -15,7 +16,8 @@ export const calculateProportionOfPensionExpensesForSalaryPaymentPeriod =
 
     internalFields.JW = internalFields.VKV;
 
-    // TODO: UPANTEIL
+    // UPANTEIL
+    calculateShareOfAnnualAmountsForLZZ();
     internalFields.VKVLZZ = internalFields.ANTEIL1;
   };
 

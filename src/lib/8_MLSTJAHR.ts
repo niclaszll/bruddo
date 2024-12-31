@@ -1,4 +1,5 @@
 import { calculatePensionLumpSum } from "./11_UPEVP";
+import { calculateIncomeTaxForTaxClassesVAndVI } from "./13_MST5-6";
 import { InternalFields } from "./InternalFields";
 import { TaxClass } from "./types";
 import { UserInputs } from "./UserInputs";
@@ -35,6 +36,7 @@ export const calculateUPMLST = () => {
   if (userInputs.STKL < TaxClass.VI) {
     // TODO: UPTAB24
   } else {
-    // TODO: MST5-6
+    // MST5-6
+    calculateIncomeTaxForTaxClassesVAndVI();
   }
 };

@@ -1,4 +1,5 @@
 import { calculateAnnualIncomeTaxShare } from "./10_UPLSTLZZ";
+import { calculateSolidaritySurcharge } from "./15_MSOLZ";
 import { calculateAnnualSalaryAfterDeductingAllowances } from "./5_MRE4ABZ";
 import { calculateFixedTableAllowances } from "./7_MZTABFB";
 import { calculateAnnualWageTax } from "./8_MLSTJAHR";
@@ -49,5 +50,6 @@ export const calculateAnnualIncometaxOnCurrentRemuneration = () => {
     internalFields.JBMG = internalFields.LSTJAHR;
   }
 
-  // TODO: MSOLZ
+  // MSOLZ
+  calculateSolidaritySurcharge();
 };

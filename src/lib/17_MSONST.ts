@@ -1,0 +1,59 @@
+import { calculateAnnualWageTax } from "./8_MLSTJAHR";
+import { calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContributions } from "./9_UPVKVLZZ";
+import { InternalFields } from "./InternalFields";
+import { UserInputs } from "./UserInputs";
+
+/**
+ * MSONST - Berechnung sonstiger Bezüge nach § 39b Absatz 3 Satz 1 bis 8 EStG
+ */
+export const calculateMSONST = () => {
+  const internalFields = InternalFields.instance;
+  const userInputs = UserInputs.instance;
+
+  userInputs.setLZZ(1);
+
+  if (userInputs.ZMVB === 0) {
+    userInputs.setZMVB(12);
+  }
+
+  if (userInputs.SONSTB === 0 && userInputs.MBV === 0) {
+    internalFields.VKVSONST = 0;
+    internalFields.LSTSO = 0;
+    internalFields.STS = 0;
+    internalFields.SOLZS = 0;
+    internalFields.BKS = 0;
+  } else {
+    // TODO: MOSONST
+
+    // UPVKV
+    calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContributions();
+
+    internalFields.VKVSONST = internalFields.VKV;
+    internalFields.ZRE4J = (userInputs.JRE4 + userInputs.SONSTB) / 100;
+    internalFields.ZVBEZJ = (userInputs.JVBEZ + userInputs.VBS) / 100;
+    internalFields.VBEZBSO = userInputs.STERBE;
+
+    // TODO: MRE4SONST
+
+    // MLSTJAHR
+    calculateAnnualWageTax();
+
+    // only for DBA Türkei
+    // internalFields.WVFRBM = Math.max(
+    //   (internalFields.ZVE - internalFields.GFB) * 100,
+    //   0
+    // );
+
+    // UPVKV
+    calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContributions();
+
+    internalFields.VKVSONST = internalFields.VKV - internalFields.VKVSONST;
+    internalFields.LSTSO = internalFields.ST * 100;
+
+    const STS = (internalFields.LSTSO - internalFields.LSTOSO) * userInputs.F;
+    // Note: negative numbers are rounded according to their amount!
+    internalFields.STS = Math.sign(STS) * Math.floor(Math.abs(STS));
+
+    // TODO: STSMIN
+  }
+};

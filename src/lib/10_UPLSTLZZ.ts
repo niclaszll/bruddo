@@ -1,3 +1,4 @@
+import { calculateShareOfAnnualAmountsForLZZ } from "./16_UPANTEIL";
 import { InternalFields } from "./InternalFields";
 
 /**
@@ -8,7 +9,8 @@ export const calculateAnnualIncomeTaxShare = () => {
 
   internalFields.JW = internalFields.LSTJAHR * 100;
 
-  // TODO: UPANTEIL
+  // UPANTEIL
+  calculateShareOfAnnualAmountsForLZZ();
 
   internalFields.LSTLZZ = internalFields.ANTEIL1;
 };

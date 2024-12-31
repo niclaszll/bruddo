@@ -10,6 +10,8 @@ export class InternalFields {
   private _ANTEIL1?: number;
   private _BBGKVPV?: number;
   private _BBGRV?: number;
+  private _BK?: number;
+  private _BKS?: number;
   private _BMG?: number;
   private _DIFF?: number;
   private _EFA?: number;
@@ -45,12 +47,15 @@ export class InternalFields {
   private _SAP?: number;
   private _SOLZFREI?: number;
   private _SOLZJ?: number;
+  private _SOLZLZZ?: number;
   private _SOLZMIN?: number;
+  private _SOLZS?: number;
   private _SOLZSBMG?: number;
   private _SOLZSZVE?: number;
   private _ST?: number;
   private _ST1?: number;
   private _ST2?: number;
+  private _STS?: number;
   private _VBEZB?: number;
   private _VBEZBSO?: number;
   private _VERGL?: number;
@@ -58,6 +63,7 @@ export class InternalFields {
   private _VHB?: number;
   private _VKV?: number;
   private _VKVLZZ?: number;
+  private _VKVSONST?: number;
   private _VSP?: number;
   private _VSPN?: number;
   private _VSP1?: number;
@@ -147,6 +153,35 @@ export class InternalFields {
 
   set BBGRV(value: number) {
     this._BBGRV = value;
+  }
+
+  /**
+   * BK - Bemessungsgrundlage für die Kirchenlohnsteuer in Cent
+   */
+  get BK() {
+    if (this._BK === undefined) throw new Error("BK is not set");
+    return this._BK;
+  }
+
+  set BK(value: number) {
+    this._BK = value;
+  }
+
+  /**
+   * BKS - Bemessungsgrundlage der sonstigen Bezüge für die Kirchenlohnsteuer in Cent.
+   * Hinweis: Negativbeträge, die aus nicht zu besteuernden Vorteilen bei
+   * Vermögensbeteiligungen (§ 19a Absatz 1 Satz 4 EStG) resultieren,
+   * mindern BK (maximal bis 0). Der Sonderausgabenabzug für
+   * tatsächlich erbrachte Vorsorgeaufwendungen im Rahmen der
+   * Veranlagung zur Einkommensteuer bleibt unberührt.
+   */
+  get BKS() {
+    if (this._BKS === undefined) throw new Error("BKS is not set");
+    return this._BKS;
+  }
+
+  set BKS(value: number) {
+    this._BKS = value;
   }
 
   /**
@@ -294,7 +329,8 @@ export class InternalFields {
   }
 
   /**
-   * HOCH Zwischenfeld zu X for Steuer nach §39b Absatz7 EStG
+   * HOCH - Zwischenfeld zu X für die Berechnung der Steuer nach § 39b
+   * Absatz 2 Satz 7 EStG in Euro
    */
   get HOCH() {
     if (this._HOCH === undefined) throw new Error("HOCH is not set");
@@ -572,6 +608,19 @@ export class InternalFields {
   }
 
   /**
+   * SOLZLZZ - Für den Lohnzahlungszeitraum einzubehaltender
+   * Solidaritätszuschlag in Cent
+   */
+  get SOLZLZZ() {
+    if (this._SOLZLZZ === undefined) throw new Error("SOLZLZZ is not set");
+    return this._SOLZLZZ;
+  }
+
+  set SOLZLZZ(value: number) {
+    this._SOLZLZZ = value;
+  }
+
+  /**
    * SOLZMIN - Zwischenwert für den Solidaritätszuschlag auf die Jahreslohnsteuer in Euro, Cent (2 Dezimalstellen)
    */
   get SOLZMIN() {
@@ -581,6 +630,23 @@ export class InternalFields {
 
   set SOLZMIN(value: number) {
     this._SOLZMIN = value;
+  }
+
+  /**
+   * SOLZS - Solidaritätszuschlag für sonstige Bezüge in Cent.
+   * Hinweis: Negativbeträge, die aus nicht zu besteuernden Vorteilen bei
+   * Vermögensbeteiligungen (§ 19a Absatz 1 Satz 4 EStG) resultieren,
+   * mindern SOLZLZZ (maximal bis 0). Der Sonderausgabenabzug für
+   * tatsächlich erbrachte Vorsorgeaufwendungen im Rahmen der
+   * Veranlagung zur Einkommensteuer bleibt unberührt.
+   */
+  get SOLZS() {
+    if (this._SOLZS === undefined) throw new Error("SOLZS is not set");
+    return this._SOLZS;
+  }
+
+  set SOLZS(value: number) {
+    this._SOLZS = value;
   }
 
   /**
@@ -641,6 +707,23 @@ export class InternalFields {
 
   set ST2(value: number) {
     this._ST2 = value;
+  }
+
+  /**
+   * STS - Lohnsteuer für sonstige Bezüge in Cent
+   * Hinweis: Negativbeträge, die aus nicht zu besteuernden Vorteilen bei
+   * Vermögensbeteiligungen (§ 19a Absatz 1 Satz 4 EStG) resultieren,
+   * mindern LSTLZZ (maximal bis 0). Der Sonderausgabenabzug für
+   * tatsächlich erbrachte Vorsorgeaufwendungen im Rahmen der
+   * Veranlagung zur Einkommensteuer bleibt unberührt.
+   */
+  get STS() {
+    if (this._STS === undefined) throw new Error("STS is not set");
+    return this._STS;
+  }
+
+  set STS(value: number) {
+    this._STS = value;
   }
 
   /**
@@ -816,6 +899,21 @@ export class InternalFields {
 
   set VKVLZZ(value: number) {
     this._VKVLZZ = value;
+  }
+
+  /**
+   * VKVSONST - Für den Lohnzahlungszeitraum berücksichtigte Beiträge des
+   * Arbeitnehmers zur privaten Basis-Krankenversicherung und privaten
+   * Pflege-Pflichtversicherung (ggf. auch die Mindestvorsorgepauschale)
+   * in Cent bei sonstigen Bezügen.
+   */
+  get VKVSONST() {
+    if (this._VKVSONST === undefined) throw new Error("VKVSONST is not set");
+    return this._VKVSONST;
+  }
+
+  set VKVSONST(value: number) {
+    this._VKVSONST = value;
   }
 
   /**
