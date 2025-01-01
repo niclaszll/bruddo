@@ -1,3 +1,6 @@
+import { calculateSTSMIN } from "./18_STSMIN";
+import { calculateMOSONST } from "./20_MOSONST";
+import { calculateMRE4SONST } from "./21_MRE4SONST";
 import { calculateAnnualWageTax } from "./8_MLSTJAHR";
 import { calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContributions } from "./9_UPVKVLZZ";
 import { InternalFields } from "./InternalFields";
@@ -23,7 +26,8 @@ export const calculateMSONST = () => {
     internalFields.SOLZS = 0;
     internalFields.BKS = 0;
   } else {
-    // TODO: MOSONST
+    // MOSONST
+    calculateMOSONST();
 
     // UPVKV
     calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContributions();
@@ -33,7 +37,8 @@ export const calculateMSONST = () => {
     internalFields.ZVBEZJ = (userInputs.JVBEZ + userInputs.VBS) / 100;
     internalFields.VBEZBSO = userInputs.STERBE;
 
-    // TODO: MRE4SONST
+    // MRE4SONST
+    calculateMRE4SONST();
 
     // MLSTJAHR
     calculateAnnualWageTax();
@@ -54,6 +59,7 @@ export const calculateMSONST = () => {
     // Note: negative numbers are rounded according to their amount!
     internalFields.STS = Math.sign(STS) * Math.floor(Math.abs(STS));
 
-    // TODO: STSMIN
+    // STSMIN
+    calculateSTSMIN();
   }
 };

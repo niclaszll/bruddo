@@ -87,8 +87,7 @@ export class UserInputs {
   }
 
   /**
-   * F - Eingetragener Faktor mit
-   * if (this._Eingetragener === undefined) throw new Error("Eingetragener is not set"); drei Nachkommastellen
+   * F - eingetragener Faktor mit drei Nachkommastellen
    */
   get F() {
     if (this._F === undefined) throw new Error("F is not set");

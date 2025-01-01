@@ -1,3 +1,4 @@
+import { calculateStandardIncomeTax } from "./22_UPTAB24";
 import { InternalFields } from "./InternalFields";
 
 /**
@@ -8,12 +9,14 @@ export const calculateUP5_6 = () => {
 
   internalFields.X = internalFields.ZX * 1.25;
 
-  // TODO: UPTAB24
+  // UPTAB24
+  calculateStandardIncomeTax();
 
   internalFields.ST1 = internalFields.ST;
   internalFields.X = internalFields.ZX * 0.75;
 
-  // TODO: UPTAB24
+  // UPTAB24
+  calculateStandardIncomeTax();
 
   internalFields.ST2 = internalFields.ST;
   internalFields.DIFF = (internalFields.ST1 - internalFields.ST2) * 2;

@@ -60,6 +60,8 @@ export class InternalFields {
   private _VBEZBSO?: number;
   private _VERGL?: number;
   private _VFRB?: number;
+  private _VFRBS1?: number;
+  private _VFRBS2?: number;
   private _VHB?: number;
   private _VKV?: number;
   private _VKVLZZ?: number;
@@ -73,6 +75,7 @@ export class InternalFields {
   private _W2STKL5?: number;
   private _W3STKL5?: number;
   private _WVFRB?: number;
+  private _WVFRBO?: number;
   private _X?: number;
   private _Y?: number;
   private _ZRE4?: number;
@@ -860,6 +863,30 @@ export class InternalFields {
   }
 
   /**
+   * VFRBS1 - Verbrauchter Freibetrag bei Berechnung des voraussichtlichen Jahresarbeitslohns, in Cent
+   */
+  get VFRBS1() {
+    if (this._VFRBS1 === undefined) throw new Error("VFRBS1 is not set");
+    return this._VFRBS1;
+  }
+
+  set VFRBS1(value: number) {
+    this._VFRBS1 = value;
+  }
+
+  /**
+   * VFRBS2 - Verbrauchter Freibetrag bei Berechnung der sonstigen Bezüge, in Cent
+   */
+  get VFRBS2() {
+    if (this._VFRBS2 === undefined) throw new Error("VFRBS2 is not set");
+    return this._VFRBS2;
+  }
+
+  set VFRBS2(value: number) {
+    this._VFRBS2 = value;
+  }
+
+  /**
    * VHB - Höchstbetrag der Mindestvorsorgepauschale für Kranken- und Pflegeversicherung in Euro, Cent (2 Dezimalstellen)
    */
   get VHB() {
@@ -1024,6 +1051,20 @@ export class InternalFields {
 
   set WVFRB(value: number) {
     this._WVFRB = value;
+  }
+
+  /**
+   * WVFRBO - Für die weitergehende Berücksichtigung des Steuerfreibetrags nach
+   * dem DBA Türkei verfügbares ZVE über dem Grundfreibetrag bei der
+   * Berechnung des voraussichtlichen Jahresarbeitslohns, in Cent
+   */
+  get WVFRBO() {
+    if (this._WVFRBO === undefined) throw new Error("WVFRBO is not set");
+    return this._WVFRBO;
+  }
+
+  set WVFRBO(value: number) {
+    this._WVFRBO = value;
   }
 
   /**
