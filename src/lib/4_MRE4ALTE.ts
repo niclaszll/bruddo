@@ -18,16 +18,14 @@ export const calculateProportionalTaxAllowanceForElderlyRetiredPersons = () => {
     } else {
       internalFields.K = 54;
     }
+
+    internalFields.BMG = internalFields.ZRE4J - internalFields.ZVBEZJ;
+
+    internalFields.ALTE = Math.ceil(
+      internalFields.BMG * internalFields.getTAB4(internalFields.K)
+    );
+
+    internalFields.HBALTE = internalFields.getTAB5(internalFields.K);
+    internalFields.ALTE = Math.min(internalFields.ALTE, internalFields.HBALTE);
   }
-
-  internalFields.BMG = internalFields.ZRE4J - internalFields.ZVBEZJ;
-
-  internalFields.ALTE = Math.ceil(
-    internalFields.BMG * internalFields.getTAB4(internalFields.K)
-  );
-
-  internalFields.HBALTE = Math.min(
-    internalFields.ALTE,
-    internalFields.getTAB5(internalFields.K)
-  );
 };

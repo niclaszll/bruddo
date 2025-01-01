@@ -57,6 +57,9 @@ export const calculateFixedTableAllowances = () => {
     internalFields.SAP = 36;
   }
 
+  // not part of plan, but needs a default
+  internalFields.EFA = 0;
+
   switch (userInputs.STKL) {
     case TaxClass.I:
       internalFields.KFB = userInputs.ZKF * 9540;

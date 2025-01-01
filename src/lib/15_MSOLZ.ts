@@ -26,6 +26,8 @@ export const calculateSolidaritySurcharge = () => {
     calculateShareOfAnnualAmountsForLZZ();
 
     internalFields.SOLZLZZ = internalFields.ANTEIL1;
+  } else {
+    internalFields.SOLZLZZ = 0;
   }
 
   /**

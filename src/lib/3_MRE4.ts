@@ -75,8 +75,7 @@ export const calculateAllowances = () => {
     internalFields.FVBZ = Math.ceil(
       Math.min(internalFields.FVBZ, internalFields.HFVBZ)
     );
-
-    // MRE4ALTE
-    calculateProportionalTaxAllowanceForElderlyRetiredPersons();
   }
+  // MRE4ALTE
+  calculateProportionalTaxAllowanceForElderlyRetiredPersons();
 };

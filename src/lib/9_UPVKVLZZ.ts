@@ -33,6 +33,7 @@ export const calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContribu
     if (userInputs.PKV > HealthInsuranceType.STATUTORY) {
       internalFields.VKV = 0;
     } else {
-      return Math.max(internalFields.VSP2, internalFields.VSP3) * 100;
+      internalFields.VKV =
+        Math.max(internalFields.VSP2, internalFields.VSP3) * 100;
     }
   };

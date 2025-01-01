@@ -10,8 +10,6 @@ export const setupParameters = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
 
-  userInputs.setKRV(1).setKVZ(2.19).setPVS(1).setPVZ(1).setPVA(0);
-
   internalFields.BBGRV = userInputs.KRV === 1 ? 96600 : 0;
   internalFields.RVSATZAN = userInputs.KRV === 1 ? 0.093 : 0;
   internalFields.BBGKVPV = 66150;
