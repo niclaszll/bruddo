@@ -1,3 +1,4 @@
+import { roundUpToFullEuro } from "@/util/format";
 import { InternalFields } from "./InternalFields";
 import { IncomeTaxTariffType, TaxClass } from "./types";
 import { UserInputs } from "./UserInputs";
@@ -5,7 +6,7 @@ import { UserInputs } from "./UserInputs";
 /**
  * MZTABFB - Ermittlung der festen Tabellenfreibeträge (ohne Vorsorgepauschale)
  */
-export const calculateFixedTableAllowances = () => {
+export const calculateMZTABFB = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
 
@@ -22,7 +23,7 @@ export const calculateFixedTableAllowances = () => {
   if (userInputs.STKL < TaxClass.VI) {
     if (internalFields.ZVBEZ > 0) {
       if (internalFields.ZVBEZ - internalFields.FVBZ < 102) {
-        internalFields.ANP = Math.ceil(
+        internalFields.ANP = roundUpToFullEuro(
           internalFields.ZVBEZ - internalFields.FVBZ
         );
       } else {
@@ -39,11 +40,11 @@ export const calculateFixedTableAllowances = () => {
    * mit möglicher Begrenzung
    */
   if (
-    userInputs.STKL >= TaxClass.VI &&
+    userInputs.STKL < TaxClass.VI &&
     internalFields.ZRE4 > internalFields.ZVBEZ
   ) {
     if (internalFields.ZRE4 - internalFields.ZVBEZ < 1230) {
-      internalFields.ANP = Math.ceil(
+      internalFields.ANP = roundUpToFullEuro(
         internalFields.ANP + internalFields.ZRE4 - internalFields.ZVBEZ
       );
     } else {
@@ -53,9 +54,7 @@ export const calculateFixedTableAllowances = () => {
 
   internalFields.KZTAB = IncomeTaxTariffType.BASIC;
 
-  if (userInputs.STKL !== TaxClass.VI) {
-    internalFields.SAP = 36;
-  }
+  internalFields.SAP = userInputs.STKL !== TaxClass.VI ? 36 : 0;
 
   // not part of plan, but needs a default
   internalFields.EFA = 0;

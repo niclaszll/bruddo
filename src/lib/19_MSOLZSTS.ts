@@ -1,3 +1,4 @@
+import { roundDownToFullCent, roundDownToFullEuro } from "@/util/format";
 import { calculateIncomeTaxForTaxClassesVAndVI } from "./13_MST5-6";
 import { calculateStandardIncomeTax } from "./22_UPTAB24";
 import { InternalFields } from "./InternalFields";
@@ -19,7 +20,7 @@ export const calculateSolidaritySurchargeOtherEmoluments = () => {
     internalFields.SOLZSZVE = 0;
     internalFields.X = 0;
   } else {
-    internalFields.X = Math.floor(
+    internalFields.X = roundDownToFullEuro(
       internalFields.SOLZSZVE / internalFields.KZTAB
     );
   }
@@ -32,10 +33,14 @@ export const calculateSolidaritySurchargeOtherEmoluments = () => {
     calculateIncomeTaxForTaxClassesVAndVI();
   }
 
-  internalFields.SOLZSBMG = Math.floor(internalFields.ST * userInputs.F);
+  internalFields.SOLZSBMG = roundDownToFullEuro(
+    internalFields.ST * userInputs.F
+  );
 
   if (internalFields.SOLZSBMG > internalFields.SOLZFREI) {
-    internalFields.SOLZS = Math.floor((internalFields.STS * 5.5) / 100);
+    internalFields.SOLZS = roundDownToFullCent(
+      (internalFields.STS * 5.5) / 100
+    );
   } else {
     internalFields.SOLZS = 0;
   }

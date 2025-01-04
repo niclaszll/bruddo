@@ -1,3 +1,4 @@
+import { roundDownToFullCent } from "@/util/format";
 import { InternalFields } from "./InternalFields";
 import { SalaryPaymentPeriod } from "./types";
 import { UserInputs } from "./UserInputs";
@@ -15,13 +16,15 @@ export const calculateShareOfAnnualAmountsForLZZ = () => {
       internalFields.ANTEIL1 = internalFields.JW;
       break;
     case SalaryPaymentPeriod.MONTH:
-      internalFields.ANTEIL1 = Math.floor(internalFields.JW / 12);
+      internalFields.ANTEIL1 = roundDownToFullCent(internalFields.JW / 12);
       break;
     case SalaryPaymentPeriod.WEEK:
-      internalFields.ANTEIL1 = Math.floor((internalFields.JW * 7) / 360);
+      internalFields.ANTEIL1 = roundDownToFullCent(
+        (internalFields.JW * 7) / 360
+      );
       break;
     case SalaryPaymentPeriod.DAY:
-      internalFields.ANTEIL1 = Math.floor(internalFields.JW / 360);
+      internalFields.ANTEIL1 = roundDownToFullCent(internalFields.JW / 360);
       break;
   }
 };

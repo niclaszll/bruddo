@@ -4,7 +4,7 @@ import { InternalFields } from "./InternalFields";
 /**
  * UPLSTLZZ - Ermittlung des Anteils der Jahreslohnsteuer für den Lohnzahlungszeitraum
  */
-export const calculateAnnualIncomeTaxShare = () => {
+export const calculateUPLSTLZZ = () => {
   const internalFields = InternalFields.instance;
 
   internalFields.JW = internalFields.LSTJAHR * 100;

@@ -1,10 +1,11 @@
+import { roundUpToFullEuro } from "@/util/format";
 import { InternalFields } from "./InternalFields";
 import { UserInputs } from "./UserInputs";
 
 /**
  * MRE4ALTE - Ermittlung des Altersentlastungsbetrags (§ 39b Absatz 2 Satz 3 EStG
  */
-export const calculateProportionalTaxAllowanceForElderlyRetiredPersons = () => {
+export const calculateMRE4ALTE = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
 
@@ -21,7 +22,7 @@ export const calculateProportionalTaxAllowanceForElderlyRetiredPersons = () => {
 
     internalFields.BMG = internalFields.ZRE4J - internalFields.ZVBEZJ;
 
-    internalFields.ALTE = Math.ceil(
+    internalFields.ALTE = roundUpToFullEuro(
       internalFields.BMG * internalFields.getTAB4(internalFields.K)
     );
 

@@ -4,7 +4,7 @@ import { InternalFields } from "./InternalFields";
  * MRE4ABZ - Ermittlung des Jahresarbeitslohns nach Abzug der
  * Freibeträge nach § 39b Absatz 2 Satz 3 und 4 EStG
  */
-export const calculateAnnualSalaryAfterDeductingAllowances = () => {
+export const calculateMRE4ABZ = () => {
   const internalFields = InternalFields.instance;
 
   internalFields.ZRE4 = Math.max(

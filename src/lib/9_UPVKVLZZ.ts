@@ -7,19 +7,18 @@ import { UserInputs } from "./UserInputs";
  * UPVKVLZZ - Ermittlung des Anteils der berücksichtigten
  * Vorsorgeaufwendungen für den Lohnzahlungszeitraum
  */
-export const calculateProportionOfPensionExpensesForSalaryPaymentPeriod =
-  () => {
-    const internalFields = InternalFields.instance;
+export const calculateUPVKVLZZ = () => {
+  const internalFields = InternalFields.instance;
 
-    // UPVKV
-    calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContributions();
+  // UPVKV
+  calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContributions();
 
-    internalFields.JW = internalFields.VKV;
+  internalFields.JW = internalFields.VKV;
 
-    // UPANTEIL
-    calculateShareOfAnnualAmountsForLZZ();
-    internalFields.VKVLZZ = internalFields.ANTEIL1;
-  };
+  // UPANTEIL
+  calculateShareOfAnnualAmountsForLZZ();
+  internalFields.VKVLZZ = internalFields.ANTEIL1;
+};
 
 /**
  * UPVKV - Ermittlung des Anteils der berücksichtigten

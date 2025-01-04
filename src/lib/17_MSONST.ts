@@ -1,7 +1,8 @@
+import { roundDownToFullEuro } from "@/util/format";
 import { calculateSTSMIN } from "./18_STSMIN";
 import { calculateMOSONST } from "./20_MOSONST";
 import { calculateMRE4SONST } from "./21_MRE4SONST";
-import { calculateAnnualWageTax } from "./8_MLSTJAHR";
+import { calculateMLSTJAHR } from "./8_MLSTJAHR";
 import { calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContributions } from "./9_UPVKVLZZ";
 import { InternalFields } from "./InternalFields";
 import { UserInputs } from "./UserInputs";
@@ -15,9 +16,7 @@ export const calculateMSONST = () => {
 
   userInputs.setLZZ(1);
 
-  if (userInputs.ZMVB === 0) {
-    userInputs.setZMVB(12);
-  }
+  if (userInputs.ZMVB === 0) userInputs.setZMVB(12);
 
   if (userInputs.SONSTB === 0 && userInputs.MBV === 0) {
     internalFields.VKVSONST = 0;
@@ -41,13 +40,12 @@ export const calculateMSONST = () => {
     calculateMRE4SONST();
 
     // MLSTJAHR
-    calculateAnnualWageTax();
+    calculateMLSTJAHR();
 
-    // only for DBA Türkei
-    // internalFields.WVFRBM = Math.max(
-    //   (internalFields.ZVE - internalFields.GFB) * 100,
-    //   0
-    // );
+    internalFields.WVFRBM = Math.max(
+      (internalFields.ZVE - internalFields.GFB) * 100,
+      0
+    );
 
     // UPVKV
     calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContributions();
@@ -57,7 +55,7 @@ export const calculateMSONST = () => {
 
     const STS = (internalFields.LSTSO - internalFields.LSTOSO) * userInputs.F;
     // Note: negative numbers are rounded according to their amount!
-    internalFields.STS = Math.sign(STS) * Math.floor(Math.abs(STS));
+    internalFields.STS = Math.sign(STS) * roundDownToFullEuro(Math.abs(STS));
 
     // STSMIN
     calculateSTSMIN();

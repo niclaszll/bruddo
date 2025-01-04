@@ -1,3 +1,4 @@
+import { roundDownToFullEuro } from "@/util/format";
 import { calculateUP5_6 } from "./14_UP5-6";
 import { InternalFields } from "./InternalFields";
 
@@ -15,15 +16,15 @@ export const calculateIncomeTaxForTaxClassesVAndVI = () => {
     calculateUP5_6();
 
     if (internalFields.ZZX > internalFields.W3STKL5) {
-      internalFields.ST = Math.floor(
+      internalFields.ST = roundDownToFullEuro(
         internalFields.ST +
           (internalFields.W3STKL5 - internalFields.W2STKL5) * 0.42
       );
-      internalFields.ST = Math.floor(
+      internalFields.ST = roundDownToFullEuro(
         internalFields.ST + (internalFields.ZZX - internalFields.W3STKL5) * 0.45
       );
     } else {
-      internalFields.ST = Math.floor(
+      internalFields.ST = roundDownToFullEuro(
         internalFields.ST + (internalFields.ZZX - internalFields.W2STKL5) * 0.42
       );
     }
@@ -38,7 +39,7 @@ export const calculateIncomeTaxForTaxClassesVAndVI = () => {
 
       calculateUP5_6();
 
-      internalFields.HOCH = Math.floor(
+      internalFields.HOCH = roundDownToFullEuro(
         internalFields.ST + (internalFields.ZZX - internalFields.W1STKL5) * 0.42
       );
       internalFields.ST = Math.min(internalFields.HOCH, internalFields.VERGL);

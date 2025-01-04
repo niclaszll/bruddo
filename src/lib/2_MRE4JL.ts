@@ -5,7 +5,7 @@ import { UserInputs } from "./UserInputs";
 /**
  * MRE4JL - Ermittlung des Jahresarbeitslohns nach § 39b Absatz 2 Satz 2 EStG
  */
-export const calculateAnnualSalaryAndAllowances = () => {
+export const calculateMRE4JL = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
 
@@ -20,19 +20,13 @@ export const calculateAnnualSalaryAndAllowances = () => {
   };
 
   internalFields.ZRE4J =
-    Math.trunc(userInputs.RE4 * salaryPaymentPeriodFactors[userInputs.LZZ]) /
-    100;
+    (userInputs.RE4 * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
   internalFields.ZVBEZJ =
-    Math.trunc(userInputs.VBEZ * salaryPaymentPeriodFactors[userInputs.LZZ]) /
-    100;
+    (userInputs.VBEZ * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
   internalFields.JLFREIB =
-    Math.trunc(
-      userInputs.LZZFREIB * salaryPaymentPeriodFactors[userInputs.LZZ]
-    ) / 100;
+    (userInputs.LZZFREIB * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
   internalFields.JLHINZU =
-    Math.trunc(
-      userInputs.LZZHINZU * salaryPaymentPeriodFactors[userInputs.LZZ]
-    ) / 100;
+    (userInputs.LZZHINZU * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
 
   if (userInputs.AF === 0) {
     userInputs.setF(1);

@@ -1,3 +1,4 @@
+import { roundDownToFullEuro } from "@/util/format";
 import { calculatePensionLumpSumComparatively } from "./12_MVSP";
 import { InternalFields } from "./InternalFields";
 import { TaxClass } from "./types";
@@ -24,7 +25,9 @@ export const calculatePensionLumpSum = () => {
   internalFields.VSP2 = 0.12 * internalFields.ZRE4VP;
   internalFields.VHB = userInputs.STKL === TaxClass.III ? 3000 : 1900;
   internalFields.VSP2 = Math.min(internalFields.VSP2, internalFields.VHB);
-  internalFields.VSPN = Math.ceil(internalFields.VSP1 + internalFields.VSP2);
+  internalFields.VSPN = roundDownToFullEuro(
+    internalFields.VSP1 + internalFields.VSP2
+  );
 
   // MVSP
   calculatePensionLumpSumComparatively();

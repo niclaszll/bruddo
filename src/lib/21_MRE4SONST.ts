@@ -1,6 +1,6 @@
-import { calculateAllowances } from "./3_MRE4";
-import { calculateAnnualSalaryAfterDeductingAllowances } from "./5_MRE4ABZ";
-import { calculateFixedTableAllowances } from "./7_MZTABFB";
+import { calculateMRE4 } from "./3_MRE4";
+import { calculateMRE4ABZ } from "./5_MRE4ABZ";
+import { calculateMZTABFB } from "./7_MZTABFB";
 import { InternalFields } from "./InternalFields";
 import { UserInputs } from "./UserInputs";
 
@@ -12,12 +12,12 @@ export const calculateMRE4SONST = () => {
   const userInputs = UserInputs.instance;
 
   // MRE4
-  calculateAllowances();
+  calculateMRE4();
 
   internalFields.FVB = internalFields.FVBSO;
 
   // MRE4ABZ
-  calculateAnnualSalaryAfterDeductingAllowances();
+  calculateMRE4ABZ();
 
   internalFields.ZRE4VP =
     internalFields.ZRE4VP +
@@ -28,7 +28,9 @@ export const calculateMRE4SONST = () => {
   internalFields.FVBZ = internalFields.FVBZSO;
 
   // MZTABFB
-  calculateFixedTableAllowances();
+  calculateMZTABFB();
 
-  internalFields.VFRBS2 = (internalFields.ANP + internalFields.FVB + internalFields.FVBZ) * 100 - internalFields.VFRBS1;
+  internalFields.VFRBS2 =
+    (internalFields.ANP + internalFields.FVB + internalFields.FVBZ) * 100 -
+    internalFields.VFRBS1;
 };

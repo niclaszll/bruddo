@@ -1,3 +1,4 @@
+import { roundUpToFullEuro } from "@/util/format";
 import { InternalFields } from "./InternalFields";
 import { HealthInsuranceType, TaxClass } from "./types";
 import { UserInputs } from "./UserInputs";
@@ -33,5 +34,7 @@ export const calculatePensionLumpSumComparatively = () => {
       (internalFields.KVSATZAN + internalFields.PVSATZAN);
   }
 
-  internalFields.VSP = Math.ceil(internalFields.VSP3 + internalFields.VSP1);
+  internalFields.VSP = roundUpToFullEuro(
+    internalFields.VSP3 + internalFields.VSP1
+  );
 };

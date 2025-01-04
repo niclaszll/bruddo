@@ -1,3 +1,4 @@
+import { roundDownToFullEuro } from "@/util/format";
 import { calculatePensionLumpSum } from "./11_UPEVP";
 import { calculateIncomeTaxForTaxClassesVAndVI } from "./13_MST5-6";
 import { calculateStandardIncomeTax } from "./22_UPTAB24";
@@ -8,7 +9,7 @@ import { UserInputs } from "./UserInputs";
 /**
  * MLSTJAHR - Ermittlung der Jahreslohnsteuer
  */
-export const calculateAnnualWageTax = () => {
+export const calculateMLSTJAHR = () => {
   const internalFields = InternalFields.instance;
 
   // UPEVP
@@ -31,10 +32,12 @@ export const calculateUPMLST = () => {
     internalFields.ZVE = 0;
     internalFields.X = 0;
   } else {
-    Math.floor((internalFields.X = internalFields.ZVE / internalFields.KZTAB));
+    roundDownToFullEuro(
+      (internalFields.X = internalFields.ZVE / internalFields.KZTAB)
+    );
   }
 
-  if (userInputs.STKL < TaxClass.VI) {
+  if (userInputs.STKL < TaxClass.V) {
     // UPTAB24
     calculateStandardIncomeTax();
   } else {

@@ -1,3 +1,4 @@
+import { roundDownToFullEuro } from "@/util/format";
 import { calculateStandardIncomeTax } from "./22_UPTAB24";
 import { InternalFields } from "./InternalFields";
 
@@ -20,7 +21,7 @@ export const calculateUP5_6 = () => {
 
   internalFields.ST2 = internalFields.ST;
   internalFields.DIFF = (internalFields.ST1 - internalFields.ST2) * 2;
-  internalFields.MIST = Math.floor(internalFields.ZX * 0.14);
+  internalFields.MIST = roundDownToFullEuro(internalFields.ZX * 0.14);
 
   internalFields.ST = Math.max(internalFields.MIST, internalFields.DIFF);
 };

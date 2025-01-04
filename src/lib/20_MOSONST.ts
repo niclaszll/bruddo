@@ -1,7 +1,7 @@
-import { calculateAllowances } from "./3_MRE4";
-import { calculateAnnualSalaryAfterDeductingAllowances } from "./5_MRE4ABZ";
-import { calculateFixedTableAllowances } from "./7_MZTABFB";
-import { calculateAnnualWageTax } from "./8_MLSTJAHR";
+import { calculateMRE4 } from "./3_MRE4";
+import { calculateMRE4ABZ } from "./5_MRE4ABZ";
+import { calculateMZTABFB } from "./7_MZTABFB";
+import { calculateMLSTJAHR } from "./8_MLSTJAHR";
 import { InternalFields } from "./InternalFields";
 import { UserInputs } from "./UserInputs";
 
@@ -18,21 +18,21 @@ export const calculateMOSONST = () => {
   internalFields.JLHINZU = userInputs.JHINZU / 100;
 
   // MRE4
-  calculateAllowances();
+  calculateMRE4();
 
   // MRE4ABZ
-  calculateAnnualSalaryAfterDeductingAllowances();
+  calculateMRE4ABZ();
 
   internalFields.ZRE4VP = internalFields.ZRE4VP - userInputs.JRE4ENT / 100;
 
   // MZTABFB
-  calculateFixedTableAllowances();
+  calculateMZTABFB();
 
   internalFields.VFRBS1 =
     (internalFields.ANP + internalFields.FVB + internalFields.FVBZ) * 100;
 
   // MLSTJAHR
-  calculateAnnualWageTax();
+  calculateMLSTJAHR();
 
   internalFields.WVFRBO = (internalFields.ZVE - internalFields.GFB) * 100;
   internalFields.WVFRBO = Math.max(internalFields.WVFRBO, 0);

@@ -1,3 +1,4 @@
+import { roundDownToFullCent } from "@/util/format";
 import { calculateShareOfAnnualAmountsForLZZ } from "./16_UPANTEIL";
 import { InternalFields } from "./InternalFields";
 import { UserInputs } from "./UserInputs";
@@ -5,14 +6,14 @@ import { UserInputs } from "./UserInputs";
 /**
  * MSOLZ - Solidaritätszuschlag
  */
-export const calculateSolidaritySurcharge = () => {
+export const calculateMSOLZ = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
 
   internalFields.SOLZFREI = internalFields.SOLZFREI * internalFields.KZTAB;
 
   if (internalFields.JBMG > internalFields.SOLZFREI) {
-    internalFields.SOLZJ = Math.floor((internalFields.JBMG * 5.5) / 100);
+    internalFields.SOLZJ = roundDownToFullCent((internalFields.JBMG * 5.5) / 100);
     internalFields.SOLZMIN =
       ((internalFields.JBMG - internalFields.SOLZFREI) * 11.9) / 100;
     internalFields.SOLZJ = Math.min(

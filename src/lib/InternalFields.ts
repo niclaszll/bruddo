@@ -1,6 +1,7 @@
 import { IncomeTaxTariffType } from "./types";
 import Table1_3 from "./tab_1-3.json";
 import Table4_5 from "./tab_4-5.json";
+import { roundDownToFullCent, toFixedFloat } from "@/util/format";
 
 export class InternalFields {
   static #instance: InternalFields;
@@ -75,6 +76,7 @@ export class InternalFields {
   private _W2STKL5?: number;
   private _W3STKL5?: number;
   private _WVFRB?: number;
+  private _WVFRBM?: number;
   private _WVFRBO?: number;
   private _X?: number;
   private _Y?: number;
@@ -107,7 +109,7 @@ export class InternalFields {
   }
 
   set ALTE(value: number) {
-    this._ALTE = value;
+    this._ALTE = toFixedFloat(value, 2);
   }
 
   /**
@@ -119,7 +121,7 @@ export class InternalFields {
   }
 
   set ANP(value: number) {
-    this._ANP = value;
+    this._ANP = Math.trunc(value);
   }
 
   /**
@@ -131,7 +133,7 @@ export class InternalFields {
   }
 
   set ANTEIL1(value: number) {
-    this._ANTEIL1 = value;
+    this._ANTEIL1 = roundDownToFullCent(value);
   }
 
   /**
@@ -143,7 +145,7 @@ export class InternalFields {
   }
 
   set BBGKVPV(value: number) {
-    this._BBGKVPV = value;
+    this._BBGKVPV = Math.trunc(value);
   }
 
   /**
@@ -155,7 +157,7 @@ export class InternalFields {
   }
 
   set BBGRV(value: number) {
-    this._BBGRV = value;
+    this._BBGRV = Math.trunc(value);
   }
 
   /**
@@ -167,7 +169,7 @@ export class InternalFields {
   }
 
   set BK(value: number) {
-    this._BK = value;
+    this._BK = Math.trunc(value);
   }
 
   /**
@@ -184,7 +186,7 @@ export class InternalFields {
   }
 
   set BKS(value: number) {
-    this._BKS = value;
+    this._BKS = Math.trunc(value);
   }
 
   /**
@@ -196,7 +198,7 @@ export class InternalFields {
   }
 
   set BMG(value: number) {
-    this._BMG = value;
+    this._BMG = toFixedFloat(value, 2);
   }
 
   /**
@@ -208,7 +210,7 @@ export class InternalFields {
   }
 
   set DIFF(value: number) {
-    this._DIFF = value;
+    this._DIFF = Math.trunc(value);
   }
 
   /**
@@ -220,7 +222,7 @@ export class InternalFields {
   }
 
   set EFA(value: number) {
-    this._EFA = value;
+    this._EFA = Math.trunc(value);
   }
 
   /**
@@ -232,7 +234,7 @@ export class InternalFields {
   }
 
   set FVB(value: number) {
-    this._FVB = value;
+    this._FVB = toFixedFloat(value, 2);
   }
 
   /**
@@ -244,7 +246,7 @@ export class InternalFields {
   }
 
   set FVBSO(value: number) {
-    this._FVBSO = value;
+    this._FVBSO = toFixedFloat(value, 2);
   }
 
   /**
@@ -256,7 +258,7 @@ export class InternalFields {
   }
 
   set FVBZ(value: number) {
-    this._FVBZ = value;
+    this._FVBZ = Math.trunc(value);
   }
 
   /**
@@ -268,7 +270,7 @@ export class InternalFields {
   }
 
   set FVBZSO(value: number) {
-    this._FVBZSO = value;
+    this._FVBZSO = Math.trunc(value);
   }
 
   /**
@@ -280,7 +282,7 @@ export class InternalFields {
   }
 
   set GFB(value: number) {
-    this._GFB = value;
+    this._GFB = Math.trunc(value);
   }
 
   /**
@@ -292,7 +294,7 @@ export class InternalFields {
   }
 
   set HBALTE(value: number) {
-    this._HBALTE = value;
+    this._HBALTE = Math.trunc(value);
   }
 
   /**
@@ -304,7 +306,7 @@ export class InternalFields {
   }
 
   set HFVB(value: number) {
-    this._HFVB = value;
+    this._HFVB = toFixedFloat(value, 2);
   }
 
   /**
@@ -316,7 +318,7 @@ export class InternalFields {
   }
 
   set HFVBZ(value: number) {
-    this._HFVBZ = value;
+    this._HFVBZ = toFixedFloat(value, 2);
   }
 
   /**
@@ -328,7 +330,7 @@ export class InternalFields {
   }
 
   set HFVBZSO(value: number) {
-    this._HFVBZSO = value;
+    this._HFVBZSO = toFixedFloat(value, 2);
   }
 
   /**
@@ -341,7 +343,7 @@ export class InternalFields {
   }
 
   set HOCH(value: number) {
-    this._HOCH = value;
+    this._HOCH = Math.trunc(value);
   }
 
   /**
@@ -365,7 +367,7 @@ export class InternalFields {
   }
 
   set JBMG(value: number) {
-    this._JBMG = value;
+    this._JBMG = Math.trunc(value);
   }
 
   /**
@@ -377,7 +379,7 @@ export class InternalFields {
   }
 
   set JLFREIB(value: number) {
-    this._JLFREIB = value;
+    this._JLFREIB = toFixedFloat(value, 2);
   }
 
   /**
@@ -389,7 +391,7 @@ export class InternalFields {
   }
 
   set JLHINZU(value: number) {
-    this._JLHINZU = value;
+    this._JLHINZU = toFixedFloat(value, 2);
   }
 
   /**
@@ -401,7 +403,7 @@ export class InternalFields {
   }
 
   set JW(value: number) {
-    this._JW = value;
+    this._JW = Math.trunc(value);
   }
 
   /**
@@ -425,7 +427,7 @@ export class InternalFields {
   }
 
   set KFB(value: number) {
-    this._KFB = value;
+    this._KFB = Math.trunc(value);
   }
 
   /**
@@ -437,7 +439,7 @@ export class InternalFields {
   }
 
   set KVSATZAG(value: number) {
-    this._KVSATZAG = value;
+    this._KVSATZAG = toFixedFloat(value, 5);
   }
 
   /**
@@ -449,7 +451,7 @@ export class InternalFields {
   }
 
   set KVSATZAN(value: number) {
-    this._KVSATZAN = value;
+    this._KVSATZAN = toFixedFloat(value, 5);
   }
 
   /**
@@ -475,7 +477,7 @@ export class InternalFields {
   }
 
   set LSTJAHR(value: number) {
-    this._LSTJAHR = value;
+    this._LSTJAHR = Math.trunc(value);
   }
 
   /**
@@ -487,7 +489,7 @@ export class InternalFields {
   }
 
   set LSTLZZ(value: number) {
-    this._LSTLZZ = value;
+    this._LSTLZZ = Math.trunc(value);
   }
 
   /**
@@ -499,7 +501,7 @@ export class InternalFields {
   }
 
   set LSTOSO(value: number) {
-    this._LSTOSO = value;
+    this._LSTOSO = Math.trunc(value);
   }
 
   /**
@@ -511,7 +513,7 @@ export class InternalFields {
   }
 
   set LSTSO(value: number) {
-    this._LSTSO = value;
+    this._LSTSO = Math.trunc(value);
   }
 
   /**
@@ -523,7 +525,7 @@ export class InternalFields {
   }
 
   set MIST(value: number) {
-    this._MIST = value;
+    this._MIST = Math.trunc(value);
   }
 
   /**
@@ -535,7 +537,7 @@ export class InternalFields {
   }
 
   set PVSATZAG(value: number) {
-    this._PVSATZAG = value;
+    this._PVSATZAG = toFixedFloat(value, 6);
   }
 
   /**
@@ -547,7 +549,7 @@ export class InternalFields {
   }
 
   set PVSATZAN(value: number) {
-    this._PVSATZAN = value;
+    this._PVSATZAN = toFixedFloat(value, 6);
   }
 
   /**
@@ -559,7 +561,7 @@ export class InternalFields {
   }
 
   set RVSATZAN(value: number) {
-    this._RVSATZAN = value;
+    this._RVSATZAN = toFixedFloat(value, 4);
   }
 
   /**
@@ -583,7 +585,7 @@ export class InternalFields {
   }
 
   set SAP(value: number) {
-    this._SAP = value;
+    this._SAP = Math.trunc(value);
   }
 
   /**
@@ -595,7 +597,7 @@ export class InternalFields {
   }
 
   set SOLZFREI(value: number) {
-    this._SOLZFREI = value;
+    this._SOLZFREI = Math.trunc(value);
   }
 
   /**
@@ -607,7 +609,7 @@ export class InternalFields {
   }
 
   set SOLZJ(value: number) {
-    this._SOLZJ = value;
+    this._SOLZJ = toFixedFloat(value, 2);
   }
 
   /**
@@ -620,7 +622,7 @@ export class InternalFields {
   }
 
   set SOLZLZZ(value: number) {
-    this._SOLZLZZ = value;
+    this._SOLZLZZ = Math.trunc(value);
   }
 
   /**
@@ -632,7 +634,7 @@ export class InternalFields {
   }
 
   set SOLZMIN(value: number) {
-    this._SOLZMIN = value;
+    this._SOLZMIN = toFixedFloat(value, 2);
   }
 
   /**
@@ -649,7 +651,7 @@ export class InternalFields {
   }
 
   set SOLZS(value: number) {
-    this._SOLZS = value;
+    this._SOLZS = Math.trunc(value);
   }
 
   /**
@@ -661,7 +663,7 @@ export class InternalFields {
   }
 
   set SOLZSBMG(value: number) {
-    this._SOLZSBMG = value;
+    this._SOLZSBMG = Math.trunc(value);
   }
 
   /**
@@ -673,7 +675,7 @@ export class InternalFields {
   }
 
   set SOLZSZVE(value: number) {
-    this._SOLZSZVE = value;
+    this._SOLZSZVE = toFixedFloat(value, 2);
   }
 
   /**
@@ -685,7 +687,7 @@ export class InternalFields {
   }
 
   set ST(value: number) {
-    this._ST = value;
+    this._ST = Math.trunc(value);
   }
 
   /**
@@ -697,7 +699,7 @@ export class InternalFields {
   }
 
   set ST1(value: number) {
-    this._ST1 = value;
+    this._ST1 = Math.trunc(value);
   }
 
   /**
@@ -709,7 +711,7 @@ export class InternalFields {
   }
 
   set ST2(value: number) {
-    this._ST2 = value;
+    this._ST2 = Math.trunc(value);
   }
 
   /**
@@ -726,7 +728,7 @@ export class InternalFields {
   }
 
   set STS(value: number) {
-    this._STS = value;
+    this._STS = Math.trunc(value);
   }
 
   /**
@@ -823,7 +825,7 @@ export class InternalFields {
   }
 
   set VBEZB(value: number) {
-    this._VBEZB = value;
+    this._VBEZB = Math.trunc(value);
   }
 
   /**
@@ -835,7 +837,7 @@ export class InternalFields {
   }
 
   set VBEZBSO(value: number) {
-    this._VBEZBSO = value;
+    this._VBEZBSO = Math.trunc(value);
   }
 
   /**
@@ -847,7 +849,7 @@ export class InternalFields {
   }
 
   set VERGL(value: number) {
-    this._VERGL = value;
+    this._VERGL = Math.trunc(value);
   }
 
   /**
@@ -859,7 +861,7 @@ export class InternalFields {
   }
 
   set VFRB(value: number) {
-    this._VFRB = value;
+    this._VFRB = Math.trunc(value);
   }
 
   /**
@@ -871,7 +873,7 @@ export class InternalFields {
   }
 
   set VFRBS1(value: number) {
-    this._VFRBS1 = value;
+    this._VFRBS1 = Math.trunc(value);
   }
 
   /**
@@ -883,7 +885,7 @@ export class InternalFields {
   }
 
   set VFRBS2(value: number) {
-    this._VFRBS2 = value;
+    this._VFRBS2 = Math.trunc(value);
   }
 
   /**
@@ -895,7 +897,7 @@ export class InternalFields {
   }
 
   set VHB(value: number) {
-    this._VHB = value;
+    this._VHB = toFixedFloat(value, 2);
   }
 
   /**
@@ -907,7 +909,7 @@ export class InternalFields {
   }
 
   set VKV(value: number) {
-    this._VKV = value;
+    this._VKV = Math.trunc(value);
   }
 
   /**
@@ -925,7 +927,7 @@ export class InternalFields {
   }
 
   set VKVLZZ(value: number) {
-    this._VKVLZZ = value;
+    this._VKVLZZ = Math.trunc(value);
   }
 
   /**
@@ -940,7 +942,7 @@ export class InternalFields {
   }
 
   set VKVSONST(value: number) {
-    this._VKVSONST = value;
+    this._VKVSONST = Math.trunc(value);
   }
 
   /**
@@ -952,7 +954,7 @@ export class InternalFields {
   }
 
   set VSP(value: number) {
-    this._VSP = value;
+    this._VSP = toFixedFloat(value, 2);
   }
 
   /**
@@ -964,7 +966,7 @@ export class InternalFields {
   }
 
   set VSPN(value: number) {
-    this._VSPN = value;
+    this._VSPN = toFixedFloat(value, 2);
   }
 
   /**
@@ -976,7 +978,7 @@ export class InternalFields {
   }
 
   set VSP1(value: number) {
-    this._VSP1 = value;
+    this._VSP1 = toFixedFloat(value, 2);
   }
 
   /**
@@ -988,7 +990,7 @@ export class InternalFields {
   }
 
   set VSP2(value: number) {
-    this._VSP2 = value;
+    this._VSP2 = toFixedFloat(value, 2);
   }
 
   /**
@@ -1000,7 +1002,7 @@ export class InternalFields {
   }
 
   set VSP3(value: number) {
-    this._VSP3 = value;
+    this._VSP3 = toFixedFloat(value, 2);
   }
 
   /**
@@ -1012,7 +1014,7 @@ export class InternalFields {
   }
 
   set W1STKL5(value: number) {
-    this._W1STKL5 = value;
+    this._W1STKL5 = Math.trunc(value);
   }
 
   /**
@@ -1024,7 +1026,7 @@ export class InternalFields {
   }
 
   set W2STKL5(value: number) {
-    this._W2STKL5 = value;
+    this._W2STKL5 = Math.trunc(value);
   }
 
   /**
@@ -1036,7 +1038,7 @@ export class InternalFields {
   }
 
   set W3STKL5(value: number) {
-    this._W3STKL5 = value;
+    this._W3STKL5 = Math.trunc(value);
   }
 
   /**
@@ -1050,7 +1052,21 @@ export class InternalFields {
   }
 
   set WVFRB(value: number) {
-    this._WVFRB = value;
+    this._WVFRB = Math.trunc(value);
+  }
+
+  /**
+   * WVFRBM - Für die weitergehende Berücksichtigung des Steuerfreibetrags nach
+   * dem DBA Türkei verfügbares ZVE über dem Grundfreibetrag bei der
+   * Berechnung der sonstigen Bezüge, in Cent
+   */
+  get WVFRBM() {
+    if (this._WVFRBM === undefined) throw new Error("WVFRBM is not set");
+    return this._WVFRBM;
+  }
+
+  set WVFRBM(value: number) {
+    this._WVFRBM = Math.trunc(value);
   }
 
   /**
@@ -1064,7 +1080,7 @@ export class InternalFields {
   }
 
   set WVFRBO(value: number) {
-    this._WVFRBO = value;
+    this._WVFRBO = Math.trunc(value);
   }
 
   /**
@@ -1076,7 +1092,7 @@ export class InternalFields {
   }
 
   set X(value: number) {
-    this._X = value;
+    this._X = toFixedFloat(value, 2);
   }
 
   /**
@@ -1088,7 +1104,7 @@ export class InternalFields {
   }
 
   set Y(value: number) {
-    this._Y = value;
+    this._Y = toFixedFloat(value, 6);
   }
 
   /**
@@ -1100,7 +1116,7 @@ export class InternalFields {
   }
 
   set ZRE4(value: number) {
-    this._ZRE4 = value;
+    this._ZRE4 = toFixedFloat(value, 2);
   }
 
   /**
@@ -1112,7 +1128,7 @@ export class InternalFields {
   }
 
   set ZRE4J(value: number) {
-    this._ZRE4J = value;
+    this._ZRE4J = toFixedFloat(value, 2);
   }
 
   /**
@@ -1124,7 +1140,7 @@ export class InternalFields {
   }
 
   set ZRE4VP(value: number) {
-    this._ZRE4VP = value;
+    this._ZRE4VP = toFixedFloat(value, 2);
   }
 
   /**
@@ -1136,7 +1152,7 @@ export class InternalFields {
   }
 
   set ZTABFB(value: number) {
-    this._ZTABFB = value;
+    this._ZTABFB = toFixedFloat(value, 2);
   }
 
   /**
@@ -1148,7 +1164,7 @@ export class InternalFields {
   }
 
   set ZVBEZ(value: number) {
-    this._ZVBEZ = value;
+    this._ZVBEZ = toFixedFloat(value, 2);
   }
 
   /**
@@ -1160,7 +1176,7 @@ export class InternalFields {
   }
 
   set ZVBEZJ(value: number) {
-    this._ZVBEZJ = value;
+    this._ZVBEZJ = toFixedFloat(value, 2);
   }
 
   /**
@@ -1172,7 +1188,7 @@ export class InternalFields {
   }
 
   set ZVE(value: number) {
-    this._ZVE = value;
+    this._ZVE = toFixedFloat(value, 2);
   }
 
   /**
@@ -1184,7 +1200,7 @@ export class InternalFields {
   }
 
   set ZX(value: number) {
-    this._ZX = value;
+    this._ZX = Math.trunc(value);
   }
 
   /**
@@ -1196,6 +1212,6 @@ export class InternalFields {
   }
 
   set ZZX(value: number) {
-    this._ZZX = value;
+    this._ZZX = Math.trunc(value);
   }
 }

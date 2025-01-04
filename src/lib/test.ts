@@ -27,7 +27,7 @@ export const testCalculateIncomeTaxFor2025 = () => {
     .setPVA(0)
     .setPVS(0)
     .setPVZ(1)
-    .setR(0)
+    .setR(1)
     .setRE4(50000 * 100)
     .setSONSTB(0)
     .setSONSTENT(0)
@@ -46,7 +46,6 @@ export const testCalculateIncomeTaxFor2025 = () => {
   const results = {
     BK: internalFields.BK,
     BKS: internalFields.BKS,
-    // TODO: investigate wrong income tax value
     LSTLZZ: internalFields.LSTLZZ,
     SOLZLZZ: internalFields.SOLZLZZ,
     SOLZS: internalFields.SOLZS,

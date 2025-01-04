@@ -1,3 +1,4 @@
+import { toFixedFloat } from "@/util/format";
 import { SalaryPaymentPeriod, TaxClass } from "./types";
 
 export class UserInputs {
@@ -188,7 +189,7 @@ export class UserInputs {
   }
 
   public setKVZ(value: number): this {
-    this._KVZ = value;
+    this._KVZ = toFixedFloat(value, 2);
     return this;
   }
 
@@ -480,7 +481,7 @@ export class UserInputs {
   }
 
   public setZKF(value: number): this {
-    this._ZKF = value;
+    this._ZKF = toFixedFloat(value, 1);
     return this;
   }
 

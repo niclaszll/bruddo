@@ -1,3 +1,4 @@
+import { roundDownToFullCent } from "@/util/format";
 import { calculateSolidaritySurchargeOtherEmoluments } from "./19_MSOLZSTS";
 import { InternalFields } from "./InternalFields";
 import { UserInputs } from "./UserInputs";
@@ -14,7 +15,7 @@ export const calculateSTSMIN = () => {
       internalFields.LSTLZZ = internalFields.LSTLZZ + internalFields.STS;
       internalFields.LSTLZZ = Math.max(internalFields.LSTLZZ, 0);
 
-      internalFields.SOLZLZZ = Math.floor(
+      internalFields.SOLZLZZ = roundDownToFullCent(
         internalFields.SOLZLZZ + (internalFields.STS * 5.5) / 100
       );
       internalFields.SOLZLZZ = Math.max(internalFields.SOLZLZZ, 0);

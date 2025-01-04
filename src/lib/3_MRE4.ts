@@ -1,4 +1,5 @@
-import { calculateProportionalTaxAllowanceForElderlyRetiredPersons } from "./4_MRE4ALTE";
+import { roundUpToFullCent, roundUpToFullEuro } from "@/util/format";
+import { calculateMRE4ALTE } from "./4_MRE4ALTE";
 import { InternalFields } from "./InternalFields";
 import { SalaryPaymentPeriod } from "./types";
 import { UserInputs } from "./UserInputs";
@@ -6,7 +7,7 @@ import { UserInputs } from "./UserInputs";
 /**
  * MRE4 - Ermittlung der Freibeträge nach § 39b Absatz 2 Satz 3 EStG
  */
-export const calculateAllowances = () => {
+export const calculateMRE4 = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
 
@@ -27,10 +28,10 @@ export const calculateAllowances = () => {
     if (userInputs.LZZ === SalaryPaymentPeriod.YEAR) {
       internalFields.VBEZB =
         userInputs.VBEZM * userInputs.ZMVB + userInputs.VBEZS;
-      internalFields.HFVB = Math.ceil(
+      internalFields.HFVB = roundUpToFullEuro(
         (internalFields.getTAB2(internalFields.J) / 12) * userInputs.ZMVB
       );
-      internalFields.FVBZ = Math.ceil(
+      internalFields.FVBZ = roundUpToFullEuro(
         (internalFields.getTAB3(internalFields.J) / 12) * userInputs.ZMVB
       );
     } else {
@@ -39,13 +40,13 @@ export const calculateAllowances = () => {
       internalFields.FVBZ = internalFields.getTAB3(internalFields.J);
     }
 
-    internalFields.FVB = Math.ceil(
+    internalFields.FVB = roundUpToFullCent(
       (internalFields.VBEZB * internalFields.getTAB1(internalFields.J)) / 100
     );
     internalFields.FVB = Math.min(internalFields.FVB, internalFields.HFVB);
     internalFields.FVB = Math.min(internalFields.FVB, internalFields.ZVBEZJ);
 
-    internalFields.FVBSO = Math.ceil(
+    internalFields.FVBSO = roundUpToFullCent(
       internalFields.FVB +
         (internalFields.VBEZBSO * internalFields.getTAB1(internalFields.J)) /
           100
@@ -59,10 +60,10 @@ export const calculateAllowances = () => {
       (internalFields.VBEZB + internalFields.VBEZBSO) / 100 -
       internalFields.FVBSO;
 
-    internalFields.FVBZSO = Math.ceil(
+    internalFields.FVBZSO = roundUpToFullEuro(
       internalFields.FVBZ + internalFields.VBEZBSO / 100
     );
-    internalFields.FVBZSO = Math.ceil(
+    internalFields.FVBZSO = roundUpToFullEuro(
       Math.min(internalFields.FVBZSO, internalFields.HFVBZSO)
     );
 
@@ -72,10 +73,10 @@ export const calculateAllowances = () => {
     );
 
     internalFields.HFVBZ = internalFields.VBEZB / 100 - internalFields.FVB;
-    internalFields.FVBZ = Math.ceil(
+    internalFields.FVBZ = roundUpToFullEuro(
       Math.min(internalFields.FVBZ, internalFields.HFVBZ)
     );
   }
   // MRE4ALTE
-  calculateProportionalTaxAllowanceForElderlyRetiredPersons();
+  calculateMRE4ALTE();
 };
