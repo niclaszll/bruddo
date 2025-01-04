@@ -1,10 +1,10 @@
 import { roundDownToFullEuro } from "@/util/format";
-import { InternalFields } from "./InternalFields";
+import { InternalFields } from "../clients/InternalFields";
 
 /**
  * UPTAB24 - Tarifliche Einkommensteuer (§ 32a EStG)
  */
-export const calculateStandardIncomeTax = () => {
+export const calculateUPTAB24 = () => {
   const internalFields = InternalFields.instance;
 
   if (internalFields.X < internalFields.GFB + 1) {

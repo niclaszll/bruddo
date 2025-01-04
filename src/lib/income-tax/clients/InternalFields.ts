@@ -1,6 +1,6 @@
-import { IncomeTaxTariffType } from "./types";
-import Table1_3 from "./tab_1-3.json";
-import Table4_5 from "./tab_4-5.json";
+import { IncomeTaxTariffType } from "@/types/income-tax";
+import Table1_3 from "../data/tab_1-3.json";
+import Table4_5 from "../data/tab_4-5.json";
 import { roundDownToFullCent, toFixedFloat } from "@/util/format";
 
 export class InternalFields {

@@ -3,9 +3,9 @@ import { calculateSTSMIN } from "./18_STSMIN";
 import { calculateMOSONST } from "./20_MOSONST";
 import { calculateMRE4SONST } from "./21_MRE4SONST";
 import { calculateMLSTJAHR } from "./8_MLSTJAHR";
-import { calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContributions } from "./9_UPVKVLZZ";
-import { InternalFields } from "./InternalFields";
-import { UserInputs } from "./UserInputs";
+import { calculateUPVKV } from "./9_UPVKVLZZ";
+import { InternalFields } from "../clients/InternalFields";
+import { UserInputs } from "../clients/UserInputs";
 
 /**
  * MSONST - Berechnung sonstiger Bezüge nach § 39b Absatz 3 Satz 1 bis 8 EStG
@@ -29,7 +29,7 @@ export const calculateMSONST = () => {
     calculateMOSONST();
 
     // UPVKV
-    calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContributions();
+    calculateUPVKV();
 
     internalFields.VKVSONST = internalFields.VKV;
     internalFields.ZRE4J = (userInputs.JRE4 + userInputs.SONSTB) / 100;
@@ -48,7 +48,7 @@ export const calculateMSONST = () => {
     );
 
     // UPVKV
-    calculateAnnualValueOfPrivateHealthAndLongTermCareInsuranceContributions();
+    calculateUPVKV();
 
     internalFields.VKVSONST = internalFields.VKV - internalFields.VKVSONST;
     internalFields.LSTSO = internalFields.ST * 100;

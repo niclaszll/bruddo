@@ -1,7 +1,7 @@
 import { roundDownToFullCent } from "@/util/format";
-import { calculateShareOfAnnualAmountsForLZZ } from "./16_UPANTEIL";
-import { InternalFields } from "./InternalFields";
-import { UserInputs } from "./UserInputs";
+import { calculateUPANTEIL } from "./16_UPANTEIL";
+import { InternalFields } from "../clients/InternalFields";
+import { UserInputs } from "../clients/UserInputs";
 
 /**
  * MSOLZ - Solidaritätszuschlag
@@ -13,7 +13,9 @@ export const calculateMSOLZ = () => {
   internalFields.SOLZFREI = internalFields.SOLZFREI * internalFields.KZTAB;
 
   if (internalFields.JBMG > internalFields.SOLZFREI) {
-    internalFields.SOLZJ = roundDownToFullCent((internalFields.JBMG * 5.5) / 100);
+    internalFields.SOLZJ = roundDownToFullCent(
+      (internalFields.JBMG * 5.5) / 100
+    );
     internalFields.SOLZMIN =
       ((internalFields.JBMG - internalFields.SOLZFREI) * 11.9) / 100;
     internalFields.SOLZJ = Math.min(
@@ -24,7 +26,7 @@ export const calculateMSOLZ = () => {
     internalFields.JW = internalFields.SOLZJ * 100;
 
     // UPANTEIL
-    calculateShareOfAnnualAmountsForLZZ();
+    calculateUPANTEIL();
 
     internalFields.SOLZLZZ = internalFields.ANTEIL1;
   } else {
@@ -39,7 +41,7 @@ export const calculateMSOLZ = () => {
     internalFields.JW = internalFields.JBMG * 100;
 
     // UPANTEIL
-    calculateShareOfAnnualAmountsForLZZ();
+    calculateUPANTEIL();
 
     internalFields.BK = internalFields.ANTEIL1;
   } else {

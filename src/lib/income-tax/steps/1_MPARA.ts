@@ -1,12 +1,12 @@
 // see: https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2024-11-22-PAP-2025_anlage.pdf?__blob=publicationFile&v=2
 
-import { InternalFields } from "./InternalFields";
-import { UserInputs } from "./UserInputs";
+import { InternalFields } from "../clients/InternalFields";
+import { UserInputs } from "../clients/UserInputs";
 
 /**
  * MPARA - Zuweisung von Werten für bestimmte Sozialversicherungsparameter
  */
-export const setupParameters = () => {
+export const setupMPARA = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
 

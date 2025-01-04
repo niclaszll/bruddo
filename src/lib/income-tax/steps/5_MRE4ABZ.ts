@@ -1,4 +1,4 @@
-import { InternalFields } from "./InternalFields";
+import { InternalFields } from "../clients/InternalFields";
 
 /**
  * MRE4ABZ - Ermittlung des Jahresarbeitslohns nach Abzug der

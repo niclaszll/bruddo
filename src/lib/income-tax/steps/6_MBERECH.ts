@@ -4,8 +4,8 @@ import { calculateMRE4ABZ } from "./5_MRE4ABZ";
 import { calculateMZTABFB } from "./7_MZTABFB";
 import { calculateMLSTJAHR } from "./8_MLSTJAHR";
 import { calculateUPVKVLZZ } from "./9_UPVKVLZZ";
-import { InternalFields } from "./InternalFields";
-import { UserInputs } from "./UserInputs";
+import { InternalFields } from "../clients/InternalFields";
+import { UserInputs } from "../clients/UserInputs";
 
 /**
  * MBERECH - Ermittlung der Jahreslohnsteuer auf laufende Bezüge

@@ -1,8 +1,8 @@
 import { calculateMRE4 } from "./3_MRE4";
 import { calculateMRE4ABZ } from "./5_MRE4ABZ";
 import { calculateMZTABFB } from "./7_MZTABFB";
-import { InternalFields } from "./InternalFields";
-import { UserInputs } from "./UserInputs";
+import { InternalFields } from "../clients/InternalFields";
+import { UserInputs } from "../clients/UserInputs";
 
 /**
  * MRE4SONST - Sonderberechnung mit sonstigen Bezügen für Berechnung bei sonstigen Bezügen

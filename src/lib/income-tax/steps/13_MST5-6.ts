@@ -1,11 +1,11 @@
 import { roundDownToFullEuro } from "@/util/format";
 import { calculateUP5_6 } from "./14_UP5-6";
-import { InternalFields } from "./InternalFields";
+import { InternalFields } from "../clients/InternalFields";
 
 /**
  * MST5-6 - Lohnsteuer für die Steuerklassen V und VI (§ 39b Absatz 2 Satz 7 EStG)
  */
-export const calculateIncomeTaxForTaxClassesVAndVI = () => {
+export const calculateMST5_6 = () => {
   const internalFields = InternalFields.instance;
 
   internalFields.ZZX = internalFields.X;

@@ -1,13 +1,13 @@
 import { roundDownToFullCent } from "@/util/format";
-import { InternalFields } from "./InternalFields";
-import { SalaryPaymentPeriod } from "./types";
-import { UserInputs } from "./UserInputs";
+import { InternalFields } from "../clients/InternalFields";
+import { SalaryPaymentPeriod } from "@/types/income-tax";
+import { UserInputs } from "../clients/UserInputs";
 
 /**
  * UPANTEIL - Ermittlung des Anteils der berücksichtigten privaten Kranken- und
  * Pflegeversicherungsbeiträge für den Lohnzahlungszeitraum
  */
-export const calculateShareOfAnnualAmountsForLZZ = () => {
+export const calculateUPANTEIL = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
 

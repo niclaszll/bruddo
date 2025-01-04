@@ -1,13 +1,13 @@
 import { roundDownToFullEuro } from "@/util/format";
-import { calculatePensionLumpSumComparatively } from "./12_MVSP";
-import { InternalFields } from "./InternalFields";
-import { TaxClass } from "./types";
-import { UserInputs } from "./UserInputs";
+import { calculateMVSP } from "./12_MVSP";
+import { InternalFields } from "../clients/InternalFields";
+import { TaxClass } from "@/types/income-tax";
+import { UserInputs } from "../clients/UserInputs";
 
 /**
  * UPEVP - Berechnung der Vorsorgepauschale (§ 39b Absatz 2 Satz 5 Nummer 3 und Absatz 4 EStG)
  */
-export const calculatePensionLumpSum = () => {
+export const calculateUPEVP = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
 
@@ -30,7 +30,7 @@ export const calculatePensionLumpSum = () => {
   );
 
   // MVSP
-  calculatePensionLumpSumComparatively();
+  calculateMVSP();
 
   internalFields.VSP = Math.max(internalFields.VSPN, internalFields.VSP);
 };

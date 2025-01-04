@@ -1,13 +1,13 @@
 import { roundDownToFullCent, roundDownToFullEuro } from "@/util/format";
-import { calculateIncomeTaxForTaxClassesVAndVI } from "./13_MST5-6";
-import { calculateStandardIncomeTax } from "./22_UPTAB24";
-import { InternalFields } from "./InternalFields";
-import { UserInputs } from "./UserInputs";
+import { calculateMST5_6 } from "./13_MST5-6";
+import { calculateUPTAB24 } from "./22_UPTAB24";
+import { InternalFields } from "../clients/InternalFields";
+import { UserInputs } from "../clients/UserInputs";
 
 /**
  * MSOLZSTS - Berechnung des SolZ auf sonstige Bezüge
  */
-export const calculateSolidaritySurchargeOtherEmoluments = () => {
+export const calculateMSOLZSTS = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
 
@@ -27,10 +27,10 @@ export const calculateSolidaritySurchargeOtherEmoluments = () => {
 
   if (userInputs.STKL < 5) {
     // UPTAB24
-    calculateStandardIncomeTax();
+    calculateUPTAB24();
   } else {
     // MST5-6
-    calculateIncomeTaxForTaxClassesVAndVI();
+    calculateMST5_6();
   }
 
   internalFields.SOLZSBMG = roundDownToFullEuro(

@@ -1,5 +1,5 @@
-import { calculateShareOfAnnualAmountsForLZZ } from "./16_UPANTEIL";
-import { InternalFields } from "./InternalFields";
+import { calculateUPANTEIL } from "./16_UPANTEIL";
+import { InternalFields } from "../clients/InternalFields";
 
 /**
  * UPLSTLZZ - Ermittlung des Anteils der Jahreslohnsteuer für den Lohnzahlungszeitraum
@@ -10,7 +10,7 @@ export const calculateUPLSTLZZ = () => {
   internalFields.JW = internalFields.LSTJAHR * 100;
 
   // UPANTEIL
-  calculateShareOfAnnualAmountsForLZZ();
+  calculateUPANTEIL();
 
   internalFields.LSTLZZ = internalFields.ANTEIL1;
 };

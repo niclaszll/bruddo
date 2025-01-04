@@ -1,7 +1,7 @@
 import { roundUpToFullEuro } from "@/util/format";
-import { InternalFields } from "./InternalFields";
-import { IncomeTaxTariffType, TaxClass } from "./types";
-import { UserInputs } from "./UserInputs";
+import { InternalFields } from "../clients/InternalFields";
+import { IncomeTaxTariffType, TaxClass } from "@/types/income-tax";
+import { UserInputs } from "../clients/UserInputs";
 
 /**
  * MZTABFB - Ermittlung der festen Tabellenfreibeträge (ohne Vorsorgepauschale)

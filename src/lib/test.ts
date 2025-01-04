@@ -1,10 +1,11 @@
-import { calculateIncomeTaxFor2025 } from ".";
-import { InternalFields } from "./InternalFields";
-import { UserInputs } from "./UserInputs";
+import { IncomeTaxClient } from "./income-tax/clients/IncomeTaxClient";
+import { InternalFields } from "./income-tax/clients/InternalFields";
+import { UserInputs } from "./income-tax/clients/UserInputs";
 
 export const testCalculateIncomeTaxFor2025 = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
+  const incomeTaxClient = IncomeTaxClient.instance;
 
   userInputs
     .setAF(0)
@@ -41,7 +42,7 @@ export const testCalculateIncomeTaxFor2025 = () => {
     .setZKF(0)
     .setZMVB(0);
 
-  calculateIncomeTaxFor2025();
+  incomeTaxClient.calculateIncomeTax();
 
   const results = {
     BK: internalFields.BK,

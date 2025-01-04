@@ -1,12 +1,12 @@
 import { roundUpToFullEuro } from "@/util/format";
-import { InternalFields } from "./InternalFields";
-import { HealthInsuranceType, TaxClass } from "./types";
-import { UserInputs } from "./UserInputs";
+import { InternalFields } from "../clients/InternalFields";
+import { HealthInsuranceType, TaxClass } from "@/types/income-tax";
+import { UserInputs } from "../clients/UserInputs";
 
 /**
  * MVSP - Vorsorgepauschale (§ 39b Absatz 2 Satz 5 Nummer 3 EStG) Vergleichsberechnung zur Mindestvorsorgepauschale
  */
-export const calculatePensionLumpSumComparatively = () => {
+export const calculateMVSP = () => {
   const internalFields = InternalFields.instance;
   const userInputs = UserInputs.instance;
 

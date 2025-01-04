@@ -1,5 +1,5 @@
 import { toFixedFloat } from "@/util/format";
-import { SalaryPaymentPeriod, TaxClass } from "./types";
+import { SalaryPaymentPeriod, TaxClass } from "@/types/income-tax";
 
 export class UserInputs {
   static #instance: UserInputs;

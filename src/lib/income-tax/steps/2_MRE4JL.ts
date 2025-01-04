@@ -1,6 +1,6 @@
-import { InternalFields } from "./InternalFields";
-import { SalaryPaymentPeriod } from "./types";
-import { UserInputs } from "./UserInputs";
+import { InternalFields } from "../clients/InternalFields";
+import { SalaryPaymentPeriod } from "@/types/income-tax";
+import { UserInputs } from "../clients/UserInputs";
 
 /**
  * MRE4JL - Ermittlung des Jahresarbeitslohns nach § 39b Absatz 2 Satz 2 EStG

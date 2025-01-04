@@ -1,7 +1,7 @@
 import { roundDownToFullCent } from "@/util/format";
-import { calculateSolidaritySurchargeOtherEmoluments } from "./19_MSOLZSTS";
-import { InternalFields } from "./InternalFields";
-import { UserInputs } from "./UserInputs";
+import { calculateMSOLZSTS } from "./19_MSOLZSTS";
+import { InternalFields } from "../clients/InternalFields";
+import { UserInputs } from "../clients/UserInputs";
 
 /**
  * STSMIN
@@ -29,7 +29,7 @@ export const calculateSTSMIN = () => {
     internalFields.SOLZS = 0;
   } else {
     // MSOLZSTS
-    calculateSolidaritySurchargeOtherEmoluments();
+    calculateMSOLZSTS();
   }
 
   internalFields.BKS = userInputs.R > 0 ? internalFields.STS : 0;
