@@ -1,15 +1,19 @@
-import HealthInsuranceClient from "@/lib/health-insurance";
-import IncomeTaxClient from "@/lib/income-tax";
+import SocialSecurityClient from "@/lib/social-security";
+import TaxClient from "@/lib/taxes";
 import Image from "next/image";
 
 export default function Home() {
-  IncomeTaxClient.setUserInputs();
-  const incomeTaxResults = IncomeTaxClient.calculateIncomeTax();
+  TaxClient.setUserInputs();
+  const incomeTaxResults = TaxClient.getIncomeAndChurchTax();
   const healthInsuranceResults =
-    HealthInsuranceClient.calculateHealthInsuranceContribution(50000, 2.45);
-
+    SocialSecurityClient.getHealthInsuranceContribution(50000, 2.45);
   const longtermInsuranceResults =
-    HealthInsuranceClient.calculateLongTermCareInsurance(50000, 0, 26, true);
+    SocialSecurityClient.getLongTermCareInsuranceContribution(
+      50000,
+      0,
+      26,
+      true
+    );
 
   console.log(
     incomeTaxResults,

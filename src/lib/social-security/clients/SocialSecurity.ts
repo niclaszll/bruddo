@@ -4,20 +4,20 @@ import {
 } from "@/util/constants";
 import { roundDownToFullCent } from "@/util/format";
 
-export class HealthInsuranceClient {
-  static #instance: HealthInsuranceClient;
+export class SocialSecurityClient {
+  static #instance: SocialSecurityClient;
 
   private constructor() {}
 
-  public static get instance(): HealthInsuranceClient {
-    if (!HealthInsuranceClient.#instance) {
-      HealthInsuranceClient.#instance = new HealthInsuranceClient();
+  public static get instance(): SocialSecurityClient {
+    if (!SocialSecurityClient.#instance) {
+      SocialSecurityClient.#instance = new SocialSecurityClient();
     }
 
-    return HealthInsuranceClient.#instance;
+    return SocialSecurityClient.#instance;
   }
 
-  public calculateHealthInsuranceContribution(
+  public getHealthInsuranceContribution(
     annualGrossIncome: number,
     additionalContributionRate: number
   ) {
@@ -46,7 +46,7 @@ export class HealthInsuranceClient {
     };
   }
 
-  public calculateLongTermCareInsurance(
+  public getLongTermCareInsuranceContribution(
     annualGrossIncome: number,
     numberOfChildren: number,
     age: number,
