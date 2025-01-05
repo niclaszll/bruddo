@@ -3,23 +3,43 @@ import TaxClient from "@/lib/taxes";
 import Image from "next/image";
 
 export default function Home() {
+  const grossIncome = 50_000;
   TaxClient.setUserInputs();
   const incomeTaxResults = TaxClient.getIncomeAndChurchTax();
   const healthInsuranceResults =
-    SocialSecurityClient.getHealthInsuranceContribution(50000, 2.45);
+    SocialSecurityClient.getHealthInsuranceContribution(grossIncome, 2.5);
   const longtermInsuranceResults =
     SocialSecurityClient.getLongTermCareInsuranceContribution(
-      50000,
+      grossIncome,
       0,
       26,
-      true
+      false
+    );
+  const pensionInsuranceResults =
+    SocialSecurityClient.calculatePensionInsuranceContribution(grossIncome);
+  const unemploymentInsuranceResults =
+    SocialSecurityClient.calculateUnemploymentInsuranceContribution(
+      grossIncome
     );
 
-  console.log(
+  const netIncome =
+    grossIncome -
+    incomeTaxResults.incomeTax -
+    incomeTaxResults.solidaritySurcharge -
+    incomeTaxResults.churchTax -
+    healthInsuranceResults.employeeContribution -
+    longtermInsuranceResults.employeeContribution -
+    pensionInsuranceResults.employeeContribution -
+    unemploymentInsuranceResults.employeeContribution;
+
+  console.log({
     incomeTaxResults,
     healthInsuranceResults,
-    longtermInsuranceResults
-  );
+    longtermInsuranceResults,
+    pensionInsuranceResults,
+    unemploymentInsuranceResults,
+    netIncome,
+  });
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">

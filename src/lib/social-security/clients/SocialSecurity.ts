@@ -1,6 +1,10 @@
 import {
   HEALTH_INSURANCE_GENERAL_RATE,
   HEALTH_INSURANCE_INCOME_THRESHOLD,
+  PENSION_INSURANCE_CONTRIBUTION_RATE,
+  PENSION_INSURANCE_INCOME_THRESHOLD,
+  UNEMPLOYMENT_INSURANCE_CONTRIBUTION_RATE,
+  UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD,
 } from "@/util/constants";
 import { roundDownToFullCent } from "@/util/format";
 
@@ -36,13 +40,13 @@ export class SocialSecurityClient {
       generalContribution + additionalContribution
     );
 
-    const employeeShare = roundDownToFullCent(totalContribution / 2);
-    const employerShare = roundDownToFullCent(totalContribution / 2);
+    const employeeContribution = roundDownToFullCent(totalContribution / 2);
+    const employerContribution = roundDownToFullCent(totalContribution / 2);
 
     return {
       totalContribution,
-      employeeShare,
-      employerShare,
+      employeeContribution,
+      employerContribution,
     };
   }
 
@@ -88,6 +92,44 @@ export class SocialSecurityClient {
     const employerContribution = roundDownToFullCent(
       (cappedIncome * employerShareFixed) / 100
     );
+
+    return {
+      totalContribution,
+      employeeContribution,
+      employerContribution,
+    };
+  }
+
+  public calculatePensionInsuranceContribution(annualGrossIncome: number) {
+    const cappedIncome = Math.min(
+      annualGrossIncome,
+      PENSION_INSURANCE_INCOME_THRESHOLD
+    );
+
+    const totalContribution = roundDownToFullCent(
+      (cappedIncome * PENSION_INSURANCE_CONTRIBUTION_RATE) / 100
+    );
+    const employeeContribution = totalContribution / 2;
+    const employerContribution = totalContribution / 2;
+
+    return {
+      totalContribution,
+      employeeContribution,
+      employerContribution,
+    };
+  }
+
+  public calculateUnemploymentInsuranceContribution(annualGrossIncome: number) {
+    const cappedIncome = Math.min(
+      annualGrossIncome,
+      UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD
+    );
+
+    const totalContribution = roundDownToFullCent(
+      (cappedIncome * UNEMPLOYMENT_INSURANCE_CONTRIBUTION_RATE) / 100
+    );
+    const employeeContribution = totalContribution / 2;
+    const employerContribution = totalContribution / 2;
 
     return {
       totalContribution,

@@ -26,7 +26,7 @@ export const calculateIncomeTax = () => {
     // STS: internalFields.STS,
     // VKVLZZ: internalFields.VKVLZZ,
     // VKVSONST: internalFields.VKVSONST,
-    incomeTax: internalFields.LSTLZZ,
-    solidaritySurcharge: internalFields.SOLZLZZ,
+    incomeTax: internalFields.LSTLZZ / 100,
+    solidaritySurcharge: internalFields.SOLZLZZ / 100,
   };
 };

@@ -7,10 +7,7 @@ export const calculateChurchTax = (
     state === "Bavaria" || state === "Baden-Württemberg" ? 0.08 : 0.09;
 
   if (!isMemberOfChurch) {
-    return {
-      churchTax: 0,
-      incomeTax,
-    };
+    return 0;
   }
 
   const churchTax = incomeTax * churchTaxRate;
