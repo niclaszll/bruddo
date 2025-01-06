@@ -1,8 +1,8 @@
 import { roundDownToFullEuro } from "@/util/format";
 import { calculateMVSP } from "./12_MVSP";
-import { InternalFields } from "../clients/InternalFields";
+import { InternalFields } from "./fields/InternalFields";
 import { TaxClass } from "@/types/income-tax";
-import { UserInputs } from "../clients/UserInputs";
+import { UserInputs } from "./fields/UserInputs";
 
 /**
  * UPEVP - Berechnung der Vorsorgepauschale (§ 39b Absatz 2 Satz 5 Nummer 3 und Absatz 4 EStG)

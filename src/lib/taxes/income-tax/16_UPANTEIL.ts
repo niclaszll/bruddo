@@ -1,7 +1,7 @@
 import { roundDownToFullCent } from "@/util/format";
-import { InternalFields } from "../clients/InternalFields";
+import { InternalFields } from "./fields/InternalFields";
 import { SalaryPaymentPeriod } from "@/types/income-tax";
-import { UserInputs } from "../clients/UserInputs";
+import { UserInputs } from "./fields/UserInputs";
 
 /**
  * UPANTEIL - Ermittlung des Anteils der berücksichtigten privaten Kranken- und

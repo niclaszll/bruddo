@@ -1,7 +1,7 @@
 import { roundDownToFullCent } from "@/util/format";
 import { calculateUPANTEIL } from "./16_UPANTEIL";
-import { InternalFields } from "../clients/InternalFields";
-import { UserInputs } from "../clients/UserInputs";
+import { InternalFields } from "./fields/InternalFields";
+import { UserInputs } from "./fields/UserInputs";
 
 /**
  * MSOLZ - Solidaritätszuschlag

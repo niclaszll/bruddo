@@ -1,4 +1,4 @@
-import { InternalFields } from "../clients/InternalFields";
+import { InternalFields } from "./fields/InternalFields";
 import { calculateMSONST } from "./17_MSONST";
 import { setupMPARA } from "./1_MPARA";
 import { calculateMRE4JL } from "./2_MRE4JL";

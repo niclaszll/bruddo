@@ -1,8 +1,8 @@
 // see: https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2024-11-22-PAP-2025_anlage.pdf?__blob=publicationFile&v=2
 
 import { HEALTH_INSURANCE_INCOME_THRESHOLD } from "@/util/constants";
-import { InternalFields } from "../clients/InternalFields";
-import { UserInputs } from "../clients/UserInputs";
+import { InternalFields } from "./fields/InternalFields";
+import { UserInputs } from "./fields/UserInputs";
 
 /**
  * MPARA - Zuweisung von Werten für bestimmte Sozialversicherungsparameter

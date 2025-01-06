@@ -1,8 +1,8 @@
 import { roundUpToFullCent, roundUpToFullEuro } from "@/util/format";
 import { calculateMRE4ALTE } from "./4_MRE4ALTE";
-import { InternalFields } from "../clients/InternalFields";
+import { InternalFields } from "./fields/InternalFields";
 import { SalaryPaymentPeriod } from "@/types/income-tax";
-import { UserInputs } from "../clients/UserInputs";
+import { UserInputs } from "./fields/UserInputs";
 
 /**
  * MRE4 - Ermittlung der Freibeträge nach § 39b Absatz 2 Satz 3 EStG

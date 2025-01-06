@@ -1,7 +1,7 @@
 import { calculateUPANTEIL } from "./16_UPANTEIL";
-import { InternalFields } from "../clients/InternalFields";
+import { InternalFields } from "./fields/InternalFields";
 import { HealthInsuranceType } from "@/types/income-tax";
-import { UserInputs } from "../clients/UserInputs";
+import { UserInputs } from "./fields/UserInputs";
 
 /**
  * UPVKVLZZ - Ermittlung des Anteils der berücksichtigten

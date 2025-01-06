@@ -1,7 +1,7 @@
 import { roundDownToFullCent } from "@/util/format";
 import { calculateMSOLZSTS } from "./19_MSOLZSTS";
-import { InternalFields } from "../clients/InternalFields";
-import { UserInputs } from "../clients/UserInputs";
+import { InternalFields } from "./fields/InternalFields";
+import { UserInputs } from "./fields/UserInputs";
 
 /**
  * STSMIN

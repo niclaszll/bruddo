@@ -1,6 +1,6 @@
 import { roundUpToFullEuro } from "@/util/format";
-import { InternalFields } from "../clients/InternalFields";
-import { UserInputs } from "../clients/UserInputs";
+import { InternalFields } from "./fields/InternalFields";
+import { UserInputs } from "./fields/UserInputs";
 
 /**
  * MRE4ALTE - Ermittlung des Altersentlastungsbetrags (§ 39b Absatz 2 Satz 3 EStG

@@ -1,19 +1,26 @@
 import SocialSecurityClient from "@/lib/social-security";
 import TaxClient from "@/lib/taxes";
+import { GermanFederalState } from "@/types/common";
 import Image from "next/image";
 
 export default function Home() {
   const grossIncome = 50_000;
+  const federalState = GermanFederalState.Hamburg;
   TaxClient.setUserInputs();
-  const incomeTaxResults = TaxClient.getIncomeAndChurchTax();
+  const incomeTaxResults = TaxClient.getIncomeTax();
+  const churchTax = TaxClient.getChurchTax(
+    incomeTaxResults.incomeTax,
+    federalState,
+    true
+  );
   const healthInsuranceResults =
     SocialSecurityClient.getHealthInsuranceContribution(grossIncome, 2.5);
-  const longtermInsuranceResults =
+  const longTermInsuranceResults =
     SocialSecurityClient.getLongTermCareInsuranceContribution(
       grossIncome,
       0,
       26,
-      false
+      federalState
     );
   const pensionInsuranceResults =
     SocialSecurityClient.calculatePensionInsuranceContribution(grossIncome);
@@ -26,16 +33,16 @@ export default function Home() {
     grossIncome -
     incomeTaxResults.incomeTax -
     incomeTaxResults.solidaritySurcharge -
-    incomeTaxResults.churchTax -
+    churchTax -
     healthInsuranceResults.employeeContribution -
-    longtermInsuranceResults.employeeContribution -
+    longTermInsuranceResults.employeeContribution -
     pensionInsuranceResults.employeeContribution -
     unemploymentInsuranceResults.employeeContribution;
 
   console.log({
     incomeTaxResults,
     healthInsuranceResults,
-    longtermInsuranceResults,
+    longTermInsuranceResults,
     pensionInsuranceResults,
     unemploymentInsuranceResults,
     netIncome,

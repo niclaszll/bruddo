@@ -1,7 +1,7 @@
 import { roundUpToFullEuro } from "@/util/format";
-import { InternalFields } from "../clients/InternalFields";
+import { InternalFields } from "./fields/InternalFields";
 import { HealthInsuranceType, TaxClass } from "@/types/income-tax";
-import { UserInputs } from "../clients/UserInputs";
+import { UserInputs } from "./fields/UserInputs";
 
 /**
  * MVSP - Vorsorgepauschale (§ 39b Absatz 2 Satz 5 Nummer 3 EStG) Vergleichsberechnung zur Mindestvorsorgepauschale

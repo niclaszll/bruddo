@@ -1,8 +1,8 @@
 import { roundDownToFullCent, roundDownToFullEuro } from "@/util/format";
 import { calculateMST5_6 } from "./13_MST5-6";
 import { calculateUPTAB24 } from "./22_UPTAB24";
-import { InternalFields } from "../clients/InternalFields";
-import { UserInputs } from "../clients/UserInputs";
+import { InternalFields } from "./fields/InternalFields";
+import { UserInputs } from "./fields/UserInputs";
 
 /**
  * MSOLZSTS - Berechnung des SolZ auf sonstige Bezüge

@@ -1,5 +1,5 @@
 import { roundDownToFullEuro } from "@/util/format";
-import { InternalFields } from "../clients/InternalFields";
+import { InternalFields } from "./fields/InternalFields";
 
 /**
  * UPTAB24 - Tarifliche Einkommensteuer (§ 32a EStG)

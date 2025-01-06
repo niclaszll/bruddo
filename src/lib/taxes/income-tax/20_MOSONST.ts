@@ -2,8 +2,8 @@ import { calculateMRE4 } from "./3_MRE4";
 import { calculateMRE4ABZ } from "./5_MRE4ABZ";
 import { calculateMZTABFB } from "./7_MZTABFB";
 import { calculateMLSTJAHR } from "./8_MLSTJAHR";
-import { InternalFields } from "../clients/InternalFields";
-import { UserInputs } from "../clients/UserInputs";
+import { InternalFields } from "./fields/InternalFields";
+import { UserInputs } from "./fields/UserInputs";
 
 /**
  * MOSONST - Sonderberechnung ohne sonstige Bezüge für Berechnung bei sonstigen Bezügen oder Vergütung für mehrjährige Tätigkeit

@@ -1,6 +1,6 @@
 import { roundDownToFullEuro } from "@/util/format";
 import { calculateUPTAB24 } from "./22_UPTAB24";
-import { InternalFields } from "../clients/InternalFields";
+import { InternalFields } from "./fields/InternalFields";
 
 /**
  * UP5-6

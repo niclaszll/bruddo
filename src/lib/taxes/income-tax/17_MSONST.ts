@@ -4,8 +4,8 @@ import { calculateMOSONST } from "./20_MOSONST";
 import { calculateMRE4SONST } from "./21_MRE4SONST";
 import { calculateMLSTJAHR } from "./8_MLSTJAHR";
 import { calculateUPVKV } from "./9_UPVKVLZZ";
-import { InternalFields } from "../clients/InternalFields";
-import { UserInputs } from "../clients/UserInputs";
+import { InternalFields } from "./fields/InternalFields";
+import { UserInputs } from "./fields/UserInputs";
 
 /**
  * MSONST - Berechnung sonstiger Bezüge nach § 39b Absatz 3 Satz 1 bis 8 EStG

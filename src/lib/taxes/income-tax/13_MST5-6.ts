@@ -1,6 +1,6 @@
 import { roundDownToFullEuro } from "@/util/format";
 import { calculateUP5_6 } from "./14_UP5-6";
-import { InternalFields } from "../clients/InternalFields";
+import { InternalFields } from "./fields/InternalFields";
 
 /**
  * MST5-6 - Lohnsteuer für die Steuerklassen V und VI (§ 39b Absatz 2 Satz 7 EStG)
