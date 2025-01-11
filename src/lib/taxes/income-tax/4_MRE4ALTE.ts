@@ -1,6 +1,7 @@
-import { roundUpToFullEuro } from "@/util/format";
-import { InternalFields } from "./fields/InternalFields";
-import { UserInputs } from "./fields/UserInputs";
+import { roundUpToFullEuro } from '@/util/format';
+
+import { InternalFields } from './fields/InternalFields';
+import { UserInputs } from './fields/UserInputs';
 
 /**
  * MRE4ALTE - Ermittlung des Altersentlastungsbetrags (§ 39b Absatz 2 Satz 3 EStG
@@ -23,7 +24,7 @@ export const calculateMRE4ALTE = () => {
     internalFields.BMG = internalFields.ZRE4J - internalFields.ZVBEZJ;
 
     internalFields.ALTE = roundUpToFullEuro(
-      internalFields.BMG * internalFields.getTAB4(internalFields.K)
+      internalFields.BMG * internalFields.getTAB4(internalFields.K),
     );
 
     internalFields.HBALTE = internalFields.getTAB5(internalFields.K);

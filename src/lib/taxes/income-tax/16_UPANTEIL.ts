@@ -1,7 +1,8 @@
-import { roundDownToFullCent } from "@/util/format";
-import { InternalFields } from "./fields/InternalFields";
-import { SalaryPaymentPeriod } from "@/types/income-tax";
-import { UserInputs } from "./fields/UserInputs";
+import { SalaryPaymentPeriod } from '@/types/income-tax';
+import { roundDownToFullCent } from '@/util/format';
+
+import { InternalFields } from './fields/InternalFields';
+import { UserInputs } from './fields/UserInputs';
 
 /**
  * UPANTEIL - Ermittlung des Anteils der berücksichtigten privaten Kranken- und
@@ -19,9 +20,7 @@ export const calculateUPANTEIL = () => {
       internalFields.ANTEIL1 = roundDownToFullCent(internalFields.JW / 12);
       break;
     case SalaryPaymentPeriod.WEEK:
-      internalFields.ANTEIL1 = roundDownToFullCent(
-        (internalFields.JW * 7) / 360
-      );
+      internalFields.ANTEIL1 = roundDownToFullCent((internalFields.JW * 7) / 360);
       break;
     case SalaryPaymentPeriod.DAY:
       internalFields.ANTEIL1 = roundDownToFullCent(internalFields.JW / 360);

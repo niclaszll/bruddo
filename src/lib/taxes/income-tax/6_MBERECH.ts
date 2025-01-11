@@ -1,11 +1,11 @@
-import { calculateUPLSTLZZ } from "./10_UPLSTLZZ";
-import { calculateMSOLZ } from "./15_MSOLZ";
-import { calculateMRE4ABZ } from "./5_MRE4ABZ";
-import { calculateMZTABFB } from "./7_MZTABFB";
-import { calculateMLSTJAHR } from "./8_MLSTJAHR";
-import { calculateUPVKVLZZ } from "./9_UPVKVLZZ";
-import { InternalFields } from "./fields/InternalFields";
-import { UserInputs } from "./fields/UserInputs";
+import { calculateMRE4ABZ } from './5_MRE4ABZ';
+import { calculateMZTABFB } from './7_MZTABFB';
+import { calculateMLSTJAHR } from './8_MLSTJAHR';
+import { calculateUPVKVLZZ } from './9_UPVKVLZZ';
+import { calculateUPLSTLZZ } from './10_UPLSTLZZ';
+import { calculateMSOLZ } from './15_MSOLZ';
+import { InternalFields } from './fields/InternalFields';
+import { UserInputs } from './fields/UserInputs';
 
 /**
  * MBERECH - Ermittlung der Jahreslohnsteuer auf laufende Bezüge
@@ -17,16 +17,12 @@ export const calculateMBERECH = () => {
   // MZTABFB
   calculateMZTABFB();
 
-  internalFields.VFRB =
-    (internalFields.ANP + internalFields.FVB + internalFields.FVBZ) * 100;
+  internalFields.VFRB = (internalFields.ANP + internalFields.FVB + internalFields.FVBZ) * 100;
 
   // MLSTJAHR
   calculateMLSTJAHR();
 
-  internalFields.WVFRB = Math.max(
-    (internalFields.ZVE - internalFields.GFB) * 100,
-    0
-  );
+  internalFields.WVFRB = Math.max((internalFields.ZVE - internalFields.GFB) * 100, 0);
 
   internalFields.LSTJAHR = internalFields.ST * userInputs.F;
 

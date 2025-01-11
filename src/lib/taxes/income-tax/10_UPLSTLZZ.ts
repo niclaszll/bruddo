@@ -1,5 +1,5 @@
-import { calculateUPANTEIL } from "./16_UPANTEIL";
-import { InternalFields } from "./fields/InternalFields";
+import { calculateUPANTEIL } from './16_UPANTEIL';
+import { InternalFields } from './fields/InternalFields';
 
 /**
  * UPLSTLZZ - Ermittlung des Anteils der Jahreslohnsteuer für den Lohnzahlungszeitraum

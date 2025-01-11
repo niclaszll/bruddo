@@ -1,10 +1,10 @@
-import { InternalFields } from "./fields/InternalFields";
-import { calculateMSONST } from "./17_MSONST";
-import { setupMPARA } from "./1_MPARA";
-import { calculateMRE4JL } from "./2_MRE4JL";
-import { calculateMRE4 } from "./3_MRE4";
-import { calculateMRE4ABZ } from "./5_MRE4ABZ";
-import { calculateMBERECH } from "./6_MBERECH";
+import { setupMPARA } from './1_MPARA';
+import { calculateMRE4JL } from './2_MRE4JL';
+import { calculateMRE4 } from './3_MRE4';
+import { calculateMRE4ABZ } from './5_MRE4ABZ';
+import { calculateMBERECH } from './6_MBERECH';
+import { calculateMSONST } from './17_MSONST';
+import { InternalFields } from './fields/InternalFields';
 
 export const calculateIncomeTax = () => {
   const internalFields = InternalFields.instance;

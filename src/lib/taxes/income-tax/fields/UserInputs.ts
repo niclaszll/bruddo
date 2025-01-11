@@ -1,5 +1,5 @@
-import { toFixedFloat } from "@/util/format";
-import { SalaryPaymentPeriod, TaxClass } from "@/types/income-tax";
+import { HealthInsuranceType, SalaryPaymentPeriod, TaxClass } from '@/types/income-tax';
+import { toFixedFloat } from '@/util/format';
 
 export class UserInputs {
   static #instance: UserInputs;
@@ -20,7 +20,7 @@ export class UserInputs {
   private _LZZHINZU?: number;
   private _MBV?: number;
   private _PKPV?: number;
-  private _PKV?: number;
+  private _PKV?: HealthInsuranceType;
   private _PVA?: number;
   private _PVS?: number;
   private _PVZ?: number;
@@ -52,7 +52,7 @@ export class UserInputs {
    * AF - 1, wenn die Anwendung des Faktorverfahrens gewählt wurde (nur in Steuerklasse IV)
    */
   get AF() {
-    if (this._AF === undefined) throw new Error("AF is not set");
+    if (this._AF === undefined) throw new Error('AF is not set');
     return this._AF;
   }
 
@@ -65,7 +65,7 @@ export class UserInputs {
    * AJAHR - Auf die Vollendung des 64. Lebensjahres folgendes Kalenderjahr (erforderlich, wenn ALTER1=1)
    */
   get AJAHR() {
-    if (this._AJAHR === undefined) throw new Error("AJAHR is not set");
+    if (this._AJAHR === undefined) throw new Error('AJAHR is not set');
     return this._AJAHR;
   }
 
@@ -78,7 +78,7 @@ export class UserInputs {
    * ALTER1 - 1, wenn das 64. Lebensjahr vor Beginn des Kalenderjahres vollendet wurde (§24a EStG), sonst = 0
    */
   get ALTER1() {
-    if (this._ALTER1 === undefined) throw new Error("ALTER1 is not set");
+    if (this._ALTER1 === undefined) throw new Error('ALTER1 is not set');
     return this._ALTER1;
   }
 
@@ -91,7 +91,7 @@ export class UserInputs {
    * F - eingetragener Faktor mit drei Nachkommastellen
    */
   get F() {
-    if (this._F === undefined) throw new Error("F is not set");
+    if (this._F === undefined) throw new Error('F is not set');
     return this._F;
   }
 
@@ -104,7 +104,7 @@ export class UserInputs {
    * JFREIB - Jahresfreibetrag für die Ermittlung der Lohnsteuer für sonstige Bezüge sowie Vermögensbeteiligungen nach §19a EStG in Cent (ggf. 0)
    */
   get JFREIB() {
-    if (this._JFREIB === undefined) throw new Error("JFREIB is not set");
+    if (this._JFREIB === undefined) throw new Error('JFREIB is not set');
     return this._JFREIB;
   }
 
@@ -117,7 +117,7 @@ export class UserInputs {
    * JHINZU - Jahreshinzurechnungsbetrag für die Ermittlung der Lohnsteuer für sonstige Bezüge sowie Vermögensbeteiligungen nach §19a EStG in Cent (ggf. 0)
    */
   get JHINZU() {
-    if (this._JHINZU === undefined) throw new Error("JHINZU is not set");
+    if (this._JHINZU === undefined) throw new Error('JHINZU is not set');
     return this._JHINZU;
   }
 
@@ -130,7 +130,7 @@ export class UserInputs {
    * JRE4 - Voraussichtlicher Jahresarbeitslohn ohne sonstige Bezüge (§19a Absatz4 EStG) in Cent
    */
   get JRE4() {
-    if (this._JRE4 === undefined) throw new Error("JRE4 is not set");
+    if (this._JRE4 === undefined) throw new Error('JRE4 is not set');
     return this._JRE4;
   }
 
@@ -143,7 +143,7 @@ export class UserInputs {
    * JRE4ENT - In JRE4 enthaltene Entschädigungen nach §24 Nummer1 EStG und zu besteuernde Vorteile bei Vermögensbeteiligungen (§19a Absatz4 EStG) in Cent
    */
   get JRE4ENT() {
-    if (this._JRE4ENT === undefined) throw new Error("JRE4ENT is not set");
+    if (this._JRE4ENT === undefined) throw new Error('JRE4ENT is not set');
     return this._JRE4ENT;
   }
 
@@ -156,7 +156,7 @@ export class UserInputs {
    * JVBEZ - In JRE4 enthaltene Versorgungsbezüge in Cent (ggf. 0)
    */
   get JVBEZ() {
-    if (this._JVBEZ === undefined) throw new Error("JVBEZ is not set");
+    if (this._JVBEZ === undefined) throw new Error('JVBEZ is not set');
     return this._JVBEZ;
   }
 
@@ -171,7 +171,7 @@ export class UserInputs {
    * `1`: Wenn nicht `0`.
    */
   get KRV() {
-    if (this._KRV === undefined) throw new Error("KRV is not set");
+    if (this._KRV === undefined) throw new Error('KRV is not set');
     return this._KRV;
   }
 
@@ -184,7 +184,7 @@ export class UserInputs {
    * KVZ - Kassenindividueller Zusatzbeitragssatz bei einem gesetzlich krankenversicherten Arbeitnehmer in Prozent (z. B. 2,50 für 2,50 %), mit 2 Dezimalstellen.
    */
   get KVZ() {
-    if (this._KVZ === undefined) throw new Error("KVZ is not set");
+    if (this._KVZ === undefined) throw new Error('KVZ is not set');
     return this._KVZ;
   }
 
@@ -201,7 +201,7 @@ export class UserInputs {
    * `4`: Tag
    */
   get LZZ() {
-    if (this._LZZ === undefined) throw new Error("LZZ is not set");
+    if (this._LZZ === undefined) throw new Error('LZZ is not set');
     return this._LZZ;
   }
 
@@ -214,7 +214,7 @@ export class UserInputs {
    * LZZFREIB - Freibetrag für den Lohnzahlungszeitraum in Cent, festgelegt durch elektronisches Lohnsteuerabzugsmerkmal oder Bescheinigung für den Lohnsteuerabzug.
    */
   get LZZFREIB() {
-    if (this._LZZFREIB === undefined) throw new Error("LZZFREIB is not set");
+    if (this._LZZFREIB === undefined) throw new Error('LZZFREIB is not set');
     return this._LZZFREIB;
   }
 
@@ -227,7 +227,7 @@ export class UserInputs {
    * LZZHINZU - Hinzurechnungsbetrag für den Lohnzahlungszeitraum in Cent, festgelegt durch elektronisches Lohnsteuerabzugsmerkmal oder Bescheinigung für den Lohnsteuerabzug.
    */
   get LZZHINZU() {
-    if (this._LZZHINZU === undefined) throw new Error("LZZHINZU is not set");
+    if (this._LZZHINZU === undefined) throw new Error('LZZHINZU is not set');
     return this._LZZHINZU;
   }
 
@@ -240,7 +240,7 @@ export class UserInputs {
    * MBV - Nicht zu besteuernde Vorteile bei Vermögensbeteiligungen (§19a Absatz1 Satz4 EStG) in Cent.
    */
   get MBV() {
-    if (this._MBV === undefined) throw new Error("MBV is not set");
+    if (this._MBV === undefined) throw new Error('MBV is not set');
     return this._MBV;
   }
 
@@ -253,7 +253,7 @@ export class UserInputs {
    * PKPV - Beiträge des Arbeitnehmers für eine private Basiskranken- bzw. Pflege-Pflichtversicherung (§10 Absatz1 Nummer3 EStG) in Cent, immer als Monatsbetrag anzugeben.
    */
   get PKPV() {
-    if (this._PKPV === undefined) throw new Error("PKPV is not set");
+    if (this._PKPV === undefined) throw new Error('PKPV is not set');
     return this._PKPV;
   }
 
@@ -269,11 +269,11 @@ export class UserInputs {
    * `2`: Privat krankenversichert mit Arbeitgeberzuschuss
    */
   get PKV() {
-    if (this._PKV === undefined) throw new Error("PKV is not set");
+    if (this._PKV === undefined) throw new Error('PKV is not set');
     return this._PKV;
   }
 
-  public setPKV(value: number): this {
+  public setPKV(value: HealthInsuranceType): this {
     this._PKV = value;
     return this;
   }
@@ -287,7 +287,7 @@ export class UserInputs {
    * `4`: Abschläge für das zweite bis fünfte oder mehr Kinder
    */
   get PVA() {
-    if (this._PVA === undefined) throw new Error("PVA is not set");
+    if (this._PVA === undefined) throw new Error('PVA is not set');
     return this._PVA;
   }
 
@@ -300,7 +300,7 @@ export class UserInputs {
    * PVS - 1, wenn bei der sozialen Pflegeversicherung die Besonderheiten in Sachsen zu berücksichtigen sind bzw. zu berücksichtigen wären
    */
   get PVS() {
-    if (this._PVS === undefined) throw new Error("PVS is not set");
+    if (this._PVS === undefined) throw new Error('PVS is not set');
     return this._PVS;
   }
 
@@ -313,7 +313,7 @@ export class UserInputs {
    * PVZ - 1, wenn der Arbeitnehmer den Zuschlag zur sozialen Pflegeversicherung zu zahlen hat
    */
   get PVZ() {
-    if (this._PVZ === undefined) throw new Error("PVZ is not set");
+    if (this._PVZ === undefined) throw new Error('PVZ is not set');
     return this._PVZ;
   }
 
@@ -326,7 +326,7 @@ export class UserInputs {
    * R - Religionsgemeinschaft des Arbeitnehmers lt. elektronischer Lohnsteuerabzugsmerkmale (bei keiner Religionszugehörigkeit = 0)
    */
   get R() {
-    if (this._R === undefined) throw new Error("R is not set");
+    if (this._R === undefined) throw new Error('R is not set');
     return this._R;
   }
 
@@ -339,7 +339,7 @@ export class UserInputs {
    * RE4 - Steuerpflichtiger Arbeitslohn für den Lohnzahlungszeitraum in Cent, vor Berücksichtigung von Freibeträgen und Hinzurechnungsbeträgen
    */
   get RE4() {
-    if (this._RE4 === undefined) throw new Error("RE4 is not set");
+    if (this._RE4 === undefined) throw new Error('RE4 is not set');
     return this._RE4;
   }
 
@@ -352,7 +352,7 @@ export class UserInputs {
    * SONSTB - Sonstige Bezüge einschließlich zu besteuernde Vorteile bei Vermögensbeteiligungen und Sterbegeld bei Versorgungsbezügen, in Cent (ggf. 0)
    */
   get SONSTB() {
-    if (this._SONSTB === undefined) throw new Error("SONSTB is not set");
+    if (this._SONSTB === undefined) throw new Error('SONSTB is not set');
     return this._SONSTB;
   }
 
@@ -365,7 +365,7 @@ export class UserInputs {
    * SONSTENT - In SONSTB enthaltene Entschädigungen nach §24 Nummer1 EStG sowie zu besteuernde Vorteile bei Vermögensbeteiligungen (§19a Absatz4 EStG), in Cent
    */
   get SONSTENT() {
-    if (this._SONSTENT === undefined) throw new Error("SONSTENT is not set");
+    if (this._SONSTENT === undefined) throw new Error('SONSTENT is not set');
     return this._SONSTENT;
   }
 
@@ -378,7 +378,7 @@ export class UserInputs {
    * STERBE - Sterbegeld bei Versorgungsbezügen sowie Kapitalauszahlungen/Abfindungen (in SONSTB enthalten), in Cent
    */
   get STERBE() {
-    if (this._STERBE === undefined) throw new Error("STERBE is not set");
+    if (this._STERBE === undefined) throw new Error('STERBE is not set');
     return this._STERBE;
   }
 
@@ -397,7 +397,7 @@ export class UserInputs {
    * `6`: VI
    */
   get STKL() {
-    if (this._STKL === undefined) throw new Error("STKL is not set");
+    if (this._STKL === undefined) throw new Error('STKL is not set');
     return this._STKL;
   }
 
@@ -410,7 +410,7 @@ export class UserInputs {
    * VBEZ - In RE4 enthaltene Versorgungsbezüge in Cent (ggf. unter Berücksichtigung einer geänderten Bemessungsgrundlage nach §19 Absatz2 Satz10 und Satz11 EStG)
    */
   get VBEZ() {
-    if (this._VBEZ === undefined) throw new Error("VBEZ is not set");
+    if (this._VBEZ === undefined) throw new Error('VBEZ is not set');
     return this._VBEZ;
   }
 
@@ -423,7 +423,7 @@ export class UserInputs {
    * VBEZM - Versorgungsbezug im Januar 2005 bzw. für den ersten vollen Monat, wenn der Versorgungsbezug erstmalig nach Januar 2005 gewährt wurde, in Cent
    */
   get VBEZM() {
-    if (this._VBEZM === undefined) throw new Error("VBEZM is not set");
+    if (this._VBEZM === undefined) throw new Error('VBEZM is not set');
     return this._VBEZM;
   }
 
@@ -436,7 +436,7 @@ export class UserInputs {
    * VBEZS - Voraussichtliche Sonderzahlungen von Versorgungsbezügen im Kalenderjahr des Versorgungsbeginns (ohne Sterbegeld, Kapitalauszahlungen/Abfindungen), in Cent
    */
   get VBEZS() {
-    if (this._VBEZS === undefined) throw new Error("VBEZS is not set");
+    if (this._VBEZS === undefined) throw new Error('VBEZS is not set');
     return this._VBEZS;
   }
 
@@ -449,7 +449,7 @@ export class UserInputs {
    * VBS - In SONSTB enthaltene Versorgungsbezüge einschließlich Sterbegeld in Cent (ggf.0)
    */
   get VBS() {
-    if (this._VBS === undefined) throw new Error("VBS is not set");
+    if (this._VBS === undefined) throw new Error('VBS is not set');
     return this._VBS;
   }
 
@@ -463,7 +463,7 @@ export class UserInputs {
    * Bei mehreren Versorgungsbezügen wird das Jahr des ältesten erstmaligen Bezugs herangezogen.
    */
   get VJAHR() {
-    if (this._VJAHR === undefined) throw new Error("VJAHR is not set");
+    if (this._VJAHR === undefined) throw new Error('VJAHR is not set');
     return this._VJAHR;
   }
 
@@ -476,7 +476,7 @@ export class UserInputs {
    * ZKF - Zahl der Freibeträge für Kinder (eine Dezimalstelle, nur bei Steuerklassen I, II, III und IV)
    */
   get ZKF() {
-    if (this._ZKF === undefined) throw new Error("ZKF is not set");
+    if (this._ZKF === undefined) throw new Error('ZKF is not set');
     return this._ZKF;
   }
 
@@ -490,7 +490,7 @@ export class UserInputs {
    * [nur erforderlich bei Jahresberechnung (LZZ = 1)]
    */
   get ZMVB() {
-    if (this._ZMVB === undefined) throw new Error("ZMVB is not set");
+    if (this._ZMVB === undefined) throw new Error('ZMVB is not set');
     return this._ZMVB;
   }
 

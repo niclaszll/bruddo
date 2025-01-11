@@ -1,10 +1,11 @@
-import { roundDownToFullEuro } from "@/util/format";
-import { calculateUPEVP } from "./11_UPEVP";
-import { calculateMST5_6 } from "./13_MST5-6";
-import { calculateUPTAB24 } from "./22_UPTAB24";
-import { InternalFields } from "./fields/InternalFields";
-import { TaxClass } from "@/types/income-tax";
-import { UserInputs } from "./fields/UserInputs";
+import { TaxClass } from '@/types/income-tax';
+import { roundDownToFullEuro } from '@/util/format';
+
+import { calculateUPEVP } from './11_UPEVP';
+import { calculateMST5_6 } from './13_MST5-6';
+import { calculateUPTAB24 } from './22_UPTAB24';
+import { InternalFields } from './fields/InternalFields';
+import { UserInputs } from './fields/UserInputs';
 
 /**
  * MLSTJAHR - Ermittlung der Jahreslohnsteuer
@@ -15,8 +16,7 @@ export const calculateMLSTJAHR = () => {
   // UPEVP
   calculateUPEVP();
 
-  internalFields.ZVE =
-    internalFields.ZRE4 - internalFields.ZTABFB - internalFields.VSP;
+  internalFields.ZVE = internalFields.ZRE4 - internalFields.ZTABFB - internalFields.VSP;
 
   calculateUPMLST();
 };
@@ -32,9 +32,7 @@ export const calculateUPMLST = () => {
     internalFields.ZVE = 0;
     internalFields.X = 0;
   } else {
-    roundDownToFullEuro(
-      (internalFields.X = internalFields.ZVE / internalFields.KZTAB)
-    );
+    roundDownToFullEuro((internalFields.X = internalFields.ZVE / internalFields.KZTAB));
   }
 
   if (userInputs.STKL < TaxClass.V) {

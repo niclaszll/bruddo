@@ -1,11 +1,12 @@
-import { roundDownToFullEuro } from "@/util/format";
-import { calculateSTSMIN } from "./18_STSMIN";
-import { calculateMOSONST } from "./20_MOSONST";
-import { calculateMRE4SONST } from "./21_MRE4SONST";
-import { calculateMLSTJAHR } from "./8_MLSTJAHR";
-import { calculateUPVKV } from "./9_UPVKVLZZ";
-import { InternalFields } from "./fields/InternalFields";
-import { UserInputs } from "./fields/UserInputs";
+import { roundDownToFullEuro } from '@/util/format';
+
+import { calculateMLSTJAHR } from './8_MLSTJAHR';
+import { calculateUPVKV } from './9_UPVKVLZZ';
+import { calculateSTSMIN } from './18_STSMIN';
+import { calculateMOSONST } from './20_MOSONST';
+import { calculateMRE4SONST } from './21_MRE4SONST';
+import { InternalFields } from './fields/InternalFields';
+import { UserInputs } from './fields/UserInputs';
 
 /**
  * MSONST - Berechnung sonstiger Bezüge nach § 39b Absatz 3 Satz 1 bis 8 EStG
@@ -42,10 +43,7 @@ export const calculateMSONST = () => {
     // MLSTJAHR
     calculateMLSTJAHR();
 
-    internalFields.WVFRBM = Math.max(
-      (internalFields.ZVE - internalFields.GFB) * 100,
-      0
-    );
+    internalFields.WVFRBM = Math.max((internalFields.ZVE - internalFields.GFB) * 100, 0);
 
     // UPVKV
     calculateUPVKV();

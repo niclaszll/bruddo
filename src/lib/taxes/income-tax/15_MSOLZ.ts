@@ -1,7 +1,8 @@
-import { roundDownToFullCent } from "@/util/format";
-import { calculateUPANTEIL } from "./16_UPANTEIL";
-import { InternalFields } from "./fields/InternalFields";
-import { UserInputs } from "./fields/UserInputs";
+import { roundDownToFullCent } from '@/util/format';
+
+import { calculateUPANTEIL } from './16_UPANTEIL';
+import { InternalFields } from './fields/InternalFields';
+import { UserInputs } from './fields/UserInputs';
 
 /**
  * MSOLZ - Solidaritätszuschlag
@@ -13,15 +14,9 @@ export const calculateMSOLZ = () => {
   internalFields.SOLZFREI = internalFields.SOLZFREI * internalFields.KZTAB;
 
   if (internalFields.JBMG > internalFields.SOLZFREI) {
-    internalFields.SOLZJ = roundDownToFullCent(
-      (internalFields.JBMG * 5.5) / 100
-    );
-    internalFields.SOLZMIN =
-      ((internalFields.JBMG - internalFields.SOLZFREI) * 11.9) / 100;
-    internalFields.SOLZJ = Math.min(
-      internalFields.SOLZJ,
-      internalFields.SOLZMIN
-    );
+    internalFields.SOLZJ = roundDownToFullCent((internalFields.JBMG * 5.5) / 100);
+    internalFields.SOLZMIN = ((internalFields.JBMG - internalFields.SOLZFREI) * 11.9) / 100;
+    internalFields.SOLZJ = Math.min(internalFields.SOLZJ, internalFields.SOLZMIN);
 
     internalFields.JW = internalFields.SOLZJ * 100;
 

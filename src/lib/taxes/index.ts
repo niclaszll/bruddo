@@ -1,6 +1,7 @@
-import { GermanFederalState } from "@/types/common";
-import { calculateIncomeTax } from "./income-tax";
-import { UserInputs } from "./income-tax/fields/UserInputs";
+import { GermanFederalState } from '@/types/common';
+
+import { calculateIncomeTax } from './income-tax';
+import { UserInputs } from './income-tax/fields/UserInputs';
 
 class TaxClient {
   static #instance: TaxClient;
@@ -57,7 +58,7 @@ class TaxClient {
   public getChurchTax(
     incomeTax: number,
     federalState: GermanFederalState,
-    isMemberOfChurch: boolean
+    isMemberOfChurch: boolean,
   ) {
     const churchTaxRate = [
       GermanFederalState.Bavaria,

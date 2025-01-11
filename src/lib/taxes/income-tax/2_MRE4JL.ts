@@ -1,6 +1,7 @@
-import { InternalFields } from "./fields/InternalFields";
-import { SalaryPaymentPeriod } from "@/types/income-tax";
-import { UserInputs } from "./fields/UserInputs";
+import { SalaryPaymentPeriod } from '@/types/income-tax';
+
+import { InternalFields } from './fields/InternalFields';
+import { UserInputs } from './fields/UserInputs';
 
 /**
  * MRE4JL - Ermittlung des Jahresarbeitslohns nach § 39b Absatz 2 Satz 2 EStG
@@ -19,14 +20,10 @@ export const calculateMRE4JL = () => {
     [SalaryPaymentPeriod.DAY]: 360,
   };
 
-  internalFields.ZRE4J =
-    (userInputs.RE4 * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
-  internalFields.ZVBEZJ =
-    (userInputs.VBEZ * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
-  internalFields.JLFREIB =
-    (userInputs.LZZFREIB * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
-  internalFields.JLHINZU =
-    (userInputs.LZZHINZU * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
+  internalFields.ZRE4J = (userInputs.RE4 * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
+  internalFields.ZVBEZJ = (userInputs.VBEZ * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
+  internalFields.JLFREIB = (userInputs.LZZFREIB * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
+  internalFields.JLHINZU = (userInputs.LZZHINZU * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
 
   if (userInputs.AF === 0) {
     userInputs.setF(1);

@@ -1,4 +1,4 @@
-import { InternalFields } from "./fields/InternalFields";
+import { InternalFields } from './fields/InternalFields';
 
 /**
  * MRE4ABZ - Ermittlung des Jahresarbeitslohns nach Abzug der
@@ -13,12 +13,9 @@ export const calculateMRE4ABZ = () => {
       internalFields.ALTE -
       internalFields.JLFREIB +
       internalFields.JLHINZU,
-    0
+    0,
   );
 
   internalFields.ZRE4VP = internalFields.ZRE4J;
-  internalFields.ZVBEZ = Math.max(
-    internalFields.ZVBEZJ - internalFields.FVB,
-    0
-  );
+  internalFields.ZVBEZ = Math.max(internalFields.ZVBEZJ - internalFields.FVB, 0);
 };

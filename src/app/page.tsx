@@ -1,33 +1,28 @@
-import SocialSecurityClient from "@/lib/social-security";
-import TaxClient from "@/lib/taxes";
-import { GermanFederalState } from "@/types/common";
-import Image from "next/image";
+import SocialSecurityClient from '@/lib/social-security';
+import TaxClient from '@/lib/taxes';
+import { GermanFederalState } from '@/types/common';
+import Image from 'next/image';
 
 export default function Home() {
   const grossIncome = 50_000;
   const federalState = GermanFederalState.Hamburg;
   TaxClient.setUserInputs();
   const incomeTaxResults = TaxClient.getIncomeTax();
-  const churchTax = TaxClient.getChurchTax(
-    incomeTaxResults.incomeTax,
-    federalState,
-    true
+  const churchTax = TaxClient.getChurchTax(incomeTaxResults.incomeTax, federalState, true);
+  const healthInsuranceResults = SocialSecurityClient.getHealthInsuranceContribution(
+    grossIncome,
+    2.5,
   );
-  const healthInsuranceResults =
-    SocialSecurityClient.getHealthInsuranceContribution(grossIncome, 2.5);
-  const longTermInsuranceResults =
-    SocialSecurityClient.getLongTermCareInsuranceContribution(
-      grossIncome,
-      0,
-      26,
-      federalState
-    );
+  const longTermInsuranceResults = SocialSecurityClient.getLongTermCareInsuranceContribution(
+    grossIncome,
+    0,
+    26,
+    federalState,
+  );
   const pensionInsuranceResults =
     SocialSecurityClient.calculatePensionInsuranceContribution(grossIncome);
   const unemploymentInsuranceResults =
-    SocialSecurityClient.calculateUnemploymentInsuranceContribution(
-      grossIncome
-    );
+    SocialSecurityClient.calculateUnemploymentInsuranceContribution(grossIncome);
 
   const netIncome =
     grossIncome -
@@ -61,7 +56,7 @@ export default function Home() {
         />
         <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">
-            Get started by editing{" "}
+            Get started by editing{' '}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
               src/app/page.tsx
             </code>

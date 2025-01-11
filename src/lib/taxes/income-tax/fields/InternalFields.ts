@@ -1,7 +1,8 @@
-import { IncomeTaxTariffType } from "@/types/income-tax";
-import Table1_3 from "../data/tab_1-3.json";
-import Table4_5 from "../data/tab_4-5.json";
-import { roundDownToFullCent, toFixedFloat } from "@/util/format";
+import { IncomeTaxTariffType } from '@/types/income-tax';
+import { roundDownToFullCent, toFixedFloat } from '@/util/format';
+
+import Table1_3 from '../data/tab_1-3.json';
+import Table4_5 from '../data/tab_4-5.json';
 
 export class InternalFields {
   static #instance: InternalFields;
@@ -104,7 +105,7 @@ export class InternalFields {
    * ALTE - Altersentlastungsbetrag in Euro, Cent (2 Dezimalstellen)
    */
   get ALTE() {
-    if (this._ALTE === undefined) throw new Error("ALTE is not set");
+    if (this._ALTE === undefined) throw new Error('ALTE is not set');
     return this._ALTE;
   }
 
@@ -116,7 +117,7 @@ export class InternalFields {
    * ANP - Arbeitnehmer-Pauschbetrag/Werbungskosten-Pauschbetrag in Euro
    */
   get ANP() {
-    if (this._ANP === undefined) throw new Error("ANP is not set");
+    if (this._ANP === undefined) throw new Error('ANP is not set');
     return this._ANP;
   }
 
@@ -128,7 +129,7 @@ export class InternalFields {
    * ANTEIL1 - Anteil von Jahreswerten auf ganze Cent abgerundet
    */
   get ANTEIL1() {
-    if (this._ANTEIL1 === undefined) throw new Error("ANTEIL1 is not set");
+    if (this._ANTEIL1 === undefined) throw new Error('ANTEIL1 is not set');
     return this._ANTEIL1;
   }
 
@@ -140,7 +141,7 @@ export class InternalFields {
    * BBGKVPV - Beitragsbemessungsgrenze in der gesetzlichen Krankenversicherung und sozialen Pflegeversicherung in Euro
    */
   get BBGKVPV() {
-    if (this._BBGKVPV === undefined) throw new Error("BBGKVPV is not set");
+    if (this._BBGKVPV === undefined) throw new Error('BBGKVPV is not set');
     return this._BBGKVPV;
   }
 
@@ -152,7 +153,7 @@ export class InternalFields {
    * BBGRV - Allgemeine Beitragsbemessungsgrenze in der Rentenversicherung in Euro
    */
   get BBGRV() {
-    if (this._BBGRV === undefined) throw new Error("BBGRV is not set");
+    if (this._BBGRV === undefined) throw new Error('BBGRV is not set');
     return this._BBGRV;
   }
 
@@ -164,7 +165,7 @@ export class InternalFields {
    * BK - Bemessungsgrundlage für die Kirchenlohnsteuer in Cent
    */
   get BK() {
-    if (this._BK === undefined) throw new Error("BK is not set");
+    if (this._BK === undefined) throw new Error('BK is not set');
     return this._BK;
   }
 
@@ -181,7 +182,7 @@ export class InternalFields {
    * Veranlagung zur Einkommensteuer bleibt unberührt.
    */
   get BKS() {
-    if (this._BKS === undefined) throw new Error("BKS is not set");
+    if (this._BKS === undefined) throw new Error('BKS is not set');
     return this._BKS;
   }
 
@@ -193,7 +194,7 @@ export class InternalFields {
    * BMG - Bemessungsgrundlage für Altersentlastungsbetrag in Euro, Cent (2 Dezimalstellen)
    */
   get BMG() {
-    if (this._BMG === undefined) throw new Error("BMG is not set");
+    if (this._BMG === undefined) throw new Error('BMG is not set');
     return this._BMG;
   }
 
@@ -205,7 +206,7 @@ export class InternalFields {
    * DIFF - Differenz zwischen ST1 und ST2 in Euro
    */
   get DIFF() {
-    if (this._DIFF === undefined) throw new Error("DIFF is not set");
+    if (this._DIFF === undefined) throw new Error('DIFF is not set');
     return this._DIFF;
   }
 
@@ -217,7 +218,7 @@ export class InternalFields {
    * EFA - Entlastungsbetrag für Alleinerziehende in Euro
    */
   get EFA() {
-    if (this._EFA === undefined) throw new Error("EFA is not set");
+    if (this._EFA === undefined) throw new Error('EFA is not set');
     return this._EFA;
   }
 
@@ -229,7 +230,7 @@ export class InternalFields {
    * FVB - Versorgungsfreibetrag in Euro, Cent (2 Dezimalstellen)
    */
   get FVB() {
-    if (this._FVB === undefined) throw new Error("FVB is not set");
+    if (this._FVB === undefined) throw new Error('FVB is not set');
     return this._FVB;
   }
 
@@ -241,7 +242,7 @@ export class InternalFields {
    * FVBSO - Versorgungsfreibetrag für Lohnsteuer sonstiger Bezug in Euro, Cent (2 Dezimalstellen)
    */
   get FVBSO() {
-    if (this._FVBSO === undefined) throw new Error("FVBSO is not set");
+    if (this._FVBSO === undefined) throw new Error('FVBSO is not set');
     return this._FVBSO;
   }
 
@@ -253,7 +254,7 @@ export class InternalFields {
    * FVBZ - Zuschlag zum Versorgungsfreibetrag in Euro
    */
   get FVBZ() {
-    if (this._FVBZ === undefined) throw new Error("FVBZ is not set");
+    if (this._FVBZ === undefined) throw new Error('FVBZ is not set');
     return this._FVBZ;
   }
 
@@ -265,7 +266,7 @@ export class InternalFields {
    * FVBZSO - Zuschlag zum Versorgungsfreibetrag für Lohnsteuer sonstiger Bezug in Euro
    */
   get FVBZSO() {
-    if (this._FVBZSO === undefined) throw new Error("FVBZSO is not set");
+    if (this._FVBZSO === undefined) throw new Error('FVBZSO is not set');
     return this._FVBZSO;
   }
 
@@ -277,7 +278,7 @@ export class InternalFields {
    * GFB - Grundfreibetrag in Euro
    */
   get GFB() {
-    if (this._GFB === undefined) throw new Error("GFB is not set");
+    if (this._GFB === undefined) throw new Error('GFB is not set');
     return this._GFB;
   }
 
@@ -289,7 +290,7 @@ export class InternalFields {
    * HBALTE - Maximaler Altersentlastungsbetrag in Euro
    */
   get HBALTE() {
-    if (this._HBALTE === undefined) throw new Error("HBALTE is not set");
+    if (this._HBALTE === undefined) throw new Error('HBALTE is not set');
     return this._HBALTE;
   }
 
@@ -301,7 +302,7 @@ export class InternalFields {
    * HFVB - Maßgeblicher maximaler Versorgungsfreibetrag in Euro, Cent (2 Dezimalstellen)
    */
   get HFVB() {
-    if (this._HFVB === undefined) throw new Error("HFVB is not set");
+    if (this._HFVB === undefined) throw new Error('HFVB is not set');
     return this._HFVB;
   }
 
@@ -313,7 +314,7 @@ export class InternalFields {
    * HFVBZ - Maßgeblicher maximaler Zuschlag zum Versorgungsfreibetrag in Euro, Cent (2 Dezimalstellen)
    */
   get HFVBZ() {
-    if (this._HFVBZ === undefined) throw new Error("HFVBZ is not set");
+    if (this._HFVBZ === undefined) throw new Error('HFVBZ is not set');
     return this._HFVBZ;
   }
 
@@ -325,7 +326,7 @@ export class InternalFields {
    * HFVBZSO - Maßgeblicher maximaler Zuschlag zum Versorgungsfreibetrag für Lohnsteuer sonstiger Bezug in Euro, Cent (2 Dezimalstellen)
    */
   get HFVBZSO() {
-    if (this._HFVBZSO === undefined) throw new Error("HFVBZSO is not set");
+    if (this._HFVBZSO === undefined) throw new Error('HFVBZSO is not set');
     return this._HFVBZSO;
   }
 
@@ -338,7 +339,7 @@ export class InternalFields {
    * Absatz 2 Satz 7 EStG in Euro
    */
   get HOCH() {
-    if (this._HOCH === undefined) throw new Error("HOCH is not set");
+    if (this._HOCH === undefined) throw new Error('HOCH is not set');
     return this._HOCH;
   }
 
@@ -350,7 +351,7 @@ export class InternalFields {
    * J - Nummer der Tabellenwerte für Versorgungsparameter
    */
   get J() {
-    if (this._J === undefined) throw new Error("J is not set");
+    if (this._J === undefined) throw new Error('J is not set');
     return this._J;
   }
 
@@ -362,7 +363,7 @@ export class InternalFields {
    * JBMG - Jahressteuer nach § 51a EStG in Euro
    */
   get JBMG() {
-    if (this._JBMG === undefined) throw new Error("JBMG is not set");
+    if (this._JBMG === undefined) throw new Error('JBMG is not set');
     return this._JBMG;
   }
 
@@ -374,7 +375,7 @@ export class InternalFields {
    * JLFREIB - Auf einen Jahreslohn hochgerechneter LZZFREIB in Euro, Cent (2 Dezimalstellen)
    */
   get JLFREIB() {
-    if (this._JLFREIB === undefined) throw new Error("JLFREIB is not set");
+    if (this._JLFREIB === undefined) throw new Error('JLFREIB is not set');
     return this._JLFREIB;
   }
 
@@ -386,7 +387,7 @@ export class InternalFields {
    * JLHINZU - Auf einen Jahreslohn hochgerechneter LZZHINZU in Euro, Cent (2 Dezimalstellen)
    */
   get JLHINZU() {
-    if (this._JLHINZU === undefined) throw new Error("JLHINZU is not set");
+    if (this._JLHINZU === undefined) throw new Error('JLHINZU is not set');
     return this._JLHINZU;
   }
 
@@ -398,7 +399,7 @@ export class InternalFields {
    * JW - Jahreswert, dessen Anteil für einen Lohnzahlungszeitraum in UPANTEIL errechnet werden soll, in Cent
    */
   get JW() {
-    if (this._JW === undefined) throw new Error("JW is not set");
+    if (this._JW === undefined) throw new Error('JW is not set');
     return this._JW;
   }
 
@@ -410,7 +411,7 @@ export class InternalFields {
    * K - Nummer der Tabellenwerte für Parameter bei Altersentlastungsbetrag
    */
   get K() {
-    if (this._K === undefined) throw new Error("K is not set");
+    if (this._K === undefined) throw new Error('K is not set');
     return this._K;
   }
 
@@ -422,7 +423,7 @@ export class InternalFields {
    * KFB - Summe der Freibeträge für Kinder in Euro
    */
   get KFB() {
-    if (this._KFB === undefined) throw new Error("KFB is not set");
+    if (this._KFB === undefined) throw new Error('KFB is not set');
     return this._KFB;
   }
 
@@ -434,7 +435,7 @@ export class InternalFields {
    * KVSATZAG - Beitragssatz des Arbeitgebers zur Krankenversicherung (5 Dezimalstellen)
    */
   get KVSATZAG() {
-    if (this._KVSATZAG === undefined) throw new Error("KVSATZAG is not set");
+    if (this._KVSATZAG === undefined) throw new Error('KVSATZAG is not set');
     return this._KVSATZAG;
   }
 
@@ -446,7 +447,7 @@ export class InternalFields {
    * KVSATZAN - Beitragssatz des Arbeitnehmers zur Krankenversicherung (5 Dezimalstellen)
    */
   get KVSATZAN() {
-    if (this._KVSATZAN === undefined) throw new Error("KVSATZAN is not set");
+    if (this._KVSATZAN === undefined) throw new Error('KVSATZAN is not set');
     return this._KVSATZAN;
   }
 
@@ -460,7 +461,7 @@ export class InternalFields {
    *          - 2 = Splittingverfahren
    */
   get KZTAB() {
-    if (this._KZTAB === undefined) throw new Error("KZTAB is not set");
+    if (this._KZTAB === undefined) throw new Error('KZTAB is not set');
     return this._KZTAB;
   }
 
@@ -472,7 +473,7 @@ export class InternalFields {
    * LSTJAHR - Jahreslohnsteuer in Euro
    */
   get LSTJAHR() {
-    if (this._LSTJAHR === undefined) throw new Error("LSTJAHR is not set");
+    if (this._LSTJAHR === undefined) throw new Error('LSTJAHR is not set');
     return this._LSTJAHR;
   }
 
@@ -484,7 +485,7 @@ export class InternalFields {
    * LSTLZZ - Für den Lohnzahlungszeitraum einzubehaltende Lohnsteuer in Cent
    */
   get LSTLZZ() {
-    if (this._LSTLZZ === undefined) throw new Error("LSTLZZ is not set");
+    if (this._LSTLZZ === undefined) throw new Error('LSTLZZ is not set');
     return this._LSTLZZ;
   }
 
@@ -496,7 +497,7 @@ export class InternalFields {
    * LSTOSO - Zwischenfeld der Jahreslohnsteuer in Cent
    */
   get LSTOSO() {
-    if (this._LSTOSO === undefined) throw new Error("LSTOSO is not set");
+    if (this._LSTOSO === undefined) throw new Error('LSTOSO is not set');
     return this._LSTOSO;
   }
 
@@ -508,7 +509,7 @@ export class InternalFields {
    * LSTSO - Zwischenfeld der Jahreslohnsteuer in Cent
    */
   get LSTSO() {
-    if (this._LSTSO === undefined) throw new Error("LSTSO is not set");
+    if (this._LSTSO === undefined) throw new Error('LSTSO is not set');
     return this._LSTSO;
   }
 
@@ -520,7 +521,7 @@ export class InternalFields {
    * MIST - Mindeststeuer für die Steuerklassen V und VI in Euro
    */
   get MIST() {
-    if (this._MIST === undefined) throw new Error("MIST is not set");
+    if (this._MIST === undefined) throw new Error('MIST is not set');
     return this._MIST;
   }
 
@@ -532,7 +533,7 @@ export class InternalFields {
    * PVSATZAG - Beitragssatz des Arbeitgebers zur Pflegeversicherung (6 Dezimalstellen)
    */
   get PVSATZAG() {
-    if (this._PVSATZAG === undefined) throw new Error("PVSATZAG is not set");
+    if (this._PVSATZAG === undefined) throw new Error('PVSATZAG is not set');
     return this._PVSATZAG;
   }
 
@@ -544,7 +545,7 @@ export class InternalFields {
    * PVSATZAN - Beitragssatz des Arbeitnehmers zur Pflegeversicherung (6 Dezimalstellen)
    */
   get PVSATZAN() {
-    if (this._PVSATZAN === undefined) throw new Error("PVSATZAN is not set");
+    if (this._PVSATZAN === undefined) throw new Error('PVSATZAN is not set');
     return this._PVSATZAN;
   }
 
@@ -556,7 +557,7 @@ export class InternalFields {
    * RVSATZAN - Beitragssatz des Arbeitnehmers in der allgemeinen gesetzlichen Rentenversicherung (4 Dezimalstellen)
    */
   get RVSATZAN() {
-    if (this._RVSATZAN === undefined) throw new Error("RVSATZAN is not set");
+    if (this._RVSATZAN === undefined) throw new Error('RVSATZAN is not set');
     return this._RVSATZAN;
   }
 
@@ -568,7 +569,7 @@ export class InternalFields {
    * RW - Rechenwert in Gleitkommadarstellung
    */
   get RW() {
-    if (this._RW === undefined) throw new Error("RW is not set");
+    if (this._RW === undefined) throw new Error('RW is not set');
     return this._RW;
   }
 
@@ -580,7 +581,7 @@ export class InternalFields {
    * SAP - Sonderausgaben-Pauschbetrag in Euro
    */
   get SAP() {
-    if (this._SAP === undefined) throw new Error("SAP is not set");
+    if (this._SAP === undefined) throw new Error('SAP is not set');
     return this._SAP;
   }
 
@@ -592,7 +593,7 @@ export class InternalFields {
    * SOLZFREI - Freigrenze für den Solidaritätszuschlag in Euro
    */
   get SOLZFREI() {
-    if (this._SOLZFREI === undefined) throw new Error("SOLZFREI is not set");
+    if (this._SOLZFREI === undefined) throw new Error('SOLZFREI is not set');
     return this._SOLZFREI;
   }
 
@@ -604,7 +605,7 @@ export class InternalFields {
    * SOLZJ - Solidaritätszuschlag auf die Jahreslohnsteuer in Euro, Cent (2 Dezimalstellen)
    */
   get SOLZJ() {
-    if (this._SOLZJ === undefined) throw new Error("SOLZJ is not set");
+    if (this._SOLZJ === undefined) throw new Error('SOLZJ is not set');
     return this._SOLZJ;
   }
 
@@ -617,7 +618,7 @@ export class InternalFields {
    * Solidaritätszuschlag in Cent
    */
   get SOLZLZZ() {
-    if (this._SOLZLZZ === undefined) throw new Error("SOLZLZZ is not set");
+    if (this._SOLZLZZ === undefined) throw new Error('SOLZLZZ is not set');
     return this._SOLZLZZ;
   }
 
@@ -629,7 +630,7 @@ export class InternalFields {
    * SOLZMIN - Zwischenwert für den Solidaritätszuschlag auf die Jahreslohnsteuer in Euro, Cent (2 Dezimalstellen)
    */
   get SOLZMIN() {
-    if (this._SOLZMIN === undefined) throw new Error("SOLZMIN is not set");
+    if (this._SOLZMIN === undefined) throw new Error('SOLZMIN is not set');
     return this._SOLZMIN;
   }
 
@@ -646,7 +647,7 @@ export class InternalFields {
    * Veranlagung zur Einkommensteuer bleibt unberührt.
    */
   get SOLZS() {
-    if (this._SOLZS === undefined) throw new Error("SOLZS is not set");
+    if (this._SOLZS === undefined) throw new Error('SOLZS is not set');
     return this._SOLZS;
   }
 
@@ -658,7 +659,7 @@ export class InternalFields {
    * SOLZSBMG - Bemessungsgrundlage des Solidaritätszuschlags zur Prüfung der Freigrenze beim Solidaritätszuschlag für sonstige Bezüge in Euro
    */
   get SOLZSBMG() {
-    if (this._SOLZSBMG === undefined) throw new Error("SOLZSBMG is not set");
+    if (this._SOLZSBMG === undefined) throw new Error('SOLZSBMG is not set');
     return this._SOLZSBMG;
   }
 
@@ -670,7 +671,7 @@ export class InternalFields {
    * SOLZSZVE - Zu versteuerndes Einkommen für die Bemessungsgrundlage des Solidaritätszuschlags für sonstige Bezüge in Euro, Cent (2 Dezimalstellen)
    */
   get SOLZSZVE() {
-    if (this._SOLZSZVE === undefined) throw new Error("SOLZSZVE is not set");
+    if (this._SOLZSZVE === undefined) throw new Error('SOLZSZVE is not set');
     return this._SOLZSZVE;
   }
 
@@ -682,7 +683,7 @@ export class InternalFields {
    * ST - Tarifliche Einkommensteuer in Euro
    */
   get ST() {
-    if (this._ST === undefined) throw new Error("ST is not set");
+    if (this._ST === undefined) throw new Error('ST is not set');
     return this._ST;
   }
 
@@ -694,7 +695,7 @@ export class InternalFields {
    * ST1 - Tarifliche Einkommensteuer auf das 1,25-fache ZX in Euro
    */
   get ST1() {
-    if (this._ST1 === undefined) throw new Error("ST1 is not set");
+    if (this._ST1 === undefined) throw new Error('ST1 is not set');
     return this._ST1;
   }
 
@@ -706,7 +707,7 @@ export class InternalFields {
    * ST2 - Tarifliche Einkommensteuer auf das 0,75-fache ZX in Euro
    */
   get ST2() {
-    if (this._ST2 === undefined) throw new Error("ST2 is not set");
+    if (this._ST2 === undefined) throw new Error('ST2 is not set');
     return this._ST2;
   }
 
@@ -723,7 +724,7 @@ export class InternalFields {
    * Veranlagung zur Einkommensteuer bleibt unberührt.
    */
   get STS() {
-    if (this._STS === undefined) throw new Error("STS is not set");
+    if (this._STS === undefined) throw new Error('STS is not set');
     return this._STS;
   }
 
@@ -736,13 +737,11 @@ export class InternalFields {
    */
   public getTAB1(index: number) {
     const allowancePercentage = Table1_3.find(
-      (entry) => entry.index === index
+      (entry) => entry.index === index,
     )?.allowancePercentage;
 
     if (allowancePercentage === undefined) {
-      throw new Error(
-        `No allowancePercentage (TAB1) data found for table index ${index}`
-      );
+      throw new Error(`No allowancePercentage (TAB1) data found for table index ${index}`);
     }
 
     return allowancePercentage;
@@ -752,14 +751,10 @@ export class InternalFields {
    * TAB2 - Tabelle für die Höchstbeträge des Versorgungsfreibetrags
    */
   public getTAB2(index: number) {
-    const maxAllowance = Table1_3.find(
-      (entry) => entry.index === index
-    )?.maxAllowance;
+    const maxAllowance = Table1_3.find((entry) => entry.index === index)?.maxAllowance;
 
     if (maxAllowance === undefined) {
-      throw new Error(
-        `No maxAllowance (TAB2) data found for table index ${index}`
-      );
+      throw new Error(`No maxAllowance (TAB2) data found for table index ${index}`);
     }
 
     return maxAllowance;
@@ -769,14 +764,10 @@ export class InternalFields {
    * TAB3 - Tabelle für die Zuschläge zum Versorgungsfreibetrag
    */
   public getTAB3(index: number) {
-    const supplement = Table1_3.find(
-      (entry) => entry.index === index
-    )?.supplement;
+    const supplement = Table1_3.find((entry) => entry.index === index)?.supplement;
 
     if (supplement === undefined) {
-      throw new Error(
-        `No supplement (TAB3) data found for table index ${index}`
-      );
+      throw new Error(`No supplement (TAB3) data found for table index ${index}`);
     }
 
     return supplement;
@@ -787,13 +778,11 @@ export class InternalFields {
    */
   public getTAB4(index: number) {
     const allowancePercentage = Table4_5.find(
-      (entry) => entry.index === index
+      (entry) => entry.index === index,
     )?.allowancePercentage;
 
     if (allowancePercentage === undefined) {
-      throw new Error(
-        `No allowancePercentage (TAB4) data found for table index ${index}`
-      );
+      throw new Error(`No allowancePercentage (TAB4) data found for table index ${index}`);
     }
 
     return allowancePercentage;
@@ -803,14 +792,10 @@ export class InternalFields {
    * TAB5 - Tabelle für die Höchstbeträge des Altersentlastungsbetrags
    */
   public getTAB5(index: number) {
-    const maxAllowance = Table4_5.find(
-      (entry) => entry.index === index
-    )?.maxAllowance;
+    const maxAllowance = Table4_5.find((entry) => entry.index === index)?.maxAllowance;
 
     if (maxAllowance === undefined) {
-      throw new Error(
-        `No maxAllowance (TAB5) data found for table index ${index}`
-      );
+      throw new Error(`No maxAllowance (TAB5) data found for table index ${index}`);
     }
 
     return maxAllowance;
@@ -820,7 +805,7 @@ export class InternalFields {
    * VBEZB - Bemessungsgrundlage für den Versorgungsfreibetrag in Cent
    */
   get VBEZB() {
-    if (this._VBEZB === undefined) throw new Error("VBEZB is not set");
+    if (this._VBEZB === undefined) throw new Error('VBEZB is not set');
     return this._VBEZB;
   }
 
@@ -832,7 +817,7 @@ export class InternalFields {
    * VBEZBSO - Bemessungsgrundlage für den Versorgungsfreibetrag in Cent für den sonstigen Bezug
    */
   get VBEZBSO() {
-    if (this._VBEZBSO === undefined) throw new Error("VBEZBSO is not set");
+    if (this._VBEZBSO === undefined) throw new Error('VBEZBSO is not set');
     return this._VBEZBSO;
   }
 
@@ -844,7 +829,7 @@ export class InternalFields {
    * VERGL - Zwischenfeld zu X für die Berechnung der Steuer nach §39b Absatz2 Satz7 EStG in Euro
    */
   get VERGL() {
-    if (this._VERGL === undefined) throw new Error("VERGL is not set");
+    if (this._VERGL === undefined) throw new Error('VERGL is not set');
     return this._VERGL;
   }
 
@@ -856,7 +841,7 @@ export class InternalFields {
    * VFRB - Verbrauchter Freibetrag bei Berechnung des laufenden Arbeitslohns, in Cent
    */
   get VFRB() {
-    if (this._VFRB === undefined) throw new Error("VFRB is not set");
+    if (this._VFRB === undefined) throw new Error('VFRB is not set');
     return this._VFRB;
   }
 
@@ -868,7 +853,7 @@ export class InternalFields {
    * VFRBS1 - Verbrauchter Freibetrag bei Berechnung des voraussichtlichen Jahresarbeitslohns, in Cent
    */
   get VFRBS1() {
-    if (this._VFRBS1 === undefined) throw new Error("VFRBS1 is not set");
+    if (this._VFRBS1 === undefined) throw new Error('VFRBS1 is not set');
     return this._VFRBS1;
   }
 
@@ -880,7 +865,7 @@ export class InternalFields {
    * VFRBS2 - Verbrauchter Freibetrag bei Berechnung der sonstigen Bezüge, in Cent
    */
   get VFRBS2() {
-    if (this._VFRBS2 === undefined) throw new Error("VFRBS2 is not set");
+    if (this._VFRBS2 === undefined) throw new Error('VFRBS2 is not set');
     return this._VFRBS2;
   }
 
@@ -892,7 +877,7 @@ export class InternalFields {
    * VHB - Höchstbetrag der Mindestvorsorgepauschale für Kranken- und Pflegeversicherung in Euro, Cent (2 Dezimalstellen)
    */
   get VHB() {
-    if (this._VHB === undefined) throw new Error("VHB is not set");
+    if (this._VHB === undefined) throw new Error('VHB is not set');
     return this._VHB;
   }
 
@@ -904,7 +889,7 @@ export class InternalFields {
    * VKV - Jahreswert der berücksichtigten Beiträge zur privaten Basis-Krankenversicherung und Pflege-Pflichtversicherung in Cent
    */
   get VKV() {
-    if (this._VKV === undefined) throw new Error("VKV is not set");
+    if (this._VKV === undefined) throw new Error('VKV is not set');
     return this._VKV;
   }
 
@@ -922,7 +907,7 @@ export class InternalFields {
    * addieren; hinzuzurechnen sind auch die Ausgabewerte VKVSONST.
    */
   get VKVLZZ() {
-    if (this._VKVLZZ === undefined) throw new Error("VKVLZZ is not set");
+    if (this._VKVLZZ === undefined) throw new Error('VKVLZZ is not set');
     return this._VKVLZZ;
   }
 
@@ -937,7 +922,7 @@ export class InternalFields {
    * in Cent bei sonstigen Bezügen.
    */
   get VKVSONST() {
-    if (this._VKVSONST === undefined) throw new Error("VKVSONST is not set");
+    if (this._VKVSONST === undefined) throw new Error('VKVSONST is not set');
     return this._VKVSONST;
   }
 
@@ -949,7 +934,7 @@ export class InternalFields {
    * VSP - Vorsorgepauschale mit Teilbeträgen für Rentenversicherung sowie gesetzliche Kranken- und Pflegeversicherung in Euro, Cent (2 Dezimalstellen)
    */
   get VSP() {
-    if (this._VSP === undefined) throw new Error("VSP is not set");
+    if (this._VSP === undefined) throw new Error('VSP is not set');
     return this._VSP;
   }
 
@@ -961,7 +946,7 @@ export class InternalFields {
    * VSPN - Vorsorgepauschale mit Teilbeträgen für Rentenversicherung sowie Mindestvorsorgepauschale für Kranken- und Pflegeversicherung in Euro, Cent (2 Dezimalstellen)
    */
   get VSPN() {
-    if (this._VSPN === undefined) throw new Error("VSPN is not set");
+    if (this._VSPN === undefined) throw new Error('VSPN is not set');
     return this._VSPN;
   }
 
@@ -973,7 +958,7 @@ export class InternalFields {
    * VSP1 - Zwischenwert 1 bei der Berechnung der Vorsorgepauschale in Euro, Cent (2 Dezimalstellen)
    */
   get VSP1() {
-    if (this._VSP1 === undefined) throw new Error("VSP1 is not set");
+    if (this._VSP1 === undefined) throw new Error('VSP1 is not set');
     return this._VSP1;
   }
 
@@ -985,7 +970,7 @@ export class InternalFields {
    * VSP2 - Zwischenwert 2 bei der Berechnung der Vorsorgepauschale in Euro, Cent (2 Dezimalstellen)
    */
   get VSP2() {
-    if (this._VSP2 === undefined) throw new Error("VSP2 is not set");
+    if (this._VSP2 === undefined) throw new Error('VSP2 is not set');
     return this._VSP2;
   }
 
@@ -997,7 +982,7 @@ export class InternalFields {
    * VSP3 - Vorsorgepauschale mit Teilbeträgen für gesetzliche Kranken- und soziale Pflegeversicherung oder ggf. für die private Basiskrankenversicherung in Euro, Cent (2 Dezimalstellen)
    */
   get VSP3() {
-    if (this._VSP3 === undefined) throw new Error("VSP3 is not set");
+    if (this._VSP3 === undefined) throw new Error('VSP3 is not set');
     return this._VSP3;
   }
 
@@ -1009,7 +994,7 @@ export class InternalFields {
    * W1STKL5 - Erster Grenzwert in Steuerklasse V/VI in Euro
    */
   get W1STKL5() {
-    if (this._W1STKL5 === undefined) throw new Error("W1STKL5 is not set");
+    if (this._W1STKL5 === undefined) throw new Error('W1STKL5 is not set');
     return this._W1STKL5;
   }
 
@@ -1021,7 +1006,7 @@ export class InternalFields {
    * W2STKL5 - Zweiter Grenzwert in Steuerklasse V/VI in Euro
    */
   get W2STKL5() {
-    if (this._W2STKL5 === undefined) throw new Error("W2STKL5 is not set");
+    if (this._W2STKL5 === undefined) throw new Error('W2STKL5 is not set');
     return this._W2STKL5;
   }
 
@@ -1033,7 +1018,7 @@ export class InternalFields {
    * W3STKL5 - Dritter Grenzwert in Steuerklasse V/VI in Euro
    */
   get W3STKL5() {
-    if (this._W3STKL5 === undefined) throw new Error("W3STKL5 is not set");
+    if (this._W3STKL5 === undefined) throw new Error('W3STKL5 is not set');
     return this._W3STKL5;
   }
 
@@ -1047,7 +1032,7 @@ export class InternalFields {
    * Berechnung des laufenden Arbeitslohns, in Cent
    */
   get WVFRB() {
-    if (this._WVFRB === undefined) throw new Error("WVFRB is not set");
+    if (this._WVFRB === undefined) throw new Error('WVFRB is not set');
     return this._WVFRB;
   }
 
@@ -1061,7 +1046,7 @@ export class InternalFields {
    * Berechnung der sonstigen Bezüge, in Cent
    */
   get WVFRBM() {
-    if (this._WVFRBM === undefined) throw new Error("WVFRBM is not set");
+    if (this._WVFRBM === undefined) throw new Error('WVFRBM is not set');
     return this._WVFRBM;
   }
 
@@ -1075,7 +1060,7 @@ export class InternalFields {
    * Berechnung des voraussichtlichen Jahresarbeitslohns, in Cent
    */
   get WVFRBO() {
-    if (this._WVFRBO === undefined) throw new Error("WVFRBO is not set");
+    if (this._WVFRBO === undefined) throw new Error('WVFRBO is not set');
     return this._WVFRBO;
   }
 
@@ -1087,7 +1072,7 @@ export class InternalFields {
    * X - Zu versteuerndes Einkommen gem. §32a Absatz1 und Absatz5 EStG in Euro, Cent (2 Dezimalstellen)
    */
   get X() {
-    if (this._X === undefined) throw new Error("X is not set");
+    if (this._X === undefined) throw new Error('X is not set');
     return this._X;
   }
 
@@ -1099,7 +1084,7 @@ export class InternalFields {
    * Y - Gemäß §32a Absatz1 EStG (6 Dezimalstellen)
    */
   get Y() {
-    if (this._Y === undefined) throw new Error("Y is not set");
+    if (this._Y === undefined) throw new Error('Y is not set');
     return this._Y;
   }
 
@@ -1111,7 +1096,7 @@ export class InternalFields {
    * ZRE4 - Auf einen Jahreslohn hochgerechnetes RE4 in Euro, Cent (2 Dezimalstellen), nach Abzug der Freibeträge nach §39b Absatz2 Satz3 und Satz4 EStG
    */
   get ZRE4() {
-    if (this._ZRE4 === undefined) throw new Error("ZRE4 is not set");
+    if (this._ZRE4 === undefined) throw new Error('ZRE4 is not set');
     return this._ZRE4;
   }
 
@@ -1123,7 +1108,7 @@ export class InternalFields {
    * ZRE4J - Auf einen Jahreslohn hochgerechnetes RE4 in Euro, Cent (2 Dezimalstellen)
    */
   get ZRE4J() {
-    if (this._ZRE4J === undefined) throw new Error("ZRE4J is not set");
+    if (this._ZRE4J === undefined) throw new Error('ZRE4J is not set');
     return this._ZRE4J;
   }
 
@@ -1135,7 +1120,7 @@ export class InternalFields {
    * ZRE4VP - Auf einen Jahreslohn hochgerechnetes RE4, ggf. nach Abzug der Entschädigungen i.S.d. §24 Nummer1 EStG in Euro, Cent (2 Dezimalstellen)
    */
   get ZRE4VP() {
-    if (this._ZRE4VP === undefined) throw new Error("ZRE4VP is not set");
+    if (this._ZRE4VP === undefined) throw new Error('ZRE4VP is not set');
     return this._ZRE4VP;
   }
 
@@ -1147,7 +1132,7 @@ export class InternalFields {
    * ZTABFB - Feste Tabellenfreibeträge (ohne Vorsorgepauschale) in Euro, Cent (2 Dezimalstellen)
    */
   get ZTABFB() {
-    if (this._ZTABFB === undefined) throw new Error("ZTABFB is not set");
+    if (this._ZTABFB === undefined) throw new Error('ZTABFB is not set');
     return this._ZTABFB;
   }
 
@@ -1159,7 +1144,7 @@ export class InternalFields {
    * ZVBEZ - Auf einen Jahreslohn hochgerechnetes VBEZ abzüglich FVB in Euro, Cent (2 Dezimalstellen)
    */
   get ZVBEZ() {
-    if (this._ZVBEZ === undefined) throw new Error("ZVBEZ is not set");
+    if (this._ZVBEZ === undefined) throw new Error('ZVBEZ is not set');
     return this._ZVBEZ;
   }
 
@@ -1171,7 +1156,7 @@ export class InternalFields {
    * ZVBEZJ - Auf einen Jahreslohn hochgerechnetes VBEZ in Euro, Cent (2 Dezimalstellen)
    */
   get ZVBEZJ() {
-    if (this._ZVBEZJ === undefined) throw new Error("ZVBEZJ is not set");
+    if (this._ZVBEZJ === undefined) throw new Error('ZVBEZJ is not set');
     return this._ZVBEZJ;
   }
 
@@ -1183,7 +1168,7 @@ export class InternalFields {
    * ZVE - Zu versteuerndes Einkommen in Euro, Cent (2 Dezimalstellen)
    */
   get ZVE() {
-    if (this._ZVE === undefined) throw new Error("ZVE is not set");
+    if (this._ZVE === undefined) throw new Error('ZVE is not set');
     return this._ZVE;
   }
 
@@ -1195,7 +1180,7 @@ export class InternalFields {
    * ZX - Zwischenfeld zu X für die Berechnung der Steuer nach §39b Absatz2 Satz7 EStG in Euro
    */
   get ZX() {
-    if (this._ZX === undefined) throw new Error("ZX is not set");
+    if (this._ZX === undefined) throw new Error('ZX is not set');
     return this._ZX;
   }
 
@@ -1207,7 +1192,7 @@ export class InternalFields {
    * ZZX - Zwischenfeld zu X für die Berechnung der Steuer nach §39b Absatz2 Satz7 EStG in Euro
    */
   get ZZX() {
-    if (this._ZZX === undefined) throw new Error("ZZX is not set");
+    if (this._ZZX === undefined) throw new Error('ZZX is not set');
     return this._ZZX;
   }
 

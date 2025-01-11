@@ -1,5 +1,6 @@
-import { roundDownToFullEuro } from "@/util/format";
-import { InternalFields } from "./fields/InternalFields";
+import { roundDownToFullEuro } from '@/util/format';
+
+import { InternalFields } from './fields/InternalFields';
 
 /**
  * UPTAB24 - Tarifliche Einkommensteuer (§ 32a EStG)
@@ -13,9 +14,7 @@ export const calculateUPTAB24 = () => {
     internalFields.Y = (internalFields.X - internalFields.GFB) / 10000;
     internalFields.RW = internalFields.Y * 954.8;
     internalFields.RW = internalFields.RW + 1400;
-    internalFields.ST = roundDownToFullEuro(
-      internalFields.RW * internalFields.Y
-    );
+    internalFields.ST = roundDownToFullEuro(internalFields.RW * internalFields.Y);
   } else if (internalFields.X < 66761) {
     internalFields.Y = (internalFields.X - 17005) / 10000;
     internalFields.RW = internalFields.Y * 181.19;

@@ -1,7 +1,8 @@
-import { roundUpToFullEuro } from "@/util/format";
-import { InternalFields } from "./fields/InternalFields";
-import { IncomeTaxTariffType, TaxClass } from "@/types/income-tax";
-import { UserInputs } from "./fields/UserInputs";
+import { IncomeTaxTariffType, TaxClass } from '@/types/income-tax';
+import { roundUpToFullEuro } from '@/util/format';
+
+import { InternalFields } from './fields/InternalFields';
+import { UserInputs } from './fields/UserInputs';
 
 /**
  * MZTABFB - Ermittlung der festen Tabellenfreibeträge (ohne Vorsorgepauschale)
@@ -23,9 +24,7 @@ export const calculateMZTABFB = () => {
   if (userInputs.STKL < TaxClass.VI) {
     if (internalFields.ZVBEZ > 0) {
       if (internalFields.ZVBEZ - internalFields.FVBZ < 102) {
-        internalFields.ANP = roundUpToFullEuro(
-          internalFields.ZVBEZ - internalFields.FVBZ
-        );
+        internalFields.ANP = roundUpToFullEuro(internalFields.ZVBEZ - internalFields.FVBZ);
       } else {
         internalFields.ANP = 102;
       }
@@ -39,13 +38,10 @@ export const calculateMZTABFB = () => {
    * Festlegung Arbeitnehmer-Pauschbetrag für aktiven Lohn
    * mit möglicher Begrenzung
    */
-  if (
-    userInputs.STKL < TaxClass.VI &&
-    internalFields.ZRE4 > internalFields.ZVBEZ
-  ) {
+  if (userInputs.STKL < TaxClass.VI && internalFields.ZRE4 > internalFields.ZVBEZ) {
     if (internalFields.ZRE4 - internalFields.ZVBEZ < 1230) {
       internalFields.ANP = roundUpToFullEuro(
-        internalFields.ANP + internalFields.ZRE4 - internalFields.ZVBEZ
+        internalFields.ANP + internalFields.ZRE4 - internalFields.ZVBEZ,
       );
     } else {
       internalFields.ANP = internalFields.ANP + 1230;
@@ -85,8 +81,5 @@ export const calculateMZTABFB = () => {
    * für Kinder für die Lohnsteuerberechnung
    */
   internalFields.ZTABFB =
-    internalFields.EFA +
-    internalFields.ANP +
-    internalFields.SAP +
-    internalFields.FVBZ;
+    internalFields.EFA + internalFields.ANP + internalFields.SAP + internalFields.FVBZ;
 };

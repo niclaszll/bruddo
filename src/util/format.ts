@@ -12,7 +12,6 @@ export const toFixedFloat = (value: number, precision: number) => {
 export const roundUpToFullEuro = (value: number) => Math.ceil(value);
 export const roundDownToFullEuro = (value: number) => Math.floor(value);
 
-export const roundUpToFullCent = (value: number) =>
-  Math.ceil(toFixedFloat(value, 3) * 100) / 100;
+export const roundUpToFullCent = (value: number) => Math.ceil(toFixedFloat(value, 3) * 100) / 100;
 export const roundDownToFullCent = (value: number) =>
   Math.floor(toFixedFloat(value, 3) * 100) / 100;

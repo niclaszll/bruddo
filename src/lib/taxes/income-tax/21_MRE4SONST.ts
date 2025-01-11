@@ -1,8 +1,8 @@
-import { calculateMRE4 } from "./3_MRE4";
-import { calculateMRE4ABZ } from "./5_MRE4ABZ";
-import { calculateMZTABFB } from "./7_MZTABFB";
-import { InternalFields } from "./fields/InternalFields";
-import { UserInputs } from "./fields/UserInputs";
+import { calculateMRE4 } from './3_MRE4';
+import { calculateMRE4ABZ } from './5_MRE4ABZ';
+import { calculateMZTABFB } from './7_MZTABFB';
+import { InternalFields } from './fields/InternalFields';
+import { UserInputs } from './fields/UserInputs';
 
 /**
  * MRE4SONST - Sonderberechnung mit sonstigen Bezügen für Berechnung bei sonstigen Bezügen
@@ -31,6 +31,5 @@ export const calculateMRE4SONST = () => {
   calculateMZTABFB();
 
   internalFields.VFRBS2 =
-    (internalFields.ANP + internalFields.FVB + internalFields.FVBZ) * 100 -
-    internalFields.VFRBS1;
+    (internalFields.ANP + internalFields.FVB + internalFields.FVBZ) * 100 - internalFields.VFRBS1;
 };
