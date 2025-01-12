@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 export enum GermanFederalState {
   BadenWuerttemberg = 'BW',
   Bavaria = 'BY',
@@ -16,3 +18,9 @@ export enum GermanFederalState {
   SchleswigHolstein = 'SH',
   Thuringia = 'TH',
 }
+
+export const CalculationPeriod = z.enum(['year', 'month']);
+export type CalculationPeriod = z.infer<typeof CalculationPeriod>;
+
+export const TaxClass = z.enum(['I', 'II', 'III', 'IV', 'V', 'VI']);
+export type TaxClass = z.infer<typeof TaxClass>;
