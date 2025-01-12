@@ -1,7 +1,7 @@
-import { GermanFederalState } from '@/types/common';
+import { GermanFederalState, UserInputs } from '@/types/common';
 
 import { calculateIncomeTax } from './income-tax';
-import { UserInputs } from './income-tax/fields/UserInputs';
+import { UserInputsClient } from './income-tax/fields/UserInputs';
 
 class TaxClient {
   static #instance: TaxClient;
@@ -16,8 +16,8 @@ class TaxClient {
     return TaxClient.#instance;
   }
 
-  public setUserInputs() {
-    const userInputs = UserInputs.instance;
+  public setUserInputs(inputs: UserInputs) {
+    const userInputs = UserInputsClient.instance;
 
     userInputs
       .setAF(0)
@@ -41,7 +41,7 @@ class TaxClient {
       .setPVS(0)
       .setPVZ(1)
       .setR(1)
-      .setRE4(50000 * 100)
+      .setRE4(inputs.grossIncome * 100)
       .setSONSTB(0)
       .setSONSTENT(0)
       .setSTERBE(0)

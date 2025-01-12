@@ -2,15 +2,15 @@ import { calculateMRE4 } from './3_MRE4';
 import { calculateMRE4ABZ } from './5_MRE4ABZ';
 import { calculateMZTABFB } from './7_MZTABFB';
 import { calculateMLSTJAHR } from './8_MLSTJAHR';
-import { InternalFields } from './fields/InternalFields';
-import { UserInputs } from './fields/UserInputs';
+import { InternalFieldsClient } from './fields/InternalFields';
+import { UserInputsClient } from './fields/UserInputs';
 
 /**
  * MOSONST - Sonderberechnung ohne sonstige Bezüge für Berechnung bei sonstigen Bezügen oder Vergütung für mehrjährige Tätigkeit
  */
 export const calculateMOSONST = () => {
-  const internalFields = InternalFields.instance;
-  const userInputs = UserInputs.instance;
+  const internalFields = InternalFieldsClient.instance;
+  const userInputs = UserInputsClient.instance;
 
   internalFields.ZRE4J = userInputs.JRE4 / 100;
   internalFields.ZVBEZJ = userInputs.JVBEZ / 100;

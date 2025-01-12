@@ -1,13 +1,13 @@
 import { roundDownToFullEuro } from '@/util/format';
 
 import { calculateUPTAB24 } from './22_UPTAB24';
-import { InternalFields } from './fields/InternalFields';
+import { InternalFieldsClient } from './fields/InternalFields';
 
 /**
  * UP5-6
  */
 export const calculateUP5_6 = () => {
-  const internalFields = InternalFields.instance;
+  const internalFields = InternalFieldsClient.instance;
 
   internalFields.X = internalFields.ZX * 1.25;
 

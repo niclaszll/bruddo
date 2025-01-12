@@ -1,15 +1,15 @@
 import { IncomeTaxTariffType, TaxClass } from '@/types/income-tax';
 import { roundUpToFullEuro } from '@/util/format';
 
-import { InternalFields } from './fields/InternalFields';
-import { UserInputs } from './fields/UserInputs';
+import { InternalFieldsClient } from './fields/InternalFields';
+import { UserInputsClient } from './fields/UserInputs';
 
 /**
  * MZTABFB - Ermittlung der festen Tabellenfreibeträge (ohne Vorsorgepauschale)
  */
 export const calculateMZTABFB = () => {
-  const internalFields = InternalFields.instance;
-  const userInputs = UserInputs.instance;
+  const internalFields = InternalFieldsClient.instance;
+  const userInputs = UserInputsClient.instance;
 
   /**
    * Mögliche Begrenzung des Zuschlags zum Versorgungsfreibetrag, und

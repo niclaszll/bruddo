@@ -1,15 +1,15 @@
 // see: https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2024-11-22-PAP-2025_anlage.pdf?__blob=publicationFile&v=2
 import { HEALTH_INSURANCE_INCOME_THRESHOLD } from '@/util/constants';
 
-import { InternalFields } from './fields/InternalFields';
-import { UserInputs } from './fields/UserInputs';
+import { InternalFieldsClient } from './fields/InternalFields';
+import { UserInputsClient } from './fields/UserInputs';
 
 /**
  * MPARA - Zuweisung von Werten für bestimmte Sozialversicherungsparameter
  */
 export const setupMPARA = () => {
-  const internalFields = InternalFields.instance;
-  const userInputs = UserInputs.instance;
+  const internalFields = InternalFieldsClient.instance;
+  const userInputs = UserInputsClient.instance;
 
   internalFields.BBGRV = userInputs.KRV < 1 ? 96600 : 0;
   internalFields.RVSATZAN = userInputs.KRV < 1 ? 0.093 : 0;

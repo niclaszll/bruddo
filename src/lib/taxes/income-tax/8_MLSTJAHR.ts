@@ -4,14 +4,14 @@ import { roundDownToFullEuro } from '@/util/format';
 import { calculateUPEVP } from './11_UPEVP';
 import { calculateMST5_6 } from './13_MST5-6';
 import { calculateUPTAB24 } from './22_UPTAB24';
-import { InternalFields } from './fields/InternalFields';
-import { UserInputs } from './fields/UserInputs';
+import { InternalFieldsClient } from './fields/InternalFields';
+import { UserInputsClient } from './fields/UserInputs';
 
 /**
  * MLSTJAHR - Ermittlung der Jahreslohnsteuer
  */
 export const calculateMLSTJAHR = () => {
-  const internalFields = InternalFields.instance;
+  const internalFields = InternalFieldsClient.instance;
 
   // UPEVP
   calculateUPEVP();
@@ -25,8 +25,8 @@ export const calculateMLSTJAHR = () => {
  * UPMLST
  */
 export const calculateUPMLST = () => {
-  const internalFields = InternalFields.instance;
-  const userInputs = UserInputs.instance;
+  const internalFields = InternalFieldsClient.instance;
+  const userInputs = UserInputsClient.instance;
 
   if (internalFields.ZVE < 1) {
     internalFields.ZVE = 0;

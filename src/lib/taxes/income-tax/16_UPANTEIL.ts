@@ -1,16 +1,16 @@
 import { SalaryPaymentPeriod } from '@/types/income-tax';
 import { roundDownToFullCent } from '@/util/format';
 
-import { InternalFields } from './fields/InternalFields';
-import { UserInputs } from './fields/UserInputs';
+import { InternalFieldsClient } from './fields/InternalFields';
+import { UserInputsClient } from './fields/UserInputs';
 
 /**
  * UPANTEIL - Ermittlung des Anteils der berücksichtigten privaten Kranken- und
  * Pflegeversicherungsbeiträge für den Lohnzahlungszeitraum
  */
 export const calculateUPANTEIL = () => {
-  const internalFields = InternalFields.instance;
-  const userInputs = UserInputs.instance;
+  const internalFields = InternalFieldsClient.instance;
+  const userInputs = UserInputsClient.instance;
 
   switch (userInputs.LZZ) {
     case SalaryPaymentPeriod.YEAR:

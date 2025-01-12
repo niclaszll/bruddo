@@ -4,15 +4,15 @@ import { calculateMLSTJAHR } from './8_MLSTJAHR';
 import { calculateUPVKVLZZ } from './9_UPVKVLZZ';
 import { calculateUPLSTLZZ } from './10_UPLSTLZZ';
 import { calculateMSOLZ } from './15_MSOLZ';
-import { InternalFields } from './fields/InternalFields';
-import { UserInputs } from './fields/UserInputs';
+import { InternalFieldsClient } from './fields/InternalFields';
+import { UserInputsClient } from './fields/UserInputs';
 
 /**
  * MBERECH - Ermittlung der Jahreslohnsteuer auf laufende Bezüge
  */
 export const calculateMBERECH = () => {
-  const internalFields = InternalFields.instance;
-  const userInputs = UserInputs.instance;
+  const internalFields = InternalFieldsClient.instance;
+  const userInputs = UserInputsClient.instance;
 
   // MZTABFB
   calculateMZTABFB();

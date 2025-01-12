@@ -5,15 +5,15 @@ import { calculateUPVKV } from './9_UPVKVLZZ';
 import { calculateSTSMIN } from './18_STSMIN';
 import { calculateMOSONST } from './20_MOSONST';
 import { calculateMRE4SONST } from './21_MRE4SONST';
-import { InternalFields } from './fields/InternalFields';
-import { UserInputs } from './fields/UserInputs';
+import { InternalFieldsClient } from './fields/InternalFields';
+import { UserInputsClient } from './fields/UserInputs';
 
 /**
  * MSONST - Berechnung sonstiger Bezüge nach § 39b Absatz 3 Satz 1 bis 8 EStG
  */
 export const calculateMSONST = () => {
-  const internalFields = InternalFields.instance;
-  const userInputs = UserInputs.instance;
+  const internalFields = InternalFieldsClient.instance;
+  const userInputs = UserInputsClient.instance;
 
   userInputs.setLZZ(1);
 

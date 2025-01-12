@@ -1,8 +1,8 @@
 import { HealthInsuranceType, SalaryPaymentPeriod, TaxClass } from '@/types/income-tax';
 import { toFixedFloat } from '@/util/format';
 
-export class UserInputs {
-  static #instance: UserInputs;
+export class UserInputsClient {
+  static #instance: UserInputsClient;
 
   private _AF?: number;
   private _AJAHR?: number;
@@ -40,12 +40,12 @@ export class UserInputs {
 
   private constructor() {}
 
-  public static get instance(): UserInputs {
-    if (!UserInputs.#instance) {
-      UserInputs.#instance = new UserInputs();
+  public static get instance(): UserInputsClient {
+    if (!UserInputsClient.#instance) {
+      UserInputsClient.#instance = new UserInputsClient();
     }
 
-    return UserInputs.#instance;
+    return UserInputsClient.#instance;
   }
 
   /**

@@ -1,15 +1,15 @@
 import { HealthInsuranceType, TaxClass } from '@/types/income-tax';
 import { roundUpToFullEuro } from '@/util/format';
 
-import { InternalFields } from './fields/InternalFields';
-import { UserInputs } from './fields/UserInputs';
+import { InternalFieldsClient } from './fields/InternalFields';
+import { UserInputsClient } from './fields/UserInputs';
 
 /**
  * MVSP - Vorsorgepauschale (§ 39b Absatz 2 Satz 5 Nummer 3 EStG) Vergleichsberechnung zur Mindestvorsorgepauschale
  */
 export const calculateMVSP = () => {
-  const internalFields = InternalFields.instance;
-  const userInputs = UserInputs.instance;
+  const internalFields = InternalFieldsClient.instance;
+  const userInputs = UserInputsClient.instance;
 
   internalFields.ZRE4VP = Math.min(internalFields.ZRE4VP, internalFields.BBGKVPV);
 

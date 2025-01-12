@@ -1,15 +1,15 @@
 import { calculateMRE4 } from './3_MRE4';
 import { calculateMRE4ABZ } from './5_MRE4ABZ';
 import { calculateMZTABFB } from './7_MZTABFB';
-import { InternalFields } from './fields/InternalFields';
-import { UserInputs } from './fields/UserInputs';
+import { InternalFieldsClient } from './fields/InternalFields';
+import { UserInputsClient } from './fields/UserInputs';
 
 /**
  * MRE4SONST - Sonderberechnung mit sonstigen Bezügen für Berechnung bei sonstigen Bezügen
  */
 export const calculateMRE4SONST = () => {
-  const internalFields = InternalFields.instance;
-  const userInputs = UserInputs.instance;
+  const internalFields = InternalFieldsClient.instance;
+  const userInputs = UserInputsClient.instance;
 
   // MRE4
   calculateMRE4();

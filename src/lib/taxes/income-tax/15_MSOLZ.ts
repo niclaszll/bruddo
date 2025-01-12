@@ -1,15 +1,15 @@
 import { roundDownToFullCent } from '@/util/format';
 
 import { calculateUPANTEIL } from './16_UPANTEIL';
-import { InternalFields } from './fields/InternalFields';
-import { UserInputs } from './fields/UserInputs';
+import { InternalFieldsClient } from './fields/InternalFields';
+import { UserInputsClient } from './fields/UserInputs';
 
 /**
  * MSOLZ - Solidaritätszuschlag
  */
 export const calculateMSOLZ = () => {
-  const internalFields = InternalFields.instance;
-  const userInputs = UserInputs.instance;
+  const internalFields = InternalFieldsClient.instance;
+  const userInputs = UserInputsClient.instance;
 
   internalFields.SOLZFREI = internalFields.SOLZFREI * internalFields.KZTAB;
 

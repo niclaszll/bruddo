@@ -24,3 +24,11 @@ export type CalculationPeriod = z.infer<typeof CalculationPeriod>;
 
 export const TaxClass = z.enum(['I', 'II', 'III', 'IV', 'V', 'VI']);
 export type TaxClass = z.infer<typeof TaxClass>;
+
+export const UserInputs = z.object({
+  calculationPeriod: CalculationPeriod,
+  grossIncome: z.preprocess(Number, z.number()),
+  taxClass: TaxClass,
+});
+
+export type UserInputs = z.infer<typeof UserInputs>;

@@ -2,15 +2,15 @@ import { TaxClass } from '@/types/income-tax';
 import { roundDownToFullEuro } from '@/util/format';
 
 import { calculateMVSP } from './12_MVSP';
-import { InternalFields } from './fields/InternalFields';
-import { UserInputs } from './fields/UserInputs';
+import { InternalFieldsClient } from './fields/InternalFields';
+import { UserInputsClient } from './fields/UserInputs';
 
 /**
  * UPEVP - Berechnung der Vorsorgepauschale (§ 39b Absatz 2 Satz 5 Nummer 3 und Absatz 4 EStG)
  */
 export const calculateUPEVP = () => {
-  const internalFields = InternalFields.instance;
-  const userInputs = UserInputs.instance;
+  const internalFields = InternalFieldsClient.instance;
+  const userInputs = UserInputsClient.instance;
 
   if (userInputs.KRV === 1) {
     internalFields.VSP1 = 0;

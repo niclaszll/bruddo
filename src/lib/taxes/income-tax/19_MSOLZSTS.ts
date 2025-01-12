@@ -3,15 +3,15 @@ import { roundDownToFullCent, roundDownToFullEuro } from '@/util/format';
 
 import { calculateMST5_6 } from './13_MST5-6';
 import { calculateUPTAB24 } from './22_UPTAB24';
-import { InternalFields } from './fields/InternalFields';
-import { UserInputs } from './fields/UserInputs';
+import { InternalFieldsClient } from './fields/InternalFields';
+import { UserInputsClient } from './fields/UserInputs';
 
 /**
  * MSOLZSTS - Berechnung des SolZ auf sonstige Bezüge
  */
 export const calculateMSOLZSTS = () => {
-  const internalFields = InternalFields.instance;
-  const userInputs = UserInputs.instance;
+  const internalFields = InternalFieldsClient.instance;
+  const userInputs = UserInputsClient.instance;
 
   internalFields.SOLZSZVE =
     userInputs.ZKF > 0 ? internalFields.ZVE - internalFields.KFB : internalFields.ZVE;

@@ -4,8 +4,8 @@ import { roundDownToFullCent, toFixedFloat } from '@/util/format';
 import Table1_3 from '../data/tab_1-3.json';
 import Table4_5 from '../data/tab_4-5.json';
 
-export class InternalFields {
-  static #instance: InternalFields;
+export class InternalFieldsClient {
+  static #instance: InternalFieldsClient;
 
   private _ALTE?: number;
   private _ANP?: number;
@@ -93,12 +93,12 @@ export class InternalFields {
 
   private constructor() {}
 
-  public static get instance(): InternalFields {
-    if (!InternalFields.#instance) {
-      InternalFields.#instance = new InternalFields();
+  public static get instance(): InternalFieldsClient {
+    if (!InternalFieldsClient.#instance) {
+      InternalFieldsClient.#instance = new InternalFieldsClient();
     }
 
-    return InternalFields.#instance;
+    return InternalFieldsClient.#instance;
   }
 
   /**
