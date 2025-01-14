@@ -1,22 +1,22 @@
 import SocialSecurityClient from '@/lib/social-security';
 import TaxClient from '@/lib/taxes';
-import { GermanFederalState, UserInputs } from '@/types/common';
+import { UserInputs } from '@/types/common';
+import { roundUpToFullCent } from '@/util/format';
 
 export const getSalaryResults = (inputs: UserInputs) => {
-  const federalState = GermanFederalState.Hamburg;
   TaxClient.setUserInputs(inputs);
 
   const incomeTaxResults = TaxClient.getIncomeTax();
-  const churchTax = TaxClient.getChurchTax(incomeTaxResults.incomeTax, federalState, true);
+  const churchTax = TaxClient.getChurchTax(incomeTaxResults.incomeTax, inputs.federalState, true);
   const healthInsuranceResults = SocialSecurityClient.getHealthInsuranceContribution(
     inputs.grossIncome,
-    2.5,
+    2.45,
   );
   const longTermInsuranceResults = SocialSecurityClient.getLongTermCareInsuranceContribution(
     inputs.grossIncome,
     0,
     26,
-    federalState,
+    inputs.federalState,
   );
   const pensionInsuranceResults = SocialSecurityClient.calculatePensionInsuranceContribution(
     inputs.grossIncome,
@@ -24,15 +24,16 @@ export const getSalaryResults = (inputs: UserInputs) => {
   const unemploymentInsuranceResults =
     SocialSecurityClient.calculateUnemploymentInsuranceContribution(inputs.grossIncome);
 
-  const netIncome =
+  const netIncome = roundUpToFullCent(
     inputs.grossIncome -
-    incomeTaxResults.incomeTax -
-    incomeTaxResults.solidaritySurcharge -
-    churchTax -
-    healthInsuranceResults.employeeContribution -
-    longTermInsuranceResults.employeeContribution -
-    pensionInsuranceResults.employeeContribution -
-    unemploymentInsuranceResults.employeeContribution;
+      incomeTaxResults.incomeTax -
+      incomeTaxResults.solidaritySurcharge -
+      churchTax -
+      healthInsuranceResults.employeeContribution -
+      longTermInsuranceResults.employeeContribution -
+      pensionInsuranceResults.employeeContribution -
+      unemploymentInsuranceResults.employeeContribution,
+  );
 
   return {
     incomeTaxResults,

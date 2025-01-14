@@ -1,4 +1,4 @@
-import { GermanFederalState } from '@/types/common';
+import { FederalState } from '@/types/common';
 import {
   HEALTH_INSURANCE_GENERAL_RATE,
   HEALTH_INSURANCE_INCOME_THRESHOLD,
@@ -28,9 +28,13 @@ class SocialSecurityClient {
   ) {
     const cappedIncome = Math.min(annualGrossIncome, HEALTH_INSURANCE_INCOME_THRESHOLD);
 
-    const generalContribution = (cappedIncome * HEALTH_INSURANCE_GENERAL_RATE) / 100;
+    const generalContribution = roundDownToFullCent(
+      (cappedIncome * HEALTH_INSURANCE_GENERAL_RATE) / 100,
+    );
 
-    const additionalContribution = (cappedIncome * additionalContributionRate) / 100;
+    const additionalContribution = roundDownToFullCent(
+      (cappedIncome * additionalContributionRate) / 100,
+    );
 
     const totalContribution = roundDownToFullCent(generalContribution + additionalContribution);
 
@@ -39,6 +43,8 @@ class SocialSecurityClient {
 
     return {
       totalContribution,
+      generalContribution,
+      additionalContribution,
       employeeContribution,
       employerContribution,
     };
@@ -48,9 +54,9 @@ class SocialSecurityClient {
     annualGrossIncome: number,
     numberOfChildren: number,
     age: number,
-    federalState: GermanFederalState,
+    federalState: FederalState,
   ) {
-    const employerShareFixed = federalState === GermanFederalState.Saxony ? 1.3 : 1.8;
+    const employerShareFixed = federalState === FederalState.enum.SN ? 1.3 : 1.8;
 
     let effectiveRate: number;
 

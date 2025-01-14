@@ -1,4 +1,4 @@
-import { GermanFederalState, UserInputs } from '@/types/common';
+import { FederalState, UserInputs } from '@/types/common';
 
 import { calculateIncomeTax } from './income-tax';
 import { UserInputsClient } from './income-tax/fields/UserInputs';
@@ -30,7 +30,7 @@ class TaxClient {
       .setJRE4ENT(0)
       .setJVBEZ(0)
       .setKRV(0)
-      .setKVZ(2.5)
+      .setKVZ(2.45)
       .setLZZ(1)
       .setLZZFREIB(0)
       .setLZZHINZU(0)
@@ -38,7 +38,7 @@ class TaxClient {
       .setPKPV(0)
       .setPKV(0)
       .setPVA(0)
-      .setPVS(0)
+      .setPVS(inputs.federalState === FederalState.enum.SN ? 1 : 0)
       .setPVZ(1)
       .setR(1)
       .setRE4(inputs.grossIncome * 100)
@@ -55,15 +55,10 @@ class TaxClient {
       .setZMVB(0);
   }
 
-  public getChurchTax(
-    incomeTax: number,
-    federalState: GermanFederalState,
-    isMemberOfChurch: boolean,
-  ) {
-    const churchTaxRate = [
-      GermanFederalState.Bavaria,
-      GermanFederalState.BadenWuerttemberg,
-    ].includes(federalState)
+  public getChurchTax(incomeTax: number, federalState: FederalState, isMemberOfChurch: boolean) {
+    const churchTaxRate = ([FederalState.enum.BY, FederalState.enum.BW] as FederalState[]).includes(
+      federalState,
+    )
       ? 0.08
       : 0.09;
 
