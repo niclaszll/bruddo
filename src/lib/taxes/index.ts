@@ -21,8 +21,8 @@ class TaxClient {
 
     userInputs
       .setAF(0)
-      .setAJAHR(0)
-      .setALTER1(0)
+      .setAJAHR(0) // TODO
+      .setALTER1(0) // TODO
       .setF(1)
       .setJFREIB(0)
       .setJHINZU(0)
@@ -30,7 +30,7 @@ class TaxClient {
       .setJRE4ENT(0)
       .setJVBEZ(0)
       .setKRV(0)
-      .setKVZ(2.45)
+      .setKVZ(inputs.healthInsuranceAdditionalContribution)
       .setLZZ(1)
       .setLZZFREIB(0)
       .setLZZHINZU(0)
@@ -40,7 +40,7 @@ class TaxClient {
       .setPVA(0)
       .setPVS(inputs.federalState === FederalState.enum.SN ? 1 : 0)
       .setPVZ(1)
-      .setR(1)
+      .setR(inputs.churchTax ? 1 : 0)
       .setRE4(inputs.grossIncome * 100)
       .setSONSTB(0)
       .setSONSTENT(0)

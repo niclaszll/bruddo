@@ -1,15 +1,17 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { CalculationPeriod, FederalState, TaxClass, UserInputs } from '@/types/common';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
+import AgeInput from './fields/age-input';
 import CalculationPeriodSelect from './fields/calculation-period-select';
+import ChurchTaxCheckbox from './fields/church-tax-checkbox';
 import FederalStateSelect from './fields/federal-state-select ';
 import GrossIncomeInput from './fields/gross-income-input';
+import HealthInsuranceAddConInput from './fields/health-insurance-input';
 import TaxClassSelect from './fields/tax-class-select';
 import { getSalaryResults } from './helpers';
 
@@ -18,6 +20,9 @@ const defaultValues: UserInputs = {
   grossIncome: 50000,
   taxClass: TaxClass.enum.I,
   federalState: FederalState.enum.BW,
+  healthInsuranceAdditionalContribution: 2.5,
+  churchTax: true,
+  age: 25,
 };
 
 export default function SalaryForm() {
@@ -32,22 +37,25 @@ export default function SalaryForm() {
   }
 
   return (
-    <div className="max-w-sm space-y-4 mx-auto">
+    <div className="max-w-6xl space-y-4 mx-auto flex flex-wrap gap-12 justify-center">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          onChange={form.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col gap-4"
+        >
           <CalculationPeriodSelect />
           <GrossIncomeInput />
           <TaxClassSelect />
           <FederalStateSelect />
-          <Button
-            type="submit"
-            className="mt-4"
-          >
-            Submit
-          </Button>
+          <HealthInsuranceAddConInput />
+          <ChurchTaxCheckbox />
+          <AgeInput />
         </form>
       </Form>
-      <pre>{JSON.stringify(results, null, 4)}</pre>
+      <div>
+        <pre>{JSON.stringify(results, null, 4)}</pre>
+      </div>
     </div>
   );
 }

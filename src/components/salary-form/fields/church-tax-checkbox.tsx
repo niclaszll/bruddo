@@ -1,22 +1,22 @@
 'use client';
 
+import { Checkbox } from '@/components/ui/checkbox';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useFormContext } from 'react-hook-form';
 
 import { InfoIcon } from './shared';
 
-export default function GrossIncomeInput() {
+export default function ChurchTaxCheckbox() {
   const form = useFormContext();
 
   return (
     <FormField
       control={form.control}
-      name="grossIncome"
+      name="churchTax"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Bruttogehalt</FormLabel>
+          <FormLabel>Kirchensteuer</FormLabel>
           <div className="flex items-center gap-2">
             <TooltipProvider>
               <Tooltip>
@@ -24,14 +24,18 @@ export default function GrossIncomeInput() {
                   <InfoIcon />
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p className="max-w-sm">Ihr Bruttogehalt im Abrechnungszeitraum.</p>
+                  <p className="max-w-sm">
+                    Standardmäßig geht der Rechner davon aus, dass Kirchensteuer abzuführen ist
+                    (Häkchen im Auswahlfeld bedeutet Kirchensteuer = Ja). Trifft dies nicht zu,
+                    deaktivieren Sie dies bitte durch Klick auf das Auswahlfeld.
+                  </p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
             <FormControl>
-              <Input
-                {...field}
-                type="number"
+              <Checkbox
+                checked={field.value}
+                onCheckedChange={field.onChange}
               />
             </FormControl>
           </div>

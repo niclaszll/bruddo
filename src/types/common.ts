@@ -31,6 +31,9 @@ export const UserInputs = z.object({
   grossIncome: z.preprocess(Number, z.number()),
   taxClass: TaxClass,
   federalState: FederalState,
+  healthInsuranceAdditionalContribution: z.preprocess(Number, z.number()),
+  churchTax: z.boolean(),
+  age: z.preprocess(Number, z.number()),
 });
 
 export type UserInputs = z.infer<typeof UserInputs>;

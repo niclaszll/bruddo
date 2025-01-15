@@ -7,16 +7,16 @@ import { useFormContext } from 'react-hook-form';
 
 import { InfoIcon } from './shared';
 
-export default function GrossIncomeInput() {
+export default function AgeInput() {
   const form = useFormContext();
 
   return (
     <FormField
       control={form.control}
-      name="grossIncome"
+      name="age"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Bruttogehalt</FormLabel>
+          <FormLabel>Alter</FormLabel>
           <div className="flex items-center gap-2">
             <TooltipProvider>
               <Tooltip>
@@ -24,7 +24,11 @@ export default function GrossIncomeInput() {
                   <InfoIcon />
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p className="max-w-sm">Ihr Bruttogehalt im Abrechnungszeitraum.</p>
+                  <p className="max-w-sm">
+                    Arbeitnehmer über 64 Jahre erhalten den Altersentlastungsbetrag nach § 24a EStG.
+                    Die Höhe des Altersentlastungsbetrags ist abhängig von den Einkünften und vom
+                    Kalenderjahr, das auf den 64. Geburtstag des Arbeitnehmers folgt.
+                  </p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>

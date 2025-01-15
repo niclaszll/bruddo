@@ -7,15 +7,19 @@ export const getSalaryResults = (inputs: UserInputs) => {
   TaxClient.setUserInputs(inputs);
 
   const incomeTaxResults = TaxClient.getIncomeTax();
-  const churchTax = TaxClient.getChurchTax(incomeTaxResults.incomeTax, inputs.federalState, true);
+  const churchTax = TaxClient.getChurchTax(
+    incomeTaxResults.incomeTax,
+    inputs.federalState,
+    inputs.churchTax,
+  );
   const healthInsuranceResults = SocialSecurityClient.getHealthInsuranceContribution(
     inputs.grossIncome,
-    2.45,
+    inputs.healthInsuranceAdditionalContribution,
   );
   const longTermInsuranceResults = SocialSecurityClient.getLongTermCareInsuranceContribution(
     inputs.grossIncome,
     0,
-    26,
+    inputs.age,
     inputs.federalState,
   );
   const pensionInsuranceResults = SocialSecurityClient.calculatePensionInsuranceContribution(
@@ -37,6 +41,7 @@ export const getSalaryResults = (inputs: UserInputs) => {
 
   return {
     incomeTaxResults,
+    churchTax,
     healthInsuranceResults,
     longTermInsuranceResults,
     pensionInsuranceResults,

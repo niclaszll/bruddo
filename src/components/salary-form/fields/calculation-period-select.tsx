@@ -29,7 +29,7 @@ export default function CalculationPeriodSelect() {
           <div className="flex items-center gap-2">
             <TooltipProvider>
               <Tooltip>
-                <TooltipTrigger asChild>
+                <TooltipTrigger>
                   <InfoIcon />
                 </TooltipTrigger>
                 <TooltipContent>
