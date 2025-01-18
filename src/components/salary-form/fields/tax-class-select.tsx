@@ -47,6 +47,7 @@ export default function TaxClassSelect() {
               </Tooltip>
             </TooltipProvider>
             <Select
+              {...field}
               onValueChange={field.onChange}
               defaultValue={field.value}
             >

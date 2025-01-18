@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 import CalculationPeriodSelect from './fields/calculation-period-select';
 import ChurchTaxCheckbox from './fields/church-tax-checkbox';
 import DobInput from './fields/dob-input';
-import FederalStateSelect from './fields/federal-state-select ';
+import FederalStateSelect from './fields/federal-state-select';
 import GrossIncomeInput from './fields/gross-income-input';
 import HealthInsuranceAddConInput from './fields/health-insurance-input';
 import TaxClassSelect from './fields/tax-class-select';
@@ -22,7 +22,7 @@ const defaultValues: UserInputs = {
   federalState: FederalState.enum.BW,
   healthInsuranceAdditionalContribution: 2.5,
   churchTax: true,
-  dob: new Date(),
+  dob: new Date().toISOString().split('T')[0],
 };
 
 export default function SalaryForm() {

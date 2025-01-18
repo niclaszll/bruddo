@@ -59,6 +59,7 @@ export default function FederalStateSelect() {
               </Tooltip>
             </TooltipProvider>
             <Select
+              {...field}
               onValueChange={field.onChange}
               defaultValue={field.value}
             >

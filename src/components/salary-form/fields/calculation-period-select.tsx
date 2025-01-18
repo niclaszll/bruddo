@@ -41,6 +41,7 @@ export default function CalculationPeriodSelect() {
               </Tooltip>
             </TooltipProvider>
             <Select
+              {...field}
               onValueChange={field.onChange}
               defaultValue={field.value}
             >

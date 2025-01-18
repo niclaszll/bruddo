@@ -1,4 +1,6 @@
 import { FederalState, UserInputs } from '@/types/common';
+import { TaxClass } from '@/types/income-tax';
+import { roundUpToFullCent } from '@/util/format';
 import dayjs from 'dayjs';
 
 import { calculateIncomeTax } from './income-tax';
@@ -46,7 +48,7 @@ class TaxClient {
       .setSONSTB(0)
       .setSONSTENT(0)
       .setSTERBE(0)
-      .setSTKL(1)
+      .setSTKL(TaxClass[inputs.taxClass])
       .setVBEZ(0)
       .setVBEZM(0)
       .setVBEZS(0)
@@ -67,7 +69,7 @@ class TaxClient {
       return 0;
     }
 
-    const churchTax = incomeTax * churchTaxRate;
+    const churchTax = roundUpToFullCent(incomeTax * churchTaxRate);
 
     return churchTax;
   }
@@ -81,7 +83,7 @@ class TaxClient {
     };
   }
 
-  private calculateAJAHR(birthDate: Date): number {
+  private calculateAJAHR(birthDate: string): number {
     const birthDateParsed = dayjs(birthDate);
 
     const sixtyFourthBirthday = birthDateParsed.add(64, 'year');
@@ -89,7 +91,7 @@ class TaxClient {
     return sixtyFourthBirthday.year() + 1;
   }
 
-  private calculateALTER1(birthDate: Date): number {
+  private calculateALTER1(birthDate: string): number {
     const birthDateParsed = dayjs(birthDate);
 
     const sixtyFourthBirthday = birthDateParsed.add(64, 'year');
