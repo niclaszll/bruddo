@@ -7,16 +7,16 @@ import { useFormContext } from 'react-hook-form';
 
 import { InfoIcon } from './shared';
 
-export default function AgeInput() {
+export default function DobInput() {
   const form = useFormContext();
 
   return (
     <FormField
       control={form.control}
-      name="age"
+      name="dob"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Alter</FormLabel>
+          <FormLabel>Geburtsdatum</FormLabel>
           <div className="flex items-center gap-2">
             <TooltipProvider>
               <Tooltip>
@@ -35,7 +35,12 @@ export default function AgeInput() {
             <FormControl>
               <Input
                 {...field}
-                type="number"
+                type="date"
+                value={
+                  field.value instanceof Date
+                    ? field.value.toISOString().split('T')[0]
+                    : field.value
+                }
               />
             </FormControl>
           </div>

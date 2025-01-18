@@ -1,4 +1,5 @@
 import { FederalState, UserInputs } from '@/types/common';
+import dayjs from 'dayjs';
 
 import { calculateIncomeTax } from './income-tax';
 import { UserInputsClient } from './income-tax/fields/UserInputs';
@@ -21,8 +22,8 @@ class TaxClient {
 
     userInputs
       .setAF(0)
-      .setAJAHR(0) // TODO
-      .setALTER1(0) // TODO
+      .setAJAHR(this.calculateAJAHR(inputs.dob))
+      .setALTER1(this.calculateALTER1(inputs.dob))
       .setF(1)
       .setJFREIB(0)
       .setJHINZU(0)
@@ -78,6 +79,23 @@ class TaxClient {
       incomeTax,
       solidaritySurcharge,
     };
+  }
+
+  private calculateAJAHR(birthDate: Date): number {
+    const birthDateParsed = dayjs(birthDate);
+
+    const sixtyFourthBirthday = birthDateParsed.add(64, 'year');
+
+    return sixtyFourthBirthday.year() + 1;
+  }
+
+  private calculateALTER1(birthDate: Date): number {
+    const birthDateParsed = dayjs(birthDate);
+
+    const sixtyFourthBirthday = birthDateParsed.add(64, 'year');
+    const startOfYear = dayjs(`${dayjs().year()}-01-01`);
+
+    return sixtyFourthBirthday.isBefore(startOfYear) ? 1 : 0;
   }
 }
 

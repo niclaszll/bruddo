@@ -6,9 +6,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import AgeInput from './fields/age-input';
 import CalculationPeriodSelect from './fields/calculation-period-select';
 import ChurchTaxCheckbox from './fields/church-tax-checkbox';
+import DobInput from './fields/dob-input';
 import FederalStateSelect from './fields/federal-state-select ';
 import GrossIncomeInput from './fields/gross-income-input';
 import HealthInsuranceAddConInput from './fields/health-insurance-input';
@@ -22,7 +22,7 @@ const defaultValues: UserInputs = {
   federalState: FederalState.enum.BW,
   healthInsuranceAdditionalContribution: 2.5,
   churchTax: true,
-  age: 25,
+  dob: new Date(),
 };
 
 export default function SalaryForm() {
@@ -50,7 +50,7 @@ export default function SalaryForm() {
           <FederalStateSelect />
           <HealthInsuranceAddConInput />
           <ChurchTaxCheckbox />
-          <AgeInput />
+          <DobInput />
         </form>
       </Form>
       <div>

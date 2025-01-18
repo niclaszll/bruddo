@@ -33,7 +33,7 @@ export const UserInputs = z.object({
   federalState: FederalState,
   healthInsuranceAdditionalContribution: z.preprocess(Number, z.number()),
   churchTax: z.boolean(),
-  age: z.preprocess(Number, z.number()),
+  dob: z.string().pipe(z.coerce.date()),
 });
 
 export type UserInputs = z.infer<typeof UserInputs>;

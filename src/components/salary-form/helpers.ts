@@ -2,9 +2,12 @@ import SocialSecurityClient from '@/lib/social-security';
 import TaxClient from '@/lib/taxes';
 import { UserInputs } from '@/types/common';
 import { roundUpToFullCent } from '@/util/format';
+import dayjs from 'dayjs';
 
 export const getSalaryResults = (inputs: UserInputs) => {
   TaxClient.setUserInputs(inputs);
+
+  const age = dayjs(new Date()).diff(dayjs(inputs.dob), 'years');
 
   const incomeTaxResults = TaxClient.getIncomeTax();
   const churchTax = TaxClient.getChurchTax(
@@ -19,7 +22,7 @@ export const getSalaryResults = (inputs: UserInputs) => {
   const longTermInsuranceResults = SocialSecurityClient.getLongTermCareInsuranceContribution(
     inputs.grossIncome,
     0,
-    inputs.age,
+    age,
     inputs.federalState,
   );
   const pensionInsuranceResults = SocialSecurityClient.calculatePensionInsuranceContribution(
@@ -40,6 +43,7 @@ export const getSalaryResults = (inputs: UserInputs) => {
   );
 
   return {
+    age,
     incomeTaxResults,
     churchTax,
     healthInsuranceResults,
