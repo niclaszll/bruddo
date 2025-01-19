@@ -1,11 +1,14 @@
-import { FederalState } from '@/types/common';
+import { CalculationPeriod, FederalState } from '@/types/common';
 import {
   HEALTH_INSURANCE_GENERAL_RATE,
-  HEALTH_INSURANCE_INCOME_THRESHOLD,
+  HEALTH_INSURANCE_INCOME_THRESHOLD_MONTH,
+  HEALTH_INSURANCE_INCOME_THRESHOLD_YEAR,
   PENSION_INSURANCE_CONTRIBUTION_RATE,
-  PENSION_INSURANCE_INCOME_THRESHOLD,
+  PENSION_INSURANCE_INCOME_THRESHOLD_MONTH,
+  PENSION_INSURANCE_INCOME_THRESHOLD_YEAR,
   UNEMPLOYMENT_INSURANCE_CONTRIBUTION_RATE,
-  UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD,
+  UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD_MONTH,
+  UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD_YEAR,
 } from '@/util/constants';
 import { roundDownToFullCent } from '@/util/format';
 
@@ -23,10 +26,16 @@ class SocialSecurityClient {
   }
 
   public getHealthInsuranceContribution(
-    annualGrossIncome: number,
+    grossIncome: number,
     additionalContributionRate: number,
+    calculationPeriod: CalculationPeriod,
   ) {
-    const cappedIncome = Math.min(annualGrossIncome, HEALTH_INSURANCE_INCOME_THRESHOLD);
+    const threshold =
+      calculationPeriod === CalculationPeriod.enum.YEAR
+        ? HEALTH_INSURANCE_INCOME_THRESHOLD_YEAR
+        : HEALTH_INSURANCE_INCOME_THRESHOLD_MONTH;
+
+    const cappedIncome = Math.min(grossIncome, threshold);
 
     const generalContribution = roundDownToFullCent(
       (cappedIncome * HEALTH_INSURANCE_GENERAL_RATE) / 100,
@@ -51,10 +60,11 @@ class SocialSecurityClient {
   }
 
   public getLongTermCareInsuranceContribution(
-    annualGrossIncome: number,
+    grossIncome: number,
     numberOfChildren: number,
     age: number,
     federalState: FederalState,
+    calculationPeriod: CalculationPeriod,
   ) {
     const employerShareFixed = federalState === FederalState.enum.SN ? 1.3 : 1.8;
 
@@ -77,7 +87,12 @@ class SocialSecurityClient {
 
     const employeeShare = effectiveRate - employerShareFixed;
 
-    const cappedIncome = Math.min(annualGrossIncome, HEALTH_INSURANCE_INCOME_THRESHOLD);
+    const threshold =
+      calculationPeriod === CalculationPeriod.enum.YEAR
+        ? HEALTH_INSURANCE_INCOME_THRESHOLD_YEAR
+        : HEALTH_INSURANCE_INCOME_THRESHOLD_MONTH;
+
+    const cappedIncome = Math.min(grossIncome, threshold);
 
     const totalContribution = roundDownToFullCent((cappedIncome * effectiveRate) / 100);
 
@@ -91,8 +106,16 @@ class SocialSecurityClient {
     };
   }
 
-  public calculatePensionInsuranceContribution(annualGrossIncome: number) {
-    const cappedIncome = Math.min(annualGrossIncome, PENSION_INSURANCE_INCOME_THRESHOLD);
+  public calculatePensionInsuranceContribution(
+    grossIncome: number,
+    calculationPeriod: CalculationPeriod,
+  ) {
+    const threshold =
+      calculationPeriod === CalculationPeriod.enum.YEAR
+        ? PENSION_INSURANCE_INCOME_THRESHOLD_YEAR
+        : PENSION_INSURANCE_INCOME_THRESHOLD_MONTH;
+
+    const cappedIncome = Math.min(grossIncome, threshold);
 
     const totalContribution = roundDownToFullCent(
       (cappedIncome * PENSION_INSURANCE_CONTRIBUTION_RATE) / 100,
@@ -107,8 +130,16 @@ class SocialSecurityClient {
     };
   }
 
-  public calculateUnemploymentInsuranceContribution(annualGrossIncome: number) {
-    const cappedIncome = Math.min(annualGrossIncome, UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD);
+  public calculateUnemploymentInsuranceContribution(
+    annualGrossIncome: number,
+    calculationPeriod: CalculationPeriod,
+  ) {
+    const threshold =
+      calculationPeriod === CalculationPeriod.enum.YEAR
+        ? UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD_YEAR
+        : UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD_MONTH;
+
+    const cappedIncome = Math.min(annualGrossIncome, threshold);
 
     const totalContribution = roundDownToFullCent(
       (cappedIncome * UNEMPLOYMENT_INSURANCE_CONTRIBUTION_RATE) / 100,

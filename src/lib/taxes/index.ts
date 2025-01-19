@@ -1,7 +1,7 @@
 import { FederalState } from '@/types/common';
 import { UserInputs } from '@/types/form';
 import { HealthInsuranceType } from '@/types/income-tax';
-import { roundUpToFullCent } from '@/util/format';
+import { roundToFullCent } from '@/util/format';
 import dayjs from 'dayjs';
 
 import { calculateIncomeTax } from './income-tax';
@@ -20,7 +20,7 @@ class TaxClient {
     return TaxClient.#instance;
   }
 
-  public setUserInputs(inputs: UserInputs) {
+  private setUserInputs(inputs: UserInputs) {
     const userInputs = UserInputsClient.instance;
 
     userInputs
@@ -70,12 +70,14 @@ class TaxClient {
       return 0;
     }
 
-    const churchTax = roundUpToFullCent(incomeTax * churchTaxRate);
+    const churchTax = roundToFullCent(incomeTax * churchTaxRate);
 
     return churchTax;
   }
 
-  public getIncomeTax() {
+  public getIncomeTax(inputs: UserInputs) {
+    this.setUserInputs(inputs);
+
     const { incomeTax, solidaritySurcharge } = calculateIncomeTax();
 
     return {

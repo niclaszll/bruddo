@@ -1,5 +1,5 @@
 // see: https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2024-11-22-PAP-2025_anlage.pdf?__blob=publicationFile&v=2
-import { HEALTH_INSURANCE_INCOME_THRESHOLD } from '@/util/constants';
+import { HEALTH_INSURANCE_INCOME_THRESHOLD_YEAR } from '@/util/constants';
 
 import { InternalFieldsClient } from './fields/InternalFields';
 import { UserInputsClient } from './fields/UserInputs';
@@ -13,7 +13,7 @@ export const setupMPARA = () => {
 
   internalFields.BBGRV = userInputs.KRV < 1 ? 96600 : 0;
   internalFields.RVSATZAN = userInputs.KRV < 1 ? 0.093 : 0;
-  internalFields.BBGKVPV = HEALTH_INSURANCE_INCOME_THRESHOLD;
+  internalFields.BBGKVPV = HEALTH_INSURANCE_INCOME_THRESHOLD_YEAR;
   internalFields.KVSATZAN = userInputs.KVZ / 2 / 100 + 0.07;
   internalFields.KVSATZAG = 0.0125 + 0.07;
 

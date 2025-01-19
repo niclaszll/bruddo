@@ -5,11 +5,9 @@ import { roundUpToFullCent } from '@/util/format';
 import dayjs from 'dayjs';
 
 export const getSalaryResults = (inputs: UserInputs) => {
-  TaxClient.setUserInputs(inputs);
-
   const age = dayjs(new Date()).diff(dayjs(inputs.dob), 'years');
 
-  const incomeTaxResults = TaxClient.getIncomeTax();
+  const incomeTaxResults = TaxClient.getIncomeTax(inputs);
   const churchTax = TaxClient.getChurchTax(
     incomeTaxResults.incomeTax,
     inputs.federalState,
@@ -18,18 +16,24 @@ export const getSalaryResults = (inputs: UserInputs) => {
   const healthInsuranceResults = SocialSecurityClient.getHealthInsuranceContribution(
     inputs.grossIncome,
     inputs.healthInsuranceAdditionalContribution,
+    inputs.calculationPeriod,
   );
   const longTermInsuranceResults = SocialSecurityClient.getLongTermCareInsuranceContribution(
     inputs.grossIncome,
     0,
     age,
     inputs.federalState,
+    inputs.calculationPeriod,
   );
   const pensionInsuranceResults = SocialSecurityClient.calculatePensionInsuranceContribution(
     inputs.grossIncome,
+    inputs.calculationPeriod,
   );
   const unemploymentInsuranceResults =
-    SocialSecurityClient.calculateUnemploymentInsuranceContribution(inputs.grossIncome);
+    SocialSecurityClient.calculateUnemploymentInsuranceContribution(
+      inputs.grossIncome,
+      inputs.calculationPeriod,
+    );
 
   const netIncome = roundUpToFullCent(
     inputs.grossIncome -
