@@ -1,5 +1,6 @@
-import { FederalState, UserInputs } from '@/types/common';
-import { TaxClass } from '@/types/income-tax';
+import { FederalState } from '@/types/common';
+import { UserInputs } from '@/types/form';
+import { HealthInsuranceType } from '@/types/income-tax';
 import { roundUpToFullCent } from '@/util/format';
 import dayjs from 'dayjs';
 
@@ -34,12 +35,12 @@ class TaxClient {
       .setJVBEZ(0)
       .setKRV(0)
       .setKVZ(inputs.healthInsuranceAdditionalContribution)
-      .setLZZ(1)
+      .setLZZ(inputs.calculationPeriod)
       .setLZZFREIB(0)
       .setLZZHINZU(0)
       .setMBV(0)
       .setPKPV(0)
-      .setPKV(0)
+      .setPKV(HealthInsuranceType.enum.STATUTORY)
       .setPVA(0)
       .setPVS(inputs.federalState === FederalState.enum.SN ? 1 : 0)
       .setPVZ(1)
@@ -48,7 +49,7 @@ class TaxClient {
       .setSONSTB(0)
       .setSONSTENT(0)
       .setSTERBE(0)
-      .setSTKL(TaxClass[inputs.taxClass])
+      .setSTKL(inputs.taxClass)
       .setVBEZ(0)
       .setVBEZM(0)
       .setVBEZS(0)

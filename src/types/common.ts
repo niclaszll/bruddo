@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const CalculationPeriod = z.enum(['year', 'month']);
+export const CalculationPeriod = z.enum(['YEAR', 'MONTH', 'WEEK', 'DAY']);
 export type CalculationPeriod = z.infer<typeof CalculationPeriod>;
 
 export const TaxClass = z.enum(['I', 'II', 'III', 'IV', 'V', 'VI']);
@@ -25,15 +25,3 @@ export const FederalState = z.enum([
   'TH',
 ]);
 export type FederalState = z.infer<typeof FederalState>;
-
-export const UserInputs = z.object({
-  calculationPeriod: CalculationPeriod,
-  grossIncome: z.preprocess(Number, z.number()),
-  taxClass: TaxClass,
-  federalState: FederalState,
-  healthInsuranceAdditionalContribution: z.preprocess(Number, z.number()),
-  churchTax: z.boolean(),
-  dob: z.string().date(),
-});
-
-export type UserInputs = z.infer<typeof UserInputs>;

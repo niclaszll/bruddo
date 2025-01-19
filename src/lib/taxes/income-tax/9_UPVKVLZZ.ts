@@ -29,7 +29,10 @@ export const calculateUPVKV = () => {
   const internalFields = InternalFieldsClient.instance;
   const userInputs = UserInputsClient.instance;
 
-  if (userInputs.PKV > HealthInsuranceType.STATUTORY) {
+  if (
+    userInputs.PKV === HealthInsuranceType.enum.PRIVATE_NO_CONTRIB ||
+    userInputs.PKV === HealthInsuranceType.enum.PRIVATE_WITH_CONTRIB
+  ) {
     internalFields.VKV = 0;
   } else {
     internalFields.VKV = Math.max(internalFields.VSP2, internalFields.VSP3) * 100;

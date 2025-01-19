@@ -1,7 +1,8 @@
 'use client';
 
 import { Form } from '@/components/ui/form';
-import { CalculationPeriod, FederalState, TaxClass, UserInputs } from '@/types/common';
+import { CalculationPeriod, FederalState, TaxClass } from '@/types/common';
+import { UserInputs } from '@/types/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -13,10 +14,10 @@ import FederalStateSelect from './fields/federal-state-select';
 import GrossIncomeInput from './fields/gross-income-input';
 import HealthInsuranceAddConInput from './fields/health-insurance-input';
 import TaxClassSelect from './fields/tax-class-select';
-import { getSalaryResults } from './helpers';
+import { getSalaryResults } from './utils';
 
 const defaultValues: UserInputs = {
-  calculationPeriod: CalculationPeriod.enum.year,
+  calculationPeriod: CalculationPeriod.enum.YEAR,
   grossIncome: 50000,
   taxClass: TaxClass.enum.I,
   federalState: FederalState.enum.BW,

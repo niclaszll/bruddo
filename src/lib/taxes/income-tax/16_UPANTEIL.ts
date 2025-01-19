@@ -1,4 +1,4 @@
-import { SalaryPaymentPeriod } from '@/types/income-tax';
+import { CalculationPeriod } from '@/types/common';
 import { roundDownToFullCent } from '@/util/format';
 
 import { InternalFieldsClient } from './fields/InternalFields';
@@ -13,16 +13,16 @@ export const calculateUPANTEIL = () => {
   const userInputs = UserInputsClient.instance;
 
   switch (userInputs.LZZ) {
-    case SalaryPaymentPeriod.YEAR:
+    case CalculationPeriod.enum.YEAR:
       internalFields.ANTEIL1 = internalFields.JW;
       break;
-    case SalaryPaymentPeriod.MONTH:
+    case CalculationPeriod.enum.MONTH:
       internalFields.ANTEIL1 = roundDownToFullCent(internalFields.JW / 12);
       break;
-    case SalaryPaymentPeriod.WEEK:
+    case CalculationPeriod.enum.WEEK:
       internalFields.ANTEIL1 = roundDownToFullCent((internalFields.JW * 7) / 360);
       break;
-    case SalaryPaymentPeriod.DAY:
+    case CalculationPeriod.enum.DAY:
       internalFields.ANTEIL1 = roundDownToFullCent(internalFields.JW / 360);
       break;
   }

@@ -14,7 +14,7 @@ import { useFormContext } from 'react-hook-form';
 
 import { InfoIcon } from './shared';
 
-const CALCULATION_PERIOD_OPTIONS = [CalculationPeriod.enum.year, CalculationPeriod.enum.month];
+const CALCULATION_PERIOD_OPTIONS = [CalculationPeriod.enum.YEAR, CalculationPeriod.enum.MONTH];
 
 export default function CalculationPeriodSelect() {
   const form = useFormContext();

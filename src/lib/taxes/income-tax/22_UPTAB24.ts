@@ -1,6 +1,7 @@
 import { roundDownToFullEuro } from '@/util/format';
 
 import { InternalFieldsClient } from './fields/InternalFields';
+import { getIncomeTaxTariffTypeFactor } from './utils';
 
 /**
  * UPTAB24 - Tarifliche Einkommensteuer (§ 32a EStG)
@@ -27,5 +28,5 @@ export const calculateUPTAB24 = () => {
     internalFields.ST = roundDownToFullEuro(internalFields.X * 0.45 - 18971.06);
   }
 
-  internalFields.ST = internalFields.ST * internalFields.KZTAB;
+  internalFields.ST = internalFields.ST * getIncomeTaxTariffTypeFactor(internalFields.KZTAB);
 };

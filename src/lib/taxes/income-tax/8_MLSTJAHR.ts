@@ -1,4 +1,4 @@
-import { TaxClass } from '@/types/income-tax';
+import { TaxClass } from '@/types/common';
 import { roundDownToFullEuro } from '@/util/format';
 
 import { calculateUPEVP } from './11_UPEVP';
@@ -6,6 +6,7 @@ import { calculateMST5_6 } from './13_MST5-6';
 import { calculateUPTAB24 } from './22_UPTAB24';
 import { InternalFieldsClient } from './fields/InternalFields';
 import { UserInputsClient } from './fields/UserInputs';
+import { getIncomeTaxTariffTypeFactor } from './utils';
 
 /**
  * MLSTJAHR - Ermittlung der Jahreslohnsteuer
@@ -32,10 +33,17 @@ export const calculateUPMLST = () => {
     internalFields.ZVE = 0;
     internalFields.X = 0;
   } else {
-    roundDownToFullEuro((internalFields.X = internalFields.ZVE / internalFields.KZTAB));
+    roundDownToFullEuro(
+      (internalFields.X = internalFields.ZVE / getIncomeTaxTariffTypeFactor(internalFields.KZTAB)),
+    );
   }
 
-  if (userInputs.STKL < TaxClass.V) {
+  // STKL < V
+  if (
+    (
+      [TaxClass.enum.I, TaxClass.enum.II, TaxClass.enum.III, TaxClass.enum.IV] as TaxClass[]
+    ).includes(userInputs.STKL)
+  ) {
     // UPTAB24
     calculateUPTAB24();
   } else {

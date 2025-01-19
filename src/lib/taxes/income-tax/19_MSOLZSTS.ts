@@ -1,10 +1,11 @@
-import { TaxClass } from '@/types/income-tax';
+import { TaxClass } from '@/types/common';
 import { roundDownToFullCent, roundDownToFullEuro } from '@/util/format';
 
 import { calculateMST5_6 } from './13_MST5-6';
 import { calculateUPTAB24 } from './22_UPTAB24';
 import { InternalFieldsClient } from './fields/InternalFields';
 import { UserInputsClient } from './fields/UserInputs';
+import { getIncomeTaxTariffTypeFactor } from './utils';
 
 /**
  * MSOLZSTS - Berechnung des SolZ auf sonstige Bezüge
@@ -20,10 +21,17 @@ export const calculateMSOLZSTS = () => {
     internalFields.SOLZSZVE = 0;
     internalFields.X = 0;
   } else {
-    internalFields.X = roundDownToFullEuro(internalFields.SOLZSZVE / internalFields.KZTAB);
+    internalFields.X = roundDownToFullEuro(
+      internalFields.SOLZSZVE / getIncomeTaxTariffTypeFactor(internalFields.KZTAB),
+    );
   }
 
-  if (userInputs.STKL < TaxClass.V) {
+  // STKL < 5
+  if (
+    (
+      [TaxClass.enum.I, TaxClass.enum.II, TaxClass.enum.III, TaxClass.enum.IV] as TaxClass[]
+    ).includes(userInputs.STKL)
+  ) {
     // UPTAB24
     calculateUPTAB24();
   } else {

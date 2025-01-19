@@ -1,6 +1,6 @@
 import SocialSecurityClient from '@/lib/social-security';
 import TaxClient from '@/lib/taxes';
-import { UserInputs } from '@/types/common';
+import { UserInputs } from '@/types/form';
 import { roundUpToFullCent } from '@/util/format';
 import dayjs from 'dayjs';
 

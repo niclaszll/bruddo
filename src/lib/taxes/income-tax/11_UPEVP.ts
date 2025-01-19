@@ -1,4 +1,4 @@
-import { TaxClass } from '@/types/income-tax';
+import { TaxClass } from '@/types/common';
 import { roundDownToFullEuro } from '@/util/format';
 
 import { calculateMVSP } from './12_MVSP';
@@ -21,7 +21,7 @@ export const calculateUPEVP = () => {
   }
 
   internalFields.VSP2 = 0.12 * internalFields.ZRE4VP;
-  internalFields.VHB = userInputs.STKL === TaxClass.III ? 3000 : 1900;
+  internalFields.VHB = userInputs.STKL === TaxClass.enum.III ? 3000 : 1900;
   internalFields.VSP2 = Math.min(internalFields.VSP2, internalFields.VHB);
   internalFields.VSPN = roundDownToFullEuro(internalFields.VSP1 + internalFields.VSP2);
 

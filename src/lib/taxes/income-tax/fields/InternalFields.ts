@@ -457,8 +457,8 @@ export class InternalFieldsClient {
 
   /**
    * KZTAB - Kennzahl für die Einkommensteuer-Tarifarten:
-   *          - 1 = Grundtarif
-   *          - 2 = Splittingverfahren
+   *          - BASIC = Grundtarif
+   *          - SPLITTING = Splittingverfahren
    */
   get KZTAB() {
     if (this._KZTAB === undefined) throw new Error('KZTAB is not set');

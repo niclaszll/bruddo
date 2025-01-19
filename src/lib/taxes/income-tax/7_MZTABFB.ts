@@ -1,4 +1,5 @@
-import { IncomeTaxTariffType, TaxClass } from '@/types/income-tax';
+import { TaxClass } from '@/types/common';
+import { IncomeTaxTariffType } from '@/types/income-tax';
 import { roundUpToFullEuro } from '@/util/format';
 
 import { InternalFieldsClient } from './fields/InternalFields';
@@ -21,7 +22,8 @@ export const calculateMZTABFB = () => {
     internalFields.FVBZ = Math.min(internalFields.ZVBEZ, internalFields.FVBZ);
   }
 
-  if (userInputs.STKL < TaxClass.VI) {
+  // STKL < VI
+  if (userInputs.STKL !== TaxClass.enum.VI) {
     if (internalFields.ZVBEZ > 0) {
       if (internalFields.ZVBEZ - internalFields.FVBZ < 102) {
         internalFields.ANP = roundUpToFullEuro(internalFields.ZVBEZ - internalFields.FVBZ);
@@ -38,7 +40,7 @@ export const calculateMZTABFB = () => {
    * Festlegung Arbeitnehmer-Pauschbetrag für aktiven Lohn
    * mit möglicher Begrenzung
    */
-  if (userInputs.STKL < TaxClass.VI && internalFields.ZRE4 > internalFields.ZVBEZ) {
+  if (userInputs.STKL !== TaxClass.enum.VI && internalFields.ZRE4 > internalFields.ZVBEZ) {
     if (internalFields.ZRE4 - internalFields.ZVBEZ < 1230) {
       internalFields.ANP = roundUpToFullEuro(
         internalFields.ANP + internalFields.ZRE4 - internalFields.ZVBEZ,
@@ -48,30 +50,30 @@ export const calculateMZTABFB = () => {
     }
   }
 
-  internalFields.KZTAB = IncomeTaxTariffType.BASIC;
+  internalFields.KZTAB = IncomeTaxTariffType.enum.BASIC;
 
-  internalFields.SAP = userInputs.STKL !== TaxClass.VI ? 36 : 0;
+  internalFields.SAP = userInputs.STKL !== TaxClass.enum.VI ? 36 : 0;
 
   // not part of plan, but needs a default
   internalFields.EFA = 0;
 
   switch (userInputs.STKL) {
-    case TaxClass.I:
+    case TaxClass.enum.I:
       internalFields.KFB = userInputs.ZKF * 9540;
       break;
-    case TaxClass.II:
+    case TaxClass.enum.II:
       internalFields.KFB = userInputs.ZKF * 9540;
       internalFields.EFA = 4260;
       break;
-    case TaxClass.III:
+    case TaxClass.enum.III:
       internalFields.KFB = userInputs.ZKF * 9540;
-      internalFields.KZTAB = IncomeTaxTariffType.SPLITTING;
+      internalFields.KZTAB = IncomeTaxTariffType.enum.SPLITTING;
       break;
-    case TaxClass.IV:
+    case TaxClass.enum.IV:
       internalFields.KFB = userInputs.ZKF * 4770;
       break;
-    case TaxClass.V:
-    case TaxClass.VI:
+    case TaxClass.enum.V:
+    case TaxClass.enum.VI:
       internalFields.KFB = 0;
       break;
   }

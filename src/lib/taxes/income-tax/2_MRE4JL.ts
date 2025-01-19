@@ -1,4 +1,4 @@
-import { SalaryPaymentPeriod } from '@/types/income-tax';
+import { CalculationPeriod } from '@/types/common';
 
 import { InternalFieldsClient } from './fields/InternalFields';
 import { UserInputsClient } from './fields/UserInputs';
@@ -13,17 +13,17 @@ export const calculateMRE4JL = () => {
   /**
    * Factors to multiply input values with to get yearly values
    */
-  const salaryPaymentPeriodFactors = {
-    [SalaryPaymentPeriod.YEAR]: 1,
-    [SalaryPaymentPeriod.MONTH]: 12,
-    [SalaryPaymentPeriod.WEEK]: 360 / 7,
-    [SalaryPaymentPeriod.DAY]: 360,
+  const calculationPeriodFactors = {
+    [CalculationPeriod.enum.YEAR]: 1,
+    [CalculationPeriod.enum.MONTH]: 12,
+    [CalculationPeriod.enum.WEEK]: 360 / 7,
+    [CalculationPeriod.enum.DAY]: 360,
   };
 
-  internalFields.ZRE4J = (userInputs.RE4 * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
-  internalFields.ZVBEZJ = (userInputs.VBEZ * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
-  internalFields.JLFREIB = (userInputs.LZZFREIB * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
-  internalFields.JLHINZU = (userInputs.LZZHINZU * salaryPaymentPeriodFactors[userInputs.LZZ]) / 100;
+  internalFields.ZRE4J = (userInputs.RE4 * calculationPeriodFactors[userInputs.LZZ]) / 100;
+  internalFields.ZVBEZJ = (userInputs.VBEZ * calculationPeriodFactors[userInputs.LZZ]) / 100;
+  internalFields.JLFREIB = (userInputs.LZZFREIB * calculationPeriodFactors[userInputs.LZZ]) / 100;
+  internalFields.JLHINZU = (userInputs.LZZHINZU * calculationPeriodFactors[userInputs.LZZ]) / 100;
 
   if (userInputs.AF === 0) {
     userInputs.setF(1);

@@ -1,4 +1,5 @@
-import { HealthInsuranceType, SalaryPaymentPeriod, TaxClass } from '@/types/income-tax';
+import { CalculationPeriod, TaxClass } from '@/types/common';
+import { HealthInsuranceType } from '@/types/income-tax';
 import { toFixedFloat } from '@/util/format';
 
 export class UserInputsClient {
@@ -15,7 +16,7 @@ export class UserInputsClient {
   private _JVBEZ?: number;
   private _KRV?: number;
   private _KVZ?: number;
-  private _LZZ?: SalaryPaymentPeriod;
+  private _LZZ?: CalculationPeriod;
   private _LZZFREIB?: number;
   private _LZZHINZU?: number;
   private _MBV?: number;
@@ -205,7 +206,7 @@ export class UserInputsClient {
     return this._LZZ;
   }
 
-  public setLZZ(value: SalaryPaymentPeriod): this {
+  public setLZZ(value: CalculationPeriod): this {
     this._LZZ = value;
     return this;
   }

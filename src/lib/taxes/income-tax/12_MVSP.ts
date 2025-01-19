@@ -1,4 +1,5 @@
-import { HealthInsuranceType, TaxClass } from '@/types/income-tax';
+import { TaxClass } from '@/types/common';
+import { HealthInsuranceType } from '@/types/income-tax';
 import { roundUpToFullEuro } from '@/util/format';
 
 import { InternalFieldsClient } from './fields/InternalFields';
@@ -13,13 +14,16 @@ export const calculateMVSP = () => {
 
   internalFields.ZRE4VP = Math.min(internalFields.ZRE4VP, internalFields.BBGKVPV);
 
-  if (userInputs.PKV > HealthInsuranceType.STATUTORY) {
-    if (userInputs.STKL === TaxClass.VI) {
+  if (
+    userInputs.PKV === HealthInsuranceType.enum.PRIVATE_NO_CONTRIB ||
+    userInputs.PKV === HealthInsuranceType.enum.PRIVATE_WITH_CONTRIB
+  ) {
+    if (userInputs.STKL === TaxClass.enum.VI) {
       internalFields.VSP3 = 0;
     } else {
       internalFields.VSP3 = (userInputs.PKPV * 12) / 100;
 
-      if (userInputs.PKV === HealthInsuranceType.PRIVATE_WITH_CONTRIB) {
+      if (userInputs.PKV === HealthInsuranceType.enum.PRIVATE_WITH_CONTRIB) {
         internalFields.VSP3 =
           internalFields.VSP3 -
           internalFields.ZRE4VP * (internalFields.KVSATZAG + internalFields.PVSATZAG);

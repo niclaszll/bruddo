@@ -1,4 +1,4 @@
-import { SalaryPaymentPeriod } from '@/types/income-tax';
+import { CalculationPeriod } from '@/types/common';
 import { roundUpToFullCent, roundUpToFullEuro } from '@/util/format';
 
 import { calculateMRE4ALTE } from './4_MRE4ALTE';
@@ -26,7 +26,7 @@ export const calculateMRE4 = () => {
       internalFields.J = 54;
     }
 
-    if (userInputs.LZZ === SalaryPaymentPeriod.YEAR) {
+    if (userInputs.LZZ === CalculationPeriod.enum.YEAR) {
       internalFields.VBEZB = userInputs.VBEZM * userInputs.ZMVB + userInputs.VBEZS;
       internalFields.HFVB = roundUpToFullEuro(
         (internalFields.getTAB2(internalFields.J) / 12) * userInputs.ZMVB,
