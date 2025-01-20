@@ -10,6 +10,9 @@ export const UserInputs = z.object({
   healthInsuranceAdditionalContribution: z.preprocess(Number, z.number()),
   churchTax: z.boolean(),
   dob: z.string().date(),
+  numChildren: z.preprocess(Number, z.number().min(0).max(5)),
+  childAllowances: z.preprocess(Number, z.number().min(0).max(10)),
+  longTermCareInsuranceSurcharge: z.boolean(),
 });
 
 export type UserInputs = z.infer<typeof UserInputs>;

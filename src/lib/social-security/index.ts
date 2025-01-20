@@ -10,7 +10,7 @@ import {
   UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD_MONTH,
   UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD_YEAR,
 } from '@/util/constants';
-import { roundDownToFullCent } from '@/util/format';
+import { roundToFullCent } from '@/util/format';
 
 class SocialSecurityClient {
   static #instance: SocialSecurityClient;
@@ -37,18 +37,18 @@ class SocialSecurityClient {
 
     const cappedIncome = Math.min(grossIncome, threshold);
 
-    const generalContribution = roundDownToFullCent(
+    const generalContribution = roundToFullCent(
       (cappedIncome * HEALTH_INSURANCE_GENERAL_RATE) / 100,
     );
 
-    const additionalContribution = roundDownToFullCent(
+    const additionalContribution = roundToFullCent(
       (cappedIncome * additionalContributionRate) / 100,
     );
 
-    const totalContribution = roundDownToFullCent(generalContribution + additionalContribution);
+    const totalContribution = roundToFullCent(generalContribution + additionalContribution);
 
-    const employeeContribution = roundDownToFullCent(totalContribution / 2);
-    const employerContribution = roundDownToFullCent(totalContribution / 2);
+    const employeeContribution = roundToFullCent(totalContribution / 2);
+    const employerContribution = roundToFullCent(totalContribution / 2);
 
     return {
       totalContribution,
@@ -94,10 +94,10 @@ class SocialSecurityClient {
 
     const cappedIncome = Math.min(grossIncome, threshold);
 
-    const totalContribution = roundDownToFullCent((cappedIncome * effectiveRate) / 100);
+    const totalContribution = roundToFullCent((cappedIncome * effectiveRate) / 100);
 
-    const employeeContribution = roundDownToFullCent((cappedIncome * employeeShare) / 100);
-    const employerContribution = roundDownToFullCent((cappedIncome * employerShareFixed) / 100);
+    const employeeContribution = roundToFullCent((cappedIncome * employeeShare) / 100);
+    const employerContribution = roundToFullCent((cappedIncome * employerShareFixed) / 100);
 
     return {
       totalContribution,
@@ -117,7 +117,7 @@ class SocialSecurityClient {
 
     const cappedIncome = Math.min(grossIncome, threshold);
 
-    const totalContribution = roundDownToFullCent(
+    const totalContribution = roundToFullCent(
       (cappedIncome * PENSION_INSURANCE_CONTRIBUTION_RATE) / 100,
     );
     const employeeContribution = totalContribution / 2;
@@ -141,7 +141,7 @@ class SocialSecurityClient {
 
     const cappedIncome = Math.min(annualGrossIncome, threshold);
 
-    const totalContribution = roundDownToFullCent(
+    const totalContribution = roundToFullCent(
       (cappedIncome * UNEMPLOYMENT_INSURANCE_CONTRIBUTION_RATE) / 100,
     );
     const employeeContribution = totalContribution / 2;

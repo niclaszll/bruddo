@@ -20,12 +20,12 @@ export const calculateIncomeTax = () => {
   calculateMSONST();
 
   return {
-    // BK: internalFields.BK,
-    // BKS: internalFields.BKS,
-    // SOLZS: internalFields.SOLZS,
-    // STS: internalFields.STS,
-    // VKVLZZ: internalFields.VKVLZZ,
-    // VKVSONST: internalFields.VKVSONST,
+    churchTaxAssessmentBasis: internalFields.BK / 100,
+    BKS: internalFields.BKS,
+    SOLZS: internalFields.SOLZS,
+    STS: internalFields.STS,
+    VKVLZZ: internalFields.VKVLZZ,
+    VKVSONST: internalFields.VKVSONST,
     incomeTax: internalFields.LSTLZZ / 100,
     solidaritySurcharge: internalFields.SOLZLZZ / 100,
   };

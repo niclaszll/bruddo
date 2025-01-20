@@ -9,7 +9,7 @@ export const getSalaryResults = (inputs: UserInputs) => {
 
   const incomeTaxResults = TaxClient.getIncomeTax(inputs);
   const churchTax = TaxClient.getChurchTax(
-    incomeTaxResults.incomeTax,
+    incomeTaxResults.churchTaxAssessmentBasis,
     inputs.federalState,
     inputs.churchTax,
   );
@@ -20,7 +20,7 @@ export const getSalaryResults = (inputs: UserInputs) => {
   );
   const longTermInsuranceResults = SocialSecurityClient.getLongTermCareInsuranceContribution(
     inputs.grossIncome,
-    0,
+    inputs.numChildren,
     age,
     inputs.federalState,
     inputs.calculationPeriod,

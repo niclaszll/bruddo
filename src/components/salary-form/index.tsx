@@ -8,11 +8,14 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import CalculationPeriodSelect from './fields/calculation-period-select';
+import ChildAllowancesSelect from './fields/child-allowances-select';
 import ChurchTaxCheckbox from './fields/church-tax-checkbox';
 import DobInput from './fields/dob-input';
 import FederalStateSelect from './fields/federal-state-select';
 import GrossIncomeInput from './fields/gross-income-input';
 import HealthInsuranceAddConInput from './fields/health-insurance-input';
+import LongTermCareInsuranceSurchargeCheckbox from './fields/long-term-care-insurance-surcharge-checkbox';
+import NumberOfChildrenSelect from './fields/number-children-select';
 import TaxClassSelect from './fields/tax-class-select';
 import { getSalaryResults } from './utils';
 
@@ -24,6 +27,9 @@ const defaultValues: UserInputs = {
   healthInsuranceAdditionalContribution: 2.5,
   churchTax: true,
   dob: new Date().toISOString().split('T')[0],
+  numChildren: 0,
+  childAllowances: 0,
+  longTermCareInsuranceSurcharge: false,
 };
 
 export default function SalaryForm() {
@@ -34,6 +40,10 @@ export default function SalaryForm() {
   });
 
   function onSubmit(data: UserInputs) {
+    const surcharge = form.watch('longTermCareInsuranceSurcharge');
+
+    if (surcharge && data.numChildren !== 1) form.setValue('numChildren', 1);
+
     setResults(getSalaryResults(data));
   }
 
@@ -52,6 +62,9 @@ export default function SalaryForm() {
           <HealthInsuranceAddConInput />
           <ChurchTaxCheckbox />
           <DobInput />
+          <LongTermCareInsuranceSurchargeCheckbox />
+          <NumberOfChildrenSelect />
+          <ChildAllowancesSelect />
         </form>
       </Form>
       <div>

@@ -41,9 +41,9 @@ class TaxClient {
       .setMBV(0)
       .setPKPV(0)
       .setPKV(HealthInsuranceType.enum.STATUTORY)
-      .setPVA(0)
+      .setPVA(this.calculatePVA(inputs.numChildren))
       .setPVS(inputs.federalState === FederalState.enum.SN ? 1 : 0)
-      .setPVZ(1)
+      .setPVZ(inputs.longTermCareInsuranceSurcharge ? 1 : 0)
       .setR(inputs.churchTax ? 1 : 0)
       .setRE4(inputs.grossIncome * 100)
       .setSONSTB(0)
@@ -55,7 +55,7 @@ class TaxClient {
       .setVBEZS(0)
       .setVBS(0)
       .setVJAHR(0)
-      .setZKF(0)
+      .setZKF(inputs.childAllowances)
       .setZMVB(0);
   }
 
@@ -78,11 +78,12 @@ class TaxClient {
   public getIncomeTax(inputs: UserInputs) {
     this.setUserInputs(inputs);
 
-    const { incomeTax, solidaritySurcharge } = calculateIncomeTax();
+    const { incomeTax, solidaritySurcharge, churchTaxAssessmentBasis } = calculateIncomeTax();
 
     return {
       incomeTax,
       solidaritySurcharge,
+      churchTaxAssessmentBasis,
     };
   }
 
@@ -101,6 +102,16 @@ class TaxClient {
     const startOfYear = dayjs(`${dayjs().year()}-01-01`);
 
     return sixtyFourthBirthday.isBefore(startOfYear) ? 1 : 0;
+  }
+
+  private calculatePVA(numChildren: number): number {
+    if (numChildren <= 1) {
+      return 0;
+    }
+
+    const res = Math.min(numChildren - 1, 4);
+    console.log(res);
+    return res;
   }
 }
 
