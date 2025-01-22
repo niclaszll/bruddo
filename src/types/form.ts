@@ -12,7 +12,7 @@ export const UserInputs = z.object({
   dob: z.string().date(),
   numChildren: z.preprocess(Number, z.number().min(0).max(5)),
   childAllowances: z.preprocess(Number, z.number().min(0).max(10)),
-  longTermCareInsuranceSurcharge: z.boolean(),
+  nursingCareInsuranceSurcharge: z.boolean(),
 });
 
 export type UserInputs = z.infer<typeof UserInputs>;
