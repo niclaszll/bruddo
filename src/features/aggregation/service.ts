@@ -6,7 +6,7 @@ import { roundToFullCent } from '@/util/format';
 
 import { calculateUserAge } from './util';
 
-type EmployeeResults = {
+export type EmployeeResults = {
   grossIncome: number;
   taxes: {
     incomeTax: number;
@@ -20,6 +20,16 @@ type EmployeeResults = {
     unemploymentInsurance: number;
   };
   netIncome: number;
+};
+
+export type EmployerResults = {
+  grossIncome: number;
+  socialSecurity: {
+    healthInsurance: number;
+    nursingCareInsurance: number;
+    pensionInsurance: number;
+    unemploymentInsurance: number;
+  };
 };
 
 type NetIncomeCalculationParams = Omit<EmployeeResults, 'netIncome'>;
@@ -129,7 +139,21 @@ class AggregationService {
     };
   }
 
-  // TODO: get results for employer
+  public getAggregatedResultsForEmployer(inputs: UserInputs): EmployerResults {
+    const socialSecurityContributions = this.calculateSocialSecurityContributions(inputs);
+
+    return {
+      grossIncome: inputs.grossIncome,
+      socialSecurity: {
+        healthInsurance: socialSecurityContributions.healthInsuranceResults.employerContribution,
+        nursingCareInsurance:
+          socialSecurityContributions.nursingCareInsuranceResults.employerContribution,
+        pensionInsurance: socialSecurityContributions.pensionInsuranceResults.employerContribution,
+        unemploymentInsurance:
+          socialSecurityContributions.unemploymentInsuranceResults.employerContribution,
+      },
+    };
+  }
 }
 
 export default AggregationService.instance;

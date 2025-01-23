@@ -1,7 +1,10 @@
 'use client';
 
 import { Form } from '@/components/ui/form';
-import AggregationService from '@/features/aggregation/service';
+import AggregationService, {
+  EmployeeResults,
+  EmployerResults,
+} from '@/features/aggregation/service';
 import { CalculationPeriod, FederalState, TaxClass } from '@/types/common';
 import { UserInputs } from '@/types/form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -26,33 +29,41 @@ const defaultValues: UserInputs = {
   federalState: FederalState.enum.BW,
   healthInsuranceAdditionalContribution: 2.5,
   churchTax: true,
-  dob: new Date().toISOString().split('T')[0],
+  dob: '2000-01-01',
   numChildren: 0,
   childAllowances: 0,
-  nursingCareInsuranceSurcharge: false,
+  nursingCareInsuranceSurcharge: true,
 };
 
 export default function SalaryForm() {
-  const [results, setResults] = React.useState<object | null>(null);
+  const [employeeResults, setEmployeeResults] = React.useState<EmployeeResults | null>(null);
+  const [employerResults, setEmployerResults] = React.useState<EmployerResults | null>(null);
   const form = useForm<UserInputs>({
     resolver: zodResolver(UserInputs),
     defaultValues,
   });
 
-  function onSubmit(data: UserInputs) {
-    const surcharge = form.watch('nursingCareInsuranceSurcharge');
+  const getResults = React.useCallback(
+    (data: UserInputs) => {
+      const surcharge = form.watch('nursingCareInsuranceSurcharge');
+      if (surcharge && data.numChildren !== 0) form.setValue('numChildren', 0);
 
-    if (surcharge && data.numChildren !== 1) form.setValue('numChildren', 1);
+      setEmployeeResults(AggregationService.getAggregatedResultsForEmployee(data));
+      setEmployerResults(AggregationService.getAggregatedResultsForEmployer(data));
+    },
+    [form],
+  );
 
-    setResults(AggregationService.getAggregatedResultsForEmployee(data));
-  }
+  React.useEffect(() => {
+    getResults(form.getValues());
+  }, [form, getResults]);
 
   return (
     <div className="max-w-6xl space-y-4 mx-auto flex flex-wrap gap-12 justify-center">
       <Form {...form}>
         <form
-          onChange={form.handleSubmit(onSubmit)}
-          onSubmit={form.handleSubmit(onSubmit)}
+          onChange={form.handleSubmit(getResults)}
+          onSubmit={form.handleSubmit(getResults)}
           className="flex flex-col gap-4"
         >
           <CalculationPeriodSelect />
@@ -68,7 +79,10 @@ export default function SalaryForm() {
         </form>
       </Form>
       <div>
-        <pre>{JSON.stringify(results, null, 4)}</pre>
+        <h2>Employee Results</h2>
+        <pre>{JSON.stringify(employeeResults, null, 4)}</pre>
+        <h2>Employer Results</h2>
+        <pre>{JSON.stringify(employerResults, null, 4)}</pre>
       </div>
     </div>
   );

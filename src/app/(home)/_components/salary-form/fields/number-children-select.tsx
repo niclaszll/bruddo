@@ -44,7 +44,7 @@ export default function NumberOfChildrenSelect() {
             <Select
               {...field}
               onValueChange={field.onChange}
-              defaultValue={field.value}
+              value={(field.value as number).toString()}
               disabled={isDisabled}
             >
               <FormControl>

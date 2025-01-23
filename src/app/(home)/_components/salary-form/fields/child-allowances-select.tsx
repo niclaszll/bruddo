@@ -43,7 +43,7 @@ export default function ChildAllowancesSelect() {
             <Select
               {...field}
               onValueChange={field.onChange}
-              defaultValue={field.value}
+              value={(field.value as number).toString()}
             >
               <FormControl>
                 <SelectTrigger>
