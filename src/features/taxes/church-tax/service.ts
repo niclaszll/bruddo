@@ -1,3 +1,5 @@
+'server only';
+
 import { FederalState } from '@/types/common';
 import { roundToFullCent } from '@/util/format';
 

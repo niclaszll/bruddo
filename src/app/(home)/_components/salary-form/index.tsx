@@ -1,16 +1,14 @@
 'use client';
 
 import { Form } from '@/components/ui/form';
-import AggregationService, {
-  EmployeeResults,
-  EmployerResults,
-} from '@/features/aggregation/service';
+import { useToast } from '@/hooks/shadcn/use-toast';
 import { CalculationPeriod, FederalState, TaxClass } from '@/types/common';
 import { UserInputs } from '@/types/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
+import React, { startTransition, useActionState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { onSubmitAction } from './actions';
 import CalculationPeriodSelect from './fields/calculation-period-select';
 import ChildAllowancesSelect from './fields/child-allowances-select';
 import ChurchTaxCheckbox from './fields/church-tax-checkbox';
@@ -36,34 +34,55 @@ const defaultValues: UserInputs = {
 };
 
 export default function SalaryForm() {
-  const [employeeResults, setEmployeeResults] = React.useState<EmployeeResults | null>(null);
-  const [employerResults, setEmployerResults] = React.useState<EmployerResults | null>(null);
+  const { toast } = useToast();
+  const [state, formAction] = useActionState(onSubmitAction, {
+    error: false,
+    employeeResults: undefined,
+    employerResults: undefined,
+  });
+
   const form = useForm<UserInputs>({
     resolver: zodResolver(UserInputs),
     defaultValues,
   });
 
-  const getResults = React.useCallback(
-    (data: UserInputs) => {
-      const surcharge = form.watch('nursingCareInsuranceSurcharge');
-      if (surcharge && data.numChildren !== 0) form.setValue('numChildren', 0);
+  const formRef = useRef<HTMLFormElement>(null);
 
-      setEmployeeResults(AggregationService.getAggregatedResultsForEmployee(data));
-      setEmployerResults(AggregationService.getAggregatedResultsForEmployer(data));
-    },
-    [form],
-  );
+  const handleFieldDependencies = (data: UserInputs) => {
+    const surcharge = form.watch('nursingCareInsuranceSurcharge');
+    if (surcharge && data.numChildren !== 0) form.setValue('numChildren', 0);
+  };
 
-  React.useEffect(() => {
-    getResults(form.getValues());
-  }, [form, getResults]);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    form.handleSubmit(() => {
+      handleFieldDependencies(form.getValues());
+      startTransition(() => formAction(new FormData(formRef.current!)));
+    })(e);
+  };
+
+  useEffect(() => {
+    formRef.current?.requestSubmit();
+  }, [form]);
+
+  useEffect(() => {
+    if (state.error) {
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.',
+      });
+    }
+  }, [state, toast]);
 
   return (
     <div className="max-w-6xl space-y-4 mx-auto flex flex-wrap gap-12 justify-center">
       <Form {...form}>
         <form
-          onChange={form.handleSubmit(getResults)}
-          onSubmit={form.handleSubmit(getResults)}
+          ref={formRef}
+          action={formAction}
+          onSubmit={handleSubmit}
+          onChange={handleSubmit}
           className="flex flex-col gap-4"
         >
           <CalculationPeriodSelect />
@@ -80,9 +99,9 @@ export default function SalaryForm() {
       </Form>
       <div>
         <h2>Employee Results</h2>
-        <pre>{JSON.stringify(employeeResults, null, 4)}</pre>
+        <pre>{JSON.stringify(state.employeeResults, null, 4)}</pre>
         <h2>Employer Results</h2>
-        <pre>{JSON.stringify(employerResults, null, 4)}</pre>
+        <pre>{JSON.stringify(state.employerResults, null, 4)}</pre>
       </div>
     </div>
   );

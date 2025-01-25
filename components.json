@@ -15,7 +15,7 @@
     "utils": "@/util/tailwind",
     "ui": "@/components/ui",
     "lib": "@/lib",
-    "hooks": "@/hooks"
+    "hooks": "@/hooks/shadcn"
   },
   "iconLibrary": "lucide"
 }

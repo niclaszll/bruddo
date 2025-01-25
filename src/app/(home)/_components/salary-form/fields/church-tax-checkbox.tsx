@@ -34,6 +34,7 @@ export default function ChurchTaxCheckbox() {
             </TooltipProvider>
             <FormControl>
               <Checkbox
+                {...field}
                 checked={field.value}
                 onCheckedChange={field.onChange}
               />

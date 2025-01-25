@@ -1,3 +1,5 @@
+'server only';
+
 import { FederalState } from '@/types/common';
 import { UserInputs } from '@/types/form';
 import { HealthInsuranceType } from '@/types/income-tax';

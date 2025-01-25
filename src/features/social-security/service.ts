@@ -1,3 +1,5 @@
+'server only';
+
 import { CalculationPeriod, FederalState } from '@/types/common';
 import {
   HEALTH_INSURANCE_GENERAL_RATE,

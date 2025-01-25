@@ -1,3 +1,5 @@
+'server only';
+
 import SocialSecurityService from '@/features/social-security/service';
 import ChurchTaxService from '@/features/taxes/church-tax/service';
 import TaxService from '@/features/taxes/income-tax/service';
