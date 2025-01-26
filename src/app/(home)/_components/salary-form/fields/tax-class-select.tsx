@@ -8,11 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { TaxClass } from '@/types/common';
 import { useFormContext } from 'react-hook-form';
 
-import { InfoIcon } from './shared';
+import { PopoverTooltip } from './shared';
 
 const TAX_CLASS_OPTIONS = [
   TaxClass.enum.I,
@@ -34,18 +33,11 @@ export default function TaxClassSelect() {
         <FormItem>
           <FormLabel>Steuerklasse</FormLabel>
           <div className="flex items-center gap-2">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <InfoIcon />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-sm">
-                    Wählen Sie die zutreffende Steuerklasse laut den ELStAM aus.
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <PopoverTooltip>
+              <p className="max-w-sm">
+                Wählen Sie die zutreffende Steuerklasse laut den ELStAM aus.
+              </p>
+            </PopoverTooltip>
             <Select
               {...field}
               onValueChange={field.onChange}

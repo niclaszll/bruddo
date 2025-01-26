@@ -8,11 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { FederalState } from '@/types/common';
 import { useFormContext } from 'react-hook-form';
 
-import { InfoIcon } from './shared';
+import { PopoverTooltip } from './shared';
 
 const FEDERAL_STATE_OPTIONS = [
   FederalState.enum.BW,
@@ -44,20 +43,13 @@ export default function FederalStateSelect() {
         <FormItem>
           <FormLabel>Bundesland</FormLabel>
           <div className="flex items-center gap-2">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <InfoIcon />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-sm">
-                    Wählen Sie hier das jeweilige Bundesland aus, in dem der Arbeitnehmer seinen
-                    Beschäftigungsort hat (nicht zu verwechseln mit der Betriebsstätte im
-                    steuerrechtlichen Sinn).
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <PopoverTooltip>
+              <p className="max-w-sm">
+                Wählen Sie hier das jeweilige Bundesland aus, in dem der Arbeitnehmer seinen
+                Beschäftigungsort hat (nicht zu verwechseln mit der Betriebsstätte im
+                steuerrechtlichen Sinn).
+              </p>
+            </PopoverTooltip>
             <Select
               {...field}
               onValueChange={field.onChange}

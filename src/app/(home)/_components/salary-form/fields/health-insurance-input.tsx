@@ -2,10 +2,9 @@
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useFormContext } from 'react-hook-form';
 
-import { InfoIcon } from './shared';
+import { PopoverTooltip } from './shared';
 
 export default function HealthInsuranceAddConInput() {
   const form = useFormContext();
@@ -18,16 +17,9 @@ export default function HealthInsuranceAddConInput() {
         <FormItem>
           <FormLabel>Zusatzbeitrag</FormLabel>
           <div className="flex items-center gap-2">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <InfoIcon />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-sm">Der Zusatzbeitrag Ihrer Krankenkasse.</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <PopoverTooltip>
+              <p className="max-w-sm">Der Zusatzbeitrag Ihrer Krankenkasse.</p>
+            </PopoverTooltip>
             <FormControl>
               <Input
                 {...field}

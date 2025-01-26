@@ -80,9 +80,12 @@ export default function SalaryForm() {
   return (
     <ResizablePanelGroup
       direction="horizontal"
-      className="max-w-8xl mx-auto flex gap-8 p-8"
+      className="max-w-8xl mx-auto flex p-8"
     >
-      <ResizablePanel defaultSize={20}>
+      <ResizablePanel
+        defaultSize={20}
+        className="pr-8"
+      >
         <Form {...form}>
           <form
             ref={formRef}
@@ -105,7 +108,7 @@ export default function SalaryForm() {
         </Form>
       </ResizablePanel>
       <ResizableHandle />
-      <ResizablePanel className="max-w-6xl mx-auto grow">
+      <ResizablePanel className="max-w-6xl mx-auto grow pl-8">
         <Table className="caption-top">
           <TableBody>
             <TableRow className="font-bold bg-muted/30">

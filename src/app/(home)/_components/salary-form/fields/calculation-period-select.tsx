@@ -8,11 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { CalculationPeriod } from '@/types/common';
 import { useFormContext } from 'react-hook-form';
 
-import { InfoIcon } from './shared';
+import { PopoverTooltip } from './shared';
 
 const CALCULATION_PERIOD_OPTIONS = [CalculationPeriod.enum.YEAR, CalculationPeriod.enum.MONTH];
 
@@ -27,19 +26,12 @@ export default function CalculationPeriodSelect() {
         <FormItem>
           <FormLabel>Abrechnungszeitraum</FormLabel>
           <div className="flex items-center gap-2">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <InfoIcon />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-sm">
-                    Je nachdem ob Sie mit monatlichen oder jährlichen Werten rechnen, wählen Sie den
-                    jeweiligen Abrechnungszeitraum aus.
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <PopoverTooltip>
+              <p className="max-w-sm">
+                Je nachdem ob Sie mit monatlichen oder jährlichen Werten rechnen, wählen Sie den
+                jeweiligen Abrechnungszeitraum aus.
+              </p>
+            </PopoverTooltip>
             <Select
               {...field}
               onValueChange={field.onChange}

@@ -2,10 +2,9 @@
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useFormContext } from 'react-hook-form';
 
-import { InfoIcon } from './shared';
+import { PopoverTooltip } from './shared';
 
 export default function DobInput() {
   const form = useFormContext();
@@ -18,20 +17,13 @@ export default function DobInput() {
         <FormItem>
           <FormLabel>Geburtsdatum</FormLabel>
           <div className="flex items-center gap-2">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <InfoIcon />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-sm">
-                    Arbeitnehmer über 64 Jahre erhalten den Altersentlastungsbetrag nach § 24a EStG.
-                    Die Höhe des Altersentlastungsbetrags ist abhängig von den Einkünften und vom
-                    Kalenderjahr, das auf den 64. Geburtstag des Arbeitnehmers folgt.
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <PopoverTooltip>
+              <p className="max-w-sm">
+                Arbeitnehmer über 64 Jahre erhalten den Altersentlastungsbetrag nach § 24a EStG. Die
+                Höhe des Altersentlastungsbetrags ist abhängig von den Einkünften und vom
+                Kalenderjahr, das auf den 64. Geburtstag des Arbeitnehmers folgt.
+              </p>
+            </PopoverTooltip>
             <FormControl>
               <Input
                 {...field}

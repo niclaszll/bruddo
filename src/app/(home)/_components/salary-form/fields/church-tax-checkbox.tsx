@@ -2,10 +2,9 @@
 
 import { Checkbox } from '@/components/ui/checkbox';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useFormContext } from 'react-hook-form';
 
-import { InfoIcon } from './shared';
+import { PopoverTooltip } from './shared';
 
 export default function ChurchTaxCheckbox() {
   const form = useFormContext();
@@ -18,20 +17,13 @@ export default function ChurchTaxCheckbox() {
         <FormItem>
           <FormLabel>Kirchensteuer</FormLabel>
           <div className="flex items-center gap-2">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <InfoIcon />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-sm">
-                    Standardmäßig geht der Rechner davon aus, dass Kirchensteuer abzuführen ist
-                    (Häkchen im Auswahlfeld bedeutet Kirchensteuer = Ja). Trifft dies nicht zu,
-                    deaktivieren Sie dies bitte durch Klick auf das Auswahlfeld.
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <PopoverTooltip>
+              <p className="max-w-sm">
+                Standardmäßig geht der Rechner davon aus, dass Kirchensteuer abzuführen ist (Häkchen
+                im Auswahlfeld bedeutet Kirchensteuer = Ja). Trifft dies nicht zu, deaktivieren Sie
+                dies bitte durch Klick auf das Auswahlfeld.
+              </p>
+            </PopoverTooltip>
             <FormControl>
               <Checkbox
                 {...field}

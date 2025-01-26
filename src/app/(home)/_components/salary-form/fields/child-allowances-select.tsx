@@ -8,10 +8,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useFormContext } from 'react-hook-form';
 
-import { InfoIcon } from './shared';
+import { PopoverTooltip } from './shared';
 
 const CHILD_ALLOWANCES_OPTIONS = [...Array(20).keys()].map((i) => i * 0.5);
 
@@ -26,20 +25,13 @@ export default function ChildAllowancesSelect() {
         <FormItem>
           <FormLabel>Kinderfreibeträge</FormLabel>
           <div className="flex items-center gap-2">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <InfoIcon />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-sm">
-                    Wählen Sie hier die zu berücksichtigenden Kinder laut der ELStAM anhand des sog.
-                    Kinderfreibetragszählers aus. Der Freibetrag wird bei der Steuer-Ermittlung von
-                    ggf. Solidaritätszuschlag und Kirchensteuer berücksichtigt.
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <PopoverTooltip>
+              <p className="max-w-sm">
+                Wählen Sie hier die zu berücksichtigenden Kinder laut der ELStAM anhand des sog.
+                Kinderfreibetragszählers aus. Der Freibetrag wird bei der Steuer-Ermittlung von ggf.
+                Solidaritätszuschlag und Kirchensteuer berücksichtigt.
+              </p>
+            </PopoverTooltip>
             <Select
               {...field}
               onValueChange={field.onChange}

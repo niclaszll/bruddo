@@ -8,10 +8,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useFormContext } from 'react-hook-form';
 
-import { InfoIcon } from './shared';
+import { PopoverTooltip } from './shared';
 
 const NUMBER_OF_CHILDREN_OPTIONS = [0, 1, 2, 3, 4, 5];
 
@@ -28,19 +27,12 @@ export default function NumberOfChildrenSelect() {
         <FormItem>
           <FormLabel>Anzahl Kinder</FormLabel>
           <div className="flex items-center gap-2">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <InfoIcon />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-sm">
-                    Tragen Sie hier die Anzahl der berücksichtigungsfähigen Kinder für die
-                    Pflegeversicherung ein, um Beitragsabschläge zu berücksichtigen.
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <PopoverTooltip>
+              <p className="max-w-sm">
+                Tragen Sie hier die Anzahl der berücksichtigungsfähigen Kinder für die
+                Pflegeversicherung ein, um Beitragsabschläge zu berücksichtigen.
+              </p>
+            </PopoverTooltip>
             <Select
               {...field}
               onValueChange={field.onChange}
