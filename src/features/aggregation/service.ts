@@ -4,7 +4,7 @@ import SocialSecurityService from '@/features/social-security/service';
 import ChurchTaxService from '@/features/taxes/church-tax/service';
 import TaxService from '@/features/taxes/income-tax/service';
 import { UserInputs } from '@/types/form';
-import { roundToFullCent } from '@/util/format';
+import { roundDownToFullCent, roundToFullCent } from '@/util/format';
 
 import { calculateUserAge } from './util';
 
@@ -14,12 +14,14 @@ export type EmployeeResults = {
     incomeTax: number;
     solidaritySurcharge: number;
     churchTax: number;
+    total: number;
   };
   socialSecurity: {
     healthInsurance: number;
     nursingCareInsurance: number;
     pensionInsurance: number;
     unemploymentInsurance: number;
+    total: number;
   };
   netIncome: number;
 };
@@ -31,6 +33,7 @@ export type EmployerResults = {
     nursingCareInsurance: number;
     pensionInsurance: number;
     unemploymentInsurance: number;
+    total: number;
   };
 };
 
@@ -90,11 +93,27 @@ class AggregationService {
         inputs.calculationPeriod,
       );
 
+    const totalEmployeeContribution = roundDownToFullCent(
+      healthInsuranceResults.employeeContribution +
+        nursingCareInsuranceResults.employeeContribution +
+        pensionInsuranceResults.employeeContribution +
+        unemploymentInsuranceResults.employeeContribution,
+    );
+
+    const totalEmployerContribution = roundDownToFullCent(
+      healthInsuranceResults.employerContribution +
+        nursingCareInsuranceResults.employerContribution +
+        pensionInsuranceResults.employerContribution +
+        unemploymentInsuranceResults.employerContribution,
+    );
+
     return {
       healthInsuranceResults,
       nursingCareInsuranceResults,
       pensionInsuranceResults,
       unemploymentInsuranceResults,
+      totalEmployeeContribution,
+      totalEmployerContribution,
     };
   }
 
@@ -106,30 +125,35 @@ class AggregationService {
       inputs.churchTax,
     );
 
+    const total = roundDownToFullCent(
+      incomeTaxResults.incomeTax + incomeTaxResults.solidaritySurcharge + churchTax,
+    );
+
     return {
       incomeTaxResults,
       churchTax,
+      total,
     };
   }
 
   public getAggregatedResultsForEmployee(inputs: UserInputs): EmployeeResults {
-    const taxContributions = this.calculateTaxContributions(inputs);
-    const socialSecurityContributions = this.calculateSocialSecurityContributions(inputs);
+    const taxContrib = this.calculateTaxContributions(inputs);
+    const socSecContrib = this.calculateSocialSecurityContributions(inputs);
 
     const netIncomeCalcParams: NetIncomeCalculationParams = {
       grossIncome: inputs.grossIncome,
       taxes: {
-        incomeTax: taxContributions.incomeTaxResults.incomeTax,
-        solidaritySurcharge: taxContributions.incomeTaxResults.solidaritySurcharge,
-        churchTax: taxContributions.churchTax,
+        incomeTax: taxContrib.incomeTaxResults.incomeTax,
+        solidaritySurcharge: taxContrib.incomeTaxResults.solidaritySurcharge,
+        churchTax: taxContrib.churchTax,
+        total: taxContrib.total,
       },
       socialSecurity: {
-        healthInsurance: socialSecurityContributions.healthInsuranceResults.employeeContribution,
-        nursingCareInsurance:
-          socialSecurityContributions.nursingCareInsuranceResults.employeeContribution,
-        pensionInsurance: socialSecurityContributions.pensionInsuranceResults.employeeContribution,
-        unemploymentInsurance:
-          socialSecurityContributions.unemploymentInsuranceResults.employeeContribution,
+        healthInsurance: socSecContrib.healthInsuranceResults.employeeContribution,
+        nursingCareInsurance: socSecContrib.nursingCareInsuranceResults.employeeContribution,
+        pensionInsurance: socSecContrib.pensionInsuranceResults.employeeContribution,
+        unemploymentInsurance: socSecContrib.unemploymentInsuranceResults.employeeContribution,
+        total: socSecContrib.totalEmployeeContribution,
       },
     };
 
@@ -142,17 +166,16 @@ class AggregationService {
   }
 
   public getAggregatedResultsForEmployer(inputs: UserInputs): EmployerResults {
-    const socialSecurityContributions = this.calculateSocialSecurityContributions(inputs);
+    const socSecContrib = this.calculateSocialSecurityContributions(inputs);
 
     return {
       grossIncome: inputs.grossIncome,
       socialSecurity: {
-        healthInsurance: socialSecurityContributions.healthInsuranceResults.employerContribution,
-        nursingCareInsurance:
-          socialSecurityContributions.nursingCareInsuranceResults.employerContribution,
-        pensionInsurance: socialSecurityContributions.pensionInsuranceResults.employerContribution,
-        unemploymentInsurance:
-          socialSecurityContributions.unemploymentInsuranceResults.employerContribution,
+        healthInsurance: socSecContrib.healthInsuranceResults.employerContribution,
+        nursingCareInsurance: socSecContrib.nursingCareInsuranceResults.employerContribution,
+        pensionInsurance: socSecContrib.pensionInsuranceResults.employerContribution,
+        unemploymentInsurance: socSecContrib.unemploymentInsuranceResults.employerContribution,
+        total: socSecContrib.totalEmployerContribution,
       },
     };
   }

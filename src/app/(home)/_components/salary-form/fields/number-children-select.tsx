@@ -18,6 +18,8 @@ const NUMBER_OF_CHILDREN_OPTIONS = [0, 1, 2, 3, 4, 5];
 export default function NumberOfChildrenSelect() {
   const form = useFormContext();
 
+  const isDisabled = form.watch('nursingCareInsuranceSurcharge');
+
   return (
     <FormField
       control={form.control}
@@ -43,6 +45,7 @@ export default function NumberOfChildrenSelect() {
               {...field}
               onValueChange={field.onChange}
               value={(field.value as number).toString()}
+              disabled={isDisabled}
             >
               <FormControl>
                 <SelectTrigger>
