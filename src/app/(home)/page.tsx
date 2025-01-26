@@ -1,9 +1,5 @@
-import SalaryForm from '@/components/salary-form';
+import HomeClient from './client';
 
-export default function Home() {
-  return (
-    <div className="bg-background text-foreground">
-      <SalaryForm />
-    </div>
-  );
+export default async function Home() {
+  return <HomeClient />;
 }

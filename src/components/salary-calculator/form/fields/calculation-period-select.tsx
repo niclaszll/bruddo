@@ -8,47 +8,47 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { CalculationPeriod } from '@/types/common';
 import { useFormContext } from 'react-hook-form';
 
 import { PopoverTooltip } from './shared';
 
-const CHILD_ALLOWANCES_OPTIONS = [...Array(20).keys()].map((i) => i * 0.5);
+const CALCULATION_PERIOD_OPTIONS = [CalculationPeriod.enum.YEAR, CalculationPeriod.enum.MONTH];
 
-export default function ChildAllowancesSelect() {
+export default function CalculationPeriodSelect() {
   const form = useFormContext();
 
   return (
     <FormField
       control={form.control}
-      name="childAllowances"
+      name="calculationPeriod"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Kinderfreibeträge</FormLabel>
-          <div className="flex items-center gap-2">
+          <FormLabel>Abrechnungszeitraum</FormLabel>
+          <div className="flex items-center gap-3">
             <PopoverTooltip>
               <p className="max-w-sm">
-                Wählen Sie hier die zu berücksichtigenden Kinder laut der ELStAM anhand des sog.
-                Kinderfreibetragszählers aus. Der Freibetrag wird bei der Steuer-Ermittlung von ggf.
-                Solidaritätszuschlag und Kirchensteuer berücksichtigt.
+                Je nachdem ob Sie mit monatlichen oder jährlichen Werten rechnen, wählen Sie den
+                jeweiligen Abrechnungszeitraum aus.
               </p>
             </PopoverTooltip>
             <Select
               {...field}
               onValueChange={field.onChange}
-              value={(field.value as number).toString()}
+              defaultValue={field.value}
             >
               <FormControl>
                 <SelectTrigger>
-                  <SelectValue placeholder="Wählen Sie Anzahl der Kinderfreibeträge" />
+                  <SelectValue placeholder="Wählen Sie den Abrechnungszeitraum" />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                {CHILD_ALLOWANCES_OPTIONS.map((key) => (
+                {CALCULATION_PERIOD_OPTIONS.map((key) => (
                   <SelectItem
                     key={key}
-                    value={key.toString()}
+                    value={key}
                   >
-                    {key.toString()}
+                    {key}
                   </SelectItem>
                 ))}
               </SelectContent>

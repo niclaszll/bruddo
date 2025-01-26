@@ -16,7 +16,7 @@ export default function ChurchTaxCheckbox() {
       render={({ field }) => (
         <FormItem>
           <FormLabel>Kirchensteuer</FormLabel>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3 pt-3 pb-2">
             <PopoverTooltip>
               <p className="max-w-sm">
                 Standardmäßig geht der Rechner davon aus, dass Kirchensteuer abzuführen ist (Häkchen

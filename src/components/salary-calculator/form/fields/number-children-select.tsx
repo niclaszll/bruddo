@@ -26,7 +26,7 @@ export default function NumberOfChildrenSelect() {
       render={({ field }) => (
         <FormItem>
           <FormLabel>Anzahl Kinder</FormLabel>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <PopoverTooltip>
               <p className="max-w-sm">
                 Tragen Sie hier die Anzahl der berücksichtigungsfähigen Kinder für die

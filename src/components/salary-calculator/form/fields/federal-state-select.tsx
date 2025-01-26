@@ -42,7 +42,7 @@ export default function FederalStateSelect() {
       render={({ field }) => (
         <FormItem>
           <FormLabel>Bundesland</FormLabel>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <PopoverTooltip>
               <p className="max-w-sm">
                 Wählen Sie hier das jeweilige Bundesland aus, in dem der Arbeitnehmer seinen

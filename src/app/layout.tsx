@@ -1,9 +1,16 @@
 import { Toaster } from '@/components/ui/toaster';
 import type { Metadata } from 'next';
 import { getLocale, getMessages } from 'next-intl/server';
+import { Open_Sans } from 'next/font/google';
 
 import './globals.css';
 import Provider from './provider';
+
+// If loading a variable font, you don't need to specify the font weight
+const mulish = Open_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Brutto Netto',
@@ -19,8 +26,11 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className="antialiased dark">
+    <html
+      lang={locale}
+      className={mulish.className}
+    >
+      <body className="antialiased dark bg-background text-foreground">
         <Provider
           locale={locale}
           messages={messages}

@@ -15,8 +15,8 @@ export default function HealthInsuranceAddConInput() {
       name="healthInsuranceAdditionalContribution"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Zusatzbeitrag</FormLabel>
-          <div className="flex items-center gap-2">
+          <FormLabel>Zusatzbeitrag (%)</FormLabel>
+          <div className="flex items-center gap-3">
             <PopoverTooltip>
               <p className="max-w-sm">Der Zusatzbeitrag Ihrer Krankenkasse.</p>
             </PopoverTooltip>

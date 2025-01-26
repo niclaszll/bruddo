@@ -8,28 +8,34 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { CalculationPeriod } from '@/types/common';
+import { TaxClass } from '@/types/common';
 import { useFormContext } from 'react-hook-form';
 
 import { PopoverTooltip } from './shared';
 
-const CALCULATION_PERIOD_OPTIONS = [CalculationPeriod.enum.YEAR, CalculationPeriod.enum.MONTH];
+const TAX_CLASS_OPTIONS = [
+  TaxClass.enum.I,
+  TaxClass.enum.II,
+  TaxClass.enum.III,
+  TaxClass.enum.IV,
+  TaxClass.enum.V,
+  TaxClass.enum.VI,
+];
 
-export default function CalculationPeriodSelect() {
+export default function TaxClassSelect() {
   const form = useFormContext();
 
   return (
     <FormField
       control={form.control}
-      name="calculationPeriod"
+      name="taxClass"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Abrechnungszeitraum</FormLabel>
-          <div className="flex items-center gap-2">
+          <FormLabel>Steuerklasse</FormLabel>
+          <div className="flex items-center gap-3">
             <PopoverTooltip>
               <p className="max-w-sm">
-                Je nachdem ob Sie mit monatlichen oder jährlichen Werten rechnen, wählen Sie den
-                jeweiligen Abrechnungszeitraum aus.
+                Wählen Sie die zutreffende Steuerklasse laut den ELStAM aus.
               </p>
             </PopoverTooltip>
             <Select
@@ -39,11 +45,11 @@ export default function CalculationPeriodSelect() {
             >
               <FormControl>
                 <SelectTrigger>
-                  <SelectValue placeholder="Wählen Sie den Abrechnungszeitraum" />
+                  <SelectValue placeholder="Wählen Sie Ihre Steuerklasse" />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                {CALCULATION_PERIOD_OPTIONS.map((key) => (
+                {TAX_CLASS_OPTIONS.map((key) => (
                   <SelectItem
                     key={key}
                     value={key}

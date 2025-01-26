@@ -15,8 +15,8 @@ export default function GrossIncomeInput() {
       name="grossIncome"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Bruttogehalt</FormLabel>
-          <div className="flex items-center gap-2">
+          <FormLabel>Bruttogehalt (€)</FormLabel>
+          <div className="flex items-center gap-3">
             <PopoverTooltip>
               <p className="max-w-sm">Ihr Bruttogehalt im Abrechnungszeitraum.</p>
             </PopoverTooltip>

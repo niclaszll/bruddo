@@ -16,7 +16,7 @@ export default function DobInput() {
       render={({ field }) => (
         <FormItem>
           <FormLabel>Geburtsdatum</FormLabel>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <PopoverTooltip>
               <p className="max-w-sm">
                 Arbeitnehmer über 64 Jahre erhalten den Altersentlastungsbetrag nach § 24a EStG. Die

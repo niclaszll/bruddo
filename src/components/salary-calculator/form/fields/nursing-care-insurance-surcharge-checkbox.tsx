@@ -16,7 +16,7 @@ export default function NursingCareInsuranceSurchargeCheckbox() {
       render={({ field }) => (
         <FormItem>
           <FormLabel>PV Zuschlag</FormLabel>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3 pt-3 pb-2">
             <PopoverTooltip>
               <p className="max-w-sm">
                 Kinderlose Versicherte, die das 23. Lebensjahr vollendet haben, zahlen in der

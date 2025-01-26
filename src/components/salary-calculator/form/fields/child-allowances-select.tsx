@@ -8,53 +8,47 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { TaxClass } from '@/types/common';
 import { useFormContext } from 'react-hook-form';
 
 import { PopoverTooltip } from './shared';
 
-const TAX_CLASS_OPTIONS = [
-  TaxClass.enum.I,
-  TaxClass.enum.II,
-  TaxClass.enum.III,
-  TaxClass.enum.IV,
-  TaxClass.enum.V,
-  TaxClass.enum.VI,
-];
+const CHILD_ALLOWANCES_OPTIONS = [...Array(20).keys()].map((i) => i * 0.5);
 
-export default function TaxClassSelect() {
+export default function ChildAllowancesSelect() {
   const form = useFormContext();
 
   return (
     <FormField
       control={form.control}
-      name="taxClass"
+      name="childAllowances"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Steuerklasse</FormLabel>
-          <div className="flex items-center gap-2">
+          <FormLabel>Kinderfreibeträge</FormLabel>
+          <div className="flex items-center gap-3">
             <PopoverTooltip>
               <p className="max-w-sm">
-                Wählen Sie die zutreffende Steuerklasse laut den ELStAM aus.
+                Wählen Sie hier die zu berücksichtigenden Kinder laut der ELStAM anhand des sog.
+                Kinderfreibetragszählers aus. Der Freibetrag wird bei der Steuer-Ermittlung von ggf.
+                Solidaritätszuschlag und Kirchensteuer berücksichtigt.
               </p>
             </PopoverTooltip>
             <Select
               {...field}
               onValueChange={field.onChange}
-              defaultValue={field.value}
+              value={(field.value as number).toString()}
             >
               <FormControl>
                 <SelectTrigger>
-                  <SelectValue placeholder="Wählen Sie Ihre Steuerklasse" />
+                  <SelectValue placeholder="Wählen Sie Anzahl der Kinderfreibeträge" />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                {TAX_CLASS_OPTIONS.map((key) => (
+                {CHILD_ALLOWANCES_OPTIONS.map((key) => (
                   <SelectItem
                     key={key}
-                    value={key}
+                    value={key.toString()}
                   >
-                    {key}
+                    {key.toString()}
                   </SelectItem>
                 ))}
               </SelectContent>
