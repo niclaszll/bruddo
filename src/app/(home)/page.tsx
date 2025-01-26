@@ -1,4 +1,4 @@
-import SalaryForm from '@/app/(home)/_components/salary-form';
+import SalaryForm from '@/components/salary-form';
 
 export default function Home() {
   return (
