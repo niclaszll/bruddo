@@ -11,12 +11,17 @@ const castStringToBool = z.preprocess((val) => {
   return val;
 }, z.coerce.boolean());
 
+const castNumberStringToNumber = z.preprocess(
+  (val) => Number(`${val}`.replaceAll('.', '').replace(',', '.')),
+  z.number(),
+);
+
 export const UserInputs = z.object({
   calculationPeriod: CalculationPeriod,
-  grossIncome: z.preprocess(Number, z.number()),
+  grossIncome: castNumberStringToNumber,
   taxClass: TaxClass,
   federalState: FederalState,
-  healthInsuranceAdditionalContribution: z.preprocess(Number, z.number()),
+  healthInsuranceAdditionalContribution: castNumberStringToNumber,
   churchTax: castStringToBool,
   dob: z.string().date(),
   numChildren: z.preprocess(Number, z.number().min(0).max(5)).default(0),

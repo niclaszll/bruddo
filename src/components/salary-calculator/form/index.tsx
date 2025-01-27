@@ -21,9 +21,9 @@ import NumberOfChildrenSelect from './fields/number-children-select';
 import NursingCareInsuranceSurchargeCheckbox from './fields/nursing-care-insurance-surcharge-checkbox';
 import TaxClassSelect from './fields/tax-class-select';
 
-const defaultValues: UserInputs = {
+export const defaultValues: UserInputs = {
   calculationPeriod: CalculationPeriod.enum.YEAR,
-  grossIncome: 0,
+  grossIncome: 50000,
   taxClass: TaxClass.enum.I,
   federalState: FederalState.enum.BW,
   healthInsuranceAdditionalContribution: 2.5,

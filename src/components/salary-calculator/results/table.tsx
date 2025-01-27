@@ -12,67 +12,69 @@ type Props = {
 export default function ResultsTable({ results }: Props) {
   const formatCurrency = useFormatCurrency();
 
+  if (!results.employeeResults || !results.employerResults) return null;
+
   return (
     <Table className="max-w-xxl rounded-sm overflow-hidden">
       <TableBody>
         <TableRow className="font-bold bg-muted/30">
           <TableCell>Bruttogehalt</TableCell>
           <TableCell className="text-right">
-            {formatCurrency(results.employeeResults?.grossIncome)}
+            {formatCurrency(results.employeeResults.grossIncome)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Lohnsteuer</TableCell>
           <TableCell className="text-right">
-            {formatCurrency(results.employeeResults?.taxes.incomeTax)}
+            {formatCurrency(-results.employeeResults.taxes.incomeTax)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Solidaritätszuschlag</TableCell>
           <TableCell className="text-right">
-            {formatCurrency(results.employeeResults?.taxes.solidaritySurcharge)}
+            {formatCurrency(-results.employeeResults.taxes.solidaritySurcharge)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Kirchensteuer</TableCell>
           <TableCell className="text-right">
-            {formatCurrency(results.employeeResults?.taxes.churchTax)}
+            {formatCurrency(-results.employeeResults.taxes.churchTax)}
           </TableCell>
         </TableRow>
         <TableRow className="font-bold bg-muted/30">
           <TableCell>Gesamtabzug Steuern</TableCell>
           <TableCell className="text-right">
-            {formatCurrency(results.employeeResults?.taxes.total)}
+            {formatCurrency(-results.employeeResults.taxes.total)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Krankenversicherung</TableCell>
           <TableCell className="text-right">
-            {formatCurrency(results.employeeResults?.socialSecurity.healthInsurance)}
+            {formatCurrency(-results.employeeResults.socialSecurity.healthInsurance)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Pflegeversicherung</TableCell>
           <TableCell className="text-right">
-            {formatCurrency(results.employeeResults?.socialSecurity.nursingCareInsurance)}
+            {formatCurrency(-results.employeeResults.socialSecurity.nursingCareInsurance)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Rentenversicherung</TableCell>
           <TableCell className="text-right">
-            {formatCurrency(results.employeeResults?.socialSecurity.pensionInsurance)}
+            {formatCurrency(-results.employeeResults.socialSecurity.pensionInsurance)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Arbeitslosenversicherung</TableCell>
           <TableCell className="text-right">
-            {formatCurrency(results.employeeResults?.socialSecurity.unemploymentInsurance)}
+            {formatCurrency(-results.employeeResults.socialSecurity.unemploymentInsurance)}
           </TableCell>
         </TableRow>
         <TableRow className="font-bold bg-muted/30">
           <TableCell>Gesamtabzug Sozialversicherung</TableCell>
           <TableCell className="text-right">
-            {formatCurrency(results.employeeResults?.socialSecurity.total)}
+            {formatCurrency(-results.employeeResults.socialSecurity.total)}
           </TableCell>
         </TableRow>
       </TableBody>
@@ -80,7 +82,7 @@ export default function ResultsTable({ results }: Props) {
         <TableRow className="font-bold">
           <TableCell colSpan={1}>Nettoverdienst</TableCell>
           <TableCell className="text-right">
-            {formatCurrency(results.employeeResults?.netIncome)}
+            {formatCurrency(results.employeeResults.netIncome)}
           </TableCell>
         </TableRow>
       </TableFooter>
