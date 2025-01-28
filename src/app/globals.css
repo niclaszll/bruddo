@@ -28,6 +28,12 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --chart-6: 341 70% 65%;
+    --chart-7: 220 57% 50%;
+    --chart-8: 300 50% 40%;
+    --chart-9: 90 60% 55%;
+    --chart-10: 15 85% 55%;
+
     --radius: 0.5rem;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -63,6 +69,11 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --chart-6: 50 70% 50%;
+    --chart-7: 200 65% 55%;
+    --chart-8: 10 80% 60%;
+    --chart-9: 120 60% 45%;
+    --chart-10: 260 70% 50%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

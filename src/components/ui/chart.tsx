@@ -212,7 +212,7 @@ const ChartTooltipContent = React.forwardRef<
                     )}
                     <div
                       className={cn(
-                        'flex flex-1 justify-between leading-none',
+                        'flex flex-1 justify-between leading-none gap-x-2',
                         nestLabel ? 'items-end' : 'items-center',
                       )}
                     >
@@ -260,7 +260,7 @@ const ChartLegendContent = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        'flex items-center justify-center gap-4',
+        'flex items-center justify-center gap-x-3 gap-y-1 flex-wrap',
         verticalAlign === 'top' ? 'pb-3' : 'pt-3',
         className,
       )}
@@ -323,9 +323,9 @@ function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown, key:
 
 export {
   ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
   ChartLegend,
   ChartLegendContent,
   ChartStyle,
+  ChartTooltip,
+  ChartTooltipContent,
 };

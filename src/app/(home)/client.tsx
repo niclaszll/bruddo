@@ -55,14 +55,14 @@ export default function HomeClient() {
         >
           <ResizablePanel
             defaultSize={50}
-            className="min-w-72"
+            className="min-w-96"
           >
             <ResultTable results={state} />
           </ResizablePanel>
           <ResizableHandle />
           <ResizablePanel
             defaultSize={50}
-            className="min-w-72"
+            className="min-w-96"
           >
             <ResultCharts results={state} />
           </ResizablePanel>

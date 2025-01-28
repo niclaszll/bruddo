@@ -2,7 +2,7 @@
   "ResultTable": {
     "employeeResults": {
       "grossIncome": "Bruttogehalt",
-      "netIncome": "Nettoverdienst",
+      "netIncome": "Nettogehalt",
       "socialSecurity": {
         "healthInsurance": "Krankenversicherung",
         "nursingCareInsurance": "Pflegeversicherung",
