@@ -2,6 +2,7 @@
 
 import { Table, TableBody, TableCell, TableFooter, TableRow } from '@/components/ui/table';
 import { useFormatCurrency } from '@/hooks/common';
+import { useTranslations } from 'next-intl';
 
 import { FormState } from '../actions';
 
@@ -10,6 +11,7 @@ type Props = {
 };
 
 export default function ResultsTable({ results }: Props) {
+  const t = useTranslations('ResultsTable');
   const formatCurrency = useFormatCurrency();
 
   if (!results.employeeResults || !results.employerResults) return null;
@@ -18,61 +20,61 @@ export default function ResultsTable({ results }: Props) {
     <Table className="max-w-xxl rounded-sm overflow-hidden">
       <TableBody>
         <TableRow className="font-bold bg-muted/30">
-          <TableCell>Bruttogehalt</TableCell>
+          <TableCell>{t('employeeResults.grossIncome')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(results.employeeResults.grossIncome)}
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>Lohnsteuer</TableCell>
+          <TableCell>{t('employeeResults.taxes.incomeTax')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(-results.employeeResults.taxes.incomeTax)}
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>Solidaritätszuschlag</TableCell>
+          <TableCell>{t('employeeResults.taxes.solidaritySurcharge')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(-results.employeeResults.taxes.solidaritySurcharge)}
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>Kirchensteuer</TableCell>
+          <TableCell>{t('employeeResults.taxes.churchTax')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(-results.employeeResults.taxes.churchTax)}
           </TableCell>
         </TableRow>
         <TableRow className="font-bold bg-muted/30">
-          <TableCell>Gesamtabzug Steuern</TableCell>
+          <TableCell>{t('employeeResults.taxes.total')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(-results.employeeResults.taxes.total)}
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>Krankenversicherung</TableCell>
+          <TableCell>{t('employeeResults.socialSecurity.healthInsurance')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(-results.employeeResults.socialSecurity.healthInsurance)}
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>Pflegeversicherung</TableCell>
+          <TableCell>{t('employeeResults.socialSecurity.nursingCareInsurance')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(-results.employeeResults.socialSecurity.nursingCareInsurance)}
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>Rentenversicherung</TableCell>
+          <TableCell>{t('employeeResults.socialSecurity.pensionInsurance')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(-results.employeeResults.socialSecurity.pensionInsurance)}
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>Arbeitslosenversicherung</TableCell>
+          <TableCell>{t('employeeResults.socialSecurity.unemploymentInsurance')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(-results.employeeResults.socialSecurity.unemploymentInsurance)}
           </TableCell>
         </TableRow>
         <TableRow className="font-bold bg-muted/30">
-          <TableCell>Gesamtabzug Sozialversicherung</TableCell>
+          <TableCell>{t('employeeResults.socialSecurity.total')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(-results.employeeResults.socialSecurity.total)}
           </TableCell>
@@ -80,7 +82,7 @@ export default function ResultsTable({ results }: Props) {
       </TableBody>
       <TableFooter>
         <TableRow className="font-bold">
-          <TableCell colSpan={1}>Nettoverdienst</TableCell>
+          <TableCell colSpan={1}>{t('employeeResults.netIncome')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(results.employeeResults.netIncome)}
           </TableCell>

@@ -12,9 +12,11 @@ import {
   SidebarRail,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
+import { useTranslations } from 'next-intl';
 import { useActionState } from 'react';
 
 export default function HomeClient() {
+  const t = useTranslations('Sidebar');
   const [state, formAction] = useActionState(onSubmitAction, {
     error: false,
     employeeResults: undefined,
@@ -39,7 +41,7 @@ export default function HomeClient() {
             orientation="vertical"
             className="mr-2 h-4"
           />
-          <h1 className="text-sm">Ergebnisse</h1>
+          <h1 className="text-sm">{t('title')}</h1>
         </header>
         <div className="flex p-6">
           <ResultsTable results={state} />

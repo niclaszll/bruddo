@@ -1,52 +1,37 @@
 {
+  "ResultsTable": {
+    "employeeResults": {
+      "grossIncome": "Bruttogehalt",
+      "netIncome": "Nettoverdienst",
+      "socialSecurity": {
+        "healthInsurance": "Krankenversicherung",
+        "nursingCareInsurance": "Pflegeversicherung",
+        "pensionInsurance": "Rentenversicherung",
+        "total": "Gesamtabzug Sozialversicherung",
+        "unemploymentInsurance": "Arbeitslosenversicherung"
+      },
+      "taxes": {
+        "churchTax": "Kirchensteuer",
+        "incomeTax": "Lohnsteuer",
+        "solidaritySurcharge": "Solidaritätszuschlag",
+        "total": "Gesamtabzug Steuern"
+      }
+    }
+  },
   "SalaryCalculator": {
     "form": {
       "fields": {
         "calculationPeriod": {
           "label": "Berechnungszeitraum",
-          "tooltip": "Wähle ob mit monatlichen oder jährlichen Werten gerechnent werden soll.",
           "options": {
-            "YEAR": "Jahr",
-            "MONTH": "Monat"
-          }
+            "MONTH": "Monat",
+            "YEAR": "Jahr"
+          },
+          "tooltip": "Wähle ob mit monatlichen oder jährlichen Werten gerechnent werden soll."
         },
-        "grossIncome": {
-          "label": "Bruttogehalt",
-          "tooltip": "Dein Bruttogehalt im Berechnungszeitraum."
-        },
-        "federalState": {
-          "label": "Bundesland",
-          "tooltip": "Wähle das Bundesland aus, in dem dein Beschäftigungsort liegt (nicht zu verwechseln mit der Betriebsstätte im steuerrechtlichen Sinn).",
-          "options": {
-            "BW": "Baden-Württemberg",
-            "BY": "Bayern",
-            "BE": "Berlin",
-            "BB": "Brandenburg",
-            "HB": "Bremen",
-            "HH": "Hamburg",
-            "HE": "Hessen",
-            "MV": "Mecklenburg-Vorpommern",
-            "NI": "Niedersachsen",
-            "NW": "Nordrhein-Westfalen",
-            "RP": "Rheinland-Pfalz",
-            "SL": "Saarland",
-            "SN": "Sachsen",
-            "ST": "Sachsen-Anhalt",
-            "SH": "Schleswig-Holstein",
-            "TH": "Thüringen"
-          }
-        },
-        "taxClass": {
-          "label": "Steuerklasse",
-          "tooltip": "Wähle die zutreffende Steuerklasse laut den ELStAM aus.",
-          "options": {
-            "I": "I",
-            "II": "II",
-            "III": "III",
-            "IV": "IV",
-            "V": "V",
-            "VI": "VI"
-          }
+        "childAllowances": {
+          "label": "Kinderfreibeträge",
+          "tooltip": "Wähle hier die zu berücksichtigenden Kinder laut der ELStAM anhand des sog. Kinderfreibetragszählers aus. Der Freibetrag wird bei der Steuer-Ermittlung von ggf. Solidaritätszuschlag und Kirchensteuer berücksichtigt."
         },
         "churchTax": {
           "label": "Kirchensteuer",
@@ -56,21 +41,38 @@
           "label": "Geburtsdatum",
           "tooltip": "Wähle dein Geburtsdatum aus. Arbeitnehmer über 64 Jahre erhalten den Altersentlastungsbetrag nach § 24a EStG."
         },
-        "childAllowances": {
-          "label": "Kinderfreibeträge",
-          "tooltip": "Wähle hier die zu berücksichtigenden Kinder laut der ELStAM anhand des sog. Kinderfreibetragszählers aus. Der Freibetrag wird bei der Steuer-Ermittlung von ggf. Solidaritätszuschlag und Kirchensteuer berücksichtigt."
+        "federalState": {
+          "label": "Bundesland",
+          "options": {
+            "BB": "Brandenburg",
+            "BE": "Berlin",
+            "BW": "Baden-Württemberg",
+            "BY": "Bayern",
+            "HB": "Bremen",
+            "HE": "Hessen",
+            "HH": "Hamburg",
+            "MV": "Mecklenburg-Vorpommern",
+            "NI": "Niedersachsen",
+            "NW": "Nordrhein-Westfalen",
+            "RP": "Rheinland-Pfalz",
+            "SH": "Schleswig-Holstein",
+            "SL": "Saarland",
+            "SN": "Sachsen",
+            "ST": "Sachsen-Anhalt",
+            "TH": "Thüringen"
+          },
+          "tooltip": "Wähle das Bundesland aus, in dem dein Beschäftigungsort liegt (nicht zu verwechseln mit der Betriebsstätte im steuerrechtlichen Sinn)."
+        },
+        "grossIncome": {
+          "label": "Bruttogehalt",
+          "tooltip": "Dein Bruttogehalt im Berechnungszeitraum."
         },
         "healthInsuranceAdditionalContribution": {
           "label": "Zusatzbeitrag",
           "tooltip": "Der Zusatzbeitrag Ihrer Krankenkasse."
         },
-        "nursingCareInsuranceSurcharge": {
-          "label": "PV Zuschlag",
-          "tooltip": "Kinderlose Versicherte, die das 23. Lebensjahr vollendet haben, zahlen in der Pflegeversicherung einen Beitragszuschlag von 0,6 %, sofern sie gegenüber dem Arbeitgeber keine Elterneigenschaft nachweisen."
-        },
         "numChildren": {
           "label": "Anzahl Kinder",
-          "tooltip": "Wähle hier die Anzahl der berücksichtigungsfähigen Kinder für die Pflegeversicherung aus, um Beitragsabschläge zu berücksichtigen.",
           "options": {
             "0": "0",
             "1": "1",
@@ -78,9 +80,35 @@
             "3": "3",
             "4": "4",
             "5": "5+"
-          }
+          },
+          "tooltip": "Wähle hier die Anzahl der berücksichtigungsfähigen Kinder für die Pflegeversicherung aus, um Beitragsabschläge zu berücksichtigen."
+        },
+        "nursingCareInsuranceSurcharge": {
+          "label": "PV Zuschlag",
+          "tooltip": "Kinderlose Versicherte, die das 23. Lebensjahr vollendet haben, zahlen in der Pflegeversicherung einen Beitragszuschlag von 0,6 %, sofern sie gegenüber dem Arbeitgeber keine Elterneigenschaft nachweisen."
+        },
+        "taxClass": {
+          "label": "Steuerklasse",
+          "options": {
+            "I": "I",
+            "II": "II",
+            "III": "III",
+            "IV": "IV",
+            "V": "V",
+            "VI": "VI"
+          },
+          "tooltip": "Wähle die zutreffende Steuerklasse laut den ELStAM aus."
         }
       }
+    }
+  },
+  "Sidebar": {
+    "title": "Ergebnisse"
+  },
+  "common": {
+    "errorToast": {
+      "description": "Es gab ein Problem mit deiner Anfrage. Bitte versuche es erneut.",
+      "title": "Oh, oh! Etwas ist schief gelaufen."
     }
   }
 }

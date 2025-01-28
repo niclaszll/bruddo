@@ -6,6 +6,7 @@ import { useToast } from '@/hooks/shadcn/use-toast';
 import { CalculationPeriod, FederalState, TaxClass } from '@/types/common';
 import { UserInputs } from '@/types/form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
 import { startTransition, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -40,7 +41,9 @@ type Props = {
 };
 
 export default function SalaryForm({ formState, formAction }: Props) {
+  const t = useTranslations('common.errorToast');
   const { toast } = useToast();
+
   const form = useForm<UserInputs>({
     resolver: zodResolver(UserInputs),
     defaultValues,
@@ -69,11 +72,11 @@ export default function SalaryForm({ formState, formAction }: Props) {
     if (formState.error) {
       toast({
         variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.',
+        title: t('title'),
+        description: t('description'),
       });
     }
-  }, [formState, toast]);
+  }, [formState, t, toast]);
 
   return (
     <Form {...form}>
