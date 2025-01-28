@@ -4,20 +4,20 @@ import { Table, TableBody, TableCell, TableFooter, TableRow } from '@/components
 import { useFormatCurrency } from '@/hooks/common';
 import { useTranslations } from 'next-intl';
 
-import { FormState } from '../actions';
+import { FormState } from '../../actions';
 
 type Props = {
   results: FormState;
 };
 
-export default function ResultsTable({ results }: Props) {
-  const t = useTranslations('ResultsTable');
+export default function ResultTable({ results }: Props) {
+  const t = useTranslations('ResultTable');
   const formatCurrency = useFormatCurrency();
 
   if (!results.employeeResults || !results.employerResults) return null;
 
   return (
-    <Table className="max-w-xxl rounded-sm overflow-hidden">
+    <Table className="max-w-xxl rounded-lg overflow-hidden">
       <TableBody>
         <TableRow className="font-bold bg-muted/30">
           <TableCell>{t('employeeResults.grossIncome')}</TableCell>

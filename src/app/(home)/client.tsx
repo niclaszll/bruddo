@@ -2,7 +2,9 @@
 
 import { onSubmitAction } from '@/components/salary-calculator/actions';
 import SalaryForm from '@/components/salary-calculator/form';
-import ResultsTable from '@/components/salary-calculator/results/table';
+import ResultCharts from '@/components/salary-calculator/results/charts';
+import ResultTable from '@/components/salary-calculator/results/table';
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { Separator } from '@/components/ui/separator';
 import {
   Sidebar,
@@ -43,9 +45,24 @@ export default function HomeClient() {
           />
           <h1 className="text-sm">{t('title')}</h1>
         </header>
-        <div className="flex p-6">
-          <ResultsTable results={state} />
-        </div>
+        <ResizablePanelGroup
+          direction="horizontal"
+          className="flex p-6 gap-6 flex-wrap"
+        >
+          <ResizablePanel
+            defaultSize={50}
+            className="min-w-72"
+          >
+            <ResultTable results={state} />
+          </ResizablePanel>
+          <ResizableHandle />
+          <ResizablePanel
+            defaultSize={50}
+            className="min-w-72"
+          >
+            <ResultCharts results={state} />
+          </ResizablePanel>
+        </ResizablePanelGroup>
       </SidebarInset>
     </SidebarProvider>
   );
