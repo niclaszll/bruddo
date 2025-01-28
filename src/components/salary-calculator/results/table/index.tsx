@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function ResultTable({ results }: Props) {
-  const t = useTranslations('ResultTable');
+  const t = useTranslations('Results');
   const formatCurrency = useFormatCurrency();
 
   if (!results.employeeResults || !results.employerResults) return null;
