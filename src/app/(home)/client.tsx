@@ -4,6 +4,7 @@ import { onSubmitAction } from '@/components/salary-calculator/actions';
 import SalaryForm from '@/components/salary-calculator/form';
 import ResultCharts from '@/components/salary-calculator/results/charts';
 import ResultTable from '@/components/salary-calculator/results/table';
+import { ThemeToggle } from '@/components/theme';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { Separator } from '@/components/ui/separator';
 import {
@@ -37,13 +38,16 @@ export default function HomeClient() {
         <SidebarRail />
       </Sidebar>
       <SidebarInset>
-        <header className="sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4">
-          <SidebarTrigger className="-ml-1" />
-          <Separator
-            orientation="vertical"
-            className="mr-2 h-4"
-          />
-          <h1 className="text-sm">{t('title')}</h1>
+        <header className="sticky top-0 flex h-16 shrink-0 items-center justify-between gap-2 border-b bg-background px-4">
+          <div className="flex items-center gap-2">
+            <SidebarTrigger className="-ml-1" />
+            <Separator
+              orientation="vertical"
+              className="mr-2 h-4"
+            />
+            <h1 className="text-sm">{t('title')}</h1>
+          </div>
+          <ThemeToggle />
         </header>
         <ResizablePanelGroup
           direction="horizontal"

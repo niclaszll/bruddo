@@ -1,6 +1,7 @@
 'use client';
 
 import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import React from 'react';
 
 type Props = {
@@ -19,7 +20,14 @@ export default function Provider({
       locale={locale}
       timeZone="Europe/Berlin"
     >
-      {children}
+      <NextThemesProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        {children}
+      </NextThemesProvider>
     </NextIntlClientProvider>
   );
 }
