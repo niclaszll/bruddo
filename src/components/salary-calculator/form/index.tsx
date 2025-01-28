@@ -20,11 +20,12 @@ import GrossIncomeInput from './fields/gross-income-input';
 import HealthInsuranceAddConInput from './fields/health-insurance-input';
 import NumberOfChildrenSelect from './fields/number-children-select';
 import NursingCareInsuranceSurchargeCheckbox from './fields/nursing-care-insurance-surcharge-checkbox';
+import TaxAllowanceInput from './fields/tax-allowance-input';
 import TaxClassSelect from './fields/tax-class-select';
 
 export const defaultValues: UserInputs = {
   calculationPeriod: CalculationPeriod.enum.YEAR,
-  grossIncome: 50000,
+  grossIncome: 0,
   taxClass: TaxClass.enum.I,
   federalState: FederalState.enum.BW,
   healthInsuranceAdditionalContribution: 2.5,
@@ -33,6 +34,7 @@ export const defaultValues: UserInputs = {
   numChildren: 0,
   childAllowances: 0,
   nursingCareInsuranceSurcharge: true,
+  taxAllowance: 0,
 };
 
 type Props = {
@@ -92,6 +94,7 @@ export default function SalaryForm({ formState, formAction }: Props) {
         <FederalStateSelect />
         <Separator className="mt-2" />
         <TaxClassSelect />
+        <TaxAllowanceInput />
         <ChurchTaxCheckbox />
         <DobInput />
         <ChildAllowancesSelect />

@@ -13,6 +13,7 @@ import { calculateMRE4 } from './process/3_MRE4';
 import { calculateMRE4ABZ } from './process/5_MRE4ABZ';
 import { calculateMBERECH } from './process/6_MBERECH';
 import { calculateMSONST } from './process/17_MSONST';
+import { calculationPeriodFactors } from './utils';
 
 class TaxService {
   static #instance: TaxService;
@@ -43,7 +44,7 @@ class TaxService {
       .setKRV(0)
       .setKVZ(inputs.healthInsuranceAdditionalContribution)
       .setLZZ(inputs.calculationPeriod)
-      .setLZZFREIB(0)
+      .setLZZFREIB((inputs.taxAllowance * 100) / calculationPeriodFactors[inputs.calculationPeriod])
       .setLZZHINZU(0)
       .setMBV(0)
       .setPKPV(0)

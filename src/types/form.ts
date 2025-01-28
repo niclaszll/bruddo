@@ -27,6 +27,7 @@ export const UserInputs = z.object({
   numChildren: z.preprocess(Number, z.number().min(0).max(5)).default(0),
   childAllowances: z.preprocess(Number, z.number().min(0).max(10)),
   nursingCareInsuranceSurcharge: castStringToBool,
+  taxAllowance: castNumberStringToNumber,
 });
 
 export type UserInputs = z.infer<typeof UserInputs>;

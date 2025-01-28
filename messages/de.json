@@ -69,7 +69,7 @@
         },
         "healthInsuranceAdditionalContribution": {
           "label": "Zusatzbeitrag",
-          "tooltip": "Der Zusatzbeitrag Ihrer Krankenkasse."
+          "tooltip": "Der Zusatzbeitrag deiner Krankenkasse."
         },
         "numChildren": {
           "label": "Anzahl Kinder",
@@ -86,6 +86,10 @@
         "nursingCareInsuranceSurcharge": {
           "label": "PV Zuschlag",
           "tooltip": "Kinderlose Versicherte, die das 23. Lebensjahr vollendet haben, zahlen in der Pflegeversicherung einen Beitragszuschlag von 0,6 %, sofern sie gegenüber dem Arbeitgeber keine Elterneigenschaft nachweisen."
+        },
+        "taxAllowance": {
+          "label": "Jährl. Steuerfreibetrag",
+          "tooltip": "Der derzeitige über ELStAM abgerufene Freibetrag des Arbeitnehmers."
         },
         "taxClass": {
           "label": "Steuerklasse",
