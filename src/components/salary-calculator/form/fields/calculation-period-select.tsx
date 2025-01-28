@@ -9,28 +9,28 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { CalculationPeriod } from '@/types/common';
+import { useTranslations } from 'next-intl';
 import { useFormContext } from 'react-hook-form';
 
 import { PopoverTooltip } from './shared';
 
 const CALCULATION_PERIOD_OPTIONS = [CalculationPeriod.enum.YEAR, CalculationPeriod.enum.MONTH];
+const FIELD_NAME = 'calculationPeriod';
 
 export default function CalculationPeriodSelect() {
   const form = useFormContext();
+  const t = useTranslations(`SalaryCalculator.form.fields.${FIELD_NAME}`);
 
   return (
     <FormField
       control={form.control}
-      name="calculationPeriod"
+      name={FIELD_NAME}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Abrechnungszeitraum</FormLabel>
+          <FormLabel>{t('label')}</FormLabel>
           <div className="flex items-center gap-3">
             <PopoverTooltip>
-              <p className="max-w-sm">
-                Je nachdem ob Sie mit monatlichen oder jährlichen Werten rechnen, wählen Sie den
-                jeweiligen Abrechnungszeitraum aus.
-              </p>
+              <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>
             <Select
               {...field}
@@ -39,7 +39,7 @@ export default function CalculationPeriodSelect() {
             >
               <FormControl>
                 <SelectTrigger>
-                  <SelectValue placeholder="Wählen Sie den Abrechnungszeitraum" />
+                  <SelectValue placeholder={t('label')} />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
@@ -48,7 +48,7 @@ export default function CalculationPeriodSelect() {
                     key={key}
                     value={key}
                   >
-                    {key}
+                    {t(`options.${key}`)}
                   </SelectItem>
                 ))}
               </SelectContent>

@@ -2,27 +2,27 @@
 
 import { Checkbox } from '@/components/ui/checkbox';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { useTranslations } from 'next-intl';
 import { useFormContext } from 'react-hook-form';
 
 import { PopoverTooltip } from './shared';
 
+const FIELD_NAME = 'churchTax';
+
 export default function ChurchTaxCheckbox() {
   const form = useFormContext();
+  const t = useTranslations(`SalaryCalculator.form.fields.${FIELD_NAME}`);
 
   return (
     <FormField
       control={form.control}
-      name="churchTax"
+      name={FIELD_NAME}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Kirchensteuer</FormLabel>
+          <FormLabel>{t('label')}</FormLabel>
           <div className="flex items-center gap-3 pt-3 pb-2">
             <PopoverTooltip>
-              <p className="max-w-sm">
-                Standardmäßig geht der Rechner davon aus, dass Kirchensteuer abzuführen ist (Häkchen
-                im Auswahlfeld bedeutet Kirchensteuer = Ja). Trifft dies nicht zu, deaktivieren Sie
-                dies bitte durch Klick auf das Auswahlfeld.
-              </p>
+              <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>
             <FormControl>
               <Checkbox

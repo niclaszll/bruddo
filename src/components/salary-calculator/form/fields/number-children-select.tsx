@@ -8,30 +8,30 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useTranslations } from 'next-intl';
 import { useFormContext } from 'react-hook-form';
 
 import { PopoverTooltip } from './shared';
 
 const NUMBER_OF_CHILDREN_OPTIONS = [0, 1, 2, 3, 4, 5];
+const FIELD_NAME = 'numChildren';
 
 export default function NumberOfChildrenSelect() {
   const form = useFormContext();
+  const t = useTranslations(`SalaryCalculator.form.fields.${FIELD_NAME}`);
 
   const isDisabled = form.watch('nursingCareInsuranceSurcharge');
 
   return (
     <FormField
       control={form.control}
-      name="numChildren"
+      name={FIELD_NAME}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Anzahl Kinder</FormLabel>
+          <FormLabel>{t('label')}</FormLabel>
           <div className="flex items-center gap-3">
             <PopoverTooltip>
-              <p className="max-w-sm">
-                Tragen Sie hier die Anzahl der berücksichtigungsfähigen Kinder für die
-                Pflegeversicherung ein, um Beitragsabschläge zu berücksichtigen.
-              </p>
+              <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>
             <Select
               {...field}
@@ -41,7 +41,7 @@ export default function NumberOfChildrenSelect() {
             >
               <FormControl>
                 <SelectTrigger>
-                  <SelectValue placeholder="Wählen Sie Anzahl Ihrer Kinder" />
+                  <SelectValue placeholder={t('label')} />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
@@ -50,7 +50,7 @@ export default function NumberOfChildrenSelect() {
                     key={key}
                     value={key.toString()}
                   >
-                    {key.toString()}
+                    {t(`options.${key.toString() as '0' | '1' | '2' | '3' | '4' | '5'}`)}
                   </SelectItem>
                 ))}
               </SelectContent>

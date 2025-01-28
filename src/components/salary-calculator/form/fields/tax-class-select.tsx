@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { TaxClass } from '@/types/common';
+import { useTranslations } from 'next-intl';
 import { useFormContext } from 'react-hook-form';
 
 import { PopoverTooltip } from './shared';
@@ -22,21 +23,22 @@ const TAX_CLASS_OPTIONS = [
   TaxClass.enum.VI,
 ];
 
+const FIELD_NAME = 'taxClass';
+
 export default function TaxClassSelect() {
   const form = useFormContext();
+  const t = useTranslations(`SalaryCalculator.form.fields.${FIELD_NAME}`);
 
   return (
     <FormField
       control={form.control}
-      name="taxClass"
+      name={FIELD_NAME}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Steuerklasse</FormLabel>
+          <FormLabel>{t('label')}</FormLabel>
           <div className="flex items-center gap-3">
             <PopoverTooltip>
-              <p className="max-w-sm">
-                Wählen Sie die zutreffende Steuerklasse laut den ELStAM aus.
-              </p>
+              <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>
             <Select
               {...field}
@@ -45,7 +47,7 @@ export default function TaxClassSelect() {
             >
               <FormControl>
                 <SelectTrigger>
-                  <SelectValue placeholder="Wählen Sie Ihre Steuerklasse" />
+                  <SelectValue placeholder={t('label')} />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
@@ -54,7 +56,7 @@ export default function TaxClassSelect() {
                     key={key}
                     value={key}
                   >
-                    {key}
+                    {t(`options.${key}`)}
                   </SelectItem>
                 ))}
               </SelectContent>

@@ -2,27 +2,27 @@
 
 import { Checkbox } from '@/components/ui/checkbox';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { useTranslations } from 'next-intl';
 import { useFormContext } from 'react-hook-form';
 
 import { PopoverTooltip } from './shared';
 
+const FIELD_NAME = 'nursingCareInsuranceSurcharge';
+
 export default function NursingCareInsuranceSurchargeCheckbox() {
   const form = useFormContext();
+  const t = useTranslations(`SalaryCalculator.form.fields.${FIELD_NAME}`);
 
   return (
     <FormField
       control={form.control}
-      name="nursingCareInsuranceSurcharge"
+      name={FIELD_NAME}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>PV Zuschlag</FormLabel>
+          <FormLabel>{t('label')}</FormLabel>
           <div className="flex items-center gap-3 pt-3 pb-2">
             <PopoverTooltip>
-              <p className="max-w-sm">
-                Kinderlose Versicherte, die das 23. Lebensjahr vollendet haben, zahlen in der
-                Pflegeversicherung einen Beitragszuschlag, sofern sie gegenüber dem Arbeitgeber
-                keine Elterneigenschaft nachweisen. Dieser beträgt seit dem 1.7.2023: 0,6 %.
-              </p>
+              <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>
             <FormControl>
               <Checkbox

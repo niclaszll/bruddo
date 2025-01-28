@@ -1,5 +1,86 @@
 {
-  "HomePage": {
-    "title": "Hello world!"
+  "SalaryCalculator": {
+    "form": {
+      "fields": {
+        "calculationPeriod": {
+          "label": "Berechnungszeitraum",
+          "tooltip": "Wähle ob mit monatlichen oder jährlichen Werten gerechnent werden soll.",
+          "options": {
+            "YEAR": "Jahr",
+            "MONTH": "Monat"
+          }
+        },
+        "grossIncome": {
+          "label": "Bruttogehalt",
+          "tooltip": "Dein Bruttogehalt im Berechnungszeitraum."
+        },
+        "federalState": {
+          "label": "Bundesland",
+          "tooltip": "Wähle das Bundesland aus, in dem dein Beschäftigungsort liegt (nicht zu verwechseln mit der Betriebsstätte im steuerrechtlichen Sinn).",
+          "options": {
+            "BW": "Baden-Württemberg",
+            "BY": "Bayern",
+            "BE": "Berlin",
+            "BB": "Brandenburg",
+            "HB": "Bremen",
+            "HH": "Hamburg",
+            "HE": "Hessen",
+            "MV": "Mecklenburg-Vorpommern",
+            "NI": "Niedersachsen",
+            "NW": "Nordrhein-Westfalen",
+            "RP": "Rheinland-Pfalz",
+            "SL": "Saarland",
+            "SN": "Sachsen",
+            "ST": "Sachsen-Anhalt",
+            "SH": "Schleswig-Holstein",
+            "TH": "Thüringen"
+          }
+        },
+        "taxClass": {
+          "label": "Steuerklasse",
+          "tooltip": "Wähle die zutreffende Steuerklasse laut den ELStAM aus.",
+          "options": {
+            "I": "I",
+            "II": "II",
+            "III": "III",
+            "IV": "IV",
+            "V": "V",
+            "VI": "VI"
+          }
+        },
+        "churchTax": {
+          "label": "Kirchensteuer",
+          "tooltip": "Wähle ob Kirchensteuer abzuführen ist."
+        },
+        "dob": {
+          "label": "Geburtsdatum",
+          "tooltip": "Wähle dein Geburtsdatum aus. Arbeitnehmer über 64 Jahre erhalten den Altersentlastungsbetrag nach § 24a EStG."
+        },
+        "childAllowances": {
+          "label": "Kinderfreibeträge",
+          "tooltip": "Wähle hier die zu berücksichtigenden Kinder laut der ELStAM anhand des sog. Kinderfreibetragszählers aus. Der Freibetrag wird bei der Steuer-Ermittlung von ggf. Solidaritätszuschlag und Kirchensteuer berücksichtigt."
+        },
+        "healthInsuranceAdditionalContribution": {
+          "label": "Zusatzbeitrag",
+          "tooltip": "Der Zusatzbeitrag Ihrer Krankenkasse."
+        },
+        "nursingCareInsuranceSurcharge": {
+          "label": "PV Zuschlag",
+          "tooltip": "Kinderlose Versicherte, die das 23. Lebensjahr vollendet haben, zahlen in der Pflegeversicherung einen Beitragszuschlag von 0,6 %, sofern sie gegenüber dem Arbeitgeber keine Elterneigenschaft nachweisen."
+        },
+        "numChildren": {
+          "label": "Anzahl Kinder",
+          "tooltip": "Wähle hier die Anzahl der berücksichtigungsfähigen Kinder für die Pflegeversicherung aus, um Beitragsabschläge zu berücksichtigen.",
+          "options": {
+            "0": "0",
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5+"
+          }
+        }
+      }
+    }
   }
 }

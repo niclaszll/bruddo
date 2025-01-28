@@ -8,29 +8,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useTranslations } from 'next-intl';
 import { useFormContext } from 'react-hook-form';
 
 import { PopoverTooltip } from './shared';
 
 const CHILD_ALLOWANCES_OPTIONS = [...Array(20).keys()].map((i) => i * 0.5);
+const FIELD_NAME = 'childAllowances';
 
 export default function ChildAllowancesSelect() {
   const form = useFormContext();
+  const t = useTranslations(`SalaryCalculator.form.fields.${FIELD_NAME}`);
 
   return (
     <FormField
       control={form.control}
-      name="childAllowances"
+      name={FIELD_NAME}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Kinderfreibeträge</FormLabel>
+          <FormLabel>{t('label')}</FormLabel>
           <div className="flex items-center gap-3">
             <PopoverTooltip>
-              <p className="max-w-sm">
-                Wählen Sie hier die zu berücksichtigenden Kinder laut der ELStAM anhand des sog.
-                Kinderfreibetragszählers aus. Der Freibetrag wird bei der Steuer-Ermittlung von ggf.
-                Solidaritätszuschlag und Kirchensteuer berücksichtigt.
-              </p>
+              <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>
             <Select
               {...field}
@@ -39,7 +38,7 @@ export default function ChildAllowancesSelect() {
             >
               <FormControl>
                 <SelectTrigger>
-                  <SelectValue placeholder="Wählen Sie Anzahl der Kinderfreibeträge" />
+                  <SelectValue placeholder={t('label')} />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>

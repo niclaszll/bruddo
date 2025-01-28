@@ -2,27 +2,27 @@
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useTranslations } from 'next-intl';
 import { useFormContext } from 'react-hook-form';
 
 import { PopoverTooltip } from './shared';
 
+const FIELD_NAME = 'dob';
+
 export default function DobInput() {
   const form = useFormContext();
+  const t = useTranslations(`SalaryCalculator.form.fields.${FIELD_NAME}`);
 
   return (
     <FormField
       control={form.control}
-      name="dob"
+      name={FIELD_NAME}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Geburtsdatum</FormLabel>
+          <FormLabel>{t('label')}</FormLabel>
           <div className="flex items-center gap-3">
             <PopoverTooltip>
-              <p className="max-w-sm">
-                Arbeitnehmer über 64 Jahre erhalten den Altersentlastungsbetrag nach § 24a EStG. Die
-                Höhe des Altersentlastungsbetrags ist abhängig von den Einkünften und vom
-                Kalenderjahr, das auf den 64. Geburtstag des Arbeitnehmers folgt.
-              </p>
+              <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>
             <FormControl>
               <Input

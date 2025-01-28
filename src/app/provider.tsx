@@ -17,6 +17,7 @@ export default function Provider({
     <NextIntlClientProvider
       messages={messages}
       locale={locale}
+      timeZone="Europe/Berlin"
     >
       {children}
     </NextIntlClientProvider>

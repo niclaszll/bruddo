@@ -2,6 +2,7 @@
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -14,15 +15,18 @@ const numberFormatter = Intl.NumberFormat('de-DE', {
   maximumFractionDigits: 2,
 });
 
+const FIELD_NAME = 'healthInsuranceAdditionalContribution';
+
 export default function HealthInsuranceAddConInput() {
   const form = useFormContext();
+  const t = useTranslations(`SalaryCalculator.form.fields.${FIELD_NAME}`);
 
   const [value, setValue] = React.useReducer(
     (_: string, next: string) => {
       const digits = next.replace(/\D/g, '');
       return numberFormatter.format(Number(digits) / 100).trim();
     },
-    numberFormatter.format(Number(defaultValues.healthInsuranceAdditionalContribution)).trim(),
+    numberFormatter.format(Number(defaultValues[FIELD_NAME])).trim(),
   );
 
   function handleChange(formattedValue: string, onCallback: (value: number) => void) {
@@ -34,13 +38,13 @@ export default function HealthInsuranceAddConInput() {
   return (
     <FormField
       control={form.control}
-      name="healthInsuranceAdditionalContribution"
+      name={FIELD_NAME}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Zusatzbeitrag</FormLabel>
+          <FormLabel>{t('label')}</FormLabel>
           <div className="flex items-center gap-3">
             <PopoverTooltip>
-              <p className="max-w-sm">Der Zusatzbeitrag Ihrer Krankenkasse.</p>
+              <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>
             <FormControl>
               <div className="relative">

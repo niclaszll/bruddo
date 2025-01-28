@@ -2,6 +2,7 @@
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -17,7 +18,10 @@ const moneyFormatter = Intl.NumberFormat('de-DE', {
   maximumFractionDigits: 2,
 });
 
+const FIELD_NAME = 'grossIncome';
+
 export default function GrossIncomeInput() {
+  const t = useTranslations(`SalaryCalculator.form.fields.${FIELD_NAME}`);
   const form = useFormContext();
 
   const [value, setValue] = React.useReducer(
@@ -28,7 +32,7 @@ export default function GrossIncomeInput() {
         .replace('€', '')
         .trim();
     },
-    moneyFormatter.format(Number(defaultValues.grossIncome)).replace('€', '').trim(),
+    moneyFormatter.format(Number(defaultValues[FIELD_NAME])).replace('€', '').trim(),
   );
 
   function handleChange(formattedValue: string, onCallback: (value: number) => void) {
@@ -40,13 +44,13 @@ export default function GrossIncomeInput() {
   return (
     <FormField
       control={form.control}
-      name="grossIncome"
+      name={FIELD_NAME}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Bruttogehalt</FormLabel>
+          <FormLabel>{t('label')}</FormLabel>
           <div className="flex items-center gap-3">
             <PopoverTooltip>
-              <p className="max-w-sm">Ihr Bruttogehalt im Abrechnungszeitraum.</p>
+              <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>
             <FormControl>
               <div className="relative">
