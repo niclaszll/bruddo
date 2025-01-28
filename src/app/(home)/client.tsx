@@ -45,7 +45,7 @@ export default function HomeClient() {
               orientation="vertical"
               className="mr-2 h-4"
             />
-            <h1 className="text-sm">{t('title')}</h1>
+            <h1 className="text-sm font-semibold">{t('title')}</h1>
           </div>
           <ThemeToggle />
         </header>

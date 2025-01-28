@@ -43,7 +43,7 @@ export default function ResultTable({ results }: Props) {
             {formatCurrency(-results.employeeResults.taxes.churchTax)}
           </TableCell>
         </TableRow>
-        <TableRow className="font-bold bg-muted/30">
+        <TableRow className="font-semibold bg-muted/30">
           <TableCell>{t('employeeResults.taxes.total')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(-results.employeeResults.taxes.total)}
@@ -73,7 +73,7 @@ export default function ResultTable({ results }: Props) {
             {formatCurrency(-results.employeeResults.socialSecurity.unemploymentInsurance)}
           </TableCell>
         </TableRow>
-        <TableRow className="font-bold bg-muted/30">
+        <TableRow className="font-semibold bg-muted/30">
           <TableCell>{t('employeeResults.socialSecurity.total')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(-results.employeeResults.socialSecurity.total)}
