@@ -20,7 +20,7 @@ export default function ChurchTaxCheckbox() {
       render={({ field }) => (
         <FormItem>
           <FormLabel>{t('label')}</FormLabel>
-          <div className="flex items-center gap-3 pt-3 pb-2">
+          <div className="flex items-center gap-3 pt-3 pb-1">
             <PopoverTooltip>
               <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>

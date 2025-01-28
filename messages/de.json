@@ -68,7 +68,7 @@
           "tooltip": "Dein Bruttogehalt im Berechnungszeitraum."
         },
         "healthInsuranceAdditionalContribution": {
-          "label": "Zusatzbeitrag",
+          "label": "KV Zusatzbeitrag",
           "tooltip": "Der Zusatzbeitrag deiner Krankenkasse."
         },
         "numChildren": {
