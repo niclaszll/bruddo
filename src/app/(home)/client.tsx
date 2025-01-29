@@ -3,6 +3,7 @@
 import { onSubmitAction } from '@/components/salary-calculator/actions';
 import SalaryForm from '@/components/salary-calculator/form';
 import ResultCharts from '@/components/salary-calculator/results/charts';
+import SummaryCards from '@/components/salary-calculator/results/summary-cards';
 import ResultTable from '@/components/salary-calculator/results/table';
 import { ThemeToggle } from '@/components/theme';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
@@ -49,24 +50,27 @@ export default function HomeClient() {
           </div>
           <ThemeToggle />
         </header>
-        <ResizablePanelGroup
-          direction="horizontal"
-          className="flex p-6 gap-6 flex-wrap"
-        >
-          <ResizablePanel
-            defaultSize={50}
-            className="min-w-96"
+        <div className="flex p-6 gap-6 flex-col">
+          <SummaryCards results={state} />
+          <ResizablePanelGroup
+            direction="horizontal"
+            className="flex gap-6 flex-wrap"
           >
-            <ResultTable results={state} />
-          </ResizablePanel>
-          <ResizableHandle />
-          <ResizablePanel
-            defaultSize={50}
-            className="min-w-96"
-          >
-            <ResultCharts results={state} />
-          </ResizablePanel>
-        </ResizablePanelGroup>
+            <ResizablePanel
+              defaultSize={50}
+              className="min-w-96"
+            >
+              <ResultTable results={state} />
+            </ResizablePanel>
+            <ResizableHandle />
+            <ResizablePanel
+              defaultSize={50}
+              className="min-w-96"
+            >
+              <ResultCharts results={state} />
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </div>
       </SidebarInset>
     </SidebarProvider>
   );
