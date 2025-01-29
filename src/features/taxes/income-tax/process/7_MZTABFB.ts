@@ -59,18 +59,18 @@ export const calculateMZTABFB = () => {
 
   switch (userInputs.STKL) {
     case TaxClass.enum.I:
-      internalFields.KFB = userInputs.ZKF * 9540;
+      internalFields.KFB = userInputs.ZKF * 9600;
       break;
     case TaxClass.enum.II:
-      internalFields.KFB = userInputs.ZKF * 9540;
+      internalFields.KFB = userInputs.ZKF * 9600;
       internalFields.EFA = 4260;
       break;
     case TaxClass.enum.III:
-      internalFields.KFB = userInputs.ZKF * 9540;
+      internalFields.KFB = userInputs.ZKF * 9600;
       internalFields.KZTAB = IncomeTaxTariffType.enum.SPLITTING;
       break;
     case TaxClass.enum.IV:
-      internalFields.KFB = userInputs.ZKF * 4770;
+      internalFields.KFB = userInputs.ZKF * 4800;
       break;
     case TaxClass.enum.V:
     case TaxClass.enum.VI:

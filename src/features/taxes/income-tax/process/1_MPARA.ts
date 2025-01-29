@@ -35,6 +35,6 @@ export const setupMPARA = () => {
   internalFields.W2STKL5 = 33380;
   internalFields.W3STKL5 = 222260;
 
-  internalFields.GFB = 11784;
+  internalFields.GFB = 12096;
   internalFields.SOLZFREI = 18130;
 };
