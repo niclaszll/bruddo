@@ -3,12 +3,47 @@
 import SocialSecurityService from '@/features/social-security/service';
 import ChurchTaxService from '@/features/taxes/church-tax/service';
 import TaxService from '@/features/taxes/income-tax/service';
+import { CalculationPeriod } from '@/types/common';
 import { UserInputs } from '@/types/form';
 import { roundDownToFullCent, roundToFullCent } from '@/util/format';
 
 import { calculateUserAge } from './util';
 
+export type CalculationPeriodTuple = {
+  [CalculationPeriod.enum.MONTH]: number;
+  [CalculationPeriod.enum.YEAR]: number;
+};
+
 export type EmployeeResults = {
+  grossIncome: CalculationPeriodTuple;
+  taxes: {
+    incomeTax: CalculationPeriodTuple;
+    solidaritySurcharge: CalculationPeriodTuple;
+    churchTax: CalculationPeriodTuple;
+    total: CalculationPeriodTuple;
+  };
+  socialSecurity: {
+    healthInsurance: CalculationPeriodTuple;
+    nursingCareInsurance: CalculationPeriodTuple;
+    pensionInsurance: CalculationPeriodTuple;
+    unemploymentInsurance: CalculationPeriodTuple;
+    total: CalculationPeriodTuple;
+  };
+  netIncome: CalculationPeriodTuple;
+};
+
+export type EmployerResults = {
+  grossIncome: CalculationPeriodTuple;
+  socialSecurity: {
+    healthInsurance: CalculationPeriodTuple;
+    nursingCareInsurance: CalculationPeriodTuple;
+    pensionInsurance: CalculationPeriodTuple;
+    unemploymentInsurance: CalculationPeriodTuple;
+    total: CalculationPeriodTuple;
+  };
+};
+
+type NetIncomeCalculationParams = {
   grossIncome: number;
   taxes: {
     incomeTax: number;
@@ -23,21 +58,7 @@ export type EmployeeResults = {
     unemploymentInsurance: number;
     total: number;
   };
-  netIncome: number;
 };
-
-export type EmployerResults = {
-  grossIncome: number;
-  socialSecurity: {
-    healthInsurance: number;
-    nursingCareInsurance: number;
-    pensionInsurance: number;
-    unemploymentInsurance: number;
-    total: number;
-  };
-};
-
-type NetIncomeCalculationParams = Omit<EmployeeResults, 'netIncome'>;
 
 class AggregationService {
   static #instance: AggregationService;
@@ -136,6 +157,17 @@ class AggregationService {
     };
   }
 
+  public getMonthlyAndYearlyValues(
+    value: number,
+    calculationPeriod: CalculationPeriod,
+  ): CalculationPeriodTuple {
+    if (calculationPeriod === CalculationPeriod.enum.YEAR) {
+      return { [CalculationPeriod.enum.MONTH]: value / 12, [CalculationPeriod.enum.YEAR]: value };
+    } else {
+      return { [CalculationPeriod.enum.MONTH]: value, [CalculationPeriod.enum.YEAR]: value * 12 };
+    }
+  }
+
   public getAggregatedResultsForEmployee(inputs: UserInputs): EmployeeResults {
     const taxContrib = this.calculateTaxContributions(inputs);
     const socSecContrib = this.calculateSocialSecurityContributions(inputs);
@@ -160,8 +192,42 @@ class AggregationService {
     const netIncome = this.calculateEmployeeNetIncome(netIncomeCalcParams);
 
     return {
-      ...netIncomeCalcParams,
-      netIncome,
+      grossIncome: this.getMonthlyAndYearlyValues(inputs.grossIncome, inputs.calculationPeriod),
+      taxes: {
+        incomeTax: this.getMonthlyAndYearlyValues(
+          taxContrib.incomeTaxResults.incomeTax,
+          inputs.calculationPeriod,
+        ),
+        solidaritySurcharge: this.getMonthlyAndYearlyValues(
+          taxContrib.incomeTaxResults.solidaritySurcharge,
+          inputs.calculationPeriod,
+        ),
+        churchTax: this.getMonthlyAndYearlyValues(taxContrib.churchTax, inputs.calculationPeriod),
+        total: this.getMonthlyAndYearlyValues(taxContrib.total, inputs.calculationPeriod),
+      },
+      socialSecurity: {
+        healthInsurance: this.getMonthlyAndYearlyValues(
+          socSecContrib.healthInsuranceResults.employeeContribution,
+          inputs.calculationPeriod,
+        ),
+        nursingCareInsurance: this.getMonthlyAndYearlyValues(
+          socSecContrib.nursingCareInsuranceResults.employeeContribution,
+          inputs.calculationPeriod,
+        ),
+        pensionInsurance: this.getMonthlyAndYearlyValues(
+          socSecContrib.pensionInsuranceResults.employeeContribution,
+          inputs.calculationPeriod,
+        ),
+        unemploymentInsurance: this.getMonthlyAndYearlyValues(
+          socSecContrib.unemploymentInsuranceResults.employeeContribution,
+          inputs.calculationPeriod,
+        ),
+        total: this.getMonthlyAndYearlyValues(
+          socSecContrib.totalEmployeeContribution,
+          inputs.calculationPeriod,
+        ),
+      },
+      netIncome: this.getMonthlyAndYearlyValues(netIncome, inputs.calculationPeriod),
     };
   }
 
@@ -169,13 +235,28 @@ class AggregationService {
     const socSecContrib = this.calculateSocialSecurityContributions(inputs);
 
     return {
-      grossIncome: inputs.grossIncome,
+      grossIncome: this.getMonthlyAndYearlyValues(inputs.grossIncome, inputs.calculationPeriod),
       socialSecurity: {
-        healthInsurance: socSecContrib.healthInsuranceResults.employerContribution,
-        nursingCareInsurance: socSecContrib.nursingCareInsuranceResults.employerContribution,
-        pensionInsurance: socSecContrib.pensionInsuranceResults.employerContribution,
-        unemploymentInsurance: socSecContrib.unemploymentInsuranceResults.employerContribution,
-        total: socSecContrib.totalEmployerContribution,
+        healthInsurance: this.getMonthlyAndYearlyValues(
+          socSecContrib.healthInsuranceResults.employerContribution,
+          inputs.calculationPeriod,
+        ),
+        nursingCareInsurance: this.getMonthlyAndYearlyValues(
+          socSecContrib.nursingCareInsuranceResults.employerContribution,
+          inputs.calculationPeriod,
+        ),
+        pensionInsurance: this.getMonthlyAndYearlyValues(
+          socSecContrib.pensionInsuranceResults.employerContribution,
+          inputs.calculationPeriod,
+        ),
+        unemploymentInsurance: this.getMonthlyAndYearlyValues(
+          socSecContrib.unemploymentInsuranceResults.employerContribution,
+          inputs.calculationPeriod,
+        ),
+        total: this.getMonthlyAndYearlyValues(
+          socSecContrib.totalEmployerContribution,
+          inputs.calculationPeriod,
+        ),
       },
     };
   }

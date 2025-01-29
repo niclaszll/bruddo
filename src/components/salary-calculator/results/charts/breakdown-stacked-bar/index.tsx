@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/chart';
 import { Switch } from '@/components/ui/switch';
 import { useFormatCurrency } from '@/hooks/common';
+import { CalculationPeriod } from '@/types/common';
 import { TranslationKey } from '@/types/i18n';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -78,27 +79,36 @@ export function ContributionBreakdownStackedBarChart({ results }: Props) {
 
   if (!results.employeeResults) return null;
 
+  const calculationPeriod =
+    results.userInputs?.calculationPeriod === CalculationPeriod.enum.MONTH
+      ? CalculationPeriod.enum.MONTH
+      : CalculationPeriod.enum.YEAR;
+
   // Prepare data based on the toggle state
   const chartData = isDetailedView
     ? [
         {
           category: 'Breakdown',
-          incomeTax: results.employeeResults.taxes.incomeTax,
-          solidaritySurcharge: results.employeeResults.taxes.solidaritySurcharge,
-          churchTax: results.employeeResults.taxes.churchTax,
-          healthInsurance: results.employeeResults.socialSecurity.healthInsurance,
-          nursingCareInsurance: results.employeeResults.socialSecurity.nursingCareInsurance,
-          pensionInsurance: results.employeeResults.socialSecurity.pensionInsurance,
-          unemploymentInsurance: results.employeeResults.socialSecurity.unemploymentInsurance,
-          netIncome: results.employeeResults.netIncome,
+          incomeTax: results.employeeResults.taxes.incomeTax[calculationPeriod],
+          solidaritySurcharge: results.employeeResults.taxes.solidaritySurcharge[calculationPeriod],
+          churchTax: results.employeeResults.taxes.churchTax[calculationPeriod],
+          healthInsurance:
+            results.employeeResults.socialSecurity.healthInsurance[calculationPeriod],
+          nursingCareInsurance:
+            results.employeeResults.socialSecurity.nursingCareInsurance[calculationPeriod],
+          pensionInsurance:
+            results.employeeResults.socialSecurity.pensionInsurance[calculationPeriod],
+          unemploymentInsurance:
+            results.employeeResults.socialSecurity.unemploymentInsurance[calculationPeriod],
+          netIncome: results.employeeResults.netIncome[calculationPeriod],
         },
       ]
     : [
         {
           category: 'Breakdown',
-          taxesTotal: results.employeeResults.taxes.total,
-          socialSecurityTotal: results.employeeResults.socialSecurity.total,
-          netIncome: results.employeeResults.netIncome,
+          taxesTotal: results.employeeResults.taxes.total[calculationPeriod],
+          socialSecurityTotal: results.employeeResults.socialSecurity.total[calculationPeriod],
+          netIncome: results.employeeResults.netIncome[calculationPeriod],
         },
       ];
 

@@ -1,6 +1,7 @@
 import { FormState } from '@/components/salary-calculator/actions';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { CalculationPeriod } from '@/types/common';
 import { useFormatter } from 'next-intl';
 
 type Props = {
@@ -15,15 +16,21 @@ export default function SummaryCards({ results }: Props) {
 
   const data = [
     {
-      percentage: employeeResults.taxes.total / employeeResults.grossIncome,
+      percentage:
+        employeeResults.taxes.total[CalculationPeriod.enum.YEAR] /
+        employeeResults.grossIncome[CalculationPeriod.enum.YEAR],
       description: 'gehen für Steuern drauf.',
     },
     {
-      percentage: employeeResults.socialSecurity.total / employeeResults.grossIncome,
+      percentage:
+        employeeResults.socialSecurity.total[CalculationPeriod.enum.YEAR] /
+        employeeResults.grossIncome[CalculationPeriod.enum.YEAR],
       description: 'landen in Sozialversicherungen.',
     },
     {
-      percentage: employeeResults.netIncome / employeeResults.grossIncome,
+      percentage:
+        employeeResults.netIncome[CalculationPeriod.enum.YEAR] /
+        employeeResults.grossIncome[CalculationPeriod.enum.YEAR],
       description: 'bleiben dir am Ende übrig.',
     },
   ];
