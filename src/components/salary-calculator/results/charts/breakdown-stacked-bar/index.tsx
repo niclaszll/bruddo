@@ -10,12 +10,14 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart';
+import { Switch } from '@/components/ui/switch';
 import { useFormatCurrency } from '@/hooks/common';
 import { TranslationKey } from '@/types/i18n';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 
-const chartConfig = {
+const chartConfigDetailed = {
   incomeTax: {
     label: 'Results.employeeResults.taxes.incomeTax' satisfies TranslationKey,
     color: 'hsl(var(--chart-1))',
@@ -50,28 +52,57 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
+const chartConfigGeneral = {
+  taxesTotal: {
+    label: 'Results.employeeResults.taxes.total' satisfies TranslationKey,
+    color: 'hsl(var(--chart-1))',
+  },
+  socialSecurityTotal: {
+    label: 'Results.employeeResults.socialSecurity.total' satisfies TranslationKey,
+    color: 'hsl(var(--chart-4))',
+  },
+  netIncome: {
+    label: 'Results.employeeResults.netIncome' satisfies TranslationKey,
+    color: 'hsl(var(--chart-8))',
+  },
+} satisfies ChartConfig;
+
 type Props = {
   results: FormState;
 };
 
 export function ContributionBreakdownStackedBarChart({ results }: Props) {
+  const [isDetailedView, setIsDetailedView] = useState(true); // Toggle state
   const t = useTranslations();
   const formatCurrency = useFormatCurrency();
+
   if (!results.employeeResults) return null;
 
-  const chartData = [
-    {
-      category: 'Breakdown',
-      incomeTax: results.employeeResults.taxes.incomeTax,
-      solidaritySurcharge: results.employeeResults.taxes.solidaritySurcharge,
-      churchTax: results.employeeResults.taxes.churchTax,
-      healthInsurance: results.employeeResults.socialSecurity.healthInsurance,
-      nursingCareInsurance: results.employeeResults.socialSecurity.nursingCareInsurance,
-      pensionInsurance: results.employeeResults.socialSecurity.pensionInsurance,
-      unemploymentInsurance: results.employeeResults.socialSecurity.unemploymentInsurance,
-      netIncome: results.employeeResults.netIncome,
-    },
-  ];
+  // Prepare data based on the toggle state
+  const chartData = isDetailedView
+    ? [
+        {
+          category: 'Breakdown',
+          incomeTax: results.employeeResults.taxes.incomeTax,
+          solidaritySurcharge: results.employeeResults.taxes.solidaritySurcharge,
+          churchTax: results.employeeResults.taxes.churchTax,
+          healthInsurance: results.employeeResults.socialSecurity.healthInsurance,
+          nursingCareInsurance: results.employeeResults.socialSecurity.nursingCareInsurance,
+          pensionInsurance: results.employeeResults.socialSecurity.pensionInsurance,
+          unemploymentInsurance: results.employeeResults.socialSecurity.unemploymentInsurance,
+          netIncome: results.employeeResults.netIncome,
+        },
+      ]
+    : [
+        {
+          category: 'Breakdown',
+          taxesTotal: results.employeeResults.taxes.total,
+          socialSecurityTotal: results.employeeResults.socialSecurity.total,
+          netIncome: results.employeeResults.netIncome,
+        },
+      ];
+
+  const chartConfig = isDetailedView ? chartConfigDetailed : chartConfigGeneral;
 
   return (
     <Card>
@@ -80,14 +111,19 @@ export function ContributionBreakdownStackedBarChart({ results }: Props) {
         <CardDescription>
           Steuern, Sozialversicherungsbeiträge und verbleibendes Nettogehalt
         </CardDescription>
+        <div className="flex items-center justify-between pt-2">
+          <span className="text-sm font-medium">Detaillierte Aufschlüsselung</span>
+          <Switch
+            checked={isDetailedView}
+            onCheckedChange={() => setIsDetailedView((prev) => !prev)}
+          />
+        </div>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart
             data={chartData}
             layout="vertical"
-            width={600}
-            height={300}
           >
             <CartesianGrid horizontal={false} />
             <YAxis
