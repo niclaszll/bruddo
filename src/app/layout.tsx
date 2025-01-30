@@ -1,4 +1,5 @@
 import { Toaster } from '@/components/ui/toaster';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { getLocale, getMessages } from 'next-intl/server';
 import { Open_Sans } from 'next/font/google';
@@ -39,6 +40,7 @@ export default async function RootLayout({
           {children}
           <Toaster />
         </Provider>
+        <SpeedInsights />
       </body>
     </html>
   );
