@@ -121,8 +121,8 @@ export function ContributionBreakdownStackedBarChart({ results }: Props) {
         <CardDescription>
           Steuern, Sozialversicherungsbeiträge und verbleibendes Nettogehalt
         </CardDescription>
-        <div className="flex items-center justify-between pt-2">
-          <span className="text-sm font-medium">Detaillierte Aufschlüsselung</span>
+        <div className="flex items-center pt-3">
+          <span className="text-sm font-medium pr-4">Detaillierte Aufschlüsselung</span>
           <Switch
             checked={isDetailedView}
             onCheckedChange={() => setIsDetailedView((prev) => !prev)}

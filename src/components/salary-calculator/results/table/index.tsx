@@ -1,5 +1,6 @@
 'use client';
 
+import { Card } from '@/components/ui/card';
 import {
   Table,
   TableBody,
@@ -66,10 +67,10 @@ function DesktopTable({ results }: Props) {
       <TableFooter>
         <TableRow className="font-bold">
           <TableCell colSpan={1}>{t('Results.employeeResults.netIncome')}</TableCell>
-          <TableCell className="text-right">
+          <TableCell className="text-right underline decoration-primary decoration-2 underline-offset-8">
             {formatCurrency(results.employeeResults.netIncome[CalculationPeriod.enum.MONTH])}
           </TableCell>
-          <TableCell className="text-right">
+          <TableCell className="text-right underline decoration-primary decoration-2 underline-offset-8">
             {formatCurrency(results.employeeResults.netIncome[CalculationPeriod.enum.YEAR])}
           </TableCell>
         </TableRow>
@@ -104,7 +105,7 @@ function MobileTable({ results }: Props) {
               <TableRow className="font-bold bg-muted/30">
                 <TableCell>{t('Results.employeeResults.grossIncome')}</TableCell>
                 <TableCell className="text-right">
-                  {formatCurrency(results.employeeResults.grossIncome[value])}
+                  {formatCurrency(results.employeeResults!.grossIncome[value])}
                 </TableCell>
               </TableRow>
               {rows.map((row, index) => (
@@ -120,8 +121,8 @@ function MobileTable({ results }: Props) {
             <TableFooter>
               <TableRow className="font-bold">
                 <TableCell colSpan={1}>{t('Results.employeeResults.netIncome')}</TableCell>
-                <TableCell className="text-right">
-                  {formatCurrency(results.employeeResults.netIncome[value])}
+                <TableCell className="text-right underline decoration-primary decoration-2 underline-offset-8">
+                  {formatCurrency(results.employeeResults!.netIncome[value])}
                 </TableCell>
               </TableRow>
             </TableFooter>
@@ -136,13 +137,13 @@ export default function ResultTable({ results }: Props) {
   if (!results.employeeResults || !results.employerResults) return null;
 
   return (
-    <div className="border rounded-lg">
+    <Card className="overflow-hidden">
       <div className="max-md:hidden">
         <DesktopTable results={results} />
       </div>
       <div className="md:hidden">
         <MobileTable results={results} />
       </div>
-    </div>
+    </Card>
   );
 }

@@ -86,8 +86,8 @@ export default function FederalStateSelect() {
                     <div className="flex items-center">
                       <Image
                         src={icon}
-                        className="w-4 mr-2 object-cover"
                         alt={t('label')}
+                        className="w-4 mr-2 object-cover"
                       />
                       <span className="truncate">{t(`options.${key}`)}</span>
                     </div>
