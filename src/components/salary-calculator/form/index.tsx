@@ -62,7 +62,8 @@ export default function SalaryForm({ formState, formAction }: Props) {
     e.preventDefault();
     form.handleSubmit(() => {
       handleFieldDependencies(form.getValues());
-      if (formRef.current != null) startTransition(() => formAction(new FormData(formRef.current)));
+      if (formRef.current != null)
+        startTransition(() => formAction(new FormData(formRef.current ?? undefined)));
     })(e);
   };
 

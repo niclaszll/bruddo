@@ -26,6 +26,7 @@ import {
 } from '@/components/ui/select';
 import { FederalState } from '@/types/common';
 import { useTranslations } from 'next-intl';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
 import { useFormContext } from 'react-hook-form';
 
@@ -85,7 +86,7 @@ export default function FederalStateSelect() {
                   >
                     <div className="flex items-center">
                       <Image
-                        src={icon}
+                        src={icon as unknown as StaticImport}
                         alt={t('label')}
                         className="w-4 mr-2 object-cover"
                       />

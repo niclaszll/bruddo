@@ -1,3 +1,4 @@
+import { CalculationPeriod } from '@/types/common';
 import { roundDownToFullEuro } from '@/util/format';
 
 import { InternalFieldsClient } from '../clients/InternalFieldsClient';
@@ -15,7 +16,7 @@ export const calculateMSONST = () => {
   const internalFields = InternalFieldsClient.instance;
   const userInputs = UserInputsClient.instance;
 
-  userInputs.setLZZ(1);
+  userInputs.setLZZ(CalculationPeriod.enum.YEAR);
 
   if (userInputs.ZMVB === 0) userInputs.setZMVB(12);
 
