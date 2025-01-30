@@ -31,7 +31,7 @@ export default async function RootLayout({
       className={mulish.className}
       suppressHydrationWarning
     >
-      <body className="antialiased bg-background text-foreground">
+      <body className="antialiased bg-background text-foreground mb-6">
         <Provider
           locale={locale}
           messages={messages}
