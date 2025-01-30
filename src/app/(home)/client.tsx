@@ -25,12 +25,13 @@ export default function HomeClient() {
     error: false,
     employeeResults: undefined,
     employerResults: undefined,
+    userInputs: undefined,
   });
 
   return (
     <SidebarProvider>
       <Sidebar>
-        <SidebarContent className="px-6 py-6">
+        <SidebarContent className="p-6">
           <SalaryForm
             formState={state}
             formAction={formAction}
@@ -50,22 +51,22 @@ export default function HomeClient() {
           </div>
           <ThemeToggle />
         </header>
-        <div className="flex p-6 gap-6 flex-col">
+        <div className="flex p-3 gap-3 lg:p-6 lg:gap-6 flex-col">
           <SummaryCards results={state} />
           <ResizablePanelGroup
             direction="horizontal"
-            className="flex gap-6 flex-wrap"
+            className="flex gap-3 lg:gap-6 flex-wrap xl:flex-col"
           >
             <ResizablePanel
               defaultSize={50}
-              className="min-w-96"
+              className="min-w-full xl:min-w-108"
             >
               <ResultTable results={state} />
             </ResizablePanel>
-            <ResizableHandle />
+            <ResizableHandle className="max-xl:hidden" />
             <ResizablePanel
               defaultSize={50}
-              className="min-w-96"
+              className="min-w-full xl:min-w-96"
             >
               <ResultCharts results={state} />
             </ResizablePanel>

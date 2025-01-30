@@ -36,11 +36,11 @@ export default function SummaryCards({ results }: Props) {
   ];
 
   return (
-    <div className="flex gap-6 items-stretch flex-wrap">
+    <div className="flex gap-3 lg:gap-6 items-stretch flex-wrap">
       {data.map(({ percentage, description }, index) => (
         <Card
           key={index}
-          className="flex-1 min-w-52"
+          className="flex-1 lg:min-w-52"
         >
           <CardHeader>
             <CardTitle className="text-4xl font-bold green-500 pb-2">
