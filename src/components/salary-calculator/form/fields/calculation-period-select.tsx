@@ -27,8 +27,8 @@ export default function CalculationPeriodSelect() {
       name={FIELD_NAME}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{t('label')}</FormLabel>
-          <div className="flex items-center gap-3">
+          <FormLabel className="text-md md:text-sm">{t('label')}</FormLabel>
+          <div className="flex items-center gap-3 max-md:pt-2">
             <PopoverTooltip>
               <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>

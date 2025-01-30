@@ -89,7 +89,7 @@ function MobileTable({ results }: Props) {
 
   return (
     <Tabs defaultValue={CalculationPeriod.enum.MONTH}>
-      <div className="px-2 pt-2">
+      <div className="px-3 pt-3 pb-1">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value={CalculationPeriod.enum.MONTH}>Monatlich</TabsTrigger>
           <TabsTrigger value={CalculationPeriod.enum.YEAR}>Jährlich</TabsTrigger>

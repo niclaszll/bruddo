@@ -62,7 +62,7 @@ export default function SalaryForm({ formState, formAction }: Props) {
     e.preventDefault();
     form.handleSubmit(() => {
       handleFieldDependencies(form.getValues());
-      startTransition(() => formAction(new FormData(formRef.current!)));
+      if (formRef.current != null) startTransition(() => formAction(new FormData(formRef.current)));
     })(e);
   };
 
@@ -87,7 +87,7 @@ export default function SalaryForm({ formState, formAction }: Props) {
         action={formAction}
         onSubmit={handleSubmit}
         onChange={handleSubmit}
-        className="flex flex-col gap-5"
+        className="flex flex-col md:gap-4 gap-6"
       >
         <CalculationPeriodSelect />
         <GrossIncomeInput />

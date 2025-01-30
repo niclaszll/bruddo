@@ -47,12 +47,12 @@ export default function GrossIncomeInput() {
       name={FIELD_NAME}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{t('label')}</FormLabel>
-          <div className="flex items-center gap-3">
+          <FormLabel className="text-md md:text-sm">{t('label')}</FormLabel>
+          <div className="flex items-center gap-3 max-md:pt-2">
             <PopoverTooltip>
               <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>
-            <FormControl>
+            <FormControl className="w-full">
               <div className="relative">
                 <span className="absolute -inset-y-0 right-0 flex items-center pr-3 text-sm text-gray-500 dark:text-gray-400">
                   €

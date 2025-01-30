@@ -2,7 +2,7 @@ import { FormState } from '@/components/salary-calculator/actions';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { CalculationPeriod } from '@/types/common';
-import { HandCoins, Hospital, PiggyBank } from 'lucide-react';
+import { HandCoins, Hospital, Landmark } from 'lucide-react';
 import { useFormatter } from 'next-intl';
 
 type Props = {
@@ -21,7 +21,7 @@ export default function SummaryCards({ results }: Props) {
         employeeResults.taxes.total[CalculationPeriod.enum.YEAR] /
         employeeResults.grossIncome[CalculationPeriod.enum.YEAR],
       description: 'gehen für Steuern drauf.',
-      icon: <HandCoins className="stroke-secondary w-9 h-9" />,
+      icon: <Landmark className="stroke-secondary w-9 h-9" />,
     },
     {
       percentage:
@@ -35,7 +35,7 @@ export default function SummaryCards({ results }: Props) {
         employeeResults.netIncome[CalculationPeriod.enum.YEAR] /
         employeeResults.grossIncome[CalculationPeriod.enum.YEAR],
       description: 'bleiben dir am Ende übrig.',
-      icon: <PiggyBank className="stroke-secondary w-9 h-9" />,
+      icon: <HandCoins className="stroke-secondary w-9 h-9" />,
     },
   ];
 
