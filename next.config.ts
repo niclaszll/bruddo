@@ -5,6 +5,14 @@ const withNextIntl = createNextIntlPlugin('./src/lib/i18n/request.ts');
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        destination: '/',
+      },
+    ];
+  },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
