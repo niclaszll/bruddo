@@ -72,6 +72,8 @@ class SocialSecurityService {
 
     let effectiveRate: number;
 
+    // TODO: handle surcharge checkbox (maybe only set this programmatically, and use it here instead of age and numchildren -> manual override)
+
     if (numberOfChildren === 0 && age >= 23) {
       effectiveRate = 4.2;
     } else if (numberOfChildren === 1 || (numberOfChildren === 0 && age < 23)) {

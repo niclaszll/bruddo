@@ -41,7 +41,7 @@ function DesktopTable({ results }: Props) {
       </TableHeader>
       <TableBody>
         <TableRow className="font-bold bg-muted/30">
-          <TableCell>{t('Results.employeeResults.grossIncome')}</TableCell>
+          <TableCell>{t('Results.employeeResults.grossIncome.default')}</TableCell>
           <TableCell className="text-right">
             {formatCurrency(results.employeeResults.grossIncome[CalculationPeriod.enum.MONTH])}
           </TableCell>
@@ -66,7 +66,7 @@ function DesktopTable({ results }: Props) {
       </TableBody>
       <TableFooter>
         <TableRow className="font-bold">
-          <TableCell colSpan={1}>{t('Results.employeeResults.netIncome')}</TableCell>
+          <TableCell colSpan={1}>{t('Results.employeeResults.netIncome.default')}</TableCell>
           <TableCell className="text-right underline decoration-primary decoration-2 underline-offset-8">
             {formatCurrency(results.employeeResults.netIncome[CalculationPeriod.enum.MONTH])}
           </TableCell>
@@ -103,7 +103,7 @@ function MobileTable({ results }: Props) {
           <Table>
             <TableBody>
               <TableRow className="font-bold bg-muted/30">
-                <TableCell>{t('Results.employeeResults.grossIncome')}</TableCell>
+                <TableCell>{t('Results.employeeResults.grossIncome.default')}</TableCell>
                 <TableCell className="text-right">
                   {formatCurrency(results.employeeResults!.grossIncome[value])}
                 </TableCell>
@@ -120,7 +120,7 @@ function MobileTable({ results }: Props) {
             </TableBody>
             <TableFooter>
               <TableRow className="font-bold">
-                <TableCell colSpan={1}>{t('Results.employeeResults.netIncome')}</TableCell>
+                <TableCell colSpan={1}>{t('Results.employeeResults.netIncome.default')}</TableCell>
                 <TableCell className="text-right underline decoration-primary decoration-2 underline-offset-8">
                   {formatCurrency(results.employeeResults!.netIncome[value])}
                 </TableCell>

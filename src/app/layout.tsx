@@ -8,7 +8,7 @@ import './globals.css';
 import Provider from './provider';
 
 // If loading a variable font, you don't need to specify the font weight
-const mulish = Open_Sans({
+const openSans = Open_Sans({
   subsets: ['latin'],
   display: 'swap',
 });
@@ -29,7 +29,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={mulish.className}
+      className={openSans.className}
       suppressHydrationWarning
     >
       <body className="antialiased bg-background text-foreground mb-6">

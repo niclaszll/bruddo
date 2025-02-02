@@ -2,7 +2,7 @@
 
 import { onSubmitAction } from '@/components/salary-calculator/actions';
 import SalaryForm from '@/components/salary-calculator/form';
-import ResultCharts from '@/components/salary-calculator/results/charts';
+import { ContributionBreakdownSankeyChart } from '@/components/salary-calculator/results/charts/sankey';
 import SummaryCards from '@/components/salary-calculator/results/summary-cards';
 import ResultTable from '@/components/salary-calculator/results/table';
 import { ThemeToggle } from '@/components/theme';
@@ -27,6 +27,7 @@ export default function HomeClient() {
     error: false,
     employeeResults: undefined,
     employerResults: undefined,
+    employeeResultsRange: undefined,
     userInputs: undefined,
   });
 
@@ -80,11 +81,12 @@ export default function HomeClient() {
             <ResizableHandle className="max-xl:hidden" />
             <ResizablePanel
               defaultSize={50}
-              className="min-w-full xl:min-w-96"
+              className="min-w-full xl:min-w-96 flex justify-stretch"
             >
-              <ResultCharts results={state} />
+              <ContributionBreakdownSankeyChart results={state} />
             </ResizablePanel>
           </ResizablePanelGroup>
+          {/* <RangeBreakdownAreaChart results={state} /> */}
         </div>
       </SidebarInset>
     </SidebarProvider>

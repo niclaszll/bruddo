@@ -9,6 +9,7 @@ import { UserInputs } from '@/types/form';
 export type FormState = {
   employeeResults: EmployeeResults | undefined;
   employerResults: EmployerResults | undefined;
+  employeeResultsRange: EmployeeResults[] | undefined;
   userInputs: UserInputs | undefined;
   error: boolean;
 };
@@ -21,6 +22,7 @@ export async function onSubmitAction(prevState: FormState, data: FormData): Prom
     return {
       employeeResults: prevState.employeeResults,
       employerResults: prevState.employeeResults,
+      employeeResultsRange: undefined,
       userInputs: undefined,
       error: true,
     };
@@ -28,6 +30,18 @@ export async function onSubmitAction(prevState: FormState, data: FormData): Prom
 
   const employeeResults = AggregationService.getAggregatedResultsForEmployee(parsed.data);
   const employerResults = AggregationService.getAggregatedResultsForEmployer(parsed.data);
+  const employeeResultsRange = AggregationService.getAggregatedResultsForEmployeeInRange(
+    1000,
+    Math.min(parsed.data.grossIncome * 2, 500_000),
+    1000,
+    parsed.data,
+  );
 
-  return { employeeResults, employerResults, userInputs: parsed.data, error: false };
+  return {
+    employeeResults,
+    employerResults,
+    employeeResultsRange,
+    userInputs: parsed.data,
+    error: false,
+  };
 }

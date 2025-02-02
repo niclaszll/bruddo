@@ -260,6 +260,22 @@ class AggregationService {
       },
     };
   }
+
+  public getAggregatedResultsForEmployeeInRange(
+    minGrossIncome: number,
+    maxGrossIncome: number,
+    stepSize: number,
+    inputs: UserInputs,
+  ): EmployeeResults[] {
+    const results: EmployeeResults[] = [];
+
+    for (let grossIncome = minGrossIncome; grossIncome <= maxGrossIncome; grossIncome += stepSize) {
+      const result = this.getAggregatedResultsForEmployee({ ...inputs, grossIncome });
+      results.push(result);
+    }
+
+    return results;
+  }
 }
 
 export default AggregationService.instance;

@@ -1,20 +1,23 @@
 {
   "Results": {
     "employeeResults": {
-      "grossIncome": "Bruttogehalt",
-      "netIncome": "Nettogehalt",
+      "grossIncome": { "default": "Bruttogehalt", "short": "Bruttogehalt" },
+      "netIncome": { "default": "Nettogehalt", "short": "Nettogehalt" },
       "socialSecurity": {
-        "healthInsurance": "Krankenversicherung",
-        "nursingCareInsurance": "Pflegeversicherung",
-        "pensionInsurance": "Rentenversicherung",
-        "total": "Gesamtabzug Sozialversicherung",
-        "unemploymentInsurance": "Arbeitslosenversicherung"
+        "healthInsurance": { "default": "Krankenversicherung", "short": "Krankenver." },
+        "nursingCareInsurance": { "default": "Pflegeversicherung", "short": "Pflegever." },
+        "pensionInsurance": { "default": "Rentenversicherung", "short": "Rentenver." },
+        "total": { "default": "Gesamtabzug Sozialversicherung", "short": "Sozialver." },
+        "unemploymentInsurance": {
+          "default": "Arbeitslosenversicherung",
+          "short": "Arbeitslosenver."
+        }
       },
       "taxes": {
-        "churchTax": "Kirchensteuer",
-        "incomeTax": "Lohnsteuer",
-        "solidaritySurcharge": "Solidaritätszuschlag",
-        "total": "Gesamtabzug Steuern"
+        "churchTax": { "default": "Kirchensteuer", "short": "Kirchensteuer" },
+        "incomeTax": { "default": "Lohnsteuer", "short": "Lohnsteuer" },
+        "solidaritySurcharge": { "default": "Solidaritätszuschlag", "short": "SolZ" },
+        "total": { "default": "Gesamtabzug Steuern", "short": "Steuern" }
       }
     }
   },

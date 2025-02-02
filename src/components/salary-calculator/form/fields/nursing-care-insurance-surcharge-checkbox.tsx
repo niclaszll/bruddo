@@ -20,7 +20,7 @@ export default function NursingCareInsuranceSurchargeCheckbox() {
       render={({ field }) => (
         <FormItem>
           <FormLabel className="text-md md:text-sm">{t('label')}</FormLabel>
-          <div className="flex items-center gap-3 pt-3 pb-1 max-md:pt-2">
+          <div className="flex items-center gap-3 pt-3 pb-1">
             <PopoverTooltip>
               <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>

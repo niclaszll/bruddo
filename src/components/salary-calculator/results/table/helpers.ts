@@ -14,47 +14,47 @@ export const getTableRows = (results: FormState): TableRow[] => {
 
   return [
     {
-      label: 'Results.employeeResults.taxes.incomeTax',
+      label: 'Results.employeeResults.taxes.incomeTax.default',
       value: results.employeeResults.taxes.incomeTax,
       isBold: false,
     },
     {
-      label: 'Results.employeeResults.taxes.solidaritySurcharge',
+      label: 'Results.employeeResults.taxes.solidaritySurcharge.default',
       value: results.employeeResults.taxes.solidaritySurcharge,
       isBold: false,
     },
     {
-      label: 'Results.employeeResults.taxes.churchTax',
+      label: 'Results.employeeResults.taxes.churchTax.default',
       value: results.employeeResults.taxes.churchTax,
       isBold: false,
     },
     {
-      label: 'Results.employeeResults.taxes.total',
+      label: 'Results.employeeResults.taxes.total.default',
       value: results.employeeResults.taxes.total,
       isBold: true,
     },
     {
-      label: 'Results.employeeResults.socialSecurity.healthInsurance',
+      label: 'Results.employeeResults.socialSecurity.healthInsurance.default',
       value: results.employeeResults.socialSecurity.healthInsurance,
       isBold: false,
     },
     {
-      label: 'Results.employeeResults.socialSecurity.nursingCareInsurance',
+      label: 'Results.employeeResults.socialSecurity.nursingCareInsurance.default',
       value: results.employeeResults.socialSecurity.nursingCareInsurance,
       isBold: false,
     },
     {
-      label: 'Results.employeeResults.socialSecurity.pensionInsurance',
+      label: 'Results.employeeResults.socialSecurity.pensionInsurance.default',
       value: results.employeeResults.socialSecurity.pensionInsurance,
       isBold: false,
     },
     {
-      label: 'Results.employeeResults.socialSecurity.unemploymentInsurance',
+      label: 'Results.employeeResults.socialSecurity.unemploymentInsurance.default',
       value: results.employeeResults.socialSecurity.unemploymentInsurance,
       isBold: false,
     },
     {
-      label: 'Results.employeeResults.socialSecurity.total',
+      label: 'Results.employeeResults.socialSecurity.total.default',
       value: results.employeeResults.socialSecurity.total,
       isBold: true,
     },

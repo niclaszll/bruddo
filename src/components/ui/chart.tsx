@@ -3,7 +3,7 @@
 import { cn } from '@/util/tailwind';
 import * as React from 'react';
 import * as RechartsPrimitive from 'recharts';
-import { ValueType } from 'recharts/types/component/DefaultTooltipContent';
+import { NameType, Payload, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: '', dark: '.dark' } as const;
@@ -107,6 +107,7 @@ const ChartTooltipContent = React.forwardRef<
       nameKey?: string;
       labelKey?: string;
       valueFormatter?: (value: ValueType) => string;
+      titleFormatter?: (payload: Payload<ValueType, NameType>[]) => string;
     }
 >(
   (
@@ -125,6 +126,7 @@ const ChartTooltipContent = React.forwardRef<
       nameKey,
       labelKey,
       valueFormatter,
+      titleFormatter,
     },
     ref,
   ) => {
@@ -160,6 +162,8 @@ const ChartTooltipContent = React.forwardRef<
       return null;
     }
 
+    console.log('payload:', payload);
+
     const nestLabel = payload.length === 1 && indicator !== 'dot';
 
     return (
@@ -172,6 +176,7 @@ const ChartTooltipContent = React.forwardRef<
       >
         {!nestLabel ? tooltipLabel : null}
         <div className="grid gap-1.5">
+          {titleFormatter && <p className="font-semibold">{titleFormatter(payload)}</p>}
           {payload.map((item, index) => {
             const key = `${nameKey || item.name || item.dataKey || 'value'}`;
             const itemConfig = getPayloadConfigFromPayload(config, item, key);
@@ -226,7 +231,7 @@ const ChartTooltipContent = React.forwardRef<
                         </span>
                       </div>
                       {item.value !== undefined && (
-                        <span className="font-mono font-medium tabular-nums text-foreground">
+                        <span className="font-medium tabular-nums text-foreground">
                           {valueFormatter
                             ? valueFormatter(item.value)
                             : item.value.toLocaleString()}

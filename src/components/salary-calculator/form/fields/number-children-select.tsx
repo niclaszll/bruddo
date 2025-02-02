@@ -29,7 +29,7 @@ export default function NumberOfChildrenSelect() {
       render={({ field }) => (
         <FormItem>
           <FormLabel className="text-md md:text-sm">{t('label')}</FormLabel>
-          <div className="flex items-center gap-3 max-md:pt-2">
+          <div className="flex items-center gap-3">
             <PopoverTooltip>
               <p className="max-w-sm">{t('tooltip')}</p>
             </PopoverTooltip>

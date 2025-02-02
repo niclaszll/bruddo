@@ -1,10 +1,15 @@
-import { useFormatter } from 'next-intl';
+import { NumberFormatOptions, useFormatter } from 'next-intl';
 
 export const useFormatCurrency = () => {
   const format = useFormatter();
 
-  return (value: number | undefined) =>
+  return (value: number | undefined, formatOrOptions?: NumberFormatOptions) =>
     value !== undefined
-      ? format.number(value, { style: 'currency', currency: 'EUR', signDisplay: 'negative' })
+      ? format.number(value, {
+          ...formatOrOptions,
+          style: 'currency',
+          currency: 'EUR',
+          signDisplay: 'negative',
+        })
       : null;
 };
