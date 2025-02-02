@@ -25,7 +25,7 @@ import TaxClassSelect from './fields/tax-class-select';
 
 export const defaultValues: UserInputs = {
   calculationPeriod: CalculationPeriod.enum.YEAR,
-  grossIncome: 50000,
+  grossIncome: 40_000,
   taxClass: TaxClass.enum.I,
   federalState: FederalState.enum.BW,
   healthInsuranceAdditionalContribution: 2.5,

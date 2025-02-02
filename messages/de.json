@@ -19,6 +19,29 @@
         "solidaritySurcharge": { "default": "Solidaritätszuschlag", "short": "SolZ" },
         "total": { "default": "Gesamtabzug Steuern", "short": "Steuern" }
       }
+    },
+    "table": {
+      "header": {
+        "monthly": "Monatlich",
+        "yearly": "Jährlich"
+      }
+    },
+    "charts": {
+      "sankey": {
+        "title": "Aufschlüsselung der Beiträge",
+        "description": "Steuern, Sozialversicherungsbeiträge und verbleibendes Nettogehalt"
+      }
+    },
+    "summaryCards": {
+      "tax": {
+        "title": "gehen für Steuern drauf."
+      },
+      "socialSecurity": {
+        "title": "landen in der Sozialversicherung."
+      },
+      "netIncome": {
+        "title": "bleiben dir am Ende übrig."
+      }
     }
   },
   "SalaryCalculator": {

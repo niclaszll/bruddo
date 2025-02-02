@@ -3,7 +3,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/ca
 import { Progress } from '@/components/ui/progress';
 import { CalculationPeriod } from '@/types/common';
 import { HandCoins, Hospital, Landmark } from 'lucide-react';
-import { useFormatter } from 'next-intl';
+import { useFormatter, useTranslations } from 'next-intl';
 
 type Props = {
   results: FormState;
@@ -11,6 +11,7 @@ type Props = {
 
 export default function SummaryCards({ results }: Props) {
   const format = useFormatter();
+  const t = useTranslations();
   const { employeeResults } = results;
 
   if (!employeeResults) return null;
@@ -20,21 +21,21 @@ export default function SummaryCards({ results }: Props) {
       percentage:
         employeeResults.taxes.total[CalculationPeriod.enum.YEAR] /
         employeeResults.grossIncome[CalculationPeriod.enum.YEAR],
-      description: 'gehen für Steuern drauf.',
+      description: t('Results.summaryCards.tax.title'),
       icon: <Landmark className="stroke-secondary w-9 h-9" />,
     },
     {
       percentage:
         employeeResults.socialSecurity.total[CalculationPeriod.enum.YEAR] /
         employeeResults.grossIncome[CalculationPeriod.enum.YEAR],
-      description: 'landen in Sozialversicherungen.',
+      description: t('Results.summaryCards.socialSecurity.title'),
       icon: <Hospital className="stroke-secondary w-9 h-9" />,
     },
     {
       percentage:
         employeeResults.netIncome[CalculationPeriod.enum.YEAR] /
         employeeResults.grossIncome[CalculationPeriod.enum.YEAR],
-      description: 'bleiben dir am Ende übrig.',
+      description: t('Results.summaryCards.netIncome.title'),
       icon: <HandCoins className="stroke-secondary w-9 h-9" />,
     },
   ];

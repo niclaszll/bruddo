@@ -4,8 +4,8 @@ import { FormState } from '@/components/salary-calculator/actions';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useFormatCurrency } from '@/hooks/common';
 import { CalculationPeriod } from '@/types/common';
-import { ResponsiveSankey } from '@nivo/sankey';
-import { useTranslations } from 'next-intl';
+import { ResponsiveSankey, SankeyNodeDatum } from '@nivo/sankey';
+import { useFormatter, useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 
 type Props = {
@@ -13,6 +13,7 @@ type Props = {
 };
 
 type LinkTooltipProps = {
+  grossIncome: number | undefined;
   link: {
     source: { id: string };
     target: { id: string };
@@ -21,13 +22,43 @@ type LinkTooltipProps = {
   formatValue?: (value: number) => string;
 };
 
-function LinkTooltip({ link }: LinkTooltipProps) {
+function LinkTooltip({ grossIncome, link }: LinkTooltipProps) {
   const formatCurrency = useFormatCurrency();
+  const format = useFormatter();
   return (
     <div className="rounded-md bg-secondary p-2 shadow-md text-sm text-foreground">
       <strong>{link.source.id}</strong> → <strong>{link.target.id}</strong>
       <br />
-      {formatCurrency(link.value)}
+      {formatCurrency(link.value)}{' '}
+      {grossIncome && `(${format.number(link.value / grossIncome, { style: 'percent' })})`}
+    </div>
+  );
+}
+
+type NodeTooltipProps = {
+  grossIncome: number | undefined;
+  node: SankeyNodeDatum<
+    {
+      id: string;
+    },
+    {
+      source: string;
+      target: string;
+      value: number;
+    }
+  >;
+};
+
+function NodeTooltip({ grossIncome, node }: NodeTooltipProps) {
+  const formatCurrency = useFormatCurrency();
+  const format = useFormatter();
+
+  return (
+    <div className="rounded-md bg-secondary p-2 shadow-md text-sm text-foreground">
+      <strong>{node.label}</strong>
+      <br />
+      {formatCurrency(node.value)}{' '}
+      {grossIncome && `(${format.number(node.value / grossIncome, { style: 'percent' })})`}
     </div>
   );
 }
@@ -124,61 +155,74 @@ export function ContributionBreakdownSankeyChart({ results }: Props) {
   return (
     <Card className="grow">
       <CardHeader>
-        <CardTitle>Aufschlüsselung der Beiträge</CardTitle>
-        <CardDescription>
-          Steuern, Sozialversicherungsbeiträge und verbleibendes Nettogehalt
-        </CardDescription>
+        <CardTitle>{t('Results.charts.sankey.title')}</CardTitle>
+        <CardDescription>{t('Results.charts.sankey.description')}</CardDescription>
       </CardHeader>
-      <CardContent>
-        <div style={{ height: 500 }}>
-          <ResponsiveSankey
-            theme={{
-              text: {
-                fontWeight: 600,
-                fontSize: 13,
-                fontFamily: 'Open Sans, Open Sans Fallback',
-              },
-            }}
-            data={{ nodes, links }}
-            margin={{ top: 10, right: 0, bottom: 10, left: 0 }}
-            colors={[
-              'hsl(173, 58%, 39%)',
-              'hsl(12, 76%, 61%)',
-              'hsl(43, 74%, 66%)',
-              'hsl(43, 74%, 66%)',
-              'hsl(43, 74%, 66%)',
-              'hsl(43, 74%, 66%)',
-              'hsl(220, 57%, 50%)',
-              'hsl(220, 57%, 50%)',
-              'hsl(220, 57%, 50%)',
-              'hsl(220, 57%, 50%)',
-              'hsl(220, 57%, 50%)',
-            ]}
-            nodeOpacity={1}
-            nodeHoverOpacity={1}
-            nodeHoverOthersOpacity={0.35}
-            nodeThickness={18}
-            nodeSpacing={24}
-            nodeBorderWidth={1}
-            nodeTooltip={() => <></>}
-            linkOpacity={0.5}
-            linkHoverOpacity={0.7}
-            linkHoverOthersOpacity={0.1}
-            linkContract={3}
-            linkBlendMode="multiply"
-            labelPosition="inside"
-            labelOrientation="horizontal"
-            labelTextColor={{
-              from: 'color',
-              modifiers: [[theme === 'dark' ? 'brighter' : 'darker', 10]],
-            }}
-            valueFormat={(value) =>
-              formatCurrency(value as number, {
-                maximumFractionDigits: 0,
-              }) ?? value.toString()
-            }
-            linkTooltip={LinkTooltip}
-          />
+      <CardContent className="overflow-hidden ">
+        <div
+          className="relative"
+          style={{ height: 500 }}
+        >
+          <div className="w-full absolute top-0 left-0 bottom-0">
+            <ResponsiveSankey
+              theme={{
+                text: {
+                  fontWeight: 600,
+                  fontSize: 13,
+                  fontFamily: 'Open Sans, Open Sans Fallback',
+                },
+              }}
+              data={{ nodes, links }}
+              margin={{ top: 10, right: 0, bottom: 10, left: 0 }}
+              colors={[
+                'hsl(173, 58%, 39%)',
+                'hsl(12, 76%, 61%)',
+                'hsl(43, 74%, 66%)',
+                'hsl(43, 74%, 66%)',
+                'hsl(43, 74%, 66%)',
+                'hsl(43, 74%, 66%)',
+                'hsl(220, 57%, 50%)',
+                'hsl(220, 57%, 50%)',
+                'hsl(220, 57%, 50%)',
+                'hsl(220, 57%, 50%)',
+                'hsl(220, 57%, 50%)',
+              ]}
+              nodeOpacity={1}
+              nodeHoverOpacity={1}
+              nodeHoverOthersOpacity={0.35}
+              nodeThickness={18}
+              nodeSpacing={24}
+              nodeBorderWidth={1}
+              nodeTooltip={({ node }) => (
+                <NodeTooltip
+                  grossIncome={results.employeeResults?.grossIncome[calculationPeriod]}
+                  node={node}
+                />
+              )}
+              linkTooltip={({ link }) => (
+                <LinkTooltip
+                  grossIncome={results.employeeResults?.grossIncome[calculationPeriod]}
+                  link={link}
+                />
+              )}
+              linkOpacity={0.5}
+              linkHoverOpacity={0.7}
+              linkHoverOthersOpacity={0.1}
+              linkContract={3}
+              linkBlendMode="multiply"
+              labelPosition="inside"
+              labelOrientation="horizontal"
+              labelTextColor={{
+                from: 'color',
+                modifiers: [[theme === 'dark' ? 'brighter' : 'darker', 10]],
+              }}
+              valueFormat={(value) =>
+                formatCurrency(value as number, {
+                  maximumFractionDigits: 0,
+                }) ?? value.toString()
+              }
+            />
+          </div>
         </div>
       </CardContent>
     </Card>

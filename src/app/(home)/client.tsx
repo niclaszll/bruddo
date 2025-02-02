@@ -81,7 +81,7 @@ export default function HomeClient() {
             <ResizableHandle className="max-xl:hidden" />
             <ResizablePanel
               defaultSize={50}
-              className="min-w-full xl:min-w-96 flex justify-stretch"
+              className="min-w-full xl:min-w-108 flex justify-stretch"
             >
               <ContributionBreakdownSankeyChart results={state} />
             </ResizablePanel>

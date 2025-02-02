@@ -35,8 +35,8 @@ function DesktopTable({ results }: Props) {
       <TableHeader>
         <TableRow>
           <TableHead></TableHead>
-          <TableHead className="text-right">Monatlich</TableHead>
-          <TableHead className="text-right">Jährlich</TableHead>
+          <TableHead className="text-right">{t('Results.table.header.monthly')}</TableHead>
+          <TableHead className="text-right">{t('Results.table.header.yearly')}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -91,8 +91,12 @@ function MobileTable({ results }: Props) {
     <Tabs defaultValue={CalculationPeriod.enum.MONTH}>
       <div className="px-3 pt-3 pb-1">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value={CalculationPeriod.enum.MONTH}>Monatlich</TabsTrigger>
-          <TabsTrigger value={CalculationPeriod.enum.YEAR}>Jährlich</TabsTrigger>
+          <TabsTrigger value={CalculationPeriod.enum.MONTH}>
+            {t('Results.table.header.monthly')}
+          </TabsTrigger>
+          <TabsTrigger value={CalculationPeriod.enum.YEAR}>
+            {t('Results.table.header.yearly')}
+          </TabsTrigger>
         </TabsList>
       </div>
       {[CalculationPeriod.enum.MONTH, CalculationPeriod.enum.YEAR].map((value) => (
