@@ -99,3 +99,8 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield; /* Firefox */
 }
+
+/* fix svg text fill in dark mode for Safari */
+.dark text {
+  fill: rgb(255, 255, 255) !important;
+}
