@@ -158,7 +158,7 @@ export function ContributionBreakdownSankeyChart({ results }: Props) {
         <CardTitle>{t('Results.charts.sankey.title')}</CardTitle>
         <CardDescription>{t('Results.charts.sankey.description')}</CardDescription>
       </CardHeader>
-      <CardContent className="overflow-hidden ">
+      <CardContent className="overflow-hidden">
         <div
           className="relative"
           style={{ height: 500 }}
@@ -209,7 +209,7 @@ export function ContributionBreakdownSankeyChart({ results }: Props) {
               linkHoverOpacity={0.7}
               linkHoverOthersOpacity={0.1}
               linkContract={3}
-              linkBlendMode="multiply"
+              linkBlendMode="normal"
               labelPosition="inside"
               labelOrientation="horizontal"
               labelTextColor={{
