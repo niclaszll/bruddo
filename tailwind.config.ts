@@ -11,6 +11,10 @@ export default {
     extend: {
       spacing: {
         '108': '27rem',
+        // skeleton sizes
+        '140px': '140px',
+        '630px': '630px',
+        '646px': '646px',
       },
       colors: {
         background: 'hsl(var(--background))',

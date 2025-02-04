@@ -1,6 +1,7 @@
 'use client';
 
 import { Card } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   Table,
   TableBody,
@@ -138,7 +139,8 @@ function MobileTable({ results }: Props) {
 }
 
 export default function ResultTable({ results }: Props) {
-  if (!results.employeeResults || !results.employerResults) return null;
+  if (!results.employeeResults || !results.employerResults)
+    return <Skeleton className="min-w-full h-646px lg:h-630px rounded-lg" />;
 
   return (
     <Card className="overflow-hidden">

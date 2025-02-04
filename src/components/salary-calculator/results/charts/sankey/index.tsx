@@ -2,6 +2,7 @@
 
 import { FormState } from '@/components/salary-calculator/actions';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useFormatCurrency } from '@/hooks/common';
 import { CalculationPeriod } from '@/types/common';
 import { ResponsiveSankey, SankeyNodeDatum } from '@nivo/sankey';
@@ -68,7 +69,8 @@ export function ContributionBreakdownSankeyChart({ results }: Props) {
   const formatCurrency = useFormatCurrency();
   const { theme } = useTheme();
 
-  if (!results.employeeResults) return null;
+  if (!results.employeeResults)
+    return <Skeleton className="min-w-full h-646px lg:h-630px rounded-lg" />;
 
   const calculationPeriod =
     results.userInputs?.calculationPeriod === CalculationPeriod.enum.MONTH
