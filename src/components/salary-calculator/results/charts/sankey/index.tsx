@@ -160,73 +160,75 @@ export function ContributionBreakdownSankeyChart({ results }: Props) {
         <CardTitle>{t('Results.charts.sankey.title')}</CardTitle>
         <CardDescription>{t('Results.charts.sankey.description')}</CardDescription>
       </CardHeader>
-      <CardContent className="overflow-hidden">
-        <div
-          className="relative"
-          style={{ height: 500 }}
-        >
-          <div className="w-full absolute top-0 left-0 bottom-0">
-            <ResponsiveSankey
-              theme={{
-                text: {
-                  fontWeight: 600,
-                  fontSize: 13,
-                  fontFamily: 'Open Sans, Open Sans Fallback',
-                },
-              }}
-              data={{ nodes, links }}
-              margin={{ top: 10, right: 0, bottom: 10, left: 0 }}
-              colors={[
-                'hsl(173, 58%, 39%)',
-                'hsl(12, 76%, 61%)',
-                'hsl(43, 74%, 66%)',
-                'hsl(43, 74%, 66%)',
-                'hsl(43, 74%, 66%)',
-                'hsl(43, 74%, 66%)',
-                'hsl(220, 57%, 50%)',
-                'hsl(220, 57%, 50%)',
-                'hsl(220, 57%, 50%)',
-                'hsl(220, 57%, 50%)',
-                'hsl(220, 57%, 50%)',
-              ]}
-              nodeOpacity={1}
-              nodeHoverOpacity={1}
-              nodeHoverOthersOpacity={0.35}
-              nodeThickness={18}
-              nodeSpacing={24}
-              nodeBorderWidth={1}
-              nodeTooltip={({ node }) => (
-                <NodeTooltip
-                  grossIncome={results.employeeResults?.grossIncome[calculationPeriod]}
-                  node={node}
-                />
-              )}
-              linkTooltip={({ link }) => (
-                <LinkTooltip
-                  grossIncome={results.employeeResults?.grossIncome[calculationPeriod]}
-                  link={link}
-                />
-              )}
-              linkOpacity={0.5}
-              linkHoverOpacity={0.7}
-              linkHoverOthersOpacity={0.1}
-              linkContract={3}
-              linkBlendMode="normal"
-              labelPosition="inside"
-              labelOrientation="horizontal"
-              labelTextColor={{
-                from: 'color',
-                modifiers: [[theme === 'dark' ? 'brighter' : 'darker', 10]],
-              }}
-              valueFormat={(value) =>
-                formatCurrency(value as number, {
-                  maximumFractionDigits: 0,
-                }) ?? value.toString()
-              }
-            />
+      {results.employeeResults.grossIncome[calculationPeriod] > 0 && (
+        <CardContent className="overflow-hidden">
+          <div
+            className="relative"
+            style={{ height: 500 }}
+          >
+            <div className="w-full absolute top-0 left-0 bottom-0">
+              <ResponsiveSankey
+                theme={{
+                  text: {
+                    fontWeight: 600,
+                    fontSize: 13,
+                    fontFamily: 'Open Sans, Open Sans Fallback',
+                  },
+                }}
+                data={{ nodes, links }}
+                margin={{ top: 10, right: 0, bottom: 10, left: 0 }}
+                colors={[
+                  'hsl(173, 58%, 39%)',
+                  'hsl(12, 76%, 61%)',
+                  'hsl(43, 74%, 66%)',
+                  'hsl(43, 74%, 66%)',
+                  'hsl(43, 74%, 66%)',
+                  'hsl(43, 74%, 66%)',
+                  'hsl(220, 57%, 50%)',
+                  'hsl(220, 57%, 50%)',
+                  'hsl(220, 57%, 50%)',
+                  'hsl(220, 57%, 50%)',
+                  'hsl(220, 57%, 50%)',
+                ]}
+                nodeOpacity={1}
+                nodeHoverOpacity={1}
+                nodeHoverOthersOpacity={0.35}
+                nodeThickness={18}
+                nodeSpacing={24}
+                nodeBorderWidth={1}
+                nodeTooltip={({ node }) => (
+                  <NodeTooltip
+                    grossIncome={results.employeeResults?.grossIncome[calculationPeriod]}
+                    node={node}
+                  />
+                )}
+                linkTooltip={({ link }) => (
+                  <LinkTooltip
+                    grossIncome={results.employeeResults?.grossIncome[calculationPeriod]}
+                    link={link}
+                  />
+                )}
+                linkOpacity={0.5}
+                linkHoverOpacity={0.7}
+                linkHoverOthersOpacity={0.1}
+                linkContract={3}
+                linkBlendMode="normal"
+                labelPosition="inside"
+                labelOrientation="horizontal"
+                labelTextColor={{
+                  from: 'color',
+                  modifiers: [[theme === 'dark' ? 'brighter' : 'darker', 10]],
+                }}
+                valueFormat={(value) =>
+                  formatCurrency(value as number, {
+                    maximumFractionDigits: 0,
+                  }) ?? value.toString()
+                }
+              />
+            </div>
           </div>
-        </div>
-      </CardContent>
+        </CardContent>
+      )}
     </Card>
   );
 }
