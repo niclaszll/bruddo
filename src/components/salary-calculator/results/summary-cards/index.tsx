@@ -21,7 +21,7 @@ export default function SummaryCards({ results }: Props) {
         {[...Array(3)].map((_, i) => (
           <Skeleton
             key={i}
-            className="flex-1 h-140px min-w-40 lg:min-w-52 rounded-lg"
+            className="flex-1 h-[140px] min-w-40 lg:min-w-52 rounded-lg"
           />
         ))}
       </div>

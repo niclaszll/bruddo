@@ -142,7 +142,7 @@ const MobileTable = memo(function MobileTable({ results }: Props) {
 
 const ResultTable = memo(function ResultTable({ results }: Props) {
   if (!results.employeeResults)
-    return <Skeleton className="min-w-full h-646px lg:h-630px rounded-lg" />;
+    return <Skeleton className="min-w-full h-[646px] lg:h-[630px] rounded-lg" />;
 
   return (
     <Card className="overflow-hidden">

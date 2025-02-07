@@ -21,11 +21,7 @@ class TaxService {
   private constructor() {}
 
   public static get instance(): TaxService {
-    if (!TaxService.#instance) {
-      TaxService.#instance = new TaxService();
-    }
-
-    return TaxService.#instance;
+    return (this.#instance ??= new TaxService());
   }
 
   private setUserInputs(inputs: UserInputs) {
@@ -95,30 +91,18 @@ class TaxService {
   }
 
   private calculateAJAHR(birthDate: string): number {
-    const birthDateParsed = dayjs(birthDate);
-
-    const sixtyFourthBirthday = birthDateParsed.add(64, 'year');
-
-    return sixtyFourthBirthday.year() + 1;
+    return dayjs(birthDate).add(64, 'year').year() + 1;
   }
 
   private calculateALTER1(birthDate: string): number {
-    const birthDateParsed = dayjs(birthDate);
-
-    const sixtyFourthBirthday = birthDateParsed.add(64, 'year');
+    const sixtyFourthBirthday = dayjs(birthDate).add(64, 'year');
     const startOfYear = dayjs(`${dayjs().year()}-01-01`);
 
     return sixtyFourthBirthday.isBefore(startOfYear) ? 1 : 0;
   }
 
   private calculatePVA(numChildren: number): number {
-    if (numChildren <= 1) {
-      return 0;
-    }
-
-    const res = Math.min(numChildren - 1, 4);
-    console.log(res);
-    return res;
+    return numChildren <= 1 ? 0 : Math.min(numChildren - 1, 4);
   }
 }
 

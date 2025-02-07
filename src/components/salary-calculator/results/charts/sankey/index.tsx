@@ -78,7 +78,7 @@ export const ContributionBreakdownSankeyChart = memo(function ContributionBreakd
       : CalculationPeriod.enum.YEAR;
 
   if (!results.employeeResults)
-    return <Skeleton className="min-w-full h-646px lg:h-630px rounded-lg" />;
+    return <Skeleton className="min-w-full h-[646px] lg:h-[630px] rounded-lg" />;
 
   const nodes = [
     { id: t('Results.employeeResults.grossIncome.short') },
