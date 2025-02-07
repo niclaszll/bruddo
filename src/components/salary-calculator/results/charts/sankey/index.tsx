@@ -8,6 +8,7 @@ import { CalculationPeriod } from '@/types/common';
 import { ResponsiveSankey, SankeyNodeDatum } from '@nivo/sankey';
 import { useFormatter, useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
+import { memo } from 'react';
 
 type Props = {
   results: FormState;
@@ -64,41 +65,33 @@ function NodeTooltip({ grossIncome, node }: NodeTooltipProps) {
   );
 }
 
-export function ContributionBreakdownSankeyChart({ results }: Props) {
+export const ContributionBreakdownSankeyChart = memo(function ContributionBreakdownSankeyChart({
+  results,
+}: Props) {
   const t = useTranslations();
   const formatCurrency = useFormatCurrency();
   const { theme } = useTheme();
-
-  if (!results.employeeResults)
-    return <Skeleton className="min-w-full h-646px lg:h-630px rounded-lg" />;
 
   const calculationPeriod =
     results.userInputs?.calculationPeriod === CalculationPeriod.enum.MONTH
       ? CalculationPeriod.enum.MONTH
       : CalculationPeriod.enum.YEAR;
 
+  if (!results.employeeResults)
+    return <Skeleton className="min-w-full h-646px lg:h-630px rounded-lg" />;
+
   const nodes = [
     { id: t('Results.employeeResults.grossIncome.short') },
     { id: t('Results.employeeResults.netIncome.short') },
     { id: t('Results.employeeResults.taxes.total.short') },
     { id: t('Results.employeeResults.taxes.incomeTax.short') },
-    {
-      id: t('Results.employeeResults.taxes.solidaritySurcharge.short'),
-    },
+    { id: t('Results.employeeResults.taxes.solidaritySurcharge.short') },
     { id: t('Results.employeeResults.taxes.churchTax.short') },
     { id: t('Results.employeeResults.socialSecurity.total.short') },
-    {
-      id: t('Results.employeeResults.socialSecurity.healthInsurance.short'),
-    },
-    {
-      id: t('Results.employeeResults.socialSecurity.nursingCareInsurance.short'),
-    },
-    {
-      id: t('Results.employeeResults.socialSecurity.pensionInsurance.short'),
-    },
-    {
-      id: t('Results.employeeResults.socialSecurity.unemploymentInsurance.short'),
-    },
+    { id: t('Results.employeeResults.socialSecurity.healthInsurance.short') },
+    { id: t('Results.employeeResults.socialSecurity.nursingCareInsurance.short') },
+    { id: t('Results.employeeResults.socialSecurity.pensionInsurance.short') },
+    { id: t('Results.employeeResults.socialSecurity.unemploymentInsurance.short') },
   ];
 
   const links = [
@@ -154,6 +147,28 @@ export function ContributionBreakdownSankeyChart({ results }: Props) {
     },
   ];
 
+  const sankeyTheme = {
+    text: {
+      fontWeight: 600,
+      fontSize: 13,
+      fontFamily: 'Open Sans, Open Sans Fallback',
+    },
+  };
+
+  const sankeyColors = [
+    'hsl(173, 58%, 39%)',
+    'hsl(12, 76%, 61%)',
+    'hsl(43, 74%, 66%)',
+    'hsl(43, 74%, 66%)',
+    'hsl(43, 74%, 66%)',
+    'hsl(43, 74%, 66%)',
+    'hsl(220, 57%, 50%)',
+    'hsl(220, 57%, 50%)',
+    'hsl(220, 57%, 50%)',
+    'hsl(220, 57%, 50%)',
+    'hsl(220, 57%, 50%)',
+  ];
+
   return (
     <Card className="grow">
       <CardHeader>
@@ -168,28 +183,10 @@ export function ContributionBreakdownSankeyChart({ results }: Props) {
           >
             <div className="w-full absolute top-0 left-0 bottom-0">
               <ResponsiveSankey
-                theme={{
-                  text: {
-                    fontWeight: 600,
-                    fontSize: 13,
-                    fontFamily: 'Open Sans, Open Sans Fallback',
-                  },
-                }}
+                theme={sankeyTheme}
                 data={{ nodes, links }}
                 margin={{ top: 10, right: 0, bottom: 10, left: 0 }}
-                colors={[
-                  'hsl(173, 58%, 39%)',
-                  'hsl(12, 76%, 61%)',
-                  'hsl(43, 74%, 66%)',
-                  'hsl(43, 74%, 66%)',
-                  'hsl(43, 74%, 66%)',
-                  'hsl(43, 74%, 66%)',
-                  'hsl(220, 57%, 50%)',
-                  'hsl(220, 57%, 50%)',
-                  'hsl(220, 57%, 50%)',
-                  'hsl(220, 57%, 50%)',
-                  'hsl(220, 57%, 50%)',
-                ]}
+                colors={sankeyColors}
                 nodeOpacity={1}
                 nodeHoverOpacity={1}
                 nodeHoverOthersOpacity={0.35}
@@ -231,4 +228,4 @@ export function ContributionBreakdownSankeyChart({ results }: Props) {
       )}
     </Card>
   );
-}
+});

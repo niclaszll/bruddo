@@ -15,36 +15,35 @@ export default function SummaryCards({ results }: Props) {
   const t = useTranslations();
   const { employeeResults } = results;
 
-  if (!employeeResults)
+  if (!employeeResults) {
     return (
       <div className="flex gap-4 lg:gap-6 items-stretch flex-wrap">
-        <Skeleton className="flex-1 h-140px min-w-40 lg:min-w-52 rounded-lg" />
-        <Skeleton className="flex-1 h-140px min-w-40 lg:min-w-52 rounded-lg" />
-        <Skeleton className="flex-1 h-140px min-w-40 lg:min-w-52 rounded-lg" />
+        {[...Array(3)].map((_, i) => (
+          <Skeleton
+            key={i}
+            className="flex-1 h-140px min-w-40 lg:min-w-52 rounded-lg"
+          />
+        ))}
       </div>
     );
+  }
 
-  // return;
+  const yearlyGrossIncome = employeeResults.grossIncome[CalculationPeriod.enum.YEAR];
 
   const data = [
     {
-      percentage:
-        employeeResults.taxes.total[CalculationPeriod.enum.YEAR] /
-        employeeResults.grossIncome[CalculationPeriod.enum.YEAR],
+      percentage: employeeResults.taxes.total[CalculationPeriod.enum.YEAR] / yearlyGrossIncome,
       description: t('Results.summaryCards.tax.title'),
       icon: <Landmark className="stroke-secondary w-9 h-9" />,
     },
     {
       percentage:
-        employeeResults.socialSecurity.total[CalculationPeriod.enum.YEAR] /
-        employeeResults.grossIncome[CalculationPeriod.enum.YEAR],
+        employeeResults.socialSecurity.total[CalculationPeriod.enum.YEAR] / yearlyGrossIncome,
       description: t('Results.summaryCards.socialSecurity.title'),
       icon: <Hospital className="stroke-secondary w-9 h-9" />,
     },
     {
-      percentage:
-        employeeResults.netIncome[CalculationPeriod.enum.YEAR] /
-        employeeResults.grossIncome[CalculationPeriod.enum.YEAR],
+      percentage: employeeResults.netIncome[CalculationPeriod.enum.YEAR] / yearlyGrossIncome,
       description: t('Results.summaryCards.netIncome.title'),
       icon: <HandCoins className="stroke-secondary w-9 h-9" />,
     },

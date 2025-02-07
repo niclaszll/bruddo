@@ -15,33 +15,35 @@ export type FormState = {
 };
 
 export async function onSubmitAction(prevState: FormState, data: FormData): Promise<FormState> {
-  const formData = Object.fromEntries(data);
-  const parsed = UserInputs.safeParse(formData);
+  const parsed = UserInputs.safeParse(Object.fromEntries(data));
 
   if (!parsed.success) {
     return {
-      employeeResults: prevState.employeeResults,
-      employerResults: prevState.employeeResults,
+      ...prevState,
       employeeResultsRange: undefined,
       userInputs: undefined,
       error: true,
     };
   }
 
-  const employeeResults = AggregationService.getAggregatedResultsForEmployee(parsed.data);
-  const employerResults = AggregationService.getAggregatedResultsForEmployer(parsed.data);
-  const employeeResultsRange = AggregationService.getAggregatedResultsForEmployeeInRange(
-    1000,
-    Math.min(parsed.data.grossIncome * 2, 500_000),
-    1000,
-    parsed.data,
-  );
+  const { data: parsedData } = parsed;
+
+  const [employeeResults, employerResults, employeeResultsRange] = await Promise.all([
+    AggregationService.getAggregatedResultsForEmployee(parsedData),
+    AggregationService.getAggregatedResultsForEmployer(parsedData),
+    AggregationService.getAggregatedResultsForEmployeeInRange(
+      1000,
+      Math.min(parsedData.grossIncome * 2, 500_000),
+      1000,
+      parsedData,
+    ),
+  ]);
 
   return {
     employeeResults,
     employerResults,
     employeeResultsRange,
-    userInputs: parsed.data,
+    userInputs: parsedData,
     error: false,
   };
 }

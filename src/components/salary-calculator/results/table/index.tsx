@@ -15,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useFormatCurrency } from '@/hooks/common';
 import { CalculationPeriod } from '@/types/common';
 import { useTranslations } from 'next-intl';
+import { memo } from 'react';
 
 import { FormState } from '../../actions';
 import { getTableRows } from './helpers';
@@ -23,7 +24,7 @@ type Props = {
   results: FormState;
 };
 
-function DesktopTable({ results }: Props) {
+const DesktopTable = memo(function DesktopTable({ results }: Props) {
   const t = useTranslations();
   const formatCurrency = useFormatCurrency();
 
@@ -78,15 +79,16 @@ function DesktopTable({ results }: Props) {
       </TableFooter>
     </Table>
   );
-}
+});
 
-function MobileTable({ results }: Props) {
+const MobileTable = memo(function MobileTable({ results }: Props) {
   const t = useTranslations();
   const formatCurrency = useFormatCurrency();
 
   if (!results.employeeResults || !results.employerResults) return null;
 
   const rows = getTableRows(results);
+  const periods = [CalculationPeriod.enum.MONTH, CalculationPeriod.enum.YEAR];
 
   return (
     <Tabs defaultValue={CalculationPeriod.enum.MONTH}>
@@ -100,7 +102,7 @@ function MobileTable({ results }: Props) {
           </TabsTrigger>
         </TabsList>
       </div>
-      {[CalculationPeriod.enum.MONTH, CalculationPeriod.enum.YEAR].map((value) => (
+      {periods.map((value) => (
         <TabsContent
           value={value}
           key={value}
@@ -136,9 +138,9 @@ function MobileTable({ results }: Props) {
       ))}
     </Tabs>
   );
-}
+});
 
-export default function ResultTable({ results }: Props) {
+const ResultTable = memo(function ResultTable({ results }: Props) {
   if (!results.employeeResults || !results.employerResults)
     return <Skeleton className="min-w-full h-646px lg:h-630px rounded-lg" />;
 
@@ -152,4 +154,6 @@ export default function ResultTable({ results }: Props) {
       </div>
     </Card>
   );
-}
+});
+
+export default ResultTable;

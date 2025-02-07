@@ -7,7 +7,7 @@ import { CalculationPeriod, FederalState, TaxClass } from '@/types/common';
 import { UserInputs } from '@/types/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
-import { startTransition, useEffect, useRef } from 'react';
+import { startTransition, useCallback, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { FormState } from '../actions';
@@ -53,19 +53,28 @@ export default function SalaryForm({ formState, formAction }: Props) {
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleFieldDependencies = (data: UserInputs) => {
-    const surcharge = form.watch('nursingCareInsuranceSurcharge');
-    if (surcharge && data.numChildren !== 0) form.setValue('numChildren', 0);
-  };
+  const handleFieldDependencies = useCallback(
+    (data: UserInputs) => {
+      const surcharge = form.watch('nursingCareInsuranceSurcharge');
+      if (surcharge && data.numChildren !== 0) {
+        form.setValue('numChildren', 0);
+      }
+    },
+    [form],
+  );
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    form.handleSubmit(() => {
-      handleFieldDependencies(form.getValues());
-      if (formRef.current != null)
-        startTransition(() => formAction(new FormData(formRef.current ?? undefined)));
-    })(e);
-  };
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      form.handleSubmit(() => {
+        handleFieldDependencies(form.getValues());
+        if (formRef.current) {
+          startTransition(() => formAction(new FormData(formRef.current!)));
+        }
+      })(e);
+    },
+    [form, formAction, handleFieldDependencies],
+  );
 
   useEffect(() => {
     formRef.current?.requestSubmit();
@@ -79,7 +88,7 @@ export default function SalaryForm({ formState, formAction }: Props) {
         description: t('description'),
       });
     }
-  }, [formState, t, toast]);
+  }, [formState.error, t, toast]);
 
   return (
     <Form {...form}>
