@@ -27,7 +27,7 @@ class SocialSecurityService {
     return SocialSecurityService.#instance;
   }
 
-  public calculateStatutoryHealthInsuranceContribution(
+  public calcStatutoryHealthInsContrib(
     grossIncome: number,
     additionalContributionRate: number,
     calculationPeriod: CalculationPeriod,
@@ -61,7 +61,7 @@ class SocialSecurityService {
     };
   }
 
-  public calculateNursingCareInsuranceContribution(
+  public calcNursingCareInsContrib(
     grossIncome: number,
     numberOfChildren: number,
     age: number,
@@ -110,10 +110,7 @@ class SocialSecurityService {
     };
   }
 
-  public calculatePensionInsuranceContribution(
-    grossIncome: number,
-    calculationPeriod: CalculationPeriod,
-  ) {
+  public calcPensionInsContrib(grossIncome: number, calculationPeriod: CalculationPeriod) {
     const threshold =
       calculationPeriod === CalculationPeriod.enum.YEAR
         ? PENSION_INSURANCE_INCOME_THRESHOLD_YEAR
@@ -134,7 +131,7 @@ class SocialSecurityService {
     };
   }
 
-  public calculateUnemploymentInsuranceContribution(
+  public calcUnemploymentInsContrib(
     annualGrossIncome: number,
     calculationPeriod: CalculationPeriod,
   ) {

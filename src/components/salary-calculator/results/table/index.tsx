@@ -28,7 +28,7 @@ const DesktopTable = memo(function DesktopTable({ results }: Props) {
   const t = useTranslations();
   const formatCurrency = useFormatCurrency();
 
-  if (!results.employeeResults || !results.employerResults) return null;
+  if (!results.employeeResults) return null;
 
   const rows = getTableRows(results);
 
@@ -85,7 +85,7 @@ const MobileTable = memo(function MobileTable({ results }: Props) {
   const t = useTranslations();
   const formatCurrency = useFormatCurrency();
 
-  if (!results.employeeResults || !results.employerResults) return null;
+  if (!results.employeeResults) return null;
 
   const rows = getTableRows(results);
   const periods = [CalculationPeriod.enum.MONTH, CalculationPeriod.enum.YEAR];
@@ -141,7 +141,7 @@ const MobileTable = memo(function MobileTable({ results }: Props) {
 });
 
 const ResultTable = memo(function ResultTable({ results }: Props) {
-  if (!results.employeeResults || !results.employerResults)
+  if (!results.employeeResults)
     return <Skeleton className="min-w-full h-646px lg:h-630px rounded-lg" />;
 
   return (

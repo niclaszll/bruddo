@@ -3,6 +3,11 @@ import { z } from 'zod';
 export const CalculationPeriod = z.enum(['YEAR', 'MONTH', 'WEEK', 'DAY']);
 export type CalculationPeriod = z.infer<typeof CalculationPeriod>;
 
+export type CalculationPeriodTuple = {
+  [CalculationPeriod.enum.MONTH]: number;
+  [CalculationPeriod.enum.YEAR]: number;
+};
+
 export const TaxClass = z.enum(['I', 'II', 'III', 'IV', 'V', 'VI']);
 export type TaxClass = z.infer<typeof TaxClass>;
 

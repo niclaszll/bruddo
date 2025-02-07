@@ -1,4 +1,4 @@
-import { CalculationPeriodTuple } from '@/features/aggregation/service';
+import { CalculationPeriodTuple } from '@/types/common';
 import { TranslationKey } from '@/types/i18n';
 
 import { FormState } from '../../actions';
@@ -10,7 +10,7 @@ type TableRow = {
 };
 
 export const getTableRows = (results: FormState): TableRow[] => {
-  if (!results.employeeResults || !results.employerResults) return [];
+  if (!results.employeeResults) return [];
 
   return [
     {

@@ -1,14 +1,10 @@
 'use server';
 
-import AggregationService, {
-  EmployeeResults,
-  EmployerResults,
-} from '@/features/aggregation/service';
+import EmployeeService, { EmployeeResults } from '@/features/aggregation/employee-service';
 import { UserInputs } from '@/types/form';
 
 export type FormState = {
   employeeResults: EmployeeResults | undefined;
-  employerResults: EmployerResults | undefined;
   employeeResultsRange: EmployeeResults[] | undefined;
   userInputs: UserInputs | undefined;
   error: boolean;
@@ -28,10 +24,9 @@ export async function onSubmitAction(prevState: FormState, data: FormData): Prom
 
   const { data: parsedData } = parsed;
 
-  const [employeeResults, employerResults, employeeResultsRange] = await Promise.all([
-    AggregationService.getAggregatedResultsForEmployee(parsedData),
-    AggregationService.getAggregatedResultsForEmployer(parsedData),
-    AggregationService.getAggregatedResultsForEmployeeInRange(
+  const [employeeResults, employeeResultsRange] = await Promise.all([
+    EmployeeService.getAggregatedResults(parsedData),
+    EmployeeService.getAggregatedResultsInRange(
       1000,
       Math.min(parsedData.grossIncome * 2, 500_000),
       1000,
@@ -41,7 +36,6 @@ export async function onSubmitAction(prevState: FormState, data: FormData): Prom
 
   return {
     employeeResults,
-    employerResults,
     employeeResultsRange,
     userInputs: parsedData,
     error: false,
