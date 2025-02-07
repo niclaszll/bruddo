@@ -1,5 +1,6 @@
 'use client';
 
+import { Footer } from '@/components/footer';
 import { onSubmitAction } from '@/components/salary-calculator/actions';
 import SalaryForm from '@/components/salary-calculator/form';
 import { ContributionBreakdownSankeyChart } from '@/components/salary-calculator/results/charts/sankey';
@@ -17,12 +18,9 @@ import {
   SidebarRail,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
-import { Calculator } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { useActionState } from 'react';
 
 export default function HomeClient() {
-  const t = useTranslations('Sidebar');
   const [state, formAction] = useActionState(onSubmitAction, {
     error: false,
     employeeResults: undefined,
@@ -46,12 +44,13 @@ export default function HomeClient() {
         <header className="sticky top-0 flex h-16 shrink-0 items-center justify-between gap-2 border-b bg-background max-md:px-4 px-6 z-10">
           <div className="flex items-center gap-2">
             <SidebarTrigger className="-ml-1 max-md:hidden" />
-            <Calculator className="h-6 md:hidden mr-2" />
             <Separator
               orientation="vertical"
-              className="mr-2 h-4"
+              className="mr-2 h-4 max-md:hidden"
             />
-            <h1 className="text-sm font-semibold">{t('title')}</h1>
+            <h1 className="max-md:ml-2 text-xl font-black">
+              Bru<span className="text-primary">dd</span>o
+            </h1>
           </div>
           <ThemeToggle />
         </header>
@@ -86,8 +85,8 @@ export default function HomeClient() {
               <ContributionBreakdownSankeyChart results={state} />
             </ResizablePanel>
           </ResizablePanelGroup>
-          {/* <RangeBreakdownAreaChart results={state} /> */}
         </div>
+        <Footer />
       </SidebarInset>
     </SidebarProvider>
   );

@@ -1,46 +1,79 @@
 {
+  "Footer": {
+    "disclaimer": "* Der Rechner wurde sorgfältig auf seine korrekte Funktionsweise geprüft. Dennoch kann keine Garantie für die Richtigkeit der Ergebnisse übernommen werden."
+  },
   "Results": {
+    "charts": {
+      "sankey": {
+        "description": "Steuern, Sozialversicherungsbeiträge und verbleibendes Nettogehalt",
+        "title": "Aufschlüsselung der Beiträge"
+      }
+    },
     "employeeResults": {
-      "grossIncome": { "default": "Bruttogehalt", "short": "Bruttogehalt" },
-      "netIncome": { "default": "Nettogehalt", "short": "Nettogehalt" },
+      "grossIncome": {
+        "default": "Bruttogehalt",
+        "short": "Bruttogehalt"
+      },
+      "netIncome": {
+        "default": "Nettogehalt",
+        "short": "Nettogehalt"
+      },
       "socialSecurity": {
-        "healthInsurance": { "default": "Krankenversicherung", "short": "Krankenver." },
-        "nursingCareInsurance": { "default": "Pflegeversicherung", "short": "Pflegever." },
-        "pensionInsurance": { "default": "Rentenversicherung", "short": "Rentenver." },
-        "total": { "default": "Gesamtabzug Sozialversicherung", "short": "Sozialver." },
+        "healthInsurance": {
+          "default": "Krankenversicherung",
+          "short": "Krankenver."
+        },
+        "nursingCareInsurance": {
+          "default": "Pflegeversicherung",
+          "short": "Pflegever."
+        },
+        "pensionInsurance": {
+          "default": "Rentenversicherung",
+          "short": "Rentenver."
+        },
+        "total": {
+          "default": "Gesamtabzug Sozialversicherung",
+          "short": "Sozialver."
+        },
         "unemploymentInsurance": {
           "default": "Arbeitslosenversicherung",
           "short": "Arbeitslosenver."
         }
       },
       "taxes": {
-        "churchTax": { "default": "Kirchensteuer", "short": "Kirchensteuer" },
-        "incomeTax": { "default": "Lohnsteuer", "short": "Lohnsteuer" },
-        "solidaritySurcharge": { "default": "Solidaritätszuschlag", "short": "SolZ" },
-        "total": { "default": "Gesamtabzug Steuern", "short": "Steuern" }
+        "churchTax": {
+          "default": "Kirchensteuer",
+          "short": "Kirchensteuer"
+        },
+        "incomeTax": {
+          "default": "Lohnsteuer",
+          "short": "Lohnsteuer"
+        },
+        "solidaritySurcharge": {
+          "default": "Solidaritätszuschlag",
+          "short": "SolZ"
+        },
+        "total": {
+          "default": "Gesamtabzug Steuern",
+          "short": "Steuern"
+        }
+      }
+    },
+    "summaryCards": {
+      "netIncome": {
+        "title": "bleiben dir am Ende übrig."
+      },
+      "socialSecurity": {
+        "title": "landen in der Sozialversicherung."
+      },
+      "tax": {
+        "title": "gehen für Steuern drauf."
       }
     },
     "table": {
       "header": {
         "monthly": "Monatlich",
         "yearly": "Jährlich"
-      }
-    },
-    "charts": {
-      "sankey": {
-        "title": "Aufschlüsselung der Beiträge",
-        "description": "Steuern, Sozialversicherungsbeiträge und verbleibendes Nettogehalt"
-      }
-    },
-    "summaryCards": {
-      "tax": {
-        "title": "gehen für Steuern drauf."
-      },
-      "socialSecurity": {
-        "title": "landen in der Sozialversicherung."
-      },
-      "netIncome": {
-        "title": "bleiben dir am Ende übrig."
       }
     }
   },

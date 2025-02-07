@@ -1,0 +1,165 @@
+{
+  "Footer": {
+    "disclaimer": "* The calculator has been carefully checked for correct operation. Nevertheless, no guarantee can be given for the accuracy of the results."
+  },
+  "Results": {
+    "employeeResults": {
+      "grossIncome": { "default": "Gross Income", "short": "Gross Income" },
+      "netIncome": { "default": "Net Income", "short": "Net Income" },
+      "socialSecurity": {
+        "healthInsurance": { "default": "Health Insurance", "short": "Health Ins." },
+        "nursingCareInsurance": {
+          "default": "Nursing Care Insurance",
+          "short": "Nursing Care Ins."
+        },
+        "pensionInsurance": { "default": "Pension Insurance", "short": "Pension Ins." },
+        "total": {
+          "default": "Total Social Security Deduction",
+          "short": "Social Sec."
+        },
+        "unemploymentInsurance": {
+          "default": "Unemployment Insurance",
+          "short": "Unemployment Ins."
+        }
+      },
+      "taxes": {
+        "churchTax": {
+          "default": "Church Tax",
+          "short": "Church Tax"
+        },
+        "incomeTax": {
+          "default": "Income Tax",
+          "short": "Income Tax"
+        },
+        "solidaritySurcharge": {
+          "default": "Solidarity Surcharge",
+          "short": "Sol. Surcharge"
+        },
+        "total": {
+          "default": "Total Tax Deduction",
+          "short": "Taxes"
+        }
+      }
+    },
+    "table": {
+      "header": {
+        "monthly": "Monthly",
+        "yearly": "Yearly"
+      }
+    },
+    "charts": {
+      "sankey": {
+        "title": "Breakdown of Contributions",
+        "description": "Taxes, social security contributions, and remaining net income"
+      }
+    },
+    "summaryCards": {
+      "tax": {
+        "title": "... are spent on taxes."
+      },
+      "socialSecurity": {
+        "title": "... go into social security."
+      },
+      "netIncome": {
+        "title": "... remain for you in the end."
+      }
+    }
+  },
+  "SalaryCalculator": {
+    "form": {
+      "fields": {
+        "calculationPeriod": {
+          "label": "Calculation Period",
+          "options": {
+            "MONTH": "Month",
+            "YEAR": "Year"
+          },
+          "tooltip": "Choose whether to calculate using monthly or yearly values."
+        },
+        "childAllowances": {
+          "label": "Child Allowances",
+          "tooltip": "Select the number of children to be considered according to ELStAM using the child allowance counter. The allowance will be taken into account when calculating income tax, solidarity surcharge, and church tax."
+        },
+        "churchTax": {
+          "label": "Church Tax",
+          "tooltip": "Select whether church tax is applicable."
+        },
+        "dob": {
+          "label": "Date of Birth",
+          "tooltip": "Enter your date of birth. Employees over 64 years old are eligible for the age relief amount under § 24a EStG."
+        },
+        "federalState": {
+          "label": "Federal State",
+          "options": {
+            "BB": "Brandenburg",
+            "BE": "Berlin",
+            "BW": "Baden-Württemberg",
+            "BY": "Bavaria",
+            "HB": "Bremen",
+            "HE": "Hesse",
+            "HH": "Hamburg",
+            "MV": "Mecklenburg-Western Pomerania",
+            "NI": "Lower Saxony",
+            "NW": "North Rhine-Westphalia",
+            "RP": "Rhineland-Palatinate",
+            "SH": "Schleswig-Holstein",
+            "SL": "Saarland",
+            "SN": "Saxony",
+            "ST": "Saxony-Anhalt",
+            "TH": "Thuringia"
+          },
+          "tooltip": "Select the federal state where your place of employment is located (not to be confused with the workplace in a tax-related sense)."
+        },
+        "grossIncome": {
+          "label": "Gross Income",
+          "tooltip": "Your gross income for the calculation period."
+        },
+        "healthInsuranceAdditionalContribution": {
+          "label": "Health Insurance Additional Contribution",
+          "tooltip": "The additional contribution of your health insurance provider."
+        },
+        "numChildren": {
+          "label": "Number of Children",
+          "options": {
+            "0": "0",
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5+"
+          },
+          "tooltip": "Select the number of children eligible to be considered for nursing care insurance to account for contribution reductions."
+        },
+        "nursingCareInsuranceSurcharge": {
+          "label": "Nursing Care Insurance Surcharge",
+          "tooltip": "Childless insured persons aged over 23 are required to pay a surcharge of 0.6% for nursing care insurance unless they provide proof of parenthood to their employer."
+        },
+        "taxAllowance": {
+          "label": "Annual Tax Allowance",
+          "tooltip": "The current tax-free allowance retrieved via ELStAM for the employee."
+        },
+        "taxClass": {
+          "label": "Tax Class",
+          "options": {
+            "I": "I",
+            "II": "II",
+            "III": "III",
+            "IV": "IV",
+            "V": "V",
+            "VI": "VI"
+          },
+          "tooltip": "Select the applicable tax class according to ELStAM."
+        }
+      }
+    }
+  },
+  "Sidebar": {
+    "title": "Gross-Net Calculator"
+  },
+  "common": {
+    "errorToast": {
+      "description": "There was a problem with your request. Please try again.",
+      "title": "Uh-oh! Something went wrong."
+    }
+  }
+}
