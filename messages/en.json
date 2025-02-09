@@ -3,16 +3,34 @@
     "disclaimer": "* The calculator has been carefully checked for correct operation. Nevertheless, no guarantee can be given for the accuracy of the results."
   },
   "Results": {
+    "charts": {
+      "sankey": {
+        "description": "Taxes, social security contributions, and remaining net income",
+        "title": "Breakdown of Contributions"
+      }
+    },
     "employeeResults": {
-      "grossIncome": { "default": "Gross Income", "short": "Gross Income" },
-      "netIncome": { "default": "Net Income", "short": "Net Income" },
+      "grossIncome": {
+        "default": "Gross Income",
+        "short": "Gross Income"
+      },
+      "netIncome": {
+        "default": "Net Income",
+        "short": "Net Income"
+      },
       "socialSecurity": {
-        "healthInsurance": { "default": "Health Insurance", "short": "Health Ins." },
+        "healthInsurance": {
+          "default": "Health Insurance",
+          "short": "Health Ins."
+        },
         "nursingCareInsurance": {
           "default": "Nursing Care Insurance",
           "short": "Nursing Care Ins."
         },
-        "pensionInsurance": { "default": "Pension Insurance", "short": "Pension Ins." },
+        "pensionInsurance": {
+          "default": "Pension Insurance",
+          "short": "Pension Ins."
+        },
         "total": {
           "default": "Total Social Security Deduction",
           "short": "Social Sec."
@@ -41,27 +59,21 @@
         }
       }
     },
-    "table": {
-      "header": {
-        "monthly": "Monthly",
-        "yearly": "Yearly"
-      }
-    },
-    "charts": {
-      "sankey": {
-        "title": "Breakdown of Contributions",
-        "description": "Taxes, social security contributions, and remaining net income"
-      }
-    },
     "summaryCards": {
-      "tax": {
-        "title": "... are spent on taxes."
+      "netIncome": {
+        "title": "... remain for you in the end."
       },
       "socialSecurity": {
         "title": "... go into social security."
       },
-      "netIncome": {
-        "title": "... remain for you in the end."
+      "tax": {
+        "title": "... are spent on taxes."
+      }
+    },
+    "table": {
+      "header": {
+        "monthly": "Monthly",
+        "yearly": "Yearly"
       }
     }
   },
