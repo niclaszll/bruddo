@@ -1,21 +1,21 @@
 'use client';
 
-import { Checkbox } from '@/components/ui/checkbox';
 import { FormControl } from '@/components/ui/form';
+import { Switch } from '@/components/ui/switch';
 
 import { GenericField } from './shared';
 
-const FIELD_NAME = 'nursingCareInsuranceSurcharge';
+const FIELD_NAME = 'churchTax';
 
-export default function NursingCareInsuranceSurchargeCheckbox() {
+export default function ChurchTaxSwitch() {
   return (
     <GenericField
       name={FIELD_NAME}
-      className="pt-3 pb-1"
+      className="py-1"
     >
       {(field) => (
         <FormControl>
-          <Checkbox
+          <Switch
             {...field}
             checked={field.value}
             onCheckedChange={field.onChange}

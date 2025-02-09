@@ -11,6 +11,4 @@ export const getIncomeTaxTariffTypeFactor = (type: IncomeTaxTariffType): number 
 export const calculationPeriodFactors: Record<CalculationPeriod, number> = {
   [CalculationPeriod.enum.YEAR]: 1,
   [CalculationPeriod.enum.MONTH]: 12,
-  [CalculationPeriod.enum.WEEK]: 360 / 7,
-  [CalculationPeriod.enum.DAY]: 360,
 } as const;

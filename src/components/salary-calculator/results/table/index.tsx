@@ -24,32 +24,34 @@ type Props = {
   results: FormState;
 };
 
-const DesktopTable = memo(function DesktopTable({ results }: Props) {
+const BaseTable = memo(function BaseTable({
+  results,
+  rows,
+  periods,
+  header,
+}: {
+  results: FormState;
+  rows: ReturnType<typeof getTableRows>;
+  periods: CalculationPeriod[];
+  header?: React.ReactNode;
+}) {
   const t = useTranslations();
   const formatCurrency = useFormatCurrency();
 
-  if (!results.employeeResults) return null;
-
-  const rows = getTableRows(results);
-
   return (
     <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead></TableHead>
-          <TableHead className="text-right">{t('Results.table.header.monthly')}</TableHead>
-          <TableHead className="text-right">{t('Results.table.header.yearly')}</TableHead>
-        </TableRow>
-      </TableHeader>
+      {header && <TableHeader>{header}</TableHeader>}
       <TableBody>
         <TableRow className="font-bold bg-muted/30">
           <TableCell>{t('Results.employeeResults.grossIncome.default')}</TableCell>
-          <TableCell className="text-right">
-            {formatCurrency(results.employeeResults.grossIncome[CalculationPeriod.enum.MONTH])}
-          </TableCell>
-          <TableCell className="text-right">
-            {formatCurrency(results.employeeResults.grossIncome[CalculationPeriod.enum.YEAR])}
-          </TableCell>
+          {periods.map((period) => (
+            <TableCell
+              key={period}
+              className="text-right"
+            >
+              {formatCurrency(results.employeeResults!.grossIncome[period])}
+            </TableCell>
+          ))}
         </TableRow>
         {rows.map((row, index) => (
           <TableRow
@@ -57,38 +59,66 @@ const DesktopTable = memo(function DesktopTable({ results }: Props) {
             className={row.isBold ? 'font-semibold bg-muted/30' : undefined}
           >
             <TableCell>{t(row.label)}</TableCell>
-            <TableCell className="text-right">
-              {formatCurrency(-row.value[CalculationPeriod.enum.MONTH])}
-            </TableCell>
-            <TableCell className="text-right">
-              {formatCurrency(-row.value[CalculationPeriod.enum.YEAR])}
-            </TableCell>
+            {periods.map((period) => (
+              <TableCell
+                key={period}
+                className="text-right"
+              >
+                {formatCurrency(-row.value[period])}
+              </TableCell>
+            ))}
           </TableRow>
         ))}
       </TableBody>
       <TableFooter>
         <TableRow className="font-bold">
           <TableCell colSpan={1}>{t('Results.employeeResults.netIncome.default')}</TableCell>
-          <TableCell className="text-right underline decoration-primary decoration-2 underline-offset-8">
-            {formatCurrency(results.employeeResults.netIncome[CalculationPeriod.enum.MONTH])}
-          </TableCell>
-          <TableCell className="text-right underline decoration-primary decoration-2 underline-offset-8">
-            {formatCurrency(results.employeeResults.netIncome[CalculationPeriod.enum.YEAR])}
-          </TableCell>
+          {periods.map((period) => (
+            <TableCell
+              key={period}
+              className="text-right underline decoration-primary decoration-2 underline-offset-8"
+            >
+              {formatCurrency(results.employeeResults!.netIncome[period])}
+            </TableCell>
+          ))}
         </TableRow>
       </TableFooter>
     </Table>
   );
 });
 
-const MobileTable = memo(function MobileTable({ results }: Props) {
+const DesktopTable = memo(function DesktopTable({ results }: Props) {
   const t = useTranslations();
-  const formatCurrency = useFormatCurrency();
 
   if (!results.employeeResults) return null;
 
   const rows = getTableRows(results);
   const periods = [CalculationPeriod.enum.MONTH, CalculationPeriod.enum.YEAR];
+
+  const header = (
+    <TableRow>
+      <TableHead></TableHead>
+      <TableHead className="text-right">{t('Results.table.header.monthly')}</TableHead>
+      <TableHead className="text-right">{t('Results.table.header.yearly')}</TableHead>
+    </TableRow>
+  );
+
+  return (
+    <BaseTable
+      results={results}
+      rows={rows}
+      periods={periods}
+      header={header}
+    />
+  );
+});
+
+const MobileTable = memo(function MobileTable({ results }: Props) {
+  const t = useTranslations();
+
+  if (!results.employeeResults) return null;
+
+  const rows = getTableRows(results);
 
   return (
     <Tabs defaultValue={CalculationPeriod.enum.MONTH}>
@@ -102,38 +132,16 @@ const MobileTable = memo(function MobileTable({ results }: Props) {
           </TabsTrigger>
         </TabsList>
       </div>
-      {periods.map((value) => (
+      {[CalculationPeriod.enum.MONTH, CalculationPeriod.enum.YEAR].map((period) => (
         <TabsContent
-          value={value}
-          key={value}
+          value={period}
+          key={period}
         >
-          <Table>
-            <TableBody>
-              <TableRow className="font-bold bg-muted/30">
-                <TableCell>{t('Results.employeeResults.grossIncome.default')}</TableCell>
-                <TableCell className="text-right">
-                  {formatCurrency(results.employeeResults!.grossIncome[value])}
-                </TableCell>
-              </TableRow>
-              {rows.map((row, index) => (
-                <TableRow
-                  key={index}
-                  className={row.isBold ? 'font-semibold bg-muted/30' : undefined}
-                >
-                  <TableCell>{t(row.label)}</TableCell>
-                  <TableCell className="text-right">{formatCurrency(-row.value[value])}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-            <TableFooter>
-              <TableRow className="font-bold">
-                <TableCell colSpan={1}>{t('Results.employeeResults.netIncome.default')}</TableCell>
-                <TableCell className="text-right underline decoration-primary decoration-2 underline-offset-8">
-                  {formatCurrency(results.employeeResults!.netIncome[value])}
-                </TableCell>
-              </TableRow>
-            </TableFooter>
-          </Table>
+          <BaseTable
+            results={results}
+            rows={rows}
+            periods={[period]}
+          />
         </TabsContent>
       ))}
     </Tabs>

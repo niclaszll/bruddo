@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const CalculationPeriod = z.enum(['YEAR', 'MONTH', 'WEEK', 'DAY']);
+export const CalculationPeriod = z.enum(['YEAR', 'MONTH']);
 export type CalculationPeriod = z.infer<typeof CalculationPeriod>;
 
 export type CalculationPeriodTuple = {

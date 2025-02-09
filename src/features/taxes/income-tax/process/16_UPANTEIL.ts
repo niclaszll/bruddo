@@ -19,11 +19,5 @@ export const calculateUPANTEIL = () => {
     case CalculationPeriod.enum.MONTH:
       internalFields.ANTEIL1 = roundDownToFullCent(internalFields.JW / 12);
       break;
-    case CalculationPeriod.enum.WEEK:
-      internalFields.ANTEIL1 = roundDownToFullCent((internalFields.JW * 7) / 360);
-      break;
-    case CalculationPeriod.enum.DAY:
-      internalFields.ANTEIL1 = roundDownToFullCent(internalFields.JW / 360);
-      break;
   }
 };

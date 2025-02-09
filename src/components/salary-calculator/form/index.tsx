@@ -13,13 +13,13 @@ import { useForm } from 'react-hook-form';
 import { FormState } from '../actions';
 import CalculationPeriodSelect from './fields/calculation-period-select';
 import ChildAllowancesSelect from './fields/child-allowances-select';
-import ChurchTaxCheckbox from './fields/church-tax-checkbox';
+import ChurchTaxSwitch from './fields/church-tax-switch';
 import DobInput from './fields/dob-input';
 import FederalStateSelect from './fields/federal-state-select';
 import GrossIncomeInput from './fields/gross-income-input';
 import HealthInsuranceAddConInput from './fields/health-insurance-input';
 import NumberOfChildrenSelect from './fields/number-children-select';
-import NursingCareInsuranceSurchargeCheckbox from './fields/nursing-care-insurance-surcharge-checkbox';
+import NursingCareInsuranceSurchargeSwitch from './fields/nursing-care-insurance-surcharge-switch';
 import TaxAllowanceInput from './fields/tax-allowance-input';
 import TaxClassSelect from './fields/tax-class-select';
 
@@ -105,12 +105,12 @@ export default function SalaryForm({ formState, formAction }: Props) {
         <Separator className="mt-2" />
         <TaxClassSelect />
         <TaxAllowanceInput />
-        <ChurchTaxCheckbox />
+        <ChurchTaxSwitch />
         <DobInput />
         <ChildAllowancesSelect />
         <Separator className="mt-2" />
         <HealthInsuranceAddConInput />
-        <NursingCareInsuranceSurchargeCheckbox />
+        <NursingCareInsuranceSurchargeSwitch />
         <NumberOfChildrenSelect />
       </form>
     </Form>

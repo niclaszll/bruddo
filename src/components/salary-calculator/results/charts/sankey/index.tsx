@@ -5,65 +5,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Skeleton } from '@/components/ui/skeleton';
 import { useFormatCurrency } from '@/hooks/common';
 import { CalculationPeriod } from '@/types/common';
-import { ResponsiveSankey, SankeyNodeDatum } from '@nivo/sankey';
-import { useFormatter, useTranslations } from 'next-intl';
+import { ResponsiveSankey } from '@nivo/sankey';
+import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import { memo } from 'react';
+
+import { LinkTooltip, NodeTooltip } from './tooltips';
 
 type Props = {
   results: FormState;
 };
-
-type LinkTooltipProps = {
-  grossIncome: number | undefined;
-  link: {
-    source: { id: string };
-    target: { id: string };
-    value: number;
-  };
-  formatValue?: (value: number) => string;
-};
-
-function LinkTooltip({ grossIncome, link }: LinkTooltipProps) {
-  const formatCurrency = useFormatCurrency();
-  const format = useFormatter();
-  return (
-    <div className="rounded-md bg-secondary p-2 shadow-md text-sm text-foreground">
-      <strong>{link.source.id}</strong> → <strong>{link.target.id}</strong>
-      <br />
-      {formatCurrency(link.value)}{' '}
-      {grossIncome && `(${format.number(link.value / grossIncome, { style: 'percent' })})`}
-    </div>
-  );
-}
-
-type NodeTooltipProps = {
-  grossIncome: number | undefined;
-  node: SankeyNodeDatum<
-    {
-      id: string;
-    },
-    {
-      source: string;
-      target: string;
-      value: number;
-    }
-  >;
-};
-
-function NodeTooltip({ grossIncome, node }: NodeTooltipProps) {
-  const formatCurrency = useFormatCurrency();
-  const format = useFormatter();
-
-  return (
-    <div className="rounded-md bg-secondary p-2 shadow-md text-sm text-foreground">
-      <strong>{node.label}</strong>
-      <br />
-      {formatCurrency(node.value)}{' '}
-      {grossIncome && `(${format.number(node.value / grossIncome, { style: 'percent' })})`}
-    </div>
-  );
-}
 
 export const ContributionBreakdownSankeyChart = memo(function ContributionBreakdownSankeyChart({
   results,
