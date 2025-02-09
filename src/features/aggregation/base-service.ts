@@ -1,8 +1,8 @@
 import SocialSecurityService from '@/features/social-security/service';
+import { CalculationPeriod, CalculationPeriodTuple } from '@/types/common';
 import { UserInputs } from '@/types/form';
+import { calculateAge } from '@/util/date';
 import { roundDownToFullCent } from '@/util/format';
-
-import { calculateUserAge } from './util';
 
 abstract class BaseService {
   protected getSocialSecResults(inputs: UserInputs) {
@@ -15,7 +15,7 @@ abstract class BaseService {
     const nursingCareInsRes = SocialSecurityService.calcNursingCareInsContrib(
       inputs.grossIncome,
       inputs.numChildren,
-      calculateUserAge(inputs.dob),
+      calculateAge(inputs.dob),
       inputs.federalState,
       inputs.calculationPeriod,
     );
@@ -51,6 +51,17 @@ abstract class BaseService {
       unemploymentInsuranceResults: unemploymentInsRes,
       totalEmployeeContribution: totalEmployeeContrib,
       totalEmployerContribution: totalEmployerContrib,
+    };
+  }
+
+  protected getMonthYearValues(
+    value: number,
+    calculationPeriod: CalculationPeriod,
+  ): CalculationPeriodTuple {
+    const isYearly = calculationPeriod === CalculationPeriod.enum.YEAR;
+    return {
+      [CalculationPeriod.enum.MONTH]: isYearly ? value / 12 : value,
+      [CalculationPeriod.enum.YEAR]: isYearly ? value : value * 12,
     };
   }
 }

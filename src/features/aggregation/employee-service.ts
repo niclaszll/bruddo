@@ -7,7 +7,6 @@ import { UserInputs } from '@/types/form';
 import { roundDownToFullCent, roundToFullCent } from '@/util/format';
 
 import BaseService from './base-service';
-import { getMonthYearValues } from './util';
 
 export type EmployeeResults = {
   grossIncome: CalculationPeriodTuple;
@@ -66,7 +65,7 @@ class EmployeeService extends BaseService {
       grossIncome - (taxTotal + socSecResults.totalEmployeeContribution),
     );
 
-    const getValues = (value: number) => getMonthYearValues(value, calculationPeriod);
+    const getValues = (value: number) => this.getMonthYearValues(value, calculationPeriod);
 
     return {
       grossIncome: getValues(grossIncome),

@@ -4,7 +4,6 @@ import { CalculationPeriodTuple } from '@/types/common';
 import { UserInputs } from '@/types/form';
 
 import BaseService from './base-service';
-import { getMonthYearValues } from './util';
 
 export type EmployerResults = {
   grossIncome: CalculationPeriodTuple;
@@ -31,7 +30,7 @@ class EmployerService extends BaseService {
   public getAggregatedResults(inputs: UserInputs): EmployerResults {
     const socSecContrib = this.getSocialSecResults(inputs);
 
-    const getValues = (value: number) => getMonthYearValues(value, inputs.calculationPeriod);
+    const getValues = (value: number) => this.getMonthYearValues(value, inputs.calculationPeriod);
 
     return {
       grossIncome: getValues(inputs.grossIncome),
