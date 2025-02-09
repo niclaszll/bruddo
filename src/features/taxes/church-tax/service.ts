@@ -9,11 +9,7 @@ class ChurchTaxService {
   private constructor() {}
 
   public static get instance(): ChurchTaxService {
-    if (!ChurchTaxService.#instance) {
-      ChurchTaxService.#instance = new ChurchTaxService();
-    }
-
-    return ChurchTaxService.#instance;
+    return (this.#instance ??= new ChurchTaxService());
   }
 
   public calculateChurchTax(
@@ -21,19 +17,14 @@ class ChurchTaxService {
     federalState: FederalState,
     isMemberOfChurch: boolean,
   ) {
-    const churchTaxRate = ([FederalState.enum.BY, FederalState.enum.BW] as FederalState[]).includes(
+    if (!isMemberOfChurch) return 0;
+
+    const isHigherRate = ([FederalState.enum.BY, FederalState.enum.BW] as FederalState[]).includes(
       federalState,
-    )
-      ? 0.08
-      : 0.09;
+    );
+    const churchTaxRate = isHigherRate ? 0.08 : 0.09;
 
-    if (!isMemberOfChurch) {
-      return 0;
-    }
-
-    const churchTax = roundToFullCent(incomeTax * churchTaxRate);
-
-    return churchTax;
+    return roundToFullCent(incomeTax * churchTaxRate);
   }
 }
 

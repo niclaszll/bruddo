@@ -1,6 +1,6 @@
 'use client';
 
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { FormControl } from '@/components/ui/form';
 import {
   Select,
   SelectContent,
@@ -11,9 +11,8 @@ import {
 import { FederalState } from '@/types/common';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { useFormContext } from 'react-hook-form';
 
-import { PopoverTooltip } from './shared';
+import { GenericField } from './shared';
 
 const FEDERAL_STATE_OPTIONS = [
   { key: FederalState.enum.BW },
@@ -38,53 +37,41 @@ const FIELD_NAME = 'federalState';
 
 export default function FederalStateSelect() {
   const t = useTranslations(`SalaryCalculator.form.fields.${FIELD_NAME}`);
-  const form = useFormContext();
 
   return (
-    <FormField
-      control={form.control}
-      name={FIELD_NAME}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel className="text-md md:text-sm">{t('label')}</FormLabel>
-          <div className="flex items-center gap-3">
-            <PopoverTooltip>
-              <p className="max-w-sm">{t('tooltip')}</p>
-            </PopoverTooltip>
-            <Select
-              {...field}
-              onValueChange={field.onChange}
-              defaultValue={field.value}
-            >
-              <FormControl>
-                <SelectTrigger>
-                  <SelectValue placeholder={t('label')} />
-                </SelectTrigger>
-              </FormControl>
-              <SelectContent>
-                {FEDERAL_STATE_OPTIONS.map(({ key }) => (
-                  <SelectItem
-                    key={key}
-                    value={key}
-                  >
-                    <div className="flex items-center">
-                      <Image
-                        src={`/federal-states/${key}.svg`}
-                        alt={t('label')}
-                        width={3}
-                        height={3}
-                        className="w-4 mr-2 object-cover"
-                      />
-                      <span className="truncate">{t(`options.${key}`)}</span>
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <FormMessage />
-        </FormItem>
+    <GenericField name={FIELD_NAME}>
+      {(field) => (
+        <Select
+          {...field}
+          onValueChange={field.onChange}
+          defaultValue={field.value}
+        >
+          <FormControl>
+            <SelectTrigger>
+              <SelectValue placeholder={t('label')} />
+            </SelectTrigger>
+          </FormControl>
+          <SelectContent>
+            {FEDERAL_STATE_OPTIONS.map(({ key }) => (
+              <SelectItem
+                key={key}
+                value={key}
+              >
+                <div className="flex items-center">
+                  <Image
+                    src={`/federal-states/${key}.svg`}
+                    alt={t('label')}
+                    width={3}
+                    height={3}
+                    className="w-4 mr-2 object-cover"
+                  />
+                  <span className="truncate">{t(`options.${key}`)}</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       )}
-    />
+    </GenericField>
   );
 }

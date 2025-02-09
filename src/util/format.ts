@@ -9,8 +9,8 @@ export const toFixedFloat = (value: number, precision: number) => {
   return parseFloat(withPrecision);
 };
 
-export const roundUpToFullEuro = (value: number) => Math.ceil(value);
-export const roundDownToFullEuro = (value: number) => Math.floor(value);
+export const roundUpToFullEuro = Math.ceil;
+export const roundDownToFullEuro = Math.floor;
 
 export const roundUpToFullCent = (value: number) => Math.ceil(toFixedFloat(value, 3) * 100) / 100;
 export const roundDownToFullCent = (value: number) =>

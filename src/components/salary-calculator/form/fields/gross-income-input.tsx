@@ -1,13 +1,11 @@
 'use client';
 
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { FormControl } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useTranslations } from 'next-intl';
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
 
 import { defaultValues } from '..';
-import { PopoverTooltip } from './shared';
+import { GenericField } from './shared';
 
 const moneyFormatter = Intl.NumberFormat('de-DE', {
   currency: 'EUR',
@@ -21,9 +19,6 @@ const moneyFormatter = Intl.NumberFormat('de-DE', {
 const FIELD_NAME = 'grossIncome';
 
 export default function GrossIncomeInput() {
-  const t = useTranslations(`SalaryCalculator.form.fields.${FIELD_NAME}`);
-  const form = useFormContext();
-
   const [value, setValue] = React.useReducer(
     (_: string, next: string) => {
       const digits = next.replace(/\D/g, '');
@@ -42,36 +37,25 @@ export default function GrossIncomeInput() {
   }
 
   return (
-    <FormField
-      control={form.control}
-      name={FIELD_NAME}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel className="text-md md:text-sm">{t('label')}</FormLabel>
-          <div className="flex items-center gap-3">
-            <PopoverTooltip>
-              <p className="max-w-sm">{t('tooltip')}</p>
-            </PopoverTooltip>
-            <FormControl className="w-full">
-              <div className="relative">
-                <span className="absolute -inset-y-0 right-0 flex items-center pr-3 text-sm text-gray-500 dark:text-gray-400">
-                  €
-                </span>
-                <Input
-                  {...field}
-                  className="pr-6 text-right"
-                  value={value}
-                  onChange={(ev) => {
-                    setValue(ev.target.value);
-                    handleChange(ev.target.value, field.onChange);
-                  }}
-                />
-              </div>
-            </FormControl>
+    <GenericField name={FIELD_NAME}>
+      {(field) => (
+        <FormControl className="w-full">
+          <div className="relative">
+            <span className="absolute -inset-y-0 right-0 flex items-center pr-3 text-sm text-gray-500 dark:text-gray-400">
+              €
+            </span>
+            <Input
+              {...field}
+              className="pr-6 text-right"
+              value={value}
+              onChange={(ev) => {
+                setValue(ev.target.value);
+                handleChange(ev.target.value, field.onChange);
+              }}
+            />
           </div>
-          <FormMessage />
-        </FormItem>
+        </FormControl>
       )}
-    />
+    </GenericField>
   );
 }

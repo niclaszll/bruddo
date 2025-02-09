@@ -1,40 +1,27 @@
 'use client';
 
 import { Checkbox } from '@/components/ui/checkbox';
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { useTranslations } from 'next-intl';
-import { useFormContext } from 'react-hook-form';
+import { FormControl } from '@/components/ui/form';
 
-import { PopoverTooltip } from './shared';
+import { GenericField } from './shared';
 
 const FIELD_NAME = 'churchTax';
 
 export default function ChurchTaxCheckbox() {
-  const form = useFormContext();
-  const t = useTranslations(`SalaryCalculator.form.fields.${FIELD_NAME}`);
-
   return (
-    <FormField
-      control={form.control}
+    <GenericField
       name={FIELD_NAME}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel className="text-md md:text-sm">{t('label')}</FormLabel>
-          <div className="flex items-center gap-3 pt-3 pb-1">
-            <PopoverTooltip>
-              <p className="max-w-sm">{t('tooltip')}</p>
-            </PopoverTooltip>
-            <FormControl>
-              <Checkbox
-                {...field}
-                checked={field.value}
-                onCheckedChange={field.onChange}
-              />
-            </FormControl>
-          </div>
-          <FormMessage />
-        </FormItem>
+      className="pt-3 pb-1"
+    >
+      {(field) => (
+        <FormControl>
+          <Checkbox
+            {...field}
+            checked={field.value}
+            onCheckedChange={field.onChange}
+          />
+        </FormControl>
       )}
-    />
+    </GenericField>
   );
 }
