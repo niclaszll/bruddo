@@ -1,11 +1,10 @@
 'use client';
 
+import { ContributionBreakdownSankeyChart } from '@/components/charts/sankey';
 import { Footer } from '@/components/footer';
-import { FormState, onSubmitAction } from '@/components/salary-calculator/actions';
-import SalaryForm from '@/components/salary-calculator/form';
-import { ContributionBreakdownSankeyChart } from '@/components/salary-calculator/results/charts/sankey';
-import SummaryCards from '@/components/salary-calculator/results/summary-cards';
-import ResultTable from '@/components/salary-calculator/results/table';
+import SalaryForm from '@/components/form';
+import SummaryCards from '@/components/summary-cards';
+import ResultTable from '@/components/table';
 import { ThemeToggle } from '@/components/theme';
 import { Card } from '@/components/ui/card';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
@@ -18,6 +17,7 @@ import {
   SidebarRail,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
+import { FormState, onSubmitAction } from '@/util/actions';
 import { useActionState } from 'react';
 
 const initialState = {

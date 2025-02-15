@@ -14,10 +14,10 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useFormatCurrency } from '@/hooks/common';
 import { CalculationPeriod } from '@/types/common';
+import { FormState } from '@/util/actions';
 import { useTranslations } from 'next-intl';
 import { memo } from 'react';
 
-import { FormState } from '../../actions';
 import { getTableRows } from './helpers';
 
 type Props = {

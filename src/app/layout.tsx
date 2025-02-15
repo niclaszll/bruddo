@@ -1,4 +1,5 @@
 import { Toaster } from '@/components/ui/toaster';
+import { NODE_ENV } from '@/util/environment';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
 import { getLocale, getMessages } from 'next-intl/server';
@@ -41,11 +42,13 @@ export default async function RootLayout({
       className={openSans.className}
       suppressHydrationWarning
     >
-      <Script
-        defer
-        src="/stats/script.js"
-        data-website-id="e435012f-386d-4d7e-b6f7-0ec7e156a426"
-      />
+      {NODE_ENV === 'production' && (
+        <Script
+          defer
+          src="/stats/script.js"
+          data-website-id="e435012f-386d-4d7e-b6f7-0ec7e156a426"
+        />
+      )}
       <body className="antialiased bg-background text-foreground min-h-screen">
         <Provider
           locale={locale}

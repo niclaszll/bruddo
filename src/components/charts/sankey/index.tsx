@@ -1,10 +1,10 @@
 'use client';
 
-import { FormState } from '@/components/salary-calculator/actions';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useFormatCurrency } from '@/hooks/common';
 import { CalculationPeriod } from '@/types/common';
+import { FormState } from '@/util/actions';
 import { ResponsiveSankey } from '@nivo/sankey';
 import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';

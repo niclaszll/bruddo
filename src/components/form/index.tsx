@@ -5,12 +5,12 @@ import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/shadcn/use-toast';
 import { CalculationPeriod, FederalState, TaxClass } from '@/types/common';
 import { UserInputs } from '@/types/form';
+import { FormState } from '@/util/actions';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { startTransition, useCallback, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { FormState } from '../actions';
 import CalculationPeriodSelect from './fields/calculation-period-select';
 import ChildAllowancesSelect from './fields/child-allowances-select';
 import ChurchTaxSwitch from './fields/church-tax-switch';
@@ -66,7 +66,6 @@ export default function SalaryForm({ formState, formAction }: Props) {
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      umami.track('Handle form submit');
       form.handleSubmit(() => {
         handleFieldDependencies(form.getValues());
         if (formRef.current) {
@@ -99,6 +98,7 @@ export default function SalaryForm({ formState, formAction }: Props) {
         onSubmit={handleSubmit}
         onChange={handleSubmit}
         className="flex flex-col md:gap-4 gap-6"
+        data-umami-event="Handle form submit"
       >
         <CalculationPeriodSelect />
         <GrossIncomeInput />

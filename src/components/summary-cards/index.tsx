@@ -1,8 +1,8 @@
-import { FormState } from '@/components/salary-calculator/actions';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
 import { CalculationPeriod } from '@/types/common';
+import { FormState } from '@/util/actions';
 import { HandCoins, Hospital, Landmark } from 'lucide-react';
 import { useFormatter, useTranslations } from 'next-intl';
 
