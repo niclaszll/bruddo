@@ -66,6 +66,7 @@ export default function SalaryForm({ formState, formAction }: Props) {
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      if (typeof umami !== 'undefined') umami.track('Handle form submit');
       form.handleSubmit(() => {
         handleFieldDependencies(form.getValues());
         if (formRef.current) {
@@ -98,7 +99,6 @@ export default function SalaryForm({ formState, formAction }: Props) {
         onSubmit={handleSubmit}
         onChange={handleSubmit}
         className="flex flex-col md:gap-4 gap-6"
-        data-umami-event="Handle form submit"
       >
         <CalculationPeriodSelect />
         <GrossIncomeInput />
