@@ -66,6 +66,7 @@ export default function SalaryForm({ formState, formAction }: Props) {
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      umami.track('Handle form submit');
       form.handleSubmit(() => {
         handleFieldDependencies(form.getValues());
         if (formRef.current) {
