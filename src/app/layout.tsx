@@ -3,6 +3,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
 import { getLocale, getMessages } from 'next-intl/server';
 import { Open_Sans } from 'next/font/google';
+import Script from 'next/script';
 
 import './globals.css';
 import Provider from './provider';
@@ -40,6 +41,11 @@ export default async function RootLayout({
       className={openSans.className}
       suppressHydrationWarning
     >
+      <Script
+        defer
+        src="/stats/script.js"
+        data-website-id="e435012f-386d-4d7e-b6f7-0ec7e156a426"
+      />
       <body className="antialiased bg-background text-foreground min-h-screen">
         <Provider
           locale={locale}
