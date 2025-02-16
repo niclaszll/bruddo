@@ -1,0 +1,36 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    groups:
+      radix-ui:
+        patterns:
+          - "@radix-ui/*"
+
+      react:
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+
+      tailwindcss:
+        patterns:
+          - "tailwindcss"
+          - "tailwindcss-animate"
+          - "tailwind-merge"
+
+      linting-and-formatting:
+        patterns:
+          - "eslint*"
+          - "@eslint/*"
+          - "@trivago/prettier-plugin-sort-imports"
+          - "prettier"
+
+      typescript:
+        patterns:
+          - "typescript*"
+          - "@types/*"
