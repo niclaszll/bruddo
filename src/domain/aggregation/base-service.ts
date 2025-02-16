@@ -1,4 +1,4 @@
-import SocialSecurityService from '@/features/social-security/service';
+import SocialSecurityService from '@/domain/social-security/service';
 import { CalculationPeriod, CalculationPeriodTuple } from '@/types/common';
 import { UserInputs } from '@/types/form';
 import { calculateAge } from '@/util/date';

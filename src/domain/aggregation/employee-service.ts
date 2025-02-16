@@ -1,7 +1,7 @@
 'server only';
 
-import ChurchTaxService from '@/features/taxes/church-tax/service';
-import TaxService from '@/features/taxes/income-tax/service';
+import ChurchTaxService from '@/domain/taxes/church-tax/service';
+import TaxService from '@/domain/taxes/income-tax/service';
 import { CalculationPeriodTuple } from '@/types/common';
 import { UserInputs } from '@/types/form';
 import { roundDownToFullCent, roundToFullCent } from '@/util/format';

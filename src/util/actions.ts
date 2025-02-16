@@ -1,6 +1,6 @@
 'use server';
 
-import EmployeeService, { EmployeeResults } from '@/features/aggregation/employee-service';
+import EmployeeService, { EmployeeResults } from '@/domain/aggregation/employee-service';
 import { UserInputs } from '@/types/form';
 
 export type FormState = {
