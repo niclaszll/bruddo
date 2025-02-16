@@ -18,9 +18,10 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
   title: 'Bruddo - Brutto-Netto Rechner',
-  description: 'German salary calculator - Calculate your net income from gross salary',
-  keywords: ['salary calculator', 'German taxes', 'net income', 'gross income'],
-  authors: [{ name: 'Bruddo' }],
+  description:
+    'Bruddo - Der innovative Brutto-Netto-Rechner mit Visualisierungen: Berechnen Sie Ihr Nettogehalt in wenigen Schritten und entdecken Sie interaktive Diagramme für eine klare Übersicht über Steuern und Abgaben. Benutzerfreundlich, präzise und visuell ansprechend!',
+  keywords: ['Gehaltsrechner', 'Steuern', 'Netto', 'Brutto', 'Gehalt'],
+  authors: [{ name: 'Niclas Zellerhoff' }],
   robots: 'index, follow',
 };
 
