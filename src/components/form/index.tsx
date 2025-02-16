@@ -28,13 +28,15 @@ type Props = {
   formAction: (payload: FormData) => void;
 };
 
+export const defaultValues = initialState.userInputs;
+
 export default function SalaryForm({ formState, formAction }: Props) {
   const t = useTranslations('common.errorToast');
   const { toast } = useToast();
 
   const form = useForm<UserInputs>({
     resolver: zodResolver(UserInputs),
-    defaultValues: initialState.userInputs,
+    defaultValues,
   });
 
   const formRef = useRef<HTMLFormElement>(null);

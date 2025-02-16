@@ -4,9 +4,9 @@ import EmployeeService, { EmployeeResults } from '@/domain/aggregation/employee-
 import { UserInputs } from '@/types/form';
 
 export type FormState = {
-  employeeResults: EmployeeResults | undefined;
+  employeeResults: EmployeeResults;
   employeeResultsRange: EmployeeResults[] | undefined;
-  userInputs: UserInputs | undefined;
+  userInputs: UserInputs;
   error: boolean;
 };
 
@@ -17,7 +17,6 @@ export async function onSubmitAction(prevState: FormState, data: FormData): Prom
     return {
       ...prevState,
       employeeResultsRange: undefined,
-      userInputs: undefined,
       error: true,
     };
   }
