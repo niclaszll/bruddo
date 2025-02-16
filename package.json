@@ -2,6 +2,10 @@
   "name": "gross-net-calc",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=9"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -10,7 +14,8 @@
     "lint:fix": "next lint --fix",
     "format:check": "prettier --check .",
     "format:fix": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "clean": "rm -rf .next && rm -rf node_modules && pnpm install"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
