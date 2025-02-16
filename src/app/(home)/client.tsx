@@ -17,15 +17,9 @@ import {
   SidebarRail,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
+import { initialState } from '@/domain/init';
 import { FormState, onSubmitAction } from '@/util/actions';
 import { useActionState } from 'react';
-
-const initialState = {
-  error: false,
-  employeeResults: undefined,
-  employeeResultsRange: undefined,
-  userInputs: undefined,
-};
 
 function Header() {
   return (

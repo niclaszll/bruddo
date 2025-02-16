@@ -60,7 +60,7 @@ abstract class BaseService {
   ): CalculationPeriodTuple {
     const isYearly = calculationPeriod === CalculationPeriod.enum.YEAR;
     return {
-      [CalculationPeriod.enum.MONTH]: isYearly ? value / 12 : value,
+      [CalculationPeriod.enum.MONTH]: isYearly ? roundDownToFullCent(value / 12) : value,
       [CalculationPeriod.enum.YEAR]: isYearly ? value : value * 12,
     };
   }

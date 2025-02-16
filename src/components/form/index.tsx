@@ -2,8 +2,8 @@
 
 import { Form } from '@/components/ui/form';
 import { Separator } from '@/components/ui/separator';
+import { initialState } from '@/domain/init';
 import { useToast } from '@/hooks/shadcn/use-toast';
-import { CalculationPeriod, FederalState, TaxClass } from '@/types/common';
 import { UserInputs } from '@/types/form';
 import { FormState } from '@/util/actions';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,20 +23,6 @@ import NursingCareInsuranceSurchargeSwitch from './fields/nursing-care-insurance
 import TaxAllowanceInput from './fields/tax-allowance-input';
 import TaxClassSelect from './fields/tax-class-select';
 
-export const defaultValues: UserInputs = {
-  calculationPeriod: CalculationPeriod.enum.YEAR,
-  grossIncome: 40_000,
-  taxClass: TaxClass.enum.I,
-  federalState: FederalState.enum.BW,
-  healthInsuranceAdditionalContribution: 2.5,
-  churchTax: true,
-  dob: '2000-01-01',
-  numChildren: 0,
-  childAllowances: 0,
-  nursingCareInsuranceSurcharge: true,
-  taxAllowance: 0,
-};
-
 type Props = {
   formState: FormState;
   formAction: (payload: FormData) => void;
@@ -48,7 +34,7 @@ export default function SalaryForm({ formState, formAction }: Props) {
 
   const form = useForm<UserInputs>({
     resolver: zodResolver(UserInputs),
-    defaultValues,
+    defaultValues: initialState.userInputs,
   });
 
   const formRef = useRef<HTMLFormElement>(null);
