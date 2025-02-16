@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Bruddo - Brutto-Netto Rechner',
     start_url: '/',
     display: 'standalone',
-    background_color: '#e6e6e6',
-    theme_color: '#2a9d90',
+    // background_color: '#e6e6e6',
+    // theme_color: '#2a9d90',
     icons: [
       {
         src: '/favicon.ico',
