@@ -15,13 +15,13 @@ import { calculateMBERECH } from './process/6_MBERECH';
 import { calculateMSONST } from './process/17_MSONST';
 import { calculationPeriodFactors } from './utils';
 
-class TaxService {
-  static #instance: TaxService;
+class IncomeTaxService {
+  static #instance: IncomeTaxService;
 
   private constructor() {}
 
-  public static get instance(): TaxService {
-    return (this.#instance ??= new TaxService());
+  public static get instance(): IncomeTaxService {
+    return (this.#instance ??= new IncomeTaxService());
   }
 
   private setUserInputs(inputs: UserInputs) {
@@ -106,4 +106,4 @@ class TaxService {
   }
 }
 
-export default TaxService.instance;
+export default IncomeTaxService.instance;

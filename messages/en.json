@@ -4,57 +4,61 @@
   },
   "Results": {
     "charts": {
+      "area": {
+        "title": "Distribution by income",
+        "description": "Percentage breakdown of taxes and contributions across income levels"
+      },
       "sankey": {
         "description": "Taxes, social security contributions, and remaining net income",
-        "title": "Breakdown of Contributions"
+        "title": "Breakdown of contributions"
       }
     },
     "employeeResults": {
       "grossIncome": {
-        "default": "Gross Income",
-        "short": "Gross Income"
+        "default": "Gross income",
+        "short": "Gross income"
       },
       "netIncome": {
-        "default": "Net Income",
-        "short": "Net Income"
+        "default": "Net income",
+        "short": "Net income"
       },
       "socialSecurity": {
         "healthInsurance": {
-          "default": "Health Insurance",
-          "short": "Health Ins."
+          "default": "Health insurance",
+          "short": "Health ins."
         },
         "nursingCareInsurance": {
-          "default": "Nursing Care Insurance",
-          "short": "Nursing Care Ins."
+          "default": "Nursing care insurance",
+          "short": "Nursing care ins."
         },
         "pensionInsurance": {
-          "default": "Pension Insurance",
-          "short": "Pension Ins."
+          "default": "Pension insurance",
+          "short": "Pension ins."
         },
         "total": {
-          "default": "Total Social Security Deduction",
-          "short": "Social Sec."
+          "default": "Total social security deduction",
+          "short": "Social sec."
         },
         "unemploymentInsurance": {
-          "default": "Unemployment Insurance",
-          "short": "Unemployment Ins."
+          "default": "Unemployment insurance",
+          "short": "Unemployment ins."
         }
       },
       "taxes": {
         "churchTax": {
-          "default": "Church Tax",
-          "short": "Church Tax"
+          "default": "Church tax",
+          "short": "Church tax"
         },
         "incomeTax": {
-          "default": "Income Tax",
-          "short": "Income Tax"
+          "default": "Income tax",
+          "short": "Income tax"
         },
         "solidaritySurcharge": {
-          "default": "Solidarity Surcharge",
-          "short": "Sol. Surcharge"
+          "default": "Solidarity surcharge",
+          "short": "Sol. surcharge"
         },
         "total": {
-          "default": "Total Tax Deduction",
+          "default": "Total tax deduction",
           "short": "Taxes"
         }
       }
@@ -81,7 +85,7 @@
     "form": {
       "fields": {
         "calculationPeriod": {
-          "label": "Calculation Period",
+          "label": "Calculation period",
           "options": {
             "MONTH": "Month",
             "YEAR": "Year"
@@ -89,19 +93,19 @@
           "tooltip": "Choose whether to calculate using monthly or yearly values."
         },
         "childAllowances": {
-          "label": "Child Allowances",
+          "label": "Child allowances",
           "tooltip": "Select the number of children to be considered according to ELStAM using the child allowance counter. The allowance will be taken into account when calculating income tax, solidarity surcharge, and church tax."
         },
         "churchTax": {
-          "label": "Church Tax",
+          "label": "Church tax",
           "tooltip": "Select whether church tax is applicable."
         },
         "dob": {
-          "label": "Date of Birth",
+          "label": "Date of birth",
           "tooltip": "Enter your date of birth. Employees over 64 years old are eligible for the age relief amount under § 24a EStG."
         },
         "federalState": {
-          "label": "Federal State",
+          "label": "Federal state",
           "options": {
             "BB": "Brandenburg",
             "BE": "Berlin",
@@ -123,15 +127,15 @@
           "tooltip": "Select the federal state where your place of employment is located (not to be confused with the workplace in a tax-related sense)."
         },
         "grossIncome": {
-          "label": "Gross Income",
+          "label": "Gross income",
           "tooltip": "Your gross income for the calculation period."
         },
         "healthInsuranceAdditionalContribution": {
-          "label": "Health Insurance Additional Contribution",
+          "label": "Health ins. additional contrib.",
           "tooltip": "The additional contribution of your health insurance provider."
         },
         "numChildren": {
-          "label": "Number of Children",
+          "label": "Number of children",
           "options": {
             "0": "0",
             "1": "1",
@@ -143,15 +147,15 @@
           "tooltip": "Select the number of children eligible to be considered for nursing care insurance to account for contribution reductions."
         },
         "nursingCareInsuranceSurcharge": {
-          "label": "Nursing Care Insurance Surcharge",
+          "label": "Nursing care ins. surcharge",
           "tooltip": "Childless insured persons aged over 23 are required to pay a surcharge of 0.6% for nursing care insurance unless they provide proof of parenthood to their employer."
         },
         "taxAllowance": {
-          "label": "Annual Tax Allowance",
+          "label": "Annual tax allowance",
           "tooltip": "The current tax-free allowance retrieved via ELStAM for the employee."
         },
         "taxClass": {
-          "label": "Tax Class",
+          "label": "Tax class",
           "options": {
             "I": "I",
             "II": "II",

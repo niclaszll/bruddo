@@ -1,5 +1,6 @@
 'use client';
 
+import { FormState } from '@/components/form/actions';
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
@@ -14,7 +15,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useFormatCurrency } from '@/hooks/common';
 import { CalculationPeriod } from '@/types/common';
-import { FormState } from '@/util/actions';
 import { useTranslations } from 'next-intl';
 import { memo } from 'react';
 

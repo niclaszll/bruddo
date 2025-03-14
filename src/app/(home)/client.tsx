@@ -1,8 +1,10 @@
 'use client';
 
+import { RangeBreakdownAreaChart } from '@/components/charts/area';
 import { ContributionBreakdownSankeyChart } from '@/components/charts/sankey';
 import { Footer } from '@/components/footer';
 import SalaryForm from '@/components/form';
+import { FormState, onSubmitAction } from '@/components/form/actions';
 import SummaryCards from '@/components/summary-cards';
 import ResultTable from '@/components/table';
 import { ThemeToggle } from '@/components/theme';
@@ -18,7 +20,6 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar';
 import { initialState } from '@/domain/init';
-import { FormState, onSubmitAction } from '@/util/actions';
 import { useActionState } from 'react';
 
 function Header() {
@@ -61,6 +62,7 @@ function ResultPanels({ state }: { state: FormState }) {
       >
         <ContributionBreakdownSankeyChart results={state} />
       </ResizablePanel>
+      <RangeBreakdownAreaChart results={state} />
     </ResizablePanelGroup>
   );
 }

@@ -14,7 +14,6 @@ import { calculateUPTAB24 } from './22_UPTAB24';
 export const calculateMLSTJAHR = () => {
   const internalFields = InternalFieldsClient.instance;
 
-  // UPEVP
   calculateUPEVP();
 
   internalFields.ZVE = internalFields.ZRE4 - internalFields.ZTABFB - internalFields.VSP;
@@ -44,10 +43,8 @@ export const calculateUPMLST = () => {
       [TaxClass.enum.I, TaxClass.enum.II, TaxClass.enum.III, TaxClass.enum.IV] as TaxClass[]
     ).includes(userInputs.STKL)
   ) {
-    // UPTAB24
     calculateUPTAB24();
   } else {
-    // MST5-6
     calculateMST5_6();
   }
 };

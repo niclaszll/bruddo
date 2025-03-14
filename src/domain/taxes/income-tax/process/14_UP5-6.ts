@@ -11,13 +11,11 @@ export const calculateUP5_6 = () => {
 
   internalFields.X = internalFields.ZX * 1.25;
 
-  // UPTAB24
   calculateUPTAB24();
 
   internalFields.ST1 = internalFields.ST;
   internalFields.X = internalFields.ZX * 0.75;
 
-  // UPTAB24
   calculateUPTAB24();
 
   internalFields.ST2 = internalFields.ST;

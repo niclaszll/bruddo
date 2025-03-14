@@ -11,12 +11,10 @@ import { calculateUPANTEIL } from './16_UPANTEIL';
 export const calculateUPVKVLZZ = () => {
   const internalFields = InternalFieldsClient.instance;
 
-  // UPVKV
   calculateUPVKV();
 
   internalFields.JW = internalFields.VKV;
 
-  // UPANTEIL
   calculateUPANTEIL();
   internalFields.VKVLZZ = internalFields.ANTEIL1;
 };

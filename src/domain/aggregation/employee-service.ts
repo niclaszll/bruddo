@@ -1,7 +1,7 @@
 'server only';
 
 import ChurchTaxService from '@/domain/taxes/church-tax/service';
-import TaxService from '@/domain/taxes/income-tax/service';
+import IncomeTaxService from '@/domain/taxes/income-tax/service';
 import { CalculationPeriodTuple } from '@/types/common';
 import { UserInputs } from '@/types/form';
 import { roundDownToFullCent, roundToFullCent } from '@/util/format';
@@ -38,7 +38,7 @@ class EmployeeService extends BaseService {
   }
 
   private getTaxResults(inputs: UserInputs) {
-    const incomeTaxResults = TaxService.calculateIncomeTax(inputs);
+    const incomeTaxResults = IncomeTaxService.calculateIncomeTax(inputs);
     const churchTax = ChurchTaxService.calculateChurchTax(
       incomeTaxResults.churchTaxAssessmentBasis,
       inputs.federalState,
@@ -65,7 +65,7 @@ class EmployeeService extends BaseService {
       grossIncome - (taxTotal + socSecResults.totalEmployeeContribution),
     );
 
-    const getValues = (value: number) => this.getMonthYearValues(value, calculationPeriod);
+    const getValues = (value: number) => this.getMonthlyAndYearlyValues(value, calculationPeriod);
 
     return {
       grossIncome: getValues(grossIncome),
@@ -76,14 +76,10 @@ class EmployeeService extends BaseService {
         total: getValues(taxTotal),
       },
       socialSecurity: {
-        healthInsurance: getValues(socSecResults.healthInsuranceResults.employeeContribution),
-        nursingCareInsurance: getValues(
-          socSecResults.nursingCareInsuranceResults.employeeContribution,
-        ),
-        pensionInsurance: getValues(socSecResults.pensionInsuranceResults.employeeContribution),
-        unemploymentInsurance: getValues(
-          socSecResults.unemploymentInsuranceResults.employeeContribution,
-        ),
+        healthInsurance: getValues(socSecResults.healthInsurance.employeeContribution),
+        nursingCareInsurance: getValues(socSecResults.nursingCareInsurance.employeeContribution),
+        pensionInsurance: getValues(socSecResults.pensionInsurance.employeeContribution),
+        unemploymentInsurance: getValues(socSecResults.unemploymentInsurance.employeeContribution),
         total: getValues(socSecResults.totalEmployeeContribution),
       },
       netIncome: getValues(netIncome),

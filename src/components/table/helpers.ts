@@ -1,6 +1,6 @@
+import { FormState } from '@/components/form/actions';
 import { CalculationPeriodTuple } from '@/types/common';
 import { TranslationKey } from '@/types/i18n';
-import { FormState } from '@/util/actions';
 
 type TableRow = {
   label: TranslationKey;

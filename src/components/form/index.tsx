@@ -1,11 +1,11 @@
 'use client';
 
+import { FormState } from '@/components/form/actions';
 import { Form } from '@/components/ui/form';
 import { Separator } from '@/components/ui/separator';
 import { initialState } from '@/domain/init';
 import { useToast } from '@/hooks/shadcn/use-toast';
 import { UserInputs } from '@/types/form';
-import { FormState } from '@/util/actions';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { startTransition, useCallback, useEffect, useRef } from 'react';

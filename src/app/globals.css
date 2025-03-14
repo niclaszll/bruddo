@@ -105,3 +105,13 @@ input[type='number'] {
 .dark text {
   fill: rgb(255, 255, 255) !important;
 }
+
+/* fix visx area chart axis color */
+text tspan {
+  @apply fill-foreground font-normal;
+}
+
+.visx-columns .visx-line,
+.visx-rows .visx-line {
+  @apply stroke-foreground;
+}

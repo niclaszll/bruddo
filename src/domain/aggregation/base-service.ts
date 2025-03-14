@@ -45,16 +45,16 @@ abstract class BaseService {
     );
 
     return {
-      healthInsuranceResults: healthInsRes,
-      nursingCareInsuranceResults: nursingCareInsRes,
-      pensionInsuranceResults: pensionInsRes,
-      unemploymentInsuranceResults: unemploymentInsRes,
+      healthInsurance: healthInsRes,
+      nursingCareInsurance: nursingCareInsRes,
+      pensionInsurance: pensionInsRes,
+      unemploymentInsurance: unemploymentInsRes,
       totalEmployeeContribution: totalEmployeeContrib,
       totalEmployerContribution: totalEmployerContrib,
     };
   }
 
-  protected getMonthYearValues(
+  protected getMonthlyAndYearlyValues(
     value: number,
     calculationPeriod: CalculationPeriod,
   ): CalculationPeriodTuple {

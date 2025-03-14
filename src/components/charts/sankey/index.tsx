@@ -1,10 +1,10 @@
 'use client';
 
+import { FormState } from '@/components/form/actions';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useFormatCurrency } from '@/hooks/common';
 import { CalculationPeriod } from '@/types/common';
-import { FormState } from '@/util/actions';
 import { ResponsiveSankey } from '@nivo/sankey';
 import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
@@ -128,10 +128,7 @@ export const ContributionBreakdownSankeyChart = memo(function ContributionBreakd
       </CardHeader>
       {results.employeeResults.grossIncome[calculationPeriod] > 0 && (
         <CardContent className="overflow-hidden">
-          <div
-            className="relative"
-            style={{ height: 500 }}
-          >
+          <div className="relative h-[500px]">
             <div className="w-full absolute top-0 left-0 bottom-0">
               <ResponsiveSankey
                 theme={sankeyTheme}

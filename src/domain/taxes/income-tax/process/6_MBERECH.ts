@@ -14,31 +14,25 @@ export const calculateMBERECH = () => {
   const internalFields = InternalFieldsClient.instance;
   const userInputs = UserInputsClient.instance;
 
-  // MZTABFB
   calculateMZTABFB();
 
   internalFields.VFRB = (internalFields.ANP + internalFields.FVB + internalFields.FVBZ) * 100;
 
-  // MLSTJAHR
   calculateMLSTJAHR();
 
   internalFields.WVFRB = Math.max((internalFields.ZVE - internalFields.GFB) * 100, 0);
 
   internalFields.LSTJAHR = internalFields.ST * userInputs.F;
 
-  // UPLSTLZZ
   calculateUPLSTLZZ();
 
-  // UPVKVLZZ
   calculateUPVKVLZZ();
 
   if (userInputs.ZKF > 0) {
     internalFields.ZTABFB = internalFields.ZTABFB + internalFields.KFB;
 
-    // MRE4ABZ
     calculateMRE4ABZ();
 
-    // MLSTJAHR
     calculateMLSTJAHR();
 
     internalFields.JBMG = internalFields.ST * userInputs.F;
@@ -46,6 +40,5 @@ export const calculateMBERECH = () => {
     internalFields.JBMG = internalFields.LSTJAHR;
   }
 
-  // MSOLZ
   calculateMSOLZ();
 };

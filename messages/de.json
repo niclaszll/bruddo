@@ -4,6 +4,10 @@
   },
   "Results": {
     "charts": {
+      "area": {
+        "title": "Verteilung nach Einkommen",
+        "description": "Prozentuale Aufschlüsselung von Steuern und Abgaben über verschiedene Einkommensstufen"
+      },
       "sankey": {
         "description": "Steuern, Sozialversicherungsbeiträge und verbleibendes Nettogehalt",
         "title": "Aufschlüsselung der Beiträge"

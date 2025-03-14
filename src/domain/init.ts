@@ -1,5 +1,5 @@
+import { FormState } from '@/components/form/actions';
 import { CalculationPeriod, FederalState, TaxClass } from '@/types/common';
-import { FormState } from '@/util/actions';
 
 // provide an initial precalculated state for SSR
 export const initialState: FormState = {

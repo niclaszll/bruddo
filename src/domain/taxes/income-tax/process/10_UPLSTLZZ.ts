@@ -9,7 +9,6 @@ export const calculateUPLSTLZZ = () => {
 
   internalFields.JW = internalFields.LSTJAHR * 100;
 
-  // UPANTEIL
   calculateUPANTEIL();
 
   internalFields.LSTLZZ = internalFields.ANTEIL1;

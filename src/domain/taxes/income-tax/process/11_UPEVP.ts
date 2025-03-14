@@ -25,7 +25,6 @@ export const calculateUPEVP = () => {
   internalFields.VSP2 = Math.min(internalFields.VSP2, internalFields.VHB);
   internalFields.VSPN = roundDownToFullEuro(internalFields.VSP1 + internalFields.VSP2);
 
-  // MVSP
   calculateMVSP();
 
   internalFields.VSP = Math.max(internalFields.VSPN, internalFields.VSP);

@@ -30,19 +30,16 @@ class EmployerService extends BaseService {
   public getAggregatedResults(inputs: UserInputs): EmployerResults {
     const socSecContrib = this.getSocialSecResults(inputs);
 
-    const getValues = (value: number) => this.getMonthYearValues(value, inputs.calculationPeriod);
+    const getValues = (value: number) =>
+      this.getMonthlyAndYearlyValues(value, inputs.calculationPeriod);
 
     return {
       grossIncome: getValues(inputs.grossIncome),
       socialSecurity: {
-        healthInsurance: getValues(socSecContrib.healthInsuranceResults.employerContribution),
-        nursingCareInsurance: getValues(
-          socSecContrib.nursingCareInsuranceResults.employerContribution,
-        ),
-        pensionInsurance: getValues(socSecContrib.pensionInsuranceResults.employerContribution),
-        unemploymentInsurance: getValues(
-          socSecContrib.unemploymentInsuranceResults.employerContribution,
-        ),
+        healthInsurance: getValues(socSecContrib.healthInsurance.employerContribution),
+        nursingCareInsurance: getValues(socSecContrib.nursingCareInsurance.employerContribution),
+        pensionInsurance: getValues(socSecContrib.pensionInsurance.employerContribution),
+        unemploymentInsurance: getValues(socSecContrib.unemploymentInsurance.employerContribution),
         total: getValues(socSecContrib.totalEmployerContribution),
       },
     };

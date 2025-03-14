@@ -22,7 +22,6 @@ export const calculateMSOLZ = () => {
 
     internalFields.JW = internalFields.SOLZJ * 100;
 
-    // UPANTEIL
     calculateUPANTEIL();
 
     internalFields.SOLZLZZ = internalFields.ANTEIL1;
@@ -37,7 +36,6 @@ export const calculateMSOLZ = () => {
   if (userInputs.R > 0) {
     internalFields.JW = internalFields.JBMG * 100;
 
-    // UPANTEIL
     calculateUPANTEIL();
 
     internalFields.BK = internalFields.ANTEIL1;
