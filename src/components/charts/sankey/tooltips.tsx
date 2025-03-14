@@ -16,11 +16,15 @@ export function LinkTooltip({ grossIncome, link }: LinkTooltipProps) {
   const formatCurrency = useFormatCurrency();
   const format = useFormatter();
   return (
-    <div className="rounded-md bg-secondary p-2 shadow-md text-sm text-foreground">
-      <strong>{link.source.id}</strong> → <strong>{link.target.id}</strong>
+    <div className="rounded-md bg-secondary px-3 py-2 shadow-md text-sm text-foreground">
+      <strong>{link.source.id}</strong>
+      <span className="text-muted-foreground"> → </span>
+      <strong>{link.target.id}</strong>
       <br />
-      {formatCurrency(link.value)}{' '}
-      {grossIncome && `(${format.number(link.value / grossIncome, { style: 'percent' })})`}
+      <span>{formatCurrency(link.value)}</span>{' '}
+      <span className="text-muted-foreground">
+        {grossIncome && `(${format.number(link.value / grossIncome, { style: 'percent' })})`}
+      </span>
     </div>
   );
 }
@@ -44,11 +48,13 @@ export function NodeTooltip({ grossIncome, node }: NodeTooltipProps) {
   const format = useFormatter();
 
   return (
-    <div className="rounded-md bg-secondary p-2 shadow-md text-sm text-foreground">
+    <div className="rounded-md bg-secondary px-3 py-2 shadow-md text-sm text-foreground">
       <strong>{node.label}</strong>
       <br />
-      {formatCurrency(node.value)}{' '}
-      {grossIncome && `(${format.number(node.value / grossIncome, { style: 'percent' })})`}
+      <span>{formatCurrency(node.value)}</span>{' '}
+      <span className="text-muted-foreground">
+        {grossIncome && `(${format.number(node.value / grossIncome, { style: 'percent' })})`}
+      </span>
     </div>
   );
 }

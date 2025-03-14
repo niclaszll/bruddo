@@ -224,7 +224,7 @@ export function RangeBreakdownAreaChart({ results }: Props) {
                         if (!datum) return null;
 
                         return (
-                          <div className="rounded-md bg-background px-4 py-3 text-sm text-foreground shadow-md">
+                          <div className="rounded-md bg-secondary px-4 py-3 text-sm text-foreground shadow-md">
                             <p className="flex justify-between gap-2 mb-1">
                               <span className="mr-1 font-bold">
                                 {t('Results.employeeResults.grossIncome.short')}:{' '}

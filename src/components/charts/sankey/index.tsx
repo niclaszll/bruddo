@@ -131,6 +131,7 @@ export const ContributionBreakdownSankeyChart = memo(function ContributionBreakd
           <div className="relative h-[500px]">
             <div className="w-full absolute top-0 left-0 bottom-0">
               <ResponsiveSankey
+                animate={false}
                 theme={sankeyTheme}
                 data={{ nodes, links }}
                 margin={{ top: 10, right: 0, bottom: 10, left: 0 }}
