@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/stats/:match*",
-      "destination": "https://umami-sable-eight.vercel.app/:match*"
+      "destination": "https://bruddo.vercel.app/:match*"
     }
   ]
 }

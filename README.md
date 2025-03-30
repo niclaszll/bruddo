@@ -1,6 +1,6 @@
 # Bruddo
 
-A modern and minimalistic gross-net salary calculator for Germany, built with Next.js and Shadcn UI.
+A modern and minimalistic gross-net salary calculator for Germany, built with Next.js and shadcn/ui.
 
 ![Bruddo Screenshot](docs/img/screen.webp)
 
@@ -8,12 +8,12 @@ Check out the live version at [bruddo.vercel.app](https://bruddo.vercel.app).
 
 ## Features
 
-- Interactive salary calculation form
-- Detailed breakdown of gross and net income
-- Interactive charts
-- Responsive design
-- Dark/light theme support
-- Internationalization support
+- 💰 Interactive salary calculation form
+- 📊 Detailed breakdown of gross and net income
+- 📈 Interactive charts
+- 📱 Responsive design
+- 🌓 Dark/light theme support
+- 🌍 Internationalization support
 
 ## Getting Started
 
