@@ -16,6 +16,28 @@ type Props = {
   results: FormState;
 };
 
+const sankeyTheme = {
+  text: {
+    fontWeight: 600,
+    fontSize: 13,
+    fontFamily: 'Open Sans, Open Sans Fallback',
+  },
+};
+
+const sankeyColors = [
+  'hsl(173, 58%, 39%)',
+  'hsl(12, 76%, 61%)',
+  'hsl(43, 74%, 66%)',
+  'hsl(43, 74%, 66%)',
+  'hsl(43, 74%, 66%)',
+  'hsl(43, 74%, 66%)',
+  'hsl(220, 57%, 50%)',
+  'hsl(220, 57%, 50%)',
+  'hsl(220, 57%, 50%)',
+  'hsl(220, 57%, 50%)',
+  'hsl(220, 57%, 50%)',
+];
+
 export const ContributionBreakdownSankeyChart = memo(function ContributionBreakdownSankeyChart({
   results,
 }: Props) {
@@ -96,28 +118,6 @@ export const ContributionBreakdownSankeyChart = memo(function ContributionBreakd
       target: t('Results.employeeResults.socialSecurity.unemploymentInsurance.short'),
       value: results.employeeResults.socialSecurity.unemploymentInsurance[calculationPeriod],
     },
-  ];
-
-  const sankeyTheme = {
-    text: {
-      fontWeight: 600,
-      fontSize: 13,
-      fontFamily: 'Open Sans, Open Sans Fallback',
-    },
-  };
-
-  const sankeyColors = [
-    'hsl(173, 58%, 39%)',
-    'hsl(12, 76%, 61%)',
-    'hsl(43, 74%, 66%)',
-    'hsl(43, 74%, 66%)',
-    'hsl(43, 74%, 66%)',
-    'hsl(43, 74%, 66%)',
-    'hsl(220, 57%, 50%)',
-    'hsl(220, 57%, 50%)',
-    'hsl(220, 57%, 50%)',
-    'hsl(220, 57%, 50%)',
-    'hsl(220, 57%, 50%)',
   ];
 
   return (
