@@ -18,7 +18,7 @@ const castNumberStringToNumber = z.preprocess(
 
 export const UserInputs = z.object({
   calculationPeriod: CalculationPeriod,
-  grossIncome: castNumberStringToNumber,
+  grossSalary: castNumberStringToNumber,
   taxClass: TaxClass,
   federalState: FederalState,
   healthInsuranceAdditionalContribution: castNumberStringToNumber,

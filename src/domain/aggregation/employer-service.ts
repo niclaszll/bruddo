@@ -6,7 +6,7 @@ import { UserInputs } from '@/types/form';
 import BaseService from './base-service';
 
 export type EmployerResults = {
-  grossIncome: CalculationPeriodTuple;
+  grossSalary: CalculationPeriodTuple;
   socialSecurity: {
     healthInsurance: CalculationPeriodTuple;
     nursingCareInsurance: CalculationPeriodTuple;
@@ -34,7 +34,7 @@ class EmployerService extends BaseService {
       this.getMonthlyAndYearlyValues(value, inputs.calculationPeriod);
 
     return {
-      grossIncome: getValues(inputs.grossIncome),
+      grossSalary: getValues(inputs.grossSalary),
       socialSecurity: {
         healthInsurance: getValues(socSecContrib.healthInsurance.employerContribution),
         nursingCareInsurance: getValues(socSecContrib.nursingCareInsurance.employerContribution),

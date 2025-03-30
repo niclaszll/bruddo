@@ -3,14 +3,14 @@
 import { CalculationPeriod, FederalState } from '@/types/common';
 import {
   HEALTH_INSURANCE_GENERAL_RATE,
-  HEALTH_INSURANCE_INCOME_THRESHOLD_MONTH,
-  HEALTH_INSURANCE_INCOME_THRESHOLD_YEAR,
+  HEALTH_INSURANCE_SALARY_THRESHOLD_MONTH,
+  HEALTH_INSURANCE_SALARY_THRESHOLD_YEAR,
   PENSION_INSURANCE_CONTRIBUTION_RATE,
-  PENSION_INSURANCE_INCOME_THRESHOLD_MONTH,
-  PENSION_INSURANCE_INCOME_THRESHOLD_YEAR,
+  PENSION_INSURANCE_SALARY_THRESHOLD_MONTH,
+  PENSION_INSURANCE_SALARY_THRESHOLD_YEAR,
   UNEMPLOYMENT_INSURANCE_CONTRIBUTION_RATE,
-  UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD_MONTH,
-  UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD_YEAR,
+  UNEMPLOYMENT_INSURANCE_SALARY_THRESHOLD_MONTH,
+  UNEMPLOYMENT_INSURANCE_SALARY_THRESHOLD_YEAR,
 } from '@/util/constants';
 import { roundToFullCent } from '@/util/format';
 
@@ -32,22 +32,22 @@ class SocialSecurityService {
   }
 
   public calcStatutoryHealthInsContrib(
-    grossIncome: number,
+    grossSalary: number,
     additionalContributionRate: number,
     calculationPeriod: CalculationPeriod,
   ) {
     const threshold = this.getThreshold(
       calculationPeriod,
-      HEALTH_INSURANCE_INCOME_THRESHOLD_YEAR,
-      HEALTH_INSURANCE_INCOME_THRESHOLD_MONTH,
+      HEALTH_INSURANCE_SALARY_THRESHOLD_YEAR,
+      HEALTH_INSURANCE_SALARY_THRESHOLD_MONTH,
     );
 
-    const cappedIncome = Math.min(grossIncome, threshold);
+    const cappedSalary = Math.min(grossSalary, threshold);
     const generalContribution = roundToFullCent(
-      (cappedIncome * HEALTH_INSURANCE_GENERAL_RATE) / 100,
+      (cappedSalary * HEALTH_INSURANCE_GENERAL_RATE) / 100,
     );
     const additionalContribution = roundToFullCent(
-      (cappedIncome * additionalContributionRate) / 100,
+      (cappedSalary * additionalContributionRate) / 100,
     );
     const totalContribution = roundToFullCent(generalContribution + additionalContribution);
     const halfContribution = roundToFullCent(totalContribution / 2);
@@ -62,7 +62,7 @@ class SocialSecurityService {
   }
 
   public calcNursingCareInsContrib(
-    grossIncome: number,
+    grossSalary: number,
     numberOfChildren: number,
     age: number,
     federalState: FederalState,
@@ -84,29 +84,29 @@ class SocialSecurityService {
 
     const threshold = this.getThreshold(
       calculationPeriod,
-      HEALTH_INSURANCE_INCOME_THRESHOLD_YEAR,
-      HEALTH_INSURANCE_INCOME_THRESHOLD_MONTH,
+      HEALTH_INSURANCE_SALARY_THRESHOLD_YEAR,
+      HEALTH_INSURANCE_SALARY_THRESHOLD_MONTH,
     );
 
-    const cappedIncome = Math.min(grossIncome, threshold);
-    const totalContribution = roundToFullCent((cappedIncome * effectiveRate) / 100);
-    const employeeContribution = roundToFullCent((cappedIncome * employeeShare) / 100);
-    const employerContribution = roundToFullCent((cappedIncome * employerShareFixed) / 100);
+    const cappedSalary = Math.min(grossSalary, threshold);
+    const totalContribution = roundToFullCent((cappedSalary * effectiveRate) / 100);
+    const employeeContribution = roundToFullCent((cappedSalary * employeeShare) / 100);
+    const employerContribution = roundToFullCent((cappedSalary * employerShareFixed) / 100);
 
     return { totalContribution, employeeContribution, employerContribution };
   }
 
-  public calcPensionInsContrib(grossIncome: number, calculationPeriod: CalculationPeriod) {
+  public calcPensionInsContrib(grossSalary: number, calculationPeriod: CalculationPeriod) {
     const threshold = this.getThreshold(
       calculationPeriod,
-      PENSION_INSURANCE_INCOME_THRESHOLD_YEAR,
-      PENSION_INSURANCE_INCOME_THRESHOLD_MONTH,
+      PENSION_INSURANCE_SALARY_THRESHOLD_YEAR,
+      PENSION_INSURANCE_SALARY_THRESHOLD_MONTH,
     );
 
-    const cappedIncome = Math.min(grossIncome, threshold);
+    const cappedSalary = Math.min(grossSalary, threshold);
 
     const totalContribution = roundToFullCent(
-      (cappedIncome * PENSION_INSURANCE_CONTRIBUTION_RATE) / 100,
+      (cappedSalary * PENSION_INSURANCE_CONTRIBUTION_RATE) / 100,
     );
     const halfContribution = roundToFullCent(totalContribution / 2);
 
@@ -118,19 +118,19 @@ class SocialSecurityService {
   }
 
   public calcUnemploymentInsContrib(
-    annualGrossIncome: number,
+    annualGrossSalary: number,
     calculationPeriod: CalculationPeriod,
   ) {
     const threshold = this.getThreshold(
       calculationPeriod,
-      UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD_YEAR,
-      UNEMPLOYMENT_INSURANCE_INCOME_THRESHOLD_MONTH,
+      UNEMPLOYMENT_INSURANCE_SALARY_THRESHOLD_YEAR,
+      UNEMPLOYMENT_INSURANCE_SALARY_THRESHOLD_MONTH,
     );
 
-    const cappedIncome = Math.min(annualGrossIncome, threshold);
+    const cappedSalary = Math.min(annualGrossSalary, threshold);
 
     const totalContribution = roundToFullCent(
-      (cappedIncome * UNEMPLOYMENT_INSURANCE_CONTRIBUTION_RATE) / 100,
+      (cappedSalary * UNEMPLOYMENT_INSURANCE_CONTRIBUTION_RATE) / 100,
     );
     const halfContribution = roundToFullCent(totalContribution / 2);
 

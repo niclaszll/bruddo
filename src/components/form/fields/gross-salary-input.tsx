@@ -16,9 +16,9 @@ const moneyFormatter = Intl.NumberFormat('de-DE', {
   maximumFractionDigits: 2,
 });
 
-const FIELD_NAME = 'grossIncome';
+const FIELD_NAME = 'grossSalary';
 
-export default function GrossIncomeInput() {
+export default function GrossSalaryInput() {
   const [value, setValue] = React.useReducer(
     (_: string, next: string) => {
       const digits = next.replace(/\D/g, '');

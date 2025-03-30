@@ -31,8 +31,8 @@ export const chartConfig = {
       'Results.employeeResults.socialSecurity.unemploymentInsurance.short' satisfies TranslationKey,
     color: 'hsl(var(--chart-7))',
   },
-  netIncome: {
-    label: 'Results.employeeResults.netIncome.short' satisfies TranslationKey,
+  netSalary: {
+    label: 'Results.employeeResults.netSalary.short' satisfies TranslationKey,
     color: 'hsl(var(--chart-8))',
   },
 };

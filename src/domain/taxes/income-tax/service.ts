@@ -49,7 +49,7 @@ class IncomeTaxService {
       .setPVS(inputs.federalState === FederalState.enum.SN ? 1 : 0)
       .setPVZ(inputs.nursingCareInsuranceSurcharge ? 1 : 0)
       .setR(inputs.churchTax ? 1 : 0)
-      .setRE4(inputs.grossIncome * 100)
+      .setRE4(inputs.grossSalary * 100)
       .setSONSTB(0)
       .setSONSTENT(0)
       .setSTERBE(0)

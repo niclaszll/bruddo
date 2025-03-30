@@ -22,9 +22,9 @@ export function AreaChartTooltip({ tooltipData }: Props) {
   return (
     <div className="rounded-md bg-secondary px-4 py-3 text-sm text-foreground shadow-md">
       <p className="flex justify-between gap-2 mb-1">
-        <span className="mr-1 font-bold">{t('Results.employeeResults.grossIncome.short')}: </span>
+        <span className="mr-1 font-bold">{t('Results.employeeResults.grossSalary.short')}: </span>
         <span className="font-bold">
-          {formatCurrency(datum.grossIncome, { maximumFractionDigits: 0 })}
+          {formatCurrency(datum.grossSalary, { maximumFractionDigits: 0 })}
         </span>
       </p>
       {Object.entries(chartConfig).map(([key, { label, color }]) => (
@@ -41,7 +41,7 @@ export function AreaChartTooltip({ tooltipData }: Props) {
             <div className="flex gap-2">
               <span
                 className={cn(
-                  key === 'netIncome' &&
+                  key === 'netSalary' &&
                     'font-bold underline underline-offset-4 decoration-2 decoration-primary',
                 )}
               >
@@ -49,9 +49,9 @@ export function AreaChartTooltip({ tooltipData }: Props) {
                   maximumFractionDigits: 0,
                 })}
               </span>
-              <span className={cn('text-muted-foreground', key === 'netIncome' && 'font-bold')}>
+              <span className={cn('text-muted-foreground', key === 'netSalary' && 'font-bold')}>
                 (
-                {format.number(datum[key as keyof typeof datum] / datum.grossIncome, {
+                {format.number(datum[key as keyof typeof datum] / datum.grossSalary, {
                   style: 'percent',
                 })}
                 )

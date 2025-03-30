@@ -9,7 +9,7 @@ import { roundDownToFullCent, roundToFullCent } from '@/util/format';
 import BaseService from './base-service';
 
 export type EmployeeResults = {
-  grossIncome: CalculationPeriodTuple;
+  grossSalary: CalculationPeriodTuple;
   taxes: {
     incomeTax: CalculationPeriodTuple;
     solidaritySurcharge: CalculationPeriodTuple;
@@ -23,7 +23,7 @@ export type EmployeeResults = {
     unemploymentInsurance: CalculationPeriodTuple;
     total: CalculationPeriodTuple;
   };
-  netIncome: CalculationPeriodTuple;
+  netSalary: CalculationPeriodTuple;
 };
 
 class EmployeeService extends BaseService {
@@ -57,18 +57,18 @@ class EmployeeService extends BaseService {
   }
 
   public getAggregatedResults(inputs: UserInputs): EmployeeResults {
-    const { calculationPeriod, grossIncome } = inputs;
+    const { calculationPeriod, grossSalary } = inputs;
     const { incomeTaxResults, churchTax, total: taxTotal } = this.getTaxResults(inputs);
     const socSecResults = this.getSocialSecResults(inputs);
 
-    const netIncome = roundToFullCent(
-      grossIncome - (taxTotal + socSecResults.totalEmployeeContribution),
+    const netSalary = roundToFullCent(
+      grossSalary - (taxTotal + socSecResults.totalEmployeeContribution),
     );
 
     const getValues = (value: number) => this.getMonthlyAndYearlyValues(value, calculationPeriod);
 
     return {
-      grossIncome: getValues(grossIncome),
+      grossSalary: getValues(grossSalary),
       taxes: {
         incomeTax: getValues(incomeTaxResults.incomeTax),
         solidaritySurcharge: getValues(incomeTaxResults.solidaritySurcharge),
@@ -82,20 +82,20 @@ class EmployeeService extends BaseService {
         unemploymentInsurance: getValues(socSecResults.unemploymentInsurance.employeeContribution),
         total: getValues(socSecResults.totalEmployeeContribution),
       },
-      netIncome: getValues(netIncome),
+      netSalary: getValues(netSalary),
     };
   }
 
   public getAggregatedResultsInRange(
-    minGrossIncome: number,
-    maxGrossIncome: number,
+    minGrossSalary: number,
+    maxGrossSalary: number,
     stepSize: number,
     inputs: UserInputs,
   ): EmployeeResults[] {
     const results: EmployeeResults[] = [];
 
-    for (let grossIncome = minGrossIncome; grossIncome <= maxGrossIncome; grossIncome += stepSize) {
-      const result = this.getAggregatedResults({ ...inputs, grossIncome });
+    for (let grossSalary = minGrossSalary; grossSalary <= maxGrossSalary; grossSalary += stepSize) {
+      const result = this.getAggregatedResults({ ...inputs, grossSalary });
       results.push(result);
     }
 

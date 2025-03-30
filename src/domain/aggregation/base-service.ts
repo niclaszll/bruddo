@@ -7,13 +7,13 @@ import { roundDownToFullCent } from '@/util/format';
 abstract class BaseService {
   protected getSocialSecResults(inputs: UserInputs) {
     const healthInsRes = SocialSecurityService.calcStatutoryHealthInsContrib(
-      inputs.grossIncome,
+      inputs.grossSalary,
       inputs.healthInsuranceAdditionalContribution,
       inputs.calculationPeriod,
     );
 
     const nursingCareInsRes = SocialSecurityService.calcNursingCareInsContrib(
-      inputs.grossIncome,
+      inputs.grossSalary,
       inputs.numChildren,
       calculateAge(inputs.dob),
       inputs.federalState,
@@ -21,12 +21,12 @@ abstract class BaseService {
     );
 
     const pensionInsRes = SocialSecurityService.calcPensionInsContrib(
-      inputs.grossIncome,
+      inputs.grossSalary,
       inputs.calculationPeriod,
     );
 
     const unemploymentInsRes = SocialSecurityService.calcUnemploymentInsContrib(
-      inputs.grossIncome,
+      inputs.grossSalary,
       inputs.calculationPeriod,
     );
 

@@ -3,7 +3,7 @@ import { SankeyNodeDatum } from '@nivo/sankey';
 import { useFormatter } from 'next-intl';
 
 type LinkTooltipProps = {
-  grossIncome: number | undefined;
+  grossSalary: number | undefined;
   link: {
     source: { id: string };
     target: { id: string };
@@ -12,7 +12,7 @@ type LinkTooltipProps = {
   formatValue?: (value: number) => string;
 };
 
-export function LinkTooltip({ grossIncome, link }: LinkTooltipProps) {
+export function LinkTooltip({ grossSalary, link }: LinkTooltipProps) {
   const formatCurrency = useFormatCurrency();
   const format = useFormatter();
   return (
@@ -23,14 +23,14 @@ export function LinkTooltip({ grossIncome, link }: LinkTooltipProps) {
       <br />
       <span>{formatCurrency(link.value)}</span>{' '}
       <span className="text-muted-foreground">
-        {grossIncome && `(${format.number(link.value / grossIncome, { style: 'percent' })})`}
+        {grossSalary && `(${format.number(link.value / grossSalary, { style: 'percent' })})`}
       </span>
     </div>
   );
 }
 
 type NodeTooltipProps = {
-  grossIncome: number | undefined;
+  grossSalary: number | undefined;
   node: SankeyNodeDatum<
     {
       id: string;
@@ -43,7 +43,7 @@ type NodeTooltipProps = {
   >;
 };
 
-export function NodeTooltip({ grossIncome, node }: NodeTooltipProps) {
+export function NodeTooltip({ grossSalary, node }: NodeTooltipProps) {
   const formatCurrency = useFormatCurrency();
   const format = useFormatter();
 
@@ -53,7 +53,7 @@ export function NodeTooltip({ grossIncome, node }: NodeTooltipProps) {
       <br />
       <span>{formatCurrency(node.value)}</span>{' '}
       <span className="text-muted-foreground">
-        {grossIncome && `(${format.number(node.value / grossIncome, { style: 'percent' })})`}
+        {grossSalary && `(${format.number(node.value / grossSalary, { style: 'percent' })})`}
       </span>
     </div>
   );

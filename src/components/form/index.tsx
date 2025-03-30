@@ -16,7 +16,7 @@ import ChildAllowancesSelect from './fields/child-allowances-select';
 import ChurchTaxSwitch from './fields/church-tax-switch';
 import DobInput from './fields/dob-input';
 import FederalStateSelect from './fields/federal-state-select';
-import GrossIncomeInput from './fields/gross-income-input';
+import GrossSalaryInput from './fields/gross-salary-input';
 import HealthInsuranceAddConInput from './fields/health-insurance-input';
 import NumberOfChildrenSelect from './fields/number-children-select';
 import NursingCareInsuranceSurchargeSwitch from './fields/nursing-care-insurance-surcharge-switch';
@@ -89,7 +89,7 @@ export default function SalaryForm({ formState, formAction }: Props) {
         className="flex flex-col md:gap-4 gap-6"
       >
         <CalculationPeriodSelect />
-        <GrossIncomeInput />
+        <GrossSalaryInput />
         <FederalStateSelect />
         <Separator className="mt-2" />
         <TaxClassSelect />

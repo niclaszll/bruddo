@@ -23,13 +23,13 @@ export async function onSubmitAction(prevState: FormState, data: FormData): Prom
 
   const { data: parsedData } = parsed;
 
-  const stepSize = parsedData.grossIncome < 10000 ? 100 : 1000;
+  const stepSize = parsedData.grossSalary < 10000 ? 100 : 1000;
 
   const [employeeResults, employeeResultsRange] = await Promise.all([
     EmployeeService.getAggregatedResults(parsedData),
     EmployeeService.getAggregatedResultsInRange(
       1000,
-      Math.min(parsedData.grossIncome * 2, 500_000),
+      Math.min(parsedData.grossSalary * 2, 500_000),
       stepSize,
       parsedData,
     ),

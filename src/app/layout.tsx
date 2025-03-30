@@ -19,7 +19,7 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   title: 'Bruddo - Brutto-Netto Rechner',
   description:
-    'Bruddo - Der innovative Brutto-Netto-Rechner mit Visualisierungen: Berechnen Sie Ihr Nettogehalt in wenigen Schritten und entdecken Sie interaktive Diagramme für eine klare Übersicht über Steuern und Abgaben. Benutzerfreundlich, präzise und visuell ansprechend!',
+    'Bruddo - Der innovative Brutto-Netto-Rechner mit Visualisierungen: Berechnen Sie Ihr Nettogehalt in wenigen Schritten und entdecken Sie interaktive Diagramme für eine klare Übersicht über Steuern und Abgaben.',
   keywords: ['Gehaltsrechner', 'Steuern', 'Netto', 'Brutto', 'Gehalt'],
   authors: [{ name: 'Niclas Zellerhoff' }],
   robots: 'index, follow',

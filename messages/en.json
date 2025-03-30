@@ -5,22 +5,22 @@
   "Results": {
     "charts": {
       "area": {
-        "title": "Distribution by income",
-        "description": "Percentage breakdown of taxes and contributions across income levels"
+        "title": "Distribution by salary",
+        "description": "Percentage breakdown of taxes and contributions across salary levels"
       },
       "sankey": {
-        "description": "Taxes, social security contributions, and remaining net income",
+        "description": "Taxes, social security contributions, and remaining net salary",
         "title": "Breakdown of contributions"
       }
     },
     "employeeResults": {
-      "grossIncome": {
-        "default": "Gross income",
-        "short": "Gross income"
+      "grossSalary": {
+        "default": "Gross salary",
+        "short": "Gross salary"
       },
-      "netIncome": {
-        "default": "Net income",
-        "short": "Net income"
+      "netSalary": {
+        "default": "Net salary",
+        "short": "Net salary"
       },
       "socialSecurity": {
         "healthInsurance": {
@@ -64,7 +64,7 @@
       }
     },
     "summaryCards": {
-      "netIncome": {
+      "netSalary": {
         "title": "... remain for you in the end."
       },
       "socialSecurity": {
@@ -126,9 +126,9 @@
           },
           "tooltip": "Select the federal state where your place of employment is located (not to be confused with the workplace in a tax-related sense)."
         },
-        "grossIncome": {
-          "label": "Gross income",
-          "tooltip": "Your gross income for the calculation period."
+        "grossSalary": {
+          "label": "Gross salary",
+          "tooltip": "Your gross salary for the calculation period."
         },
         "healthInsuranceAdditionalContribution": {
           "label": "Health ins. additional contrib.",

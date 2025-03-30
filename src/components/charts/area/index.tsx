@@ -15,8 +15,8 @@ import { chartConfig } from './config';
 import { AreaChartTooltip } from './tooltip';
 
 export type ChartDatum = {
-  grossIncome: number;
-  netIncome: number;
+  grossSalary: number;
+  netSalary: number;
   incomeTax: number;
   solidaritySurcharge: number;
   churchTax: number;
@@ -43,8 +43,8 @@ export function RangeBreakdownAreaChart({ results }: Props) {
       : CalculationPeriod.enum.YEAR;
 
   const chartData: ChartDatum[] = results.employeeResultsRange.map((item) => ({
-    grossIncome: item.grossIncome[calculationPeriod],
-    netIncome: item.netIncome[calculationPeriod],
+    grossSalary: item.grossSalary[calculationPeriod],
+    netSalary: item.netSalary[calculationPeriod],
     incomeTax: item.taxes.incomeTax[calculationPeriod],
     solidaritySurcharge: item.taxes.solidaritySurcharge[calculationPeriod],
     churchTax: item.taxes.churchTax[calculationPeriod],
@@ -134,7 +134,7 @@ export function RangeBreakdownAreaChart({ results }: Props) {
                         numTicks={
                           value === 'mobile'
                             ? 3
-                            : results.employeeResults.grossIncome[calculationPeriod] < 10000
+                            : results.employeeResults.grossSalary[calculationPeriod] < 10000
                               ? 5
                               : 8
                         }
@@ -157,7 +157,7 @@ export function RangeBreakdownAreaChart({ results }: Props) {
                             fillOpacity={0.8}
                             stroke={color}
                             strokeWidth={1}
-                            xAccessor={(d) => d.grossIncome}
+                            xAccessor={(d) => d.grossSalary}
                             yAccessor={(d) => d[key as keyof typeof d]}
                           />
                         ))}

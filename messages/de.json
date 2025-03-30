@@ -14,11 +14,11 @@
       }
     },
     "employeeResults": {
-      "grossIncome": {
+      "grossSalary": {
         "default": "Bruttogehalt",
         "short": "Bruttogehalt"
       },
-      "netIncome": {
+      "netSalary": {
         "default": "Nettogehalt",
         "short": "Nettogehalt"
       },
@@ -64,7 +64,7 @@
       }
     },
     "summaryCards": {
-      "netIncome": {
+      "netSalary": {
         "title": "bleiben dir am Ende übrig."
       },
       "socialSecurity": {
@@ -126,7 +126,7 @@
           },
           "tooltip": "Wähle das Bundesland aus, in dem dein Beschäftigungsort liegt (nicht zu verwechseln mit der Betriebsstätte im steuerrechtlichen Sinn)."
         },
-        "grossIncome": {
+        "grossSalary": {
           "label": "Bruttogehalt",
           "tooltip": "Dein Bruttogehalt im Berechnungszeitraum."
         },

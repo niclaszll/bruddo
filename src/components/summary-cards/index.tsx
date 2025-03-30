@@ -28,23 +28,23 @@ export default function SummaryCards({ results }: Props) {
     );
   }
 
-  const yearlyGrossIncome = employeeResults.grossIncome[CalculationPeriod.enum.YEAR];
+  const yearlyGrossSalary = employeeResults.grossSalary[CalculationPeriod.enum.YEAR];
 
   const data = [
     {
-      percentage: employeeResults.taxes.total[CalculationPeriod.enum.YEAR] / yearlyGrossIncome,
+      percentage: employeeResults.taxes.total[CalculationPeriod.enum.YEAR] / yearlyGrossSalary,
       description: t('Results.summaryCards.tax.title'),
       icon: <Landmark className="stroke-secondary w-9 h-9" />,
     },
     {
       percentage:
-        employeeResults.socialSecurity.total[CalculationPeriod.enum.YEAR] / yearlyGrossIncome,
+        employeeResults.socialSecurity.total[CalculationPeriod.enum.YEAR] / yearlyGrossSalary,
       description: t('Results.summaryCards.socialSecurity.title'),
       icon: <Hospital className="stroke-secondary w-9 h-9" />,
     },
     {
-      percentage: employeeResults.netIncome[CalculationPeriod.enum.YEAR] / yearlyGrossIncome,
-      description: t('Results.summaryCards.netIncome.title'),
+      percentage: employeeResults.netSalary[CalculationPeriod.enum.YEAR] / yearlyGrossSalary,
+      description: t('Results.summaryCards.netSalary.title'),
       icon: <HandCoins className="stroke-secondary w-9 h-9" />,
     },
   ];

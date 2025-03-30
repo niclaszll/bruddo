@@ -54,8 +54,8 @@ export const ContributionBreakdownSankeyChart = memo(function ContributionBreakd
     return <Skeleton className="min-w-full h-[646px] lg:h-[630px] rounded-lg" />;
 
   const nodes = [
-    { id: t('Results.employeeResults.grossIncome.short') },
-    { id: t('Results.employeeResults.netIncome.short') },
+    { id: t('Results.employeeResults.grossSalary.short') },
+    { id: t('Results.employeeResults.netSalary.short') },
     { id: t('Results.employeeResults.taxes.total.short') },
     { id: t('Results.employeeResults.taxes.incomeTax.short') },
     { id: t('Results.employeeResults.taxes.solidaritySurcharge.short') },
@@ -69,12 +69,12 @@ export const ContributionBreakdownSankeyChart = memo(function ContributionBreakd
 
   const links = [
     {
-      source: t('Results.employeeResults.grossIncome.short'),
-      target: t('Results.employeeResults.netIncome.short'),
-      value: results.employeeResults.netIncome[calculationPeriod],
+      source: t('Results.employeeResults.grossSalary.short'),
+      target: t('Results.employeeResults.netSalary.short'),
+      value: results.employeeResults.netSalary[calculationPeriod],
     },
     {
-      source: t('Results.employeeResults.grossIncome.short'),
+      source: t('Results.employeeResults.grossSalary.short'),
       target: t('Results.employeeResults.taxes.total.short'),
       value: results.employeeResults.taxes.total[calculationPeriod],
     },
@@ -94,7 +94,7 @@ export const ContributionBreakdownSankeyChart = memo(function ContributionBreakd
       value: results.employeeResults.taxes.churchTax[calculationPeriod],
     },
     {
-      source: t('Results.employeeResults.grossIncome.short'),
+      source: t('Results.employeeResults.grossSalary.short'),
       target: t('Results.employeeResults.socialSecurity.total.short'),
       value: results.employeeResults.socialSecurity.total[calculationPeriod],
     },
@@ -126,7 +126,7 @@ export const ContributionBreakdownSankeyChart = memo(function ContributionBreakd
         <CardTitle>{t('Results.charts.sankey.title')}</CardTitle>
         <CardDescription>{t('Results.charts.sankey.description')}</CardDescription>
       </CardHeader>
-      {results.employeeResults.grossIncome[calculationPeriod] > 0 && (
+      {results.employeeResults.grossSalary[calculationPeriod] > 0 && (
         <CardContent className="overflow-hidden">
           <div className="relative h-[500px]">
             <div className="w-full absolute top-0 left-0 bottom-0">
@@ -144,13 +144,13 @@ export const ContributionBreakdownSankeyChart = memo(function ContributionBreakd
                 nodeBorderWidth={1}
                 nodeTooltip={({ node }) => (
                   <NodeTooltip
-                    grossIncome={results.employeeResults?.grossIncome[calculationPeriod]}
+                    grossSalary={results.employeeResults?.grossSalary[calculationPeriod]}
                     node={node}
                   />
                 )}
                 linkTooltip={({ link }) => (
                   <LinkTooltip
-                    grossIncome={results.employeeResults?.grossIncome[calculationPeriod]}
+                    grossSalary={results.employeeResults?.grossSalary[calculationPeriod]}
                     link={link}
                   />
                 )}

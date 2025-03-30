@@ -1,10 +1,11 @@
 import { FormState } from '@/components/form/actions';
 import { CalculationPeriod, FederalState, TaxClass } from '@/types/common';
 
-// provide an initial precalculated state for SSR
+// provide an initial precalculated state for faster page loads
+// TODO: make this dynamic
 export const initialState: FormState = {
   employeeResults: {
-    grossIncome: {
+    grossSalary: {
       MONTH: 3333.33,
       YEAR: 40000,
     },
@@ -48,7 +49,7 @@ export const initialState: FormState = {
         YEAR: 8620,
       },
     },
-    netIncome: {
+    netSalary: {
       MONTH: 2198.39,
       YEAR: 26380.68,
     },
@@ -56,7 +57,7 @@ export const initialState: FormState = {
   employeeResultsRange: undefined,
   userInputs: {
     calculationPeriod: CalculationPeriod.enum.YEAR,
-    grossIncome: 40_000,
+    grossSalary: 40_000,
     taxClass: TaxClass.enum.I,
     federalState: FederalState.enum.BW,
     healthInsuranceAdditionalContribution: 2.5,

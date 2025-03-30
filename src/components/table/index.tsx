@@ -43,13 +43,13 @@ const BaseTable = memo(function BaseTable({
       {header && <TableHeader>{header}</TableHeader>}
       <TableBody>
         <TableRow className="font-bold bg-muted/30">
-          <TableCell>{t('Results.employeeResults.grossIncome.default')}</TableCell>
+          <TableCell>{t('Results.employeeResults.grossSalary.default')}</TableCell>
           {periods.map((period) => (
             <TableCell
               key={period}
               className="text-right"
             >
-              {formatCurrency(results.employeeResults!.grossIncome[period])}
+              {formatCurrency(results.employeeResults!.grossSalary[period])}
             </TableCell>
           ))}
         </TableRow>
@@ -72,13 +72,13 @@ const BaseTable = memo(function BaseTable({
       </TableBody>
       <TableFooter>
         <TableRow className="font-bold">
-          <TableCell colSpan={1}>{t('Results.employeeResults.netIncome.default')}</TableCell>
+          <TableCell colSpan={1}>{t('Results.employeeResults.netSalary.default')}</TableCell>
           {periods.map((period) => (
             <TableCell
               key={period}
               className="text-right underline decoration-primary decoration-2 underline-offset-8"
             >
-              {formatCurrency(results.employeeResults!.netIncome[period])}
+              {formatCurrency(results.employeeResults!.netSalary[period])}
             </TableCell>
           ))}
         </TableRow>
