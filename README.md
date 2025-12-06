@@ -4,8 +4,6 @@ A modern and minimalistic gross-net salary calculator for Germany, built with Ne
 
 ![Bruddo Screenshot](docs/img/screen.webp)
 
-Check out the live version at [bruddo.vercel.app](https://bruddo.vercel.app).
-
 ## Features
 
 - 💰 Interactive salary calculation form
