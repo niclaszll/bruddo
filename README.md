@@ -6,12 +6,12 @@ A modern and minimalistic gross-net salary calculator for Germany, built with Ne
 
 ## Features
 
-- 💰 Interactive salary calculation form
-- 📊 Detailed breakdown of gross and net income
-- 📈 Interactive charts
-- 📱 Responsive design
-- 🌓 Dark/light theme support
-- 🌍 Internationalization support
+- Interactive salary calculation form
+- Detailed breakdown of gross and net income
+- Interactive charts
+- Responsive design
+- Dark/light theme support
+- Internationalization support
 
 ## Getting Started
 
